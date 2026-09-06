@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — UYEH TECH</title>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--g:#00ff88;--g2:#00c96a;--g3:rgba(0,255,136,.08);--g4:rgba(0,255,136,.14);--g5:rgba(0,255,136,.22);--ink:#07090c;--ink2:#0c0f14;--ink3:#111620;--ink4:#18202e;--card:#0e1318;--line:rgba(255,255,255,.06);--line2:rgba(0,255,136,.18);--t1:#edf2f7;--t2:#8a96a8;--t3:#4a5568;--red:#ff4d4d;--amber:#f5a623;--blue:#5b9cf6;--purple:#a78bfa;--sb-w:268px;--hdr:60px;--r:12px;--r2:18px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--ink);color:var(--t1);display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--ink2)}::-webkit-scrollbar-thumb{background:var(--ink4);border-radius:2px}
+a{text-decoration:none;color:inherit}
+
+/* ── LOADING ── */
+#loadingOverlay{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .4s}
+#loadingOverlay.fade{opacity:0;pointer-events:none}
+.ld-ring{width:52px;height:52px;border:3px solid rgba(0,255,136,.15);border-top-color:var(--g);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
+.ld-text{font-size:.72rem;color:var(--t3);font-family:'JetBrains Mono',monospace;letter-spacing:1.5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sb-w);background:var(--ink2);border-right:1px solid var(--line);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:300;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.sidebar::-webkit-scrollbar{width:0}
+.sb-brand{padding:20px 18px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;flex-shrink:0}
+.sb-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--g2),var(--g));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-weight:900;font-size:.8rem;color:var(--ink);overflow:hidden}
+.sb-mark img{width:100%;height:100%;object-fit:contain}
+.sb-name{font-family:'Playfair Display',serif;font-weight:900;font-size:.98rem;color:var(--g)}
+.sb-sub{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.sb-user{margin:14px 14px 0;padding:10px 12px;background:var(--g3);border:1px solid var(--line2);border-radius:11px;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--ink);flex-shrink:0;overflow:hidden}
+.sb-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.sb-uname{font-weight:600;font-size:.8rem;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-urole{font-size:.62rem;color:var(--g);font-weight:500;margin-top:1px}
+.sb-nav{flex:1;padding:14px 12px;overflow-y:auto}.sb-nav::-webkit-scrollbar{width:0}
+.sb-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:2px;padding:14px 10px 6px}
+.sb-label:first-child{padding-top:4px}
+.nav-link{display:flex;align-items:center;gap:11px;padding:10px 12px;color:var(--t2);border-radius:9px;font-weight:500;font-size:.845rem;margin-bottom:2px;transition:all .15s;position:relative;border:1px solid transparent}
+.nav-link:hover{background:var(--g3);color:var(--t1)}
+.nav-link.active{background:var(--g4);color:var(--g);border-color:var(--line2)}
+.nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:55%;background:var(--g);border-radius:0 3px 3px 0}
+.nav-link i{width:18px;text-align:center;font-size:.88rem;flex-shrink:0;opacity:.8}
+.nav-link.active i{opacity:1}
+.sb-divider{height:1px;background:var(--line);margin:8px 12px}
+.sb-footer{padding:12px 12px 18px;border-top:1px solid var(--line);flex-shrink:0}
+.sb-store{display:flex;align-items:center;gap:9px;padding:9px 12px;color:var(--t2);border-radius:9px;font-size:.82rem;font-weight:500;margin-bottom:8px;transition:all .15s;border:1px solid transparent}
+.sb-store:hover{background:var(--g3);color:var(--g);border-color:var(--line2)}
+.sb-store i{width:18px;text-align:center;font-size:.88rem}
+.sb-logout{width:100%;padding:10px 14px;background:rgba(255,77,77,.06);border:1px solid rgba(255,77,77,.18);border-radius:9px;color:var(--red);font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.sb-logout:hover{background:rgba(255,77,77,.13)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:299;backdrop-filter:blur(2px)}
+.sb-overlay.open{display:block}
+
+/* ── MAIN ── */
+.main{flex:1;margin-left:var(--sb-w);min-height:100vh;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:200;height:var(--hdr);background:rgba(7,9,12,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tb-left{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:none;border:none;color:var(--t1);font-size:1.15rem;cursor:pointer;padding:6px;border-radius:6px;transition:background .15s}
+.menu-btn:hover{background:var(--g3)}
+.tb-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1)}
+.tb-right{display:flex;align-items:center;gap:8px}
+.tb-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--ink3);display:flex;align-items:center;justify-content:center;color:var(--t2);cursor:pointer;transition:all .15s;font-size:.88rem}
+.tb-btn:hover{border-color:var(--line2);color:var(--g);background:var(--g3)}
+.content{flex:1;padding:28px;max-width:1200px;width:100%}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;border:none;transition:all .18s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--g2),var(--g));color:var(--ink)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,136,.3)}
+.btn-ghost{background:var(--g3);border:1px solid var(--line2);color:var(--g)}
+.btn-ghost:hover{background:var(--g4)}
+.btn-dim{background:var(--ink3);border:1px solid var(--line);color:var(--t2)}
+.btn-dim:hover{border-color:var(--line2);color:var(--t1)}
+.btn-danger{background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.25);color:var(--red)}
+.btn-danger:hover{background:rgba(255,77,77,.16)}
+.btn-sm{padding:7px 14px;font-size:.78rem}
+.btn-full{width:100%;justify-content:center}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none !important;box-shadow:none !important}
+
+/* ── PROFILE HERO ── */
+.profile-hero{background:linear-gradient(135deg,rgba(0,255,136,.07),rgba(0,201,106,.04) 50%,rgba(91,156,246,.05) 100%);border:1px solid var(--line2);border-radius:var(--r2);padding:32px;margin-bottom:28px;display:flex;align-items:flex-start;gap:28px;position:relative;overflow:hidden}
+.profile-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(0,255,136,.07) 0%,transparent 70%);pointer-events:none}
+.avatar-wrap{position:relative;flex-shrink:0}
+.avatar-lg{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--ink);border:3px solid var(--g5);overflow:hidden;cursor:pointer}
+.avatar-lg img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.avatar-edit-btn{position:absolute;bottom:2px;right:2px;width:26px;height:26px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:var(--ink);cursor:pointer;border:2px solid var(--ink);transition:transform .15s;font-weight:700}
+.avatar-edit-btn:hover{transform:scale(1.1)}
+#avatarInput{display:none}
+.hero-body{flex:1;min-width:0}
+.hero-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--t1);margin-bottom:4px;line-height:1.2}
+.hero-email{font-size:.85rem;color:var(--t2);margin-bottom:14px;font-family:'JetBrains Mono',monospace}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.hbadge{padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:.3px;border:1px solid}
+.hbadge-green{background:var(--g3);border-color:var(--line2);color:var(--g)}
+.hbadge-amber{background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.25);color:var(--amber)}
+.hbadge-purple{background:rgba(167,139,250,.08);border-color:rgba(167,139,250,.25);color:var(--purple)}
+.hbadge-blue{background:rgba(91,156,246,.08);border-color:rgba(91,156,246,.25);color:var(--blue)}
+.hbadge-red{background:rgba(255,77,77,.08);border-color:rgba(255,77,77,.25);color:var(--red)}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap}
+.hero-meta-item{display:flex;flex-direction:column;gap:2px}
+.hm-label{font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+.hm-value{font-size:.82rem;font-weight:600;color:var(--t1)}
+.hero-actions{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+
+/* ── STATS ROW ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.mini-stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:18px 20px;transition:all .2s;position:relative;overflow:hidden}
+.mini-stat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ac,var(--g)),transparent);opacity:0;transition:opacity .2s}
+.mini-stat:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.25)}
+.mini-stat:hover::after{opacity:1}
+.ms-label{font-size:.65rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;font-family:'JetBrains Mono',monospace;margin-bottom:10px}
+.ms-value{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--t1);line-height:1;margin-bottom:4px}
+.ms-sub{font-size:.68rem;color:var(--t3)}
+
+/* ── TAB NAV ── */
+.tab-nav{display:flex;gap:4px;background:var(--ink2);border:1px solid var(--line);border-radius:var(--r2);padding:5px;margin-bottom:24px;overflow-x:auto;flex-wrap:nowrap}
+.tab-nav::-webkit-scrollbar{height:0}
+.tab-btn{padding:9px 18px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.8rem;color:var(--t2);background:none;border:none;cursor:pointer;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.tab-btn:hover{color:var(--t1);background:var(--ink3)}
+.tab-btn.active{background:var(--g4);color:var(--g);border:1px solid var(--line2)}
+.tab-btn i{font-size:.78rem}
+
+/* ── PANELS ── */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;margin-bottom:20px}
+.panel:last-child{margin-bottom:0}
+.panel-hdr{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--t1)}
+.panel-sub{font-size:.68rem;color:var(--t3);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.panel-body{padding:22px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g);margin-right:8px;vertical-align:middle}
+
+/* ── FORMS ── */
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.f-row.single{grid-template-columns:1fr}
+.f-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.f-group:last-child{margin-bottom:0}
+.f-label{font-size:.68rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.f-label .req{color:var(--red);margin-left:2px}
+.f-input,.f-select,.f-textarea{width:100%;padding:11px 14px;background:var(--ink3);border:1px solid var(--line);border-radius:9px;color:var(--t1);font-family:'Montserrat',sans-serif;font-size:.875rem;outline:none;transition:border-color .15s;resize:vertical}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--line2)}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--t3)}
+.f-input:read-only{color:var(--t2);cursor:default}
+.f-select option{background:var(--ink3)}
+.f-hint{font-size:.68rem;color:var(--t3);margin-top:3px;font-family:'JetBrains Mono',monospace}
+.f-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+
+/* ── SOCIAL LINKS ── */
+.social-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.social-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.si-tw{background:rgba(29,161,242,.1);color:#1da1f2}
+.si-ig{background:rgba(225,48,108,.1);color:#e1306c}
+.si-li{background:rgba(10,102,194,.1);color:#0a66c2}
+.si-yt{background:rgba(255,0,0,.1);color:#ff0000}
+.si-wb{background:rgba(0,255,136,.1);color:var(--g)}
+.social-row .f-input{flex:1;margin:0}
+
+/* ── PASSWORD STRENGTH ── */
+.pwd-strength{height:4px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden;margin-top:6px}
+.pwd-bar{height:100%;border-radius:4px;transition:width .3s,background .3s;width:0}
+.pwd-text{font-size:.68rem;margin-top:4px;font-family:'JetBrains Mono',monospace;font-weight:600}
+
+/* ── TOGGLE SWITCH ── */
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+.toggle-wrap:last-child{border-bottom:none;padding-bottom:0}
+.toggle-wrap:first-child{padding-top:0}
+.toggle-info h4{font-size:.85rem;font-weight:600;color:var(--t1);margin-bottom:3px}
+.toggle-info p{font-size:.73rem;color:var(--t3)}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:var(--ink4);border-radius:24px;transition:all .25s;cursor:pointer;border:1px solid var(--line)}
+.toggle-slider::before{content:'';position:absolute;left:3px;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:var(--t3);transition:all .25s}
+.toggle input:checked+.toggle-slider{background:var(--g3);border-color:var(--line2)}
+.toggle input:checked+.toggle-slider::before{transform:translateX(20px) translateY(-50%);background:var(--g)}
+
+/* ── PREFERENCE ROWS ── */
+.pref-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+.pref-row:last-child{border-bottom:none;padding-bottom:0}
+.pref-row:first-child{padding-top:0}
+.pref-key{font-size:.8rem;color:var(--t1);font-weight:500}
+.pref-val{font-size:.78rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+
+/* ── ORDER HISTORY ── */
+.order-item{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:border-color .15s}
+.order-item:last-child{margin-bottom:0}
+.order-item:hover{border-color:var(--line2)}
+.order-icon{width:40px;height:40px;border-radius:10px;background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--g);flex-shrink:0}
+.order-body{flex:1;min-width:0}
+.order-ref{font-size:.75rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-bottom:3px}
+.order-title{font-size:.85rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.order-meta{font-size:.7rem;color:var(--t3);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.order-right{text-align:right;flex-shrink:0}
+.order-amount{font-size:.9rem;font-weight:700;color:var(--g);font-family:'JetBrains Mono',monospace}
+.order-status{font-size:.64rem;font-weight:700;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;margin-top:3px;display:inline-block}
+.st-ok{background:var(--g3);color:var(--g);border:1px solid var(--line2)}
+.st-pend{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
+
+/* ── AFFILIATE CARD ── */
+.aff-code-box{background:var(--ink3);border:1px solid var(--line2);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.aff-code{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--g);font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy-btn{background:none;border:none;color:var(--t3);cursor:pointer;font-size:.85rem;padding:3px 5px;transition:color .15s}
+.copy-btn:hover{color:var(--g)}
+.aff-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.aff-stat{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;text-align:center}
+.aff-stat-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--t1)}
+.aff-stat-val.g{color:var(--g)}.aff-stat-val.a{color:var(--amber)}
+.aff-stat-lbl{font-size:.65rem;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.8px;margin-top:3px}
+
+/* ── CREATOR CARD ── */
+.creator-store-card{background:linear-gradient(135deg,rgba(167,139,250,.07),rgba(0,255,136,.05));border:1px solid rgba(167,139,250,.2);border-radius:var(--r2);padding:18px 20px;margin-bottom:16px}
+.csc-top{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.csc-logo{width:48px;height:48px;border-radius:12px;background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;overflow:hidden;flex-shrink:0}
+.csc-logo img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+.csc-name{font-size:1rem;font-weight:700;color:var(--t1);margin-bottom:2px}
+.csc-slug{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--purple)}
+.creator-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cr-stat{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;text-align:center}
+.cr-stat-val{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:var(--t1)}
+.cr-stat-lbl{font-size:.58rem;color:var(--t3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+
+/* ── DANGER ZONE ── */
+.danger-zone{border:1px solid rgba(255,77,77,.2);border-radius:var(--r2);overflow:hidden}
+.dz-hdr{background:rgba(255,77,77,.06);padding:16px 20px;border-bottom:1px solid rgba(255,77,77,.15)}
+.dz-title{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--red)}
+.dz-sub{font-size:.72rem;color:rgba(255,77,77,.6);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.dz-body{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
+.dz-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dz-info h4{font-size:.85rem;font-weight:600;color:var(--t1);margin-bottom:3px}
+.dz-info p{font-size:.72rem;color:var(--t3)}
+
+/* ── CONFIRM MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--ink2);border:1px solid var(--line);border-radius:var(--r2);width:100%;max-width:440px}
+.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1)}
+.modal-close{width:28px;height:28px;border-radius:7px;border:1px solid var(--line);background:none;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:.85rem}
+.modal-close:hover{border-color:rgba(255,77,77,.3);color:var(--red)}
+.modal-body{padding:22px 24px}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end}
+
+/* ── EMAIL CHANGE OTP ── */
+.otp-inputs{display:flex;gap:10px;justify-content:center;margin:20px 0}
+.otp-input{width:48px;height:52px;text-align:center;font-size:1.3rem;font-weight:700;font-family:'JetBrains Mono',monospace;background:var(--ink3);border:1px solid var(--line);border-radius:10px;color:var(--g);outline:none;transition:border-color .15s}
+.otp-input:focus{border-color:var(--line2)}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:.8rem;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.4);pointer-events:all;animation:tin .25s ease;max-width:300px}
+.toast.ok{border-color:var(--line2);color:var(--g)}
+.toast.err{border-color:rgba(255,77,77,.3);color:var(--red)}
+@keyframes tin{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+.empty{text-align:center;padding:36px 20px;color:var(--t3)}
+.empty i{font-size:1.8rem;margin-bottom:10px;display:block;opacity:.4}
+.empty p{font-size:.8rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.panel-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr 1fr}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-btn{display:flex}.content{padding:16px}.profile-hero{flex-direction:column;align-items:center;text-align:center}.hero-meta{justify-content:center}.hero-actions{flex-direction:row}.stats-row{grid-template-columns:1fr 1fr}.f-row{grid-template-columns:1fr}.creator-stat-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.stats-row{grid-template-columns:1fr}.tab-btn span{display:none}.aff-stat-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loadingOverlay"><div class="ld-ring"></div><div class="ld-text">LOADING PROFILE…</div></div>
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <a href="/marketplace/" class="sb-brand">
+    <div class="sb-mark"><img src="/marketplace/uyehtech logo.png" alt="UT" onerror="this.style.display='none'"></div>
+    <div><div class="sb-name">UYEH TECH</div><div class="sb-sub">Marketplace</div></div>
+  </a>
+  <div class="sb-user">
+    <div class="sb-avatar" id="sbAvatar">U</div>
+    <div style="min-width:0"><div class="sb-uname" id="sbName">Loading…</div><div class="sb-urole" id="sbRole">Member</div></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-label">Menu</div>
+    <a href="/marketplace/dashboard"   class="nav-link"><i class="fas fa-gauge-high"></i>Dashboard</a>
+    <a href="/marketplace/my-products" class="nav-link"><i class="fas fa-box-open"></i>My Library</a>
+    <a href="/marketplace/orders"      class="nav-link"><i class="fas fa-receipt"></i>Order History</a>
+    <a href="/marketplace/affiliate"   class="nav-link"><i class="fas fa-link"></i>Affiliate</a>
+    <div class="sb-divider"></div>
+    <div class="sb-label">Account</div>
+    <a href="/marketplace/profile"  class="nav-link active"><i class="fas fa-user-circle"></i>My Profile</a>
+    <a href="/marketplace/settings" class="nav-link"><i class="fas fa-sliders"></i>Settings</a>
+    <a href="/marketplace/creator-dashboard" class="nav-link" id="sbCreatorLink" style="display:none"><i class="fas fa-store"></i>Creator Studio</a>
+    <a href="/marketplace/support"  class="nav-link"><i class="fas fa-headset"></i>Help & Support</a>
+  </nav>
+  <div class="sb-footer">
+    <a href="/marketplace/" class="sb-store"><i class="fas fa-store"></i>Browse Store</a>
+    <button class="sb-logout" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i>Log Out</button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <header class="topbar">
+    <div class="tb-left">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+      <div class="tb-title">My Profile</div>
+    </div>
+    <div class="tb-right">
+      <a href="/marketplace/settings" class="tb-btn" title="Settings"><i class="fas fa-sliders"></i></a>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- PROFILE HERO -->
+    <div class="profile-hero">
+      <div class="avatar-wrap">
+        <div class="avatar-lg" id="avatarEl" onclick="document.getElementById('avatarInput').click()">U</div>
+        <div class="avatar-edit-btn" onclick="document.getElementById('avatarInput').click()" title="Change photo"><i class="fas fa-camera"></i></div>
+        <input type="file" id="avatarInput" accept="image/*" onchange="handleAvatarChange(event)">
+      </div>
+
+      <div class="hero-body">
+        <div class="hero-name" id="heroName">Loading…</div>
+        <div class="hero-email" id="heroEmail">loading@email.com</div>
+        <div class="hero-badges" id="heroBadges"></div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><span class="hm-label">Member Since</span><span class="hm-value" id="hMemberSince">—</span></div>
+          <div class="hero-meta-item"><span class="hm-label">Last Login</span><span class="hm-value" id="hLastLogin">—</span></div>
+          <div class="hero-meta-item"><span class="hm-label">Location</span><span class="hm-value" id="hLocation">—</span></div>
+          <div class="hero-meta-item"><span class="hm-label">Account Type</span><span class="hm-value" id="hType">Member</span></div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-sm" onclick="savePersonalInfo()"><i class="fas fa-save"></i>Save Changes</button>
+        <a href="/marketplace/settings" class="btn btn-dim btn-sm"><i class="fas fa-sliders"></i>Settings</a>
+      </div>
+    </div>
+
+    <!-- STATS ROW -->
+    <div class="stats-row">
+      <div class="mini-stat" style="--ac:var(--g)">
+        <div class="ms-label">Total Orders</div>
+        <div class="ms-value" id="stOrders">—</div>
+        <div class="ms-sub" id="stOrdersSub">loading</div>
+      </div>
+      <div class="mini-stat" style="--ac:var(--blue)">
+        <div class="ms-label">Total Spent</div>
+        <div class="ms-value" id="stSpent">—</div>
+        <div class="ms-sub">lifetime</div>
+      </div>
+      <div class="mini-stat" style="--ac:var(--purple)">
+        <div class="ms-label">Downloads</div>
+        <div class="ms-value" id="stDownloads">—</div>
+        <div class="ms-sub">files received</div>
+      </div>
+      <div class="mini-stat" style="--ac:var(--amber)">
+        <div class="ms-label">Courses</div>
+        <div class="ms-value" id="stCourses">—</div>
+        <div class="ms-sub" id="stCoursesSub">loading</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tab-nav" id="tabNav">
+      <button class="tab-btn active" data-tab="personal"><i class="fas fa-user"></i><span>Personal Info</span></button>
+      <button class="tab-btn" data-tab="security"><i class="fas fa-lock"></i><span>Security</span></button>
+      <button class="tab-btn" data-tab="social"><i class="fas fa-share-nodes"></i><span>Social Links</span></button>
+      <button class="tab-btn" data-tab="notifications"><i class="fas fa-bell"></i><span>Notifications</span></button>
+      <button class="tab-btn" data-tab="orders"><i class="fas fa-receipt"></i><span>Orders</span></button>
+      <button class="tab-btn" data-tab="affiliate"><i class="fas fa-link"></i><span>Affiliate</span></button>
+      <button class="tab-btn" data-tab="creator" id="creatorTab" style="display:none"><i class="fas fa-store"></i><span>Creator</span></button>
+      <button class="tab-btn" data-tab="danger"><i class="fas fa-triangle-exclamation"></i><span>Account</span></button>
+    </div>
+
+    <!-- ═══ TAB: PERSONAL INFO ═══ -->
+    <div class="tab-panel active" id="tab-personal">
+      <div class="panel-grid">
+        <div class="panel">
+          <div class="panel-hdr">
+            <div><div class="panel-title"><span class="dot"></span>Basic Information</div><div class="panel-sub">Your name, bio and contact details</div></div>
+          </div>
+          <div class="panel-body">
+            <div class="f-row">
+              <div class="f-group"><label class="f-label">Full Name <span class="req">*</span></label><input class="f-input" id="fName" type="text" placeholder="Your full name"></div>
+              <div class="f-group"><label class="f-label">Email Address</label><input class="f-input" id="fEmail" type="email" placeholder="your@email.com" readonly><div class="f-hint">To change email, use the Security tab</div></div>
+            </div>
+            <div class="f-row">
+              <div class="f-group"><label class="f-label">Phone Number</label><input class="f-input" id="fPhone" type="tel" placeholder="+234 801 234 5678"></div>
+              <div class="f-group"><label class="f-label">Country</label><input class="f-input" id="fCountry" type="text" placeholder="Nigeria"></div>
+            </div>
+            <div class="f-group"><label class="f-label">Bio <span style="color:var(--t3);">(max 300 chars)</span></label><textarea class="f-textarea" id="fBio" rows="3" placeholder="Tell people a bit about yourself…" maxlength="300"></textarea><div class="f-hint"><span id="bioCount">0</span>/300 characters</div></div>
+            <div class="f-actions">
+              <button class="btn btn-dim btn-sm" onclick="resetPersonalForm()"><i class="fas fa-rotate-left"></i>Reset</button>
+              <button class="btn btn-primary btn-sm" id="savePersonalBtn" onclick="savePersonalInfo()"><i class="fas fa-save"></i>Save Changes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Account Details</div><div class="panel-sub">Account status and membership info</div></div></div>
+          <div class="panel-body">
+            <div class="pref-row"><span class="pref-key">Account Status</span><span class="pref-val" id="acStatus" style="color:var(--g)">Active</span></div>
+            <div class="pref-row"><span class="pref-key">Email Verified</span><span class="pref-val" id="acEmailVerified">—</span></div>
+            <div class="pref-row"><span class="pref-key">Two-Factor Auth</span><span class="pref-val" id="ac2FA">—</span></div>
+            <div class="pref-row"><span class="pref-key">Member Since</span><span class="pref-val" id="acMemberSince">—</span></div>
+            <div class="pref-row"><span class="pref-key">Last Login</span><span class="pref-val" id="acLastLogin">—</span></div>
+            <div class="pref-row"><span class="pref-key">Account Type</span><span class="pref-val" id="acType">Member</span></div>
+            <div class="pref-row"><span class="pref-key">User ID</span><span class="pref-val" id="acId" style="font-size:.65rem">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: SECURITY ═══ -->
+    <div class="tab-panel" id="tab-security">
+      <div class="panel-grid">
+        <div class="panel">
+          <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Change Password</div><div class="panel-sub">Keep your account secure</div></div></div>
+          <div class="panel-body">
+            <div class="f-group"><label class="f-label">Current Password <span class="req">*</span></label><input class="f-input" id="pwdCurrent" type="password" placeholder="Enter current password"></div>
+            <div class="f-group"><label class="f-label">New Password <span class="req">*</span></label><input class="f-input" id="pwdNew" type="password" placeholder="At least 8 characters" oninput="checkPwdStrength(this.value)"><div class="pwd-strength"><div class="pwd-bar" id="pwdBar"></div></div><div class="pwd-text" id="pwdText"></div></div>
+            <div class="f-group"><label class="f-label">Confirm New Password <span class="req">*</span></label><input class="f-input" id="pwdConfirm" type="password" placeholder="Repeat new password"></div>
+            <div class="f-actions">
+              <button class="btn btn-primary btn-sm" id="changePwdBtn" onclick="changePassword()"><i class="fas fa-lock"></i>Change Password</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="panel" style="margin-bottom:20px">
+            <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Change Email</div><div class="panel-sub">Verify ownership of new address</div></div></div>
+            <div class="panel-body">
+              <div class="f-group"><label class="f-label">New Email Address</label><input class="f-input" id="newEmail" type="email" placeholder="new@email.com"></div>
+              <div class="f-group"><label class="f-label">Current Password (to confirm)</label><input class="f-input" id="emailChangePwd" type="password" placeholder="Your current password"></div>
+              <div class="f-actions">
+                <button class="btn btn-ghost btn-sm" id="requestEmailBtn" onclick="requestEmailChange()"><i class="fas fa-paper-plane"></i>Send Verification Code</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Security Options</div><div class="panel-sub">Additional account protection</div></div></div>
+            <div class="panel-body">
+              <div class="toggle-wrap" style="flex-direction:column;align-items:flex-start;gap:14px;">
+                <div class="toggle-info">
+                  <h4>Two-Factor Authentication</h4>
+                  <p>Require a TOTP code from your authenticator app on each login</p>
+                  <div id="twoFAStatusBadge" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.68rem;font-weight:700;font-family:'JetBrains Mono',monospace;padding:3px 10px;border-radius:20px;border:1px solid;"></div>
+                </div>
+                <button class="btn btn-ghost btn-sm" id="twoFAManageBtn" onclick="open2FAModal()">
+                  <i class="fas fa-shield-halved"></i> <span id="twoFAManageLabel">Manage 2FA</span>
+                </button>
+              </div>
+              <!-- 2FA MODAL -->
+              <div class="modal-overlay" id="twoFAModal" style="z-index:1100;">
+                <div class="modal" style="max-width:420px;">
+                  <div class="modal-hdr">
+                    <div class="modal-title" id="twoFAModalTitle">Two-Factor Authentication</div>
+                    <button class="modal-close" onclick="close2FAModal()"><i class="fas fa-times"></i></button>
+                  </div>
+                  <div class="modal-body" id="twoFAModalBody"></div>
+                  <div class="modal-footer" id="twoFAModalFooter"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: SOCIAL LINKS ═══ -->
+    <div class="tab-panel" id="tab-social">
+      <div class="panel">
+        <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Social Media Links</div><div class="panel-sub">Add your public profiles and website</div></div></div>
+        <div class="panel-body">
+          <div class="social-row"><div class="social-icon si-tw"><i class="fab fa-twitter"></i></div><input class="f-input" id="slTwitter" type="url" placeholder="https://twitter.com/yourhandle"></div>
+          <div class="social-row"><div class="social-icon si-ig"><i class="fab fa-instagram"></i></div><input class="f-input" id="slInstagram" type="url" placeholder="https://instagram.com/yourhandle"></div>
+          <div class="social-row"><div class="social-icon si-li"><i class="fab fa-linkedin"></i></div><input class="f-input" id="slLinkedin" type="url" placeholder="https://linkedin.com/in/yourname"></div>
+          <div class="social-row"><div class="social-icon si-yt"><i class="fab fa-youtube"></i></div><input class="f-input" id="slYoutube" type="url" placeholder="https://youtube.com/@yourchannel"></div>
+          <div class="social-row"><div class="social-icon si-wb"><i class="fas fa-globe"></i></div><input class="f-input" id="slWebsite" type="url" placeholder="https://yourwebsite.com"></div>
+          <div class="f-actions">
+            <button class="btn btn-primary btn-sm" id="saveSocialBtn" onclick="saveSocialLinks()"><i class="fas fa-save"></i>Save Social Links</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: NOTIFICATIONS ═══ -->
+    <div class="tab-panel" id="tab-notifications">
+      <div class="panel">
+        <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Notification Preferences</div><div class="panel-sub">Choose what you want to hear about</div></div></div>
+        <div class="panel-body">
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Email Notifications</h4><p>Order updates, receipts and account alerts</p></div>
+            <label class="toggle"><input type="checkbox" id="notifEmail" onchange="saveNotifPrefs()"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Order Updates</h4><p>Get notified about your purchase and delivery status</p></div>
+            <label class="toggle"><input type="checkbox" id="notifOrders" onchange="saveNotifPrefs()"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Marketing Emails</h4><p>New products, deals and creator announcements</p></div>
+            <label class="toggle"><input type="checkbox" id="notifMarketing" onchange="saveNotifPrefs()"><span class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle-info"><h4>Security Alerts</h4><p>Login activity and account security events — always on</p></div>
+            <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: ORDERS ═══ -->
+    <div class="tab-panel" id="tab-orders">
+      <div class="panel">
+        <div class="panel-hdr">
+          <div><div class="panel-title"><span class="dot"></span>Order History</div><div class="panel-sub">Your recent purchases</div></div>
+          <a href="/marketplace/orders" class="btn btn-dim btn-sm">Full History</a>
+        </div>
+        <div class="panel-body" id="ordersBody"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: AFFILIATE ═══ -->
+    <div class="tab-panel" id="tab-affiliate">
+      <div class="panel-grid">
+        <div class="panel">
+          <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Affiliate Program</div><div class="panel-sub">Earn commissions by sharing products</div></div></div>
+          <div class="panel-body" id="affBody"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Earnings Summary</div><div class="panel-sub">Your affiliate performance</div></div></div>
+          <div class="panel-body" id="affEarningsBody"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: CREATOR ═══ -->
+    <div class="tab-panel" id="tab-creator">
+      <div class="panel" id="creatorBody">
+        <div class="panel-body"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+      </div>
+    </div>
+
+    <!-- ═══ TAB: DANGER ═══ -->
+    <div class="tab-panel" id="tab-danger">
+      <div class="panel" style="margin-bottom:20px">
+        <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Privacy & Data</div><div class="panel-sub">Manage your personal data</div></div></div>
+        <div class="panel-body">
+          <div class="pref-row" style="border-bottom:none">
+            <div><div style="font-size:.85rem;font-weight:600;color:var(--t1);margin-bottom:3px">Download My Data</div><div style="font-size:.72rem;color:var(--t3)">Get a copy of all data we have on your account</div></div>
+            <button class="btn btn-dim btn-sm" onclick="toast('Data export coming soon','ok')"><i class="fas fa-download"></i>Export</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="danger-zone">
+        <div class="dz-hdr"><div class="dz-title"><i class="fas fa-triangle-exclamation" style="margin-right:8px"></i>Danger Zone</div><div class="dz-sub">Irreversible actions — proceed with caution</div></div>
+        <div class="dz-body">
+          <div class="dz-row">
+            <div class="dz-info"><h4>Deactivate Account</h4><p>Temporarily disable your account. You can reactivate anytime by logging back in.</p></div>
+            <button class="btn btn-danger btn-sm" onclick="openModal('deactivateModal')"><i class="fas fa-pause"></i>Deactivate</button>
+          </div>
+          <div style="height:1px;background:rgba(255,77,77,.12)"></div>
+          <div class="dz-row">
+            <div class="dz-info"><h4>Delete Account</h4><p>Permanently delete your account and all associated data. This cannot be undone.</p></div>
+            <button class="btn btn-danger btn-sm" onclick="openModal('deleteModal')"><i class="fas fa-trash-can"></i>Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- EMAIL CHANGE OTP MODAL -->
+<div class="modal-overlay" id="otpModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">Verify New Email</div><button class="modal-close" onclick="closeModal('otpModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body">
+      <p style="font-size:.82rem;color:var(--t2);margin-bottom:4px">We sent a 6-digit code to <strong id="otpEmailDisplay" style="color:var(--g)"></strong></p>
+      <p style="font-size:.75rem;color:var(--t3);margin-bottom:4px">Enter the code below to confirm your new email address.</p>
+      <div class="otp-inputs">
+        <input class="otp-input" id="otp1" maxlength="1" oninput="otpNext(this,'otp2')">
+        <input class="otp-input" id="otp2" maxlength="1" oninput="otpNext(this,'otp3')" onkeydown="otpBack(event,'otp1')">
+        <input class="otp-input" id="otp3" maxlength="1" oninput="otpNext(this,'otp4')" onkeydown="otpBack(event,'otp2')">
+        <input class="otp-input" id="otp4" maxlength="1" oninput="otpNext(this,'otp5')" onkeydown="otpBack(event,'otp3')">
+        <input class="otp-input" id="otp5" maxlength="1" oninput="otpNext(this,'otp6')" onkeydown="otpBack(event,'otp4')">
+        <input class="otp-input" id="otp6" maxlength="1" oninput="if(this.value.length===1)document.getElementById('confirmOtpBtn').click()" onkeydown="otpBack(event,'otp5')">
+      </div>
+      <div id="otpErr" style="display:none;font-size:.78rem;color:var(--red);text-align:center;margin-bottom:8px"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-dim" onclick="closeModal('otpModal')">Cancel</button>
+      <button class="btn btn-primary" id="confirmOtpBtn" onclick="confirmEmailChange()"><i class="fas fa-check"></i>Verify & Update</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEACTIVATE CONFIRM MODAL -->
+<div class="modal-overlay" id="deactivateModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title" style="color:var(--amber)">Deactivate Account</div><button class="modal-close" onclick="closeModal('deactivateModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body">
+      <p style="font-size:.85rem;color:var(--t2);line-height:1.6">Your account will be temporarily disabled. Your data is preserved and you can reactivate by logging in again.</p>
+      <div class="f-group" style="margin-top:16px"><label class="f-label">Type <strong style="color:var(--amber)">DEACTIVATE</strong> to confirm</label><input class="f-input" id="deactivateConfirm" type="text" placeholder="DEACTIVATE"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-dim" onclick="closeModal('deactivateModal')">Cancel</button>
+      <button class="btn btn-danger" onclick="deactivateAccount()"><i class="fas fa-pause"></i>Deactivate Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title" style="color:var(--red)">Delete Account</div><button class="modal-close" onclick="closeModal('deleteModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body">
+      <p style="font-size:.85rem;color:var(--t2);line-height:1.6;margin-bottom:14px">This will <strong style="color:var(--red)">permanently delete</strong> your account, all orders, downloads, and data. This action cannot be reversed.</p>
+      <div class="f-group"><label class="f-label">Type <strong style="color:var(--red)">DELETE MY ACCOUNT</strong> to confirm</label><input class="f-input" id="deleteConfirm" type="text" placeholder="DELETE MY ACCOUNT"></div>
+      <div class="f-group"><label class="f-label">Current Password</label><input class="f-input" id="deletePwd" type="password" placeholder="Your password"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-dim" onclick="closeModal('deleteModal')">Cancel</button>
+      <button class="btn btn-danger" onclick="deleteAccount()"><i class="fas fa-trash-can"></i>Permanently Delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+'use strict';
+const API = 'https://uyehtechbackend.onrender.com';
+let _token = null, _profile = null;
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', async () => {
+  _token = localStorage.getItem('token');
+  if (!_token) { location.href = '/marketplace/login'; return; }
+
+  // Seed from cache immediately for perceived speed
+  try {
+    const cached = JSON.parse(localStorage.getItem('user') || 'null');
+    if (cached) seedUI(cached);
+  } catch {}
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+  });
+
+  // Bio counter
+  document.getElementById('fBio').addEventListener('input', function() {
+    document.getElementById('bioCount').textContent = this.value.length;
+  });
+
+  // Mobile menu
+  document.getElementById('menuBtn').onclick = () => {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sbOverlay').classList.toggle('open');
+  };
+  document.getElementById('sbOverlay').onclick = () => {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sbOverlay').classList.remove('open');
+  };
+  document.getElementById('logoutBtn').onclick = () => {
+    ['token','user','user_orders'].forEach(k => localStorage.removeItem(k));
+    location.href = '/marketplace/login';
+  };
+
+  // Load full profile
+  try {
+    const r = await api('/api/profile');
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message || 'Failed to load profile');
+    _profile = d.profile || d.user;
+    // Attach currency metadata so renderProfile can display converted values
+    _profile._currency = d.currency || 'USD';
+    _profile._symbol   = d.symbol   || '$';
+    _profile._rate     = d.rate     || 1;
+    localStorage.setItem('user', JSON.stringify(_profile));
+    // Page-level currency helpers — used by renderOrders / renderAffiliate / renderCreator
+    window._pSym  = _profile._symbol;
+    window._pRate = _profile._rate;
+    renderProfile(_profile);
+  } catch (e) {
+    toast('Failed to load profile: ' + e.message, 'err');
+  }
+
+  document.getElementById('loadingOverlay').classList.add('fade');
+});
+
+/* ── API helper with auto token-refresh ── */
+async function api(path, opts = {}) {
+  let res = await fetch(API + path, {
+    ...opts,
+    headers: { 'Authorization': `Bearer ${_token}`, 'Content-Type': 'application/json', ...(opts.headers||{}) }
+  });
+  if (res.status === 401) {
+    const rt = localStorage.getItem('refreshToken');
+    if (rt) {
+      try {
+        const rr = await fetch(API + '/api/auth/refresh', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refreshToken: rt })
+        });
+        const rd = await rr.json();
+        if (rd.success) {
+          _token = rd.accessToken;
+          localStorage.setItem('token', rd.accessToken);
+          localStorage.setItem('refreshToken', rd.refreshToken);
+          res = await fetch(API + path, {
+            ...opts,
+            headers: { 'Authorization': `Bearer ${_token}`, 'Content-Type': 'application/json', ...(opts.headers||{}) }
+          });
+        } else { _forceLogout(); return null; }
+      } catch { _forceLogout(); return null; }
+    } else { _forceLogout(); return null; }
+  }
+  return res;
+}
+function _forceLogout() {
+  ['token','refreshToken','user','user_orders'].forEach(k => localStorage.removeItem(k));
+  toast('Session expired — please log in again', 'err');
+  setTimeout(() => { location.href = '/marketplace/login'; }, 1600);
+}
+
+/* ── TAB SWITCHING ── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === `tab-${name}`));
+}
+
+/* ── SEED UI FROM CACHE ── */
+function seedUI(u) {
+  const name = u.fullName || u.name || 'User';
+  setEl('sbName', name);
+  setEl('sbRole', u.isCreator ? 'Creator' : u.isAgent ? 'Agent' : 'Member');
+  setAvatar('sbAvatar', u.profileImage, name);
+  setAvatar('avatarEl', u.profileImage, name);
+  setEl('heroName', name);
+  setEl('heroEmail', u.email || '');
+  if (u.isCreator) document.getElementById('sbCreatorLink').style.display = 'flex';
+}
+
+/* ── RENDER FULL PROFILE ── */
+function renderProfile(p) {
+  const name = p.fullName || p.name || 'User';
+
+  // Sidebar
+  setEl('sbName', name);
+  setEl('sbRole', p.isCreator ? 'Creator' : p.isAgent ? 'Agent' : 'Member');
+  setAvatar('sbAvatar', p.profileImage, name);
+  if (p.isCreator) document.getElementById('sbCreatorLink').style.display = 'flex';
+
+  // Hero
+  setEl('heroName', name);
+  setEl('heroEmail', p.email || '');
+  setAvatar('avatarEl', p.profileImage, name);
+  setEl('hLocation', p.country || '—');
+  setEl('hType', p.isCreator ? 'Creator' : p.isAgent ? 'Support Agent' : 'Member');
+
+  if (p.createdAt) {
+    const d = new Date(p.createdAt);
+    setEl('hMemberSince', d.toLocaleDateString('en-US',{month:'short',year:'numeric'}));
+  }
+  if (p.lastLogin) setEl('hLastLogin', timeAgo(new Date(p.lastLogin)));
+
+  // Badges
+  const badges = document.getElementById('heroBadges');
+  badges.innerHTML = '';
+  if (p.emailVerified) badges.innerHTML += `<span class="hbadge hbadge-green"><i class="fas fa-circle-check" style="margin-right:4px"></i>Verified</span>`;
+  else badges.innerHTML += `<span class="hbadge hbadge-amber"><i class="fas fa-triangle-exclamation" style="margin-right:4px"></i>Email Unverified</span>`;
+  if (p.isCreator)          badges.innerHTML += `<span class="hbadge hbadge-purple"><i class="fas fa-store" style="margin-right:4px"></i>Creator</span>`;
+  if (p.isAgent)            badges.innerHTML += `<span class="hbadge hbadge-blue"><i class="fas fa-headset" style="margin-right:4px"></i>Agent</span>`;
+  if (p.isBanned)           badges.innerHTML += `<span class="hbadge hbadge-red"><i class="fas fa-ban" style="margin-right:4px"></i>Banned</span>`;
+
+  // Stats
+  if (p.stats) {
+    setEl('stOrders',    p.stats.totalOrders ?? '—');
+    const _pending = Math.max(0, (p.stats.totalOrders||0) - (p.stats.completedOrders||0));
+    setEl('stOrdersSub', `${_pending} pending`);
+    const _pSym  = p._symbol || '$';
+    const _pRate = p._rate   || 1;
+    const _pSpentDisplay = p.stats.displayTotalSpent?.display
+      || `${_pSym}${Number((p.stats.totalSpent || 0) * _pRate).toFixed(2)}`;
+    setEl('stSpent', _pSpentDisplay);
+    setEl('stDownloads', p.stats.totalDownloads ?? '—');
+    const _totalC = (p.stats.activeCourses||0) + (p.stats.completedCourses||0);
+    setEl('stCourses',   _totalC || '—');
+    setEl('stCoursesSub', `${p.stats.activeCourses||0} active · ${p.stats.completedCourses||0} done`);
+  }
+
+  // Personal form
+  setVal('fName', p.fullName || p.name || '');
+  setVal('fEmail', p.email || '');
+  setVal('fPhone', p.phone || '');
+  setVal('fCountry', p.country || '');
+  setVal('fBio', p.bio || '');
+  document.getElementById('bioCount').textContent = (p.bio || '').length;
+
+  // Account details panel
+  setEl('acStatus',      p.isBanned ? 'Banned' : 'Active');
+  document.getElementById('acStatus').style.color = p.isBanned ? 'var(--red)' : 'var(--g)';
+  setEl('acEmailVerified', p.emailVerified ? '✓ Verified' : '⚠ Not Verified');
+  document.getElementById('acEmailVerified').style.color = p.emailVerified ? 'var(--g)' : 'var(--amber)';
+  setEl('ac2FA',         p.twoFactorEnabled ? '✓ Enabled' : '✗ Disabled');
+  document.getElementById('ac2FA').style.color = p.twoFactorEnabled ? 'var(--g)' : 'var(--t3)';
+  if (p.createdAt) setEl('acMemberSince', new Date(p.createdAt).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}));
+  if (p.lastLogin) setEl('acLastLogin', timeAgo(new Date(p.lastLogin)));
+  setEl('acType', p.isCreator ? 'Creator' : p.isAgent ? 'Support Agent' : 'Member');
+  setEl('acId',   p.id || p._id || '—');
+
+  // 2FA toggle
+  _update2FAStatusBadge(!!p.twoFactorEnabled);
+
+  // Social links
+  const sl = p.socialLinks || {};
+  setVal('slTwitter',   sl.twitter   || '');
+  setVal('slInstagram', sl.instagram || '');
+  setVal('slLinkedin',  sl.linkedin  || '');
+  setVal('slYoutube',   sl.youtube   || '');
+  setVal('slWebsite',   sl.website   || '');
+
+  // Notification prefs
+  const np = p.notificationPreferences || {};
+  document.getElementById('notifEmail').checked    = np.email    !== false;
+  document.getElementById('notifOrders').checked   = np.orders   !== false;
+  document.getElementById('notifMarketing').checked= !!np.marketing;
+
+  // Orders
+  renderOrders(p.recentOrders || []);
+
+  // Affiliate
+  renderAffiliate(p.affiliate);
+
+  // Creator
+  if (p.creator) {
+    document.getElementById('creatorTab').style.display = 'flex';
+    renderCreator(p.creator);
+  }
+}
+
+/* ── RENDER ORDERS ── */
+function renderOrders(orders) {
+  const el = document.getElementById('ordersBody');
+  if (!orders?.length) {
+    el.innerHTML = `<div class="empty"><i class="fas fa-inbox"></i><p>No orders yet — <a href="/marketplace/" style="color:var(--g)">browse the store</a></p></div>`;
+    return;
+  }
+  el.innerHTML = orders.map(o => `
+    <div class="order-item">
+      <div class="order-icon"><i class="fas fa-bag-shopping"></i></div>
+      <div class="order-body">
+        <div class="order-ref">${esc(o.reference || o.id)}</div>
+        <div class="order-title">${esc(o.firstItem || (o.itemCount > 0 ? `${o.itemCount} item${o.itemCount>1?'s':''}` : 'Order'))}</div>
+        <div class="order-meta">${timeAgo(new Date(o.paidAt || o.createdAt))} · ${o.itemCount || 0} item${(o.itemCount||0)!==1?'s':''}</div>
+      </div>
+      <div class="order-right">
+        <div class="order-amount">${fmtMoney(o.total||0)}</div>
+        <span class="order-status ${o.status==='completed'?'st-ok':'st-pend'}">${o.status?.toUpperCase()}</span>
+      </div>
+    </div>`).join('');
+}
+
+/* ── RENDER AFFILIATE ── */
+function renderAffiliate(aff) {
+  const body = document.getElementById('affBody');
+  const earn = document.getElementById('affEarningsBody');
+  if (!aff) {
+    body.innerHTML = `<div class="empty"><i class="fas fa-link"></i><p>You haven't joined the affiliate program yet</p></div>
+      <div style="margin-top:12px"><a href="/marketplace/affiliate" class="btn btn-primary btn-full"><i class="fas fa-link"></i>Join Affiliate Program</a></div>`;
+    earn.innerHTML = `<div class="empty"><i class="fas fa-chart-bar"></i><p>Join the program to see earnings</p></div>`;
+    return;
+  }
+  body.innerHTML = `
+    <div class="aff-code-box">
+      <span class="aff-code" id="affLinkText">${esc(aff.affiliateLink || '')}</span>
+      <button class="copy-btn" onclick="copyAff()" title="Copy"><i class="fas fa-copy"></i></button>
+    </div>
+    <div style="font-size:.72rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-bottom:14px">Code: <strong style="color:var(--g)">${esc(aff.affiliateCode)}</strong> · Status: <strong style="color:${aff.status==='active'?'var(--g)':'var(--amber)'}">${aff.status}</strong></div>
+    <div class="aff-stat-grid">
+      <div class="aff-stat"><div class="aff-stat-val">${aff.totalClicks||0}</div><div class="aff-stat-lbl">Clicks</div></div>
+      <div class="aff-stat"><div class="aff-stat-val">${aff.totalConversions||0}</div><div class="aff-stat-lbl">Conversions</div></div>
+    </div>
+    <a href="/marketplace/affiliate" class="btn btn-ghost btn-full btn-sm"><i class="fas fa-arrow-right"></i>Manage Affiliate Dashboard</a>`;
+  earn.innerHTML = `
+    <div class="pref-row"><span class="pref-key">Total Earned</span><span class="pref-val" style="color:var(--g)">${fmtMoney(aff.totalEarnings||0)}</span></div>
+    <div class="pref-row"><span class="pref-key">Pending</span><span class="pref-val" style="color:var(--amber)">${fmtMoney(aff.pendingEarnings||0)}</span></div>
+    <div class="pref-row"><span class="pref-key">Paid Out</span><span class="pref-val">${fmtMoney(aff.paidEarnings||0)}</span></div>
+    <div class="pref-row"><span class="pref-key">Conversion Rate</span><span class="pref-val">${aff.conversionRate ?? (aff.totalClicks > 0 ? ((aff.totalConversions / aff.totalClicks) * 100).toFixed(1) : '0.0')}%</span></div>
+    <div class="pref-row"><span class="pref-key">Payout Threshold</span><span class="pref-val">${fmtMoney(aff.payoutThreshold||50)}</span></div>
+    <div class="pref-row"><span class="pref-key">Member Since</span><span class="pref-val">${aff.joinedAt ? new Date(aff.joinedAt).toLocaleDateString('en-US',{month:'short',year:'numeric'}) : '—'}</span></div>`;
+}
+
+/* ── RENDER CREATOR ── */
+function renderCreator(cr) {
+  const el = document.getElementById('creatorBody');
+  el.innerHTML = `
+    <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Creator Profile</div><div class="panel-sub">Your store and earnings overview</div></div><a href="/marketplace/creator-dashboard" class="btn btn-ghost btn-sm"><i class="fas fa-store"></i>Creator Studio</a></div>
+    <div class="panel-body">
+      <div class="creator-store-card">
+        <div class="csc-top">
+          <div class="csc-logo">${cr.storeLogo ? `<img src="${esc(cr.storeLogo)}" alt="">` : '🏪'}</div>
+          <div>
+            <div class="csc-name">${esc(cr.storeName)}</div>
+            <div class="csc-slug">/${esc(cr.storeSlug)}</div>
+          </div>
+          <span class="hbadge ${cr.applicationStatus==='approved'?'hbadge-green':cr.applicationStatus==='pending'?'hbadge-amber':'hbadge-red'}" style="margin-left:auto">${cr.applicationStatus?.toUpperCase()}</span>
+        </div>
+        <div class="creator-stat-grid">
+          <div class="cr-stat"><div class="cr-stat-val">${cr.totalProducts||0}</div><div class="cr-stat-lbl">Products</div></div>
+          <div class="cr-stat"><div class="cr-stat-val">${cr.totalSales||0}</div><div class="cr-stat-lbl">Sales</div></div>
+          <div class="cr-stat"><div class="cr-stat-val" style="color:var(--g)">${fmtMoney(cr.totalEarnings||0)}</div><div class="cr-stat-lbl">Earned</div></div>
+          <div class="cr-stat"><div class="cr-stat-val" style="color:var(--amber)">${fmtMoney(cr.pendingPayout||0)}</div><div class="cr-stat-lbl">Pending</div></div>
+        </div>
+      </div>
+      <div class="pref-row"><span class="pref-key">Platform Commission</span><span class="pref-val">${cr.platformCommissionRate||20}% platform · ${100-(cr.platformCommissionRate||20)}% you</span></div>
+      <div class="pref-row"><span class="pref-key">Payout Threshold</span><span class="pref-val">${fmtMoney(cr.payoutThreshold||50)}</span></div>
+      <div class="pref-row"><span class="pref-key">Rating</span><span class="pref-val">${cr.rating ? `⭐ ${cr.rating.toFixed(1)}` : '—'}</span></div>
+      <div class="pref-row"><span class="pref-key">Business Type</span><span class="pref-val" style="text-transform:capitalize">${cr.businessType||'Individual'}</span></div>
+      <div class="pref-row"><span class="pref-key">Creator Since</span><span class="pref-val">${cr.joinedAt ? new Date(cr.joinedAt).toLocaleDateString('en-US',{month:'long',year:'numeric'}) : '—'}</span></div>
+      <div style="margin-top:16px;display:flex;gap:10px">
+        <a href="/marketplace/creator-dashboard" class="btn btn-primary btn-sm"><i class="fas fa-gauge-high"></i>Creator Dashboard</a>
+        <a href="/marketplace/creator-dashboard" class="btn btn-ghost btn-sm"><i class="fas fa-box-open"></i>My Products</a>
+      </div>
+    </div>`;
+}
+
+/* ── SAVE PERSONAL INFO ── */
+async function savePersonalInfo() {
+  const btn = document.getElementById('savePersonalBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/profile', {
+      method: 'PUT',
+      body: JSON.stringify({
+        fullName: document.getElementById('fName').value.trim(),
+        phone:    document.getElementById('fPhone').value.trim(),
+        country:  document.getElementById('fCountry').value.trim(),
+        bio:      document.getElementById('fBio').value.trim(),
+      })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    _profile = { ..._profile, ...d.user };
+    localStorage.setItem('user', JSON.stringify(_profile));
+    setEl('heroName', d.user.fullName || d.user.name || '');
+    setEl('hLocation', d.user.country || '—');
+    setEl('sbName', d.user.fullName || d.user.name || '');
+    toast('Profile updated successfully!', 'ok');
+  } catch (e) { toast(e.message, 'err'); }
+  finally { setBtnLoading(btn, false); }
+}
+
+function resetPersonalForm() {
+  if (!_profile) return;
+  setVal('fName', _profile.fullName || _profile.name || '');
+  setVal('fPhone', _profile.phone || '');
+  setVal('fCountry', _profile.country || '');
+  setVal('fBio', _profile.bio || '');
+  document.getElementById('bioCount').textContent = (_profile.bio || '').length;
+}
+
+/* ── AVATAR UPLOAD ── */
+async function handleAvatarChange(e) {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { toast('Image must be under 5MB', 'err'); return; }
+
+  // Preview immediately
+  const reader = new FileReader();
+  reader.onload = ev => setAvatarSrc('avatarEl', ev.target.result);
+  reader.readAsDataURL(file);
+
+  try {
+    const base64 = await fileToBase64(file);
+    const r = await api('/api/profile/avatar', { method: 'POST', body: JSON.stringify({ image: base64 }) });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    setAvatarSrc('avatarEl', d.profileImage);
+    setAvatarSrc('sbAvatar', d.profileImage);
+    toast('Profile photo updated!', 'ok');
+  } catch (e) { toast('Upload failed: ' + e.message, 'err'); }
+}
+
+function fileToBase64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload  = () => res(r.result);
+    r.onerror = () => rej(new Error('Read failed'));
+    r.readAsDataURL(file);
+  });
+}
+
+function setAvatarSrc(id, src) {
+  const el = document.getElementById(id); if (!el) return;
+  el.innerHTML = `<img src="${esc(src)}" alt="avatar">`;
+}
+
+/* ── CHANGE PASSWORD ── */
+async function changePassword() {
+  const cur = document.getElementById('pwdCurrent').value;
+  const nw  = document.getElementById('pwdNew').value;
+  const cf  = document.getElementById('pwdConfirm').value;
+  if (!cur || !nw || !cf) { toast('All password fields are required', 'err'); return; }
+  if (nw !== cf) { toast('Passwords do not match', 'err'); return; }
+  if (nw.length < 8) { toast('New password must be at least 8 characters', 'err'); return; }
+
+  const btn = document.getElementById('changePwdBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify({ currentPassword: cur, newPassword: nw })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    document.getElementById('pwdCurrent').value = '';
+    document.getElementById('pwdNew').value     = '';
+    document.getElementById('pwdConfirm').value = '';
+    document.getElementById('pwdBar').style.width = '0';
+    document.getElementById('pwdText').textContent = '';
+    toast('Password changed successfully!', 'ok');
+  } catch (e) { toast(e.message, 'err'); }
+  finally { setBtnLoading(btn, false); }
+}
+
+function checkPwdStrength(v) {
+  const bar = document.getElementById('pwdBar');
+  const txt = document.getElementById('pwdText');
+  let score = 0;
+  if (v.length >= 8)  score++;
+  if (v.length >= 12) score++;
+  if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+  if (/\d/.test(v))   score++;
+  if (/[^A-Za-z0-9]/.test(v)) score++;
+  const levels = [
+    { w:'20%', c:'var(--red)',   t:'Weak' },
+    { w:'40%', c:'#ff8c00',     t:'Fair' },
+    { w:'60%', c:'var(--amber)',t:'Good' },
+    { w:'80%', c:'#9fff88',     t:'Strong' },
+    { w:'100%',c:'var(--g)',    t:'Very Strong' },
+  ];
+  const l = levels[Math.min(score, 4)];
+  bar.style.width = v ? l.w : '0';
+  bar.style.background = l.c;
+  txt.textContent = v ? l.t : '';
+  txt.style.color = l.c;
+}
+
+/* ── EMAIL CHANGE ── */
+async function requestEmailChange() {
+  const email = document.getElementById('newEmail').value.trim();
+  const pwd   = document.getElementById('emailChangePwd').value;
+  if (!email || !pwd) { toast('New email and current password are required', 'err'); return; }
+
+  const btn = document.getElementById('requestEmailBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/profile/request-email-change', {
+      method: 'POST',
+      body: JSON.stringify({ newEmail: email, password: pwd })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    document.getElementById('otpEmailDisplay').textContent = email;
+    openModal('otpModal');
+    document.getElementById('otp1').focus();
+    toast('Verification code sent to ' + email, 'ok');
+  } catch (e) { toast(e.message, 'err'); }
+  finally { setBtnLoading(btn, false); }
+}
+
+async function confirmEmailChange() {
+  const otp = ['otp1','otp2','otp3','otp4','otp5','otp6']
+    .map(id => document.getElementById(id).value).join('');
+  if (otp.length < 6) { document.getElementById('otpErr').textContent = 'Enter all 6 digits'; document.getElementById('otpErr').style.display = 'block'; return; }
+
+  const btn = document.getElementById('confirmOtpBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/profile/confirm-email-change', { method: 'POST', body: JSON.stringify({ otp }) });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    _profile.email = d.email;
+    setEl('heroEmail', d.email);
+    setVal('fEmail', d.email);
+    closeModal('otpModal');
+    toast('Email address updated!', 'ok');
+  } catch (e) {
+    document.getElementById('otpErr').textContent = e.message;
+    document.getElementById('otpErr').style.display = 'block';
+  }
+  finally { setBtnLoading(btn, false); }
+}
+
+function otpNext(el, nextId) {
+  if (el.value.length === 1) document.getElementById(nextId)?.focus();
+}
+function otpBack(e, prevId) {
+  if (e.key === 'Backspace' && e.target.value === '') document.getElementById(prevId)?.focus();
+}
+
+/* ── 2FA MANAGEMENT ── */
+function _update2FAStatusBadge(enabled) {
+  const b = document.getElementById('twoFAStatusBadge');
+  if (b) {
+    b.textContent = enabled ? '✓ ACTIVE' : '✗ DISABLED';
+    b.style.cssText = enabled
+      ? 'display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.68rem;font-weight:700;font-family:\'JetBrains Mono\',monospace;padding:3px 10px;border-radius:20px;border:1px solid;background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3);color:var(--g);'
+      : 'display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.68rem;font-weight:700;font-family:\'JetBrains Mono\',monospace;padding:3px 10px;border-radius:20px;border:1px solid;background:rgba(255,77,77,.07);border-color:rgba(255,77,77,.22);color:var(--red);';
+  }
+  setEl('ac2FA', enabled ? '✓ Enabled' : '✗ Disabled');
+  const ac = document.getElementById('ac2FA');
+  if (ac) ac.style.color = enabled ? 'var(--g)' : 'var(--t3)';
+  const lbl = document.getElementById('twoFAManageLabel');
+  if (lbl) lbl.textContent = enabled ? 'Disable 2FA' : 'Enable 2FA';
+}
+function open2FAModal() {
+  if (_profile?.twoFactorEnabled) _show2FADisableStep();
+  else _show2FASetupStep1();
+  document.getElementById('twoFAModal').classList.add('open');
+}
+function close2FAModal() {
+  document.getElementById('twoFAModal').classList.remove('open');
+}
+/* ── Setup step 1: explain + generate QR ── */
+function _show2FASetupStep1() {
+  setEl('twoFAModalTitle', 'Enable Two-Factor Auth');
+  document.getElementById('twoFAModalBody').innerHTML = `
+    <p style="font-size:.83rem;color:var(--t2);line-height:1.65;margin-bottom:16px">
+      After enabling, every login will require a 6-digit code from your authenticator app
+      (Google Authenticator, Authy, 1Password, etc.) in addition to your password.
+    </p>
+    <div style="text-align:center;">
+      <button class="btn btn-primary" id="getQRBtn" onclick="_fetch2FASetup()">
+        <i class="fas fa-qrcode"></i> Generate QR Code
+      </button>
+    </div>`;
+  document.getElementById('twoFAModalFooter').innerHTML =
+    '<button class="btn btn-dim" onclick="close2FAModal()">Cancel</button>';
+}
+async function _fetch2FASetup() {
+  const btn = document.getElementById('getQRBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/auth/2fa/setup', { method: 'POST' });
+    if (!r) return;
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    _show2FASetupStep2(d);
+  } catch(e) { toast(e.message || '2FA setup failed', 'err'); setBtnLoading(btn, false); }
+}
+/* ── Setup step 2: show QR + collect confirm code ── */
+function _show2FASetupStep2(data) {
+  setEl('twoFAModalTitle', 'Scan & Verify');
+  document.getElementById('twoFAModalBody').innerHTML = `
+    <p style="font-size:.78rem;color:var(--t2);margin-bottom:10px">1️⃣ Scan this QR code with your authenticator app:</p>
+    <div style="text-align:center;margin-bottom:12px;background:#0a0a0a;border-radius:12px;padding:14px;border:1px solid var(--line2)">
+      <img src="${data.qrCodeUrl}" alt="2FA QR" style="width:190px;height:190px;border-radius:8px;">
+      <div style="font-size:.62rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-top:8px;">Can't scan? Use manual key:</div>
+      <div onclick="navigator.clipboard.writeText('${data.manualEntryKey}').then(()=>toast('Key copied','ok'))"
+           style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--g);background:var(--g3);border:1px solid var(--line2);border-radius:6px;padding:6px 10px;margin-top:4px;cursor:pointer;word-break:break-all;letter-spacing:.08em;">
+        ${data.manualEntryKey}
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--t2);margin-bottom:10px">2️⃣ Enter the first 6-digit code to activate:</p>
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:8px;">
+      ${[0,1,2,3,4,5].map(i=>`<input class="otp-input" id="s2fa${i}" type="text" inputmode="numeric" maxlength="1" style="width:42px;height:48px;font-size:1.3rem;">`).join('')}
+    </div>
+    <div id="s2faErr" style="display:none;font-size:.75rem;color:var(--red);text-align:center;padding:4px 0;"></div>`;
+  document.getElementById('twoFAModalFooter').innerHTML =
+    '<button class="btn btn-dim" onclick="close2FAModal()">Cancel</button>' +
+    '<button class="btn btn-primary" id="confirmSetupBtn" onclick="_confirm2FASetup()"><i class="fas fa-check"></i> Activate 2FA</button>';
+  [0,1,2,3,4,5].forEach(i => {
+    const el = document.getElementById('s2fa'+i); if (!el) return;
+    el.addEventListener('input', () => {
+      el.value = el.value.replace(/[^0-9]/g,'').slice(-1);
+      if (el.value && i < 5) document.getElementById('s2fa'+(i+1)).focus();
+      if (i === 5 && el.value) _confirm2FASetup();
+    });
+    el.addEventListener('keydown', e => { if(e.key==='Backspace'&&!el.value&&i>0) document.getElementById('s2fa'+(i-1)).focus(); });
+  });
+  setTimeout(() => document.getElementById('s2fa0').focus(), 80);
+}
+async function _confirm2FASetup() {
+  const code = [0,1,2,3,4,5].map(i=>document.getElementById('s2fa'+i)?.value||'').join('');
+  const errEl = document.getElementById('s2faErr');
+  if (code.length < 6) { errEl.textContent='Enter all 6 digits'; errEl.style.display='block'; return; }
+  const btn = document.getElementById('confirmSetupBtn');
+  setBtnLoading(btn, true); errEl.style.display='none';
+  try {
+    const r = await api('/api/auth/2fa/confirm', { method:'POST', body: JSON.stringify({ code }) });
+    if (!r) return;
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    _profile.twoFactorEnabled = true;
+    _update2FAStatusBadge(true);
+    close2FAModal();
+    toast('Two-factor authentication is now active!', 'ok');
+    if (d.backupCodes?.length) _showBackupCodesModal(d.backupCodes);
+  } catch(e) {
+    errEl.textContent = e.message; errEl.style.display='block';
+    [0,1,2,3,4,5].forEach(i => { const el=document.getElementById('s2fa'+i); if(el) el.value=''; });
+    document.getElementById('s2fa0').focus();
+    setBtnLoading(btn, false);
+  }
+}
+function _showBackupCodesModal(codes) {
+  const ov = document.createElement('div');
+  ov.className = 'modal-overlay open'; ov.style.zIndex = '1200';
+  ov.innerHTML = `<div class="modal" style="max-width:460px;">
+    <div class="modal-hdr"><div class="modal-title" style="color:var(--amber)">⚠️ Save Your Backup Codes</div></div>
+    <div class="modal-body">
+      <p style="font-size:.82rem;color:var(--t2);margin-bottom:12px;line-height:1.6">
+        These <strong>8 codes</strong> are shown <strong style="color:var(--red)">only once</strong>.
+        Each works once if you ever lose your authenticator. Save them somewhere safe.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+        ${codes.map(c=>`<div style="font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--g);background:var(--g3);border:1px solid var(--line2);border-radius:7px;padding:8px 12px;">${c}</div>`).join('')}
+      </div>
+      <button class="btn btn-dim btn-sm" style="width:100%;"
+        onclick="navigator.clipboard.writeText(${JSON.stringify(codes.join('\n'))}).then(()=>toast('Codes copied!','ok'))">
+        <i class="fas fa-copy"></i> Copy All Codes
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove()">
+        <i class="fas fa-check"></i> I've Saved These Codes
+      </button>
+    </div>
+  </div>`;
+  document.body.appendChild(ov);
+}
+/* ── Disable: requires password + live 2FA code ── */
+function _show2FADisableStep() {
+  setEl('twoFAModalTitle', 'Disable Two-Factor Auth');
+  document.getElementById('twoFAModalBody').innerHTML = `
+    <p style="font-size:.83rem;color:var(--t2);line-height:1.65;margin-bottom:16px">
+      Disabling 2FA reduces your account security. Confirm with your password and a live 2FA code.
+    </p>
+    <div class="f-group">
+      <label class="f-label">Current Password <span class="req">*</span></label>
+      <input class="f-input" type="password" id="dis2FAPwd" placeholder="Your account password" autocomplete="current-password">
+    </div>
+    <div class="f-group" style="margin-top:12px;">
+      <label class="f-label">2FA Code <span class="req">*</span></label>
+      <input class="f-input" type="text" id="dis2FACode" placeholder="6-digit code from your app"
+             inputmode="numeric" maxlength="6"
+             style="font-size:1.1rem;letter-spacing:.25em;text-align:center;font-family:'JetBrains Mono',monospace;">
+    </div>
+    <div id="dis2FAErr" style="display:none;font-size:.78rem;color:var(--red);margin-top:8px;"></div>`;
+  document.getElementById('twoFAModalFooter').innerHTML =
+    '<button class="btn btn-dim" onclick="close2FAModal()">Cancel</button>' +
+    '<button class="btn btn-danger" id="dis2FABtn" onclick="_confirm2FADisable()"><i class="fas fa-lock-open"></i> Disable 2FA</button>';
+}
+async function _confirm2FADisable() {
+  const pwd  = (document.getElementById('dis2FAPwd')?.value||'').trim();
+  const code = (document.getElementById('dis2FACode')?.value||'').trim();
+  const errEl = document.getElementById('dis2FAErr');
+  if (!pwd)  { errEl.textContent='Password is required'; errEl.style.display='block'; return; }
+  if (!code||code.length<6) { errEl.textContent='Enter your 6-digit 2FA code'; errEl.style.display='block'; return; }
+  const btn = document.getElementById('dis2FABtn');
+  setBtnLoading(btn, true); errEl.style.display='none';
+  try {
+    const r = await api('/api/auth/2fa/disable', { method:'POST', body: JSON.stringify({ password:pwd, code }) });
+    if (!r) return;
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    _profile.twoFactorEnabled = false;
+    _update2FAStatusBadge(false);
+    close2FAModal();
+    toast('Two-factor authentication disabled', 'ok');
+  } catch(e) {
+    errEl.textContent = e.message; errEl.style.display='block';
+    const ci = document.getElementById('dis2FACode'); if(ci) ci.value='';
+    setBtnLoading(btn, false);
+  }
+}
+
+/* ── SOCIAL LINKS ── */
+async function saveSocialLinks() {
+  const btn = document.getElementById('saveSocialBtn');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/profile/social-links', {
+      method: 'PUT',
+      body: JSON.stringify({
+        twitter:   document.getElementById('slTwitter').value.trim(),
+        instagram: document.getElementById('slInstagram').value.trim(),
+        linkedin:  document.getElementById('slLinkedin').value.trim(),
+        youtube:   document.getElementById('slYoutube').value.trim(),
+        website:   document.getElementById('slWebsite').value.trim(),
+      })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    toast('Social links saved!', 'ok');
+  } catch (e) { toast(e.message, 'err'); }
+  finally { setBtnLoading(btn, false); }
+}
+
+/* ── NOTIFICATION PREFS ── */
+async function saveNotifPrefs() {
+  try {
+    const r = await api('/api/profile/notifications', {
+      method: 'PUT',
+      body: JSON.stringify({
+        email:     document.getElementById('notifEmail').checked,
+        orders:    document.getElementById('notifOrders').checked,
+        marketing: document.getElementById('notifMarketing').checked,
+      })
+    });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    toast('Notification preferences saved', 'ok');
+  } catch (e) { toast(e.message, 'err'); }
+}
+
+/* ── AFFILIATE COPY ── */
+function copyAff() {
+  const t = document.getElementById('affLinkText')?.textContent || '';
+  navigator.clipboard.writeText(t).then(() => toast('Affiliate link copied!', 'ok'));
+}
+
+/* ── DANGER ZONE ── */
+async function deactivateAccount() {
+  const val = (document.getElementById('deactivateConfirm').value || '').trim();
+  if (val !== 'DEACTIVATE') { toast('Type DEACTIVATE exactly to confirm', 'err'); return; }
+  const btn = document.querySelector('#deactivateModal .btn-danger');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/auth/deactivate', { method: 'POST' });
+    if (!r) return;
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    closeModal('deactivateModal');
+    toast('Account deactivated. Redirecting...', 'ok');
+    setTimeout(() => {
+      ['token','refreshToken','user','user_orders'].forEach(k => localStorage.removeItem(k));
+      location.href = '/marketplace/login';
+    }, 2000);
+  } catch (e) {
+    toast(e.message || 'Deactivation failed. Please try again.', 'err');
+    setBtnLoading(btn, false);
+  }
+}
+
+async function deleteAccount() {
+  const val = (document.getElementById('deleteConfirm').value || '').trim();
+  const pwd = (document.getElementById('deletePwd').value || '');
+  if (val !== 'DELETE MY ACCOUNT') { toast('Type DELETE MY ACCOUNT exactly', 'err'); return; }
+  if (!pwd) { toast('Password is required', 'err'); return; }
+  const btn = document.querySelector('#deleteModal .btn-danger');
+  setBtnLoading(btn, true);
+  try {
+    const r = await api('/api/auth/delete-account', {
+      method: 'DELETE',
+      body: JSON.stringify({ password: pwd })
+    });
+    if (!r) return;
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    closeModal('deleteModal');
+    toast('Account permanently deleted. Goodbye.', 'ok');
+    setTimeout(() => {
+      ['token','refreshToken','user','user_orders'].forEach(k => localStorage.removeItem(k));
+      location.href = '/marketplace/login';
+    }, 2000);
+  } catch (e) {
+    toast(e.message || 'Deletion failed. Check your password.', 'err');
+    setBtnLoading(btn, false);
+  }
+}
+
+/* ── MODAL HELPERS ── */
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+// Convert a raw USD amount to user-currency display string
+// Uses page-level _pSym / _pRate set during init; falls back to ₦ / 1
+function fmtMoney(usd) {
+  const sym  = window._pSym  || '₦';
+  const rate = window._pRate || 1;
+  return `${sym}${Number((usd || 0) * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
+/* ── UTILS ── */
+function setEl(id, v)  { const e = document.getElementById(id); if (e) e.textContent = v; }
+function setVal(id, v) { const e = document.getElementById(id); if (e) e.value = v; }
+function setAvatar(id, img, name) {
+  const e = document.getElementById(id); if (!e) return;
+  if (img) e.innerHTML = `<img src="${esc(img)}" alt="avatar">`;
+  else e.textContent = (name||'U')[0].toUpperCase();
+}
+function setBtnLoading(btn, loading) {
+  if (!btn) return;
+  btn.disabled = loading;
+  if (loading) { btn._orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving…'; }
+  else if (btn._orig) btn.innerHTML = btn._orig;
+}
+function timeAgo(date) {
+  const s = Math.floor((Date.now()-date)/1000);
+  if (s<60) return 'just now';
+  if (s<3600) return Math.floor(s/60)+'m ago';
+  if (s<86400) return Math.floor(s/3600)+'h ago';
+  if (s<604800) return Math.floor(s/86400)+'d ago';
+  return date.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+function esc(s){ return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''; }
+function toast(msg, type='ok') {
+  const c = document.getElementById('toast'), d = document.createElement('div');
+  d.className = `toast ${type}`;
+  d.innerHTML = `<i class="fas ${type==='ok'?'fa-circle-check':'fa-circle-xmark'}"></i>${esc(msg)}`;
+  c.appendChild(d); setTimeout(()=>d.remove(), 4000);
+}
+</script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

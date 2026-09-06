@@ -1,0 +1,38 @@
+# UYEH TECH — robots.txt
+# Public marketing, blog, and marketplace browsing pages are open to crawl.
+# Anything behind login (dashboards, checkout, account pages) and the API
+# itself are blocked — no SEO value in indexing them, and no reason to spend
+# crawl budget on pages Googlebot can't log into anyway.
+
+User-agent: *
+
+# ── Public areas: allowed ──────────────────────────────────────────────
+Allow: /
+Allow: /marketplace/
+Allow: /blog/
+Allow: /uyehtech/
+Allow: /contact
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /marketplace/creator-apply
+Allow: /marketplace/signup
+Allow: /marketplace/creators
+
+# ── Private / logged-in areas: disallowed ──────────────────────────────
+Disallow: /marketplace/dashboard
+Disallow: /marketplace/my-products
+Disallow: /marketplace/checkout
+Disallow: /marketplace/creator-dashboard
+Disallow: /marketplace/creator-login
+Disallow: /marketplace/forgot-password
+Disallow: /super-admin/
+Disallow: /super-admin/admin-login
+Disallow: /super-admin/admin-dashboard
+Disallow: /super-admin/agent-login
+Disallow: /super-admin/agent-dashboard
+
+# ── Backend / non-content: disallowed ──────────────────────────────────
+Disallow: /api/
+
+# ── Sitemap ─────────────────────────────────────────────────────────────
+Sitemap: https://uyehtech.com/sitemap.xml

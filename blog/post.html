@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post — UYEH TECH</title>
+  <meta name="description" content="UYEH TECH Blog Article">
+
+  <!-- These are placeholders — all overwritten dynamically once the post loads, see applySEO() -->
+  <link rel="canonical" id="canonicalTag" href="https://www.uyehtech.com/blog/post">
+  <meta property="og:type" content="article">
+  <meta property="og:url" id="ogUrl" content="https://www.uyehtech.com/blog/post">
+  <meta property="og:title" id="ogTitle" content="UYEH TECH Blog">
+  <meta property="og:description" id="ogDesc" content="UYEH TECH Blog Article">
+  <meta property="og:image" id="ogImage" content="https://www.uyehtech.com/images/og-image.jpg">
+  <meta property="og:site_name" content="UYEH TECH">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twTitle" content="UYEH TECH Blog">
+  <meta name="twitter:description" id="twDesc" content="UYEH TECH Blog Article">
+  <meta name="twitter:image" id="twImage" content="https://www.uyehtech.com/images/og-image.jpg">
+  <script type="application/ld+json" id="articleSchema">{}</script>
+   <script src="/site-controller.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+
+  <style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  :root {
+    --g:        #00ff88;
+    --g-dark:   #00b359;
+    --g-dim:    rgba(0,255,136,0.08);
+    --g-glow:   rgba(0,255,136,0.22);
+    --bg:       #080808;
+    --bg2:      #111111;
+    --bg3:      #181818;
+    --txt:      #e2e2e2;
+    --muted:    #888;
+    --border:   rgba(0,255,136,0.14);
+    --nav-h:    64px;
+  }
+
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family:'Montserrat',sans-serif;
+    background:var(--bg); color:var(--txt);
+    line-height:1.85; overflow-x:hidden;
+  }
+
+  ::-webkit-scrollbar { width:3px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--g-dark); border-radius:3px; }
+
+  /* ── READING PROGRESS ── */
+  #readingBar {
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--g-dark), var(--g));
+    z-index:9999; box-shadow:0 0 10px var(--g-glow);
+    transition:width .08s linear;
+  }
+
+  /* ── NAVBAR ── */
+  .navbar {
+    position:fixed; top:3px; left:0; right:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 48px; height:var(--nav-h);
+    background:rgba(8,8,8,0.82); backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+    transition:all .3s;
+  }
+  .navbar.compact { background:rgba(8,8,8,0.97); }
+  .nav-logo {
+    font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:900;
+    color:var(--g); text-decoration:none;
+  }
+  .nav-logo span { color:#fff; }
+  .nav-right { display:flex; align-items:center; gap:10px; }
+  .nav-btn {
+    display:inline-flex; align-items:center; gap:7px;
+    padding:8px 18px; border-radius:8px; font-size:.82rem; font-weight:600;
+    text-decoration:none; cursor:pointer; border:1px solid var(--border);
+    transition:all .25s; font-family:'Montserrat',sans-serif; background:none;
+  }
+  .nav-btn.ghost { color:var(--txt); }
+  .nav-btn.ghost:hover { color:var(--g); border-color:var(--g); background:var(--g-dim); }
+  .nav-btn.solid { color:#000; background:var(--g); border-color:var(--g); font-weight:700; }
+  .nav-btn.solid:hover { background:#00e67a; transform:translateY(-1px); }
+
+  /* ── HERO (with image) ── */
+  .hero {
+    position:relative; width:100%; height:520px;
+    margin-top:calc(var(--nav-h) + 3px);
+    overflow:hidden; background:var(--bg2);
+    display:none;
+  }
+  #heroImg {
+    width:100%; height:100%; object-fit:cover;
+    filter:brightness(0.42); transform:scale(1.04);
+    transition:transform 10s ease;
+  }
+  .hero:hover #heroImg { transform:scale(1); }
+  .hero-gradient {
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom, rgba(8,8,8,0) 0%, rgba(8,8,8,.3) 40%, rgba(8,8,8,.95) 85%, rgba(8,8,8,1) 100%);
+    display:flex; align-items:flex-end;
+  }
+  .hero-text { width:100%; max-width:1100px; margin:0 auto; padding:0 40px 56px; }
+
+  /* ── TEXT HEADER (no image) ── */
+  .text-header {
+    max-width:1100px; margin:0 auto;
+    padding:calc(var(--nav-h) + 48px) 40px 0;
+    display:none;
+  }
+
+  /* ── SHARED HEADER STYLES ── */
+  .cat-badge {
+    display:inline-flex; align-items:center;
+    font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--g); padding:5px 15px;
+    background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.28);
+    border-radius:20px; margin-bottom:18px;
+  }
+  .post-headline {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.85rem, 4.5vw, 3.1rem);
+    line-height:1.18; color:#fff; margin-bottom:22px;
+    text-shadow:0 2px 24px rgba(0,0,0,.7);
+  }
+  .post-byline {
+    display:flex; align-items:center; flex-wrap:wrap; gap:6px 18px;
+    font-size:.82rem;
+  }
+  .hero .post-byline { color:rgba(255,255,255,.55); }
+  .text-header .post-byline {
+    color:var(--muted); padding-bottom:28px; border-bottom:1px solid var(--border);
+  }
+  .post-byline i { color:var(--g); margin-right:4px; font-size:.74rem; }
+  .sep { color:rgba(255,255,255,.2); }
+
+  /* ── LAYOUT ── */
+  .layout {
+    max-width:1100px; margin:0 auto;
+    padding:52px 40px 100px;
+    display:grid; grid-template-columns:1fr 290px;
+    gap:64px; align-items:start;
+  }
+
+  /* ── ARTICLE ── */
+  .article { min-width:0; }
+
+  .tags-strip { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
+  .tag {
+    font-size:.74rem; font-weight:600; padding:4px 13px;
+    background:rgba(0,255,136,0.07); border:1px solid var(--border);
+    border-radius:20px; color:var(--g);
+  }
+
+  .content { font-size:1.05rem; line-height:1.95; color:#c8c8c8; }
+  .content p { margin-bottom:26px; }
+  .content h2 {
+    font-family:'Playfair Display',serif; font-size:1.85rem; line-height:1.2;
+    color:var(--g); margin:56px 0 18px; padding-bottom:12px;
+    border-bottom:1px solid var(--border);
+  }
+  .content h3 { font-size:1.3rem; font-weight:700; color:#fff; margin:40px 0 14px; }
+  .content h4 { font-size:1.05rem; font-weight:600; color:var(--txt); margin:28px 0 10px; }
+  .content ul, .content ol { padding-left:26px; margin-bottom:26px; }
+  .content li { margin-bottom:8px; }
+  .content blockquote {
+    margin:40px 0; padding:22px 28px;
+    border-left:3px solid var(--g);
+    background:rgba(0,255,136,.04);
+    border-radius:0 10px 10px 0;
+    font-style:italic; color:var(--txt); font-size:1.08rem;
+  }
+  .content code {
+    font-family:'JetBrains Mono',monospace; font-size:.88em;
+    background:rgba(255,255,255,.07); color:var(--g);
+    padding:2px 7px; border-radius:4px;
+  }
+  .content pre {
+    background:#0c0c0c; border:1px solid rgba(255,255,255,.07);
+    border-radius:12px; padding:24px; overflow-x:auto; margin-bottom:28px;
+  }
+  .content pre code { background:none; color:#e2e8f0; padding:0; font-size:.9rem; }
+  .content a { color:var(--g); text-underline-offset:3px; }
+  .content a:hover { opacity:.8; }
+  .content img { width:100%; border-radius:12px; margin:28px 0; border:1px solid var(--border); }
+  .content strong { color:#fff; }
+  .content hr { border:none; border-top:1px solid var(--border); margin:52px 0; }
+
+  /* ── AUTHOR CARD ── */
+  .author-card {
+    display:flex; align-items:center; gap:18px;
+    margin-top:52px; padding:26px 28px;
+    background:var(--bg3); border:1px solid var(--border); border-radius:16px;
+  }
+  .author-avatar {
+    width:58px; height:58px; flex-shrink:0; border-radius:50%;
+    background:linear-gradient(135deg, var(--g-dark), var(--g));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.35rem; font-weight:800; color:#000;
+  }
+  .author-info h4 { font-size:.96rem; font-weight:700; color:#fff; margin-bottom:5px; }
+  .author-info p  { font-size:.82rem; color:var(--muted); line-height:1.5; }
+
+  /* ── SHARE ── */
+  .share-section { margin-top:48px; padding-top:32px; border-top:1px solid var(--border); }
+  .share-section h4 {
+    font-size:.68rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--muted); margin-bottom:14px;
+  }
+  .share-btns { display:flex; gap:10px; flex-wrap:wrap; }
+  .share-btn {
+    display:inline-flex; align-items:center; gap:7px;
+    padding:9px 18px; border-radius:8px; font-size:.82rem; font-weight:600;
+    cursor:pointer; border:1px solid transparent; text-decoration:none;
+    transition:all .25s; background:none; font-family:'Montserrat',sans-serif;
+  }
+  .share-btn.tw  { color:#1da1f2; border-color:rgba(29,161,242,.3); background:rgba(29,161,242,.07); }
+  .share-btn.wa  { color:#25d366; border-color:rgba(37,211,102,.3); background:rgba(37,211,102,.07); }
+  .share-btn.cp  { color:var(--g); border-color:var(--border); background:var(--g-dim); }
+  .share-btn:hover { transform:translateY(-2px); filter:brightness(1.15); }
+
+  /* ── LIKES ── */
+  .likes-section {
+    margin-top:40px; padding:22px 28px;
+    background:var(--bg3); border:1px solid var(--border); border-radius:16px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .likes-section p { color:var(--muted); font-size:.88rem; flex:1; }
+  .like-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 24px; border-radius:10px;
+    background:rgba(255,71,87,.08); border:1px solid rgba(255,71,87,.25);
+    color:#ff7985; font-size:.9rem; font-weight:700;
+    cursor:pointer; font-family:'Montserrat',sans-serif; transition:all .3s;
+  }
+  .like-btn:hover { background:rgba(255,71,87,.18); transform:scale(1.04); }
+  .like-btn.liked { background:rgba(255,71,87,.22); border-color:rgba(255,71,87,.5); color:#ff4757; }
+  .like-btn i { transition:transform .3s; }
+  .like-btn:hover i { transform:scale(1.3); }
+  .like-count { font-size:1.1rem; font-weight:700; color:#fff; }
+
+  /* ── COMMENTS ── */
+  .comments-section {
+    margin-top:52px; padding-top:40px; border-top:1px solid var(--border);
+  }
+  .comments-title {
+    font-family:'Playfair Display',serif; font-size:1.5rem;
+    font-weight:700; color:#fff; margin-bottom:28px;
+  }
+  .comments-title span { color:var(--g); }
+
+  /* comment form */
+  .comment-form-wrap {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:16px; padding:28px; margin-bottom:36px;
+  }
+  .comment-form-wrap h4 {
+    font-size:.88rem; font-weight:700; color:var(--g);
+    letter-spacing:1px; text-transform:uppercase; margin-bottom:18px;
+  }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .form-field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+  .form-field label { font-size:.75rem; font-weight:600; color:var(--muted); letter-spacing:1px; text-transform:uppercase; }
+  .form-input, .form-textarea {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:10px; color:#fff; padding:12px 16px;
+    font-family:'Montserrat',sans-serif; font-size:.9rem;
+    outline:none; transition:all .3s; width:100%;
+  }
+  .form-input:focus, .form-textarea:focus {
+    border-color:var(--g); box-shadow:0 0 12px var(--g-glow);
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color:rgba(255,255,255,.3); }
+  .form-textarea { resize:vertical; min-height:110px; }
+  .submit-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 28px; border:none; border-radius:10px;
+    background:linear-gradient(135deg, var(--g-dark), var(--g));
+    color:#000; font-weight:700; font-size:.9rem;
+    cursor:pointer; font-family:'Montserrat',sans-serif; transition:all .3s;
+  }
+  .submit-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px var(--g-glow); }
+  .submit-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+  .form-note {
+    font-size:.75rem; color:var(--muted); margin-top:10px; line-height:1.6;
+  }
+  .form-note i { color:var(--g); margin-right:4px; }
+
+  /* comment list */
+  .comments-list { display:flex; flex-direction:column; gap:18px; }
+  .comment-item {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:14px; padding:22px;
+    transition:border-color .25s;
+  }
+  .comment-item:hover { border-color:rgba(0,255,136,.3); }
+  .comment-header { display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+  .comment-avatar {
+    width:42px; height:42px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg, #1a3a2a, #0f2a1a);
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1rem; font-weight:700; color:var(--g); text-transform:uppercase;
+  }
+  .comment-meta { flex:1; }
+  .comment-author { font-size:.9rem; font-weight:700; color:#fff; }
+  .comment-email  { font-size:.73rem; color:var(--muted); }
+  .comment-date   { font-size:.72rem; color:var(--muted); margin-left:auto; }
+  .comment-body   { font-size:.9rem; color:var(--txt); line-height:1.7; padding-left:56px; }
+  .no-comments {
+    text-align:center; padding:40px 20px;
+    color:var(--muted); font-size:.9rem;
+  }
+  .no-comments i { font-size:2.5rem; color:var(--border); display:block; margin-bottom:12px; }
+  .pending-badge {
+    display:inline-block; font-size:.63rem; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase;
+    padding:2px 8px; border-radius:10px;
+    background:rgba(255,165,0,.1); border:1px solid rgba(255,165,0,.3);
+    color:#ffa500; margin-left:8px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position:sticky; top:calc(var(--nav-h) + 20px); }
+  .s-card {
+    background:var(--bg3); border:1px solid var(--border);
+    border-radius:14px; padding:22px; margin-bottom:18px;
+  }
+  .s-card-title {
+    font-size:.67rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    color:var(--g); margin-bottom:16px; padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+  }
+  .stat-row {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 0; border-bottom:1px solid rgba(255,255,255,.04); font-size:.83rem;
+  }
+  .stat-row:last-child { border-bottom:none; }
+  .stat-lbl { color:var(--muted); display:flex; align-items:center; gap:7px; }
+  .stat-lbl i { color:var(--g); width:13px; font-size:.74rem; }
+  .stat-val { font-weight:600; color:#fff; }
+
+  /* TOC */
+  .toc-list { list-style:none; }
+  .toc-item { border-bottom:1px solid rgba(255,255,255,.04); }
+  .toc-item:last-child { border-bottom:none; }
+  .toc-link {
+    display:block; padding:7px 0 7px 10px; margin-left:-10px;
+    font-size:.79rem; color:var(--muted); text-decoration:none; line-height:1.4;
+    transition:color .2s; border-left:2px solid transparent;
+  }
+  .toc-link:hover { color:var(--txt); }
+  .toc-link.active { color:var(--g); border-left-color:var(--g); }
+  .toc-link.sub { padding-left:20px; font-size:.74rem; }
+
+  /* ── LOADING ── */
+  #loadScreen {
+    position:fixed; inset:0; z-index:8000;
+    background:var(--bg);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    transition:opacity .45s;
+  }
+  #loadScreen.fade { opacity:0; pointer-events:none; }
+  .spinner {
+    width:46px; height:46px;
+    border:3px solid rgba(0,255,136,.15); border-top-color:var(--g);
+    border-radius:50%; animation:spin .75s linear infinite; margin-bottom:18px;
+  }
+  @keyframes spin { to{transform:rotate(360deg)} }
+  #loadScreen p { color:var(--muted); font-size:.88rem; }
+
+  /* ── ERROR ── */
+  #errScreen { display:none; text-align:center; padding:130px 24px; max-width:500px; margin:0 auto; }
+  #errScreen .icon { font-size:4rem; margin-bottom:20px; }
+  #errScreen h2 { font-size:1.7rem; color:var(--g); margin-bottom:12px; }
+  #errScreen p  { color:var(--muted); margin-bottom:28px; font-size:.95rem; }
+  .back-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 26px; background:var(--g-dim);
+    border:1px solid var(--border); border-radius:10px;
+    color:var(--g); font-weight:600; font-size:.88rem;
+    text-decoration:none; transition:all .3s;
+  }
+  .back-btn:hover { background:rgba(0,255,136,.18); transform:translateX(-4px); }
+
+  /* ── TOAST ── */
+  .toast {
+    position:fixed; bottom:28px; right:28px;
+    background:var(--bg3); border:1px solid var(--g);
+    border-radius:10px; padding:13px 20px;
+    font-size:.84rem; color:var(--g);
+    display:flex; align-items:center; gap:9px;
+    transform:translateY(70px); opacity:0;
+    transition:all .35s cubic-bezier(.4,0,.2,1); z-index:9999;
+  }
+  .toast.show { transform:translateY(0); opacity:1; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:960px) {
+    .layout { grid-template-columns:1fr; gap:40px; }
+    .sidebar { position:static; }
+    #tocCard { display:none; }
+  }
+  @media(max-width:640px) {
+    .navbar { padding:0 20px; }
+    .hero   { height:320px; }
+    .hero-text { padding:0 20px 36px; }
+    .text-header { padding:calc(var(--nav-h) + 28px) 20px 0; }
+    .layout { padding:32px 20px 72px; }
+    .post-headline { font-size:1.7rem; }
+    .author-card { flex-direction:column; text-align:center; }
+    .form-row { grid-template-columns:1fr; }
+    .comment-body { padding-left:0; }
+    .likes-section { flex-direction:column; text-align:center; }
+  }
+
+  /* ── APPEAR ANIMATION ── */
+  .appear { opacity:0; transform:translateY(16px); animation:appear .55s ease forwards; }
+  @keyframes appear { to { opacity:1; transform:translateY(0); } }
+  .d1{animation-delay:.05s} .d2{animation-delay:.15s} .d3{animation-delay:.25s} .d4{animation-delay:.35s}
+
+.related-section { margin-top:40px; }
+.related-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:16px; }
+.related-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; overflow:hidden; text-decoration:none; color:var(--txt); transition:border-color .2s, transform .2s; display:block; }
+.related-card:hover { border-color:var(--g); transform:translateY(-2px); }
+.related-card img { width:100%; height:120px; object-fit:cover; display:block; }
+.related-card .rc-body { padding:12px 14px; }
+.related-card .rc-cat { font-size:.7rem; color:var(--g); font-weight:600; text-transform:uppercase; }
+.related-card .rc-title { font-size:.92rem; font-weight:600; margin-top:4px; line-height:1.35; }
+</style>
+</head>
+<body>
+
+<div id="readingBar"></div>
+
+<!-- ──── LOADING ──── -->
+<div id="loadScreen">
+  <div class="spinner"></div>
+  <p>Loading article…</p>
+</div>
+
+<!-- ──── NAVBAR ──── -->
+<nav class="navbar" id="navbar">
+  <a href="/" class="nav-logo">UYEH <span>TECH</span></a>
+  <div class="nav-right">
+    <a href="/blog/index.html" class="nav-btn ghost">
+      <i class="fas fa-arrow-left"></i> Blog
+    </a>
+    <button class="nav-btn solid" onclick="sharePost()">
+      <i class="fas fa-share-alt"></i> Share
+    </button>
+  </div>
+</nav>
+
+<!-- ──── HERO (cover image present) ──── -->
+<div class="hero" id="heroSection">
+  <img id="heroImg" alt="Post cover"
+    onerror="this.closest('.hero').style.display='none'; document.getElementById('textHeader').style.display='block';">
+  <div class="hero-gradient">
+    <div class="hero-text appear d1">
+      <div id="heroCat" class="cat-badge"></div>
+      <h1 id="heroTitle" class="post-headline"></h1>
+      <div id="heroByline" class="post-byline"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ──── TEXT HEADER (no cover image) ──── -->
+<div class="text-header appear d1" id="textHeader">
+  <div id="txCat" class="cat-badge"></div>
+  <h1 id="txTitle" class="post-headline"></h1>
+  <div id="txByline" class="post-byline"></div>
+</div>
+
+<!-- ──── ERROR ──── -->
+<div id="errScreen">
+  <div class="icon">😔</div>
+  <h2>Post Not Found</h2>
+  <p>This article doesn't exist or may have been removed.</p>
+  <a href="/blog/index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+</div>
+
+<!-- ──── MAIN LAYOUT ──── -->
+<div class="layout" id="mainLayout" style="display:none;">
+
+  <article class="article appear d2">
+    <!-- Tags -->
+    <div id="tagsStrip" class="tags-strip"></div>
+
+    <!-- Content -->
+    <div id="postContent" class="content"></div>
+
+    <!-- Author -->
+    <div class="author-card appear d3">
+      <div class="author-avatar" id="authorAvatar"></div>
+      <div class="author-info">
+        <h4 id="authorName"></h4>
+        <p id="authorBio">Published on UYEH TECH · Expert insights on tech, business &amp; digital growth.</p>
+      </div>
+    </div>
+
+    <!-- ── LIKES ── -->
+    <div class="likes-section appear d3" id="likesSection">
+      <div>
+        <span class="like-count"><i class="fas fa-heart" style="color:#ff4757;margin-right:6px;"></i><span id="likeCount">0</span></span>
+        <p style="margin-top:4px;">people liked this article</p>
+      </div>
+      <button class="like-btn" id="likeBtn" onclick="likePost()">
+        <i class="fas fa-heart"></i> <span id="likeBtnText">Like this Article</span>
+      </button>
+    </div>
+
+    <!-- Share -->
+    <div class="share-section appear d3">
+      <h4>Share this article</h4>
+      <div class="share-btns">
+        <a id="shareTw" class="share-btn tw" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-twitter"></i> Twitter
+        </a>
+        <a id="shareWa" class="share-btn wa" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <button class="share-btn cp" onclick="copyLink()">
+          <i class="fas fa-link"></i> Copy Link
+        </button>
+      </div>
+    </div>
+
+    <!-- ── COMMENTS ── -->
+    <div class="comments-section appear d4" id="commentsSection">
+      <h3 class="comments-title">Comments <span id="commentCountBadge">(0)</span></h3>
+
+      <!-- Comment Form -->
+      <div class="comment-form-wrap">
+        <h4><i class="fas fa-comment-alt" style="margin-right:8px;"></i>Leave a Comment</h4>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cmtName">Your Name *</label>
+            <input type="text" class="form-input" id="cmtName" placeholder="John Doe" required>
+          </div>
+          <div class="form-field">
+            <label for="cmtEmail">Email Address *</label>
+            <input type="email" class="form-input" id="cmtEmail" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cmtText">Your Comment *</label>
+          <textarea class="form-textarea" id="cmtText" placeholder="Share your thoughts on this article…" required></textarea>
+        </div>
+        <button class="submit-btn" id="cmtSubmitBtn" onclick="submitComment()">
+          <i class="fas fa-paper-plane"></i> Post Comment
+        </button>
+        <p class="form-note">
+          <i class="fas fa-info-circle"></i>
+          Your comment will appear after moderation. Your email is never shown publicly — it's used only to identify you and is not displayed to other readers.
+        </p>
+      </div>
+
+      <!-- Comments list -->
+      <div id="commentsList" class="comments-list"></div>
+    </div>
+
+    <!-- ── RELATED POSTS ── -->
+    <div class="related-section appear d4" id="relatedSection" style="display:none;">
+      <h3 class="comments-title">You Might Also Like</h3>
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+  </article>
+
+  <!-- ──── SIDEBAR ──── -->
+  <aside class="sidebar appear d2">
+    <div class="s-card">
+      <div class="s-card-title">Article Info</div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-eye"></i>Views</span><span class="stat-val" id="sViews">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-heart"></i>Likes</span><span class="stat-val" id="sLikes">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-comment"></i>Comments</span><span class="stat-val" id="sComments">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-clock"></i>Read Time</span><span class="stat-val" id="sRead">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-calendar-alt"></i>Published</span><span class="stat-val" id="sDate">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-user"></i>Author</span><span class="stat-val" id="sAuthor">—</span></div>
+      <div class="stat-row"><span class="stat-lbl"><i class="fas fa-folder"></i>Category</span><span class="stat-val" id="sCat">—</span></div>
+    </div>
+
+    <div class="s-card" id="tocCard">
+      <div class="s-card-title">Table of Contents</div>
+      <ul class="toc-list" id="tocList"></ul>
+    </div>
+  </aside>
+</div>
+
+<!-- ──── TOAST ──── -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Done!</span>
+</div>
+
+<script>
+const API_URL = 'https://uyehtechbackend.onrender.com';
+let _post   = null;
+let _liked  = false;
+
+const $   = id => document.getElementById(id);
+const esc = s  => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* ── helpers ── */
+function param(n) { return new URLSearchParams(window.location.search).get(n); }
+
+function toast(msg, ms=3000) {
+  $('toastMsg').textContent = msg;
+  $('toast').classList.add('show');
+  setTimeout(() => $('toast').classList.remove('show'), ms);
+}
+
+function fmtDate(d) {
+  return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+}
+function fmtDateShort(d) {
+  return new Date(d).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+}
+
+function calcReadTime(c) { return Math.max(1, Math.ceil((c||'').trim().split(/\s+/).length / 200)); }
+
+function initials(name) {
+  return (name||'UT').split(' ').map(w=>w[0]||'').join('').toUpperCase().slice(0,2) || 'UT';
+}
+
+/* ── scroll effects ── */
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  $('readingBar').style.width = (isFinite(pct) ? pct : 0) + '%';
+  $('navbar').classList.toggle('compact', doc.scrollTop > 55);
+  activateToc();
+}, { passive:true });
+
+/* ── load post ── */
+async function loadPost() {
+  const slug   = param('slug');
+  const postId = param('id');
+  if (!slug && !postId) { showErr(); return; }
+
+  try {
+    const url  = slug
+      ? `${API_URL}/api/blog/posts/${encodeURIComponent(slug)}`
+      : `${API_URL}/api/blog/posts/id/${postId}`;
+
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (data.success && data.post) {
+      _post = data.post;
+      renderPost(data.post);
+    } else throw new Error('no post');
+  } catch(e) {
+    console.error('loadPost:', e);
+    showErr();
+  }
+}
+
+/* ── render post ── */
+function renderPost(post) {
+  const img    = post.featuredImage || '';
+  const author = post.author?.fullName || post.author || 'UYEH TECH Team';
+  const rt     = calcReadTime(post.content);
+  const date   = fmtDate(post.publishedAt || post.createdAt);
+  const cat    = post.category || 'Uncategorized';
+  const views  = (post.views || 0).toLocaleString();
+  const likes  = post.likes || 0;
+
+  document.title = post.metaTitle || `${post.title} — UYEH TECH`;
+  applySEO(post, img, author, date);
+
+  const byline = `
+    <i class="fas fa-user"></i>${esc(author)}
+    <span class="sep">·</span>
+    <i class="fas fa-calendar-alt"></i>${date}
+    <span class="sep">·</span>
+    <i class="fas fa-clock"></i>${rt} min read
+    <span class="sep">·</span>
+    <i class="fas fa-eye"></i>${views} views
+  `;
+
+  if (img) {
+    $('heroSection').style.display = 'block';
+    $('heroImg').src = img;
+    $('heroImg').alt = post.title;
+    $('heroCat').textContent   = cat;
+    $('heroTitle').textContent = post.title;
+    $('heroByline').innerHTML  = byline;
+  } else {
+    $('textHeader').style.display = 'block';
+    $('txCat').textContent   = cat;
+    $('txTitle').textContent = post.title;
+    $('txByline').innerHTML  = byline;
+  }
+
+  /* tags */
+  const ts = $('tagsStrip');
+  if (post.tags?.length) {
+    ts.innerHTML = post.tags.map(t => `<span class="tag">#${esc(t)}</span>`).join('');
+  } else {
+    ts.style.display = 'none';
+  }
+
+  /* content */
+  $('postContent').innerHTML = post.content || '';
+
+  /* author */
+  $('authorAvatar').textContent = initials(author);
+  $('authorName').textContent   = author;
+  const bio = post.author?.bio;
+  if (bio) $('authorBio').textContent = bio;
+
+  /* likes */
+  $('likeCount').textContent = likes;
+  $('sLikes').textContent    = likes;
+  checkLikedState(post._id);
+
+  /* sidebar stats */
+  $('sViews').textContent    = views;
+  $('sRead').textContent     = `${rt} min`;
+  $('sDate').textContent     = date;
+  $('sAuthor').textContent   = author;
+  $('sCat').textContent      = cat;
+
+  /* comments */
+  renderComments(post.comments || []);
+
+  /* toc */
+  buildToc();
+
+  /* share links */
+  const pageUrl = encodeURIComponent(window.location.href);
+  const title   = encodeURIComponent(post.title);
+  $('shareTw').href = `https://twitter.com/intent/tweet?text=${title}&url=${pageUrl}`;
+  $('shareWa').href = `https://wa.me/?text=${title}%20${pageUrl}`;
+
+  /* show layout */
+  $('mainLayout').style.display = 'grid';
+  $('loadScreen').classList.add('fade');
+  setTimeout(() => $('loadScreen').style.display = 'none', 480);
+
+// View count is already incremented server-side by GET /api/blog/posts/:slug
+  // (or /id/:id) when this post was fetched above — no separate ping needed.
+
+  loadRelatedPosts(post._id);
+}
+
+/* ── related posts (audit 4.3) ── */
+async function loadRelatedPosts(postId) {
+  try {
+    const res  = await fetch(`${API_URL}/api/blog/posts/${postId}/related?limit=4`);
+    const data = await res.json();
+    if (!data.success || !data.posts?.length) return;
+
+    $('relatedGrid').innerHTML = data.posts.map(p => {
+      const img = p.featuredImage
+        ? `<img src="${p.featuredImage}" alt="${esc(p.title)}" onerror="this.style.display='none'">`
+        : '';
+      return `
+      <a class="related-card" href="/blog/post?slug=${encodeURIComponent(p.slug)}">
+        ${img}
+        <div class="rc-body">
+          <div class="rc-cat">${esc(p.category || '')}</div>
+          <div class="rc-title">${esc(p.title)}</div>
+        </div>
+      </a>`;
+    }).join('');
+
+    $('relatedSection').style.display = 'block';
+  } catch (_) {
+    // Non-fatal — related posts are a nice-to-have, not core content
+  }
+}
+/* ── SEO: canonical, OG, Twitter Card, JSON-LD Article schema (audit 3.7, 3.8) ── */
+function applySEO(post, img, author, date) {
+  const base        = 'https://www.uyehtech.com';
+  const canonicalUrl = `${base}/blog/post?slug=${encodeURIComponent(post.slug)}`;
+  const title       = post.metaTitle       || post.title;
+  const description = post.metaDescription || post.excerpt || '';
+  const image       = img || `${base}/images/og-image.jpg`;
+
+  const setAttr = (id, attr, val) => { const el = $(id); if (el) el.setAttribute(attr, val); };
+
+  $('canonicalTag').setAttribute('href', canonicalUrl);
+  setAttr('ogUrl',   'content', canonicalUrl);
+  setAttr('ogTitle', 'content', title);
+  setAttr('ogDesc',  'content', description);
+  setAttr('ogImage', 'content', image);
+  setAttr('twTitle', 'content', title);
+  setAttr('twDesc',  'content', description);
+  setAttr('twImage', 'content', image);
+
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute('content', description);
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: description,
+    image: image ? [image] : undefined,
+    datePublished: post.publishedAt || post.createdAt,
+    dateModified: post.updatedAt || post.publishedAt || post.createdAt,
+    author: { '@type': 'Person', name: author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'UYEH TECH',
+      logo: { '@type': 'ImageObject', url: `${base}/uyehtech-logo.png` }
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl }
+  };
+  const schemaEl = $('articleSchema');
+  if (schemaEl) schemaEl.textContent = JSON.stringify(schema);
+}
+
+/* ── comments ── */
+function renderComments(comments) {
+  const approved = (comments || []).filter(c => c.approved);
+  const list     = $('commentsList');
+
+  $('sComments').textContent      = approved.length;
+  $('commentCountBadge').textContent = `(${approved.length})`;
+
+  if (!approved.length) {
+    list.innerHTML = `
+      <div class="no-comments">
+        <i class="fas fa-comment-slash"></i>
+        No approved comments yet. Be the first to comment!
+      </div>`;
+    return;
+  }
+
+  list.innerHTML = approved.map(c => {
+    // Email is intentionally NOT displayed publicly (audit 3.9) — only used
+    // server-side for moderation contact. Avatar initial falls back to name only.
+    const nameInitial = (c.userName || '?')[0].toUpperCase();
+    const displayName = c.userName || 'Anonymous';
+    return `
+    <div class="comment-item">
+      <div class="comment-header">
+        <div class="comment-avatar">${esc(nameInitial)}</div>
+        <div class="comment-meta">
+          <div class="comment-author">${esc(displayName)}</div>
+        </div>
+        <div class="comment-date">${fmtDateShort(c.createdAt)}</div>
+      </div>
+      <div class="comment-body">${esc(c.comment)}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ── submit comment (visitor — email-based, no auth required) ── */
+async function submitComment() {
+  const name    = $('cmtName').value.trim();
+  const email   = $('cmtEmail').value.trim();
+  const comment = $('cmtText').value.trim();
+
+  if (!name)    { toast('⚠️ Please enter your name.');    return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    toast('⚠️ Please enter a valid email address.'); return;
+  }
+  if (!comment) { toast('⚠️ Please write a comment.'); return; }
+  if (!_post)   { toast('⚠️ Post not loaded yet.');    return; }
+
+  const btn = $('cmtSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+  try {
+    /* One endpoint, optionalAuth on the server handles both logged-in and visitor cases */
+    const token = localStorage.getItem('auth_token') || localStorage.getItem('user_token');
+    const headers = { 'Content-Type':'application/json' };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+
+    // Always send visitor fields too — the server ignores them if a valid
+    // token is present and uses the account's name/email instead.
+    const res  = await fetch(`${API_URL}/api/blog/posts/${_post._id}/comments`, {
+      method:'POST',
+      headers,
+      body: JSON.stringify({ comment, visitorName: name, visitorEmail: email })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      toast('✅ Comment submitted! It will appear after review.');
+      $('cmtName').value  = '';
+      $('cmtEmail').value = '';
+      $('cmtText').value  = '';
+    } else {
+      toast('❌ ' + (data.message || 'Failed to submit comment.'));
+    }
+  } catch(e) {
+    console.error('comment err:', e);
+    toast('❌ Network error. Please try again.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Post Comment';
+  }
+}
+
+/* ── likes ── */
+function checkLikedState(postId) {
+  const liked = localStorage.getItem(`liked_${postId}`);
+  if (liked) setLiked(true);
+}
+
+function setLiked(val) {
+  _liked = val;
+  const btn = $('likeBtn');
+  if (val) {
+    btn.classList.add('liked');
+    $('likeBtnText').textContent = 'Liked ❤️';
+  } else {
+    btn.classList.remove('liked');
+    $('likeBtnText').textContent = 'Like this Article';
+  }
+}
+
+async function likePost() {
+  if (!_post) return;
+  if (_liked) { toast('You already liked this article ❤️'); return; }
+
+  // Likes now work with or without an account — the backend accepts both
+  // via optionalAuth, deduping by user ID when logged in and by IP otherwise.
+  const token = localStorage.getItem('auth_token') || localStorage.getItem('user_token');
+  const headers = { 'Content-Type':'application/json' };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  try {
+    const res  = await fetch(`${API_URL}/api/blog/posts/${_post._id}/like`, {
+      method:'POST',
+      headers
+    });
+    const data = await res.json();
+    if (data.success) {
+      const newCount = data.likes;
+      $('likeCount').textContent = newCount;
+      $('sLikes').textContent    = newCount;
+      setLiked(true);
+      localStorage.setItem(`liked_${_post._id}`, '1');
+      toast('❤️ Liked! Thanks for your support.');
+    } else if (data.alreadyLiked) {
+      setLiked(true);
+      localStorage.setItem(`liked_${_post._id}`, '1');
+      toast('You already liked this article ❤️');
+    } else {
+      toast('❌ ' + (data.message || 'Like failed.'));
+    }
+  } catch(e) {
+    toast('❌ Network error. Try again.');
+  }
+}
+
+/* ── TOC ── */
+function buildToc() {
+  const headings = $('postContent').querySelectorAll('h2, h3');
+  if (!headings.length) { $('tocCard').style.display = 'none'; return; }
+
+  $('tocList').innerHTML = '';
+  headings.forEach((h, i) => {
+    if (!h.id) h.id = `h-${i}`;
+    const li = document.createElement('li');
+    li.className = 'toc-item';
+    const a = document.createElement('a');
+    a.className   = `toc-link${h.tagName==='H3'?' sub':''}`;
+    a.href        = `#${h.id}`;
+    a.textContent = h.textContent;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      h.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+    li.appendChild(a);
+    $('tocList').appendChild(li);
+  });
+}
+
+function activateToc() {
+  const hs = $('postContent')?.querySelectorAll('h2,h3') || [];
+  let active = '';
+  hs.forEach(h => { if (h.getBoundingClientRect().top < 130) active = h.id; });
+  document.querySelectorAll('.toc-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === `#${active}`);
+  });
+}
+
+/* ── share ── */
+function sharePost() {
+  if (navigator.share && _post) {
+    navigator.share({ title: _post.title, url: window.location.href }).catch(()=>{});
+  } else {
+    copyLink();
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href)
+    .then(()  => toast('✓ Link copied to clipboard!'))
+    .catch(() => {
+      const el = document.createElement('input');
+      el.value = window.location.href;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      toast('✓ Link copied!');
+    });
+}
+
+/* ── error ── */
+function showErr() {
+  $('loadScreen').classList.add('fade');
+  setTimeout(() => {
+    $('loadScreen').style.display = 'none';
+    $('errScreen').style.display  = 'block';
+  }, 480);
+}
+
+document.addEventListener('DOMContentLoaded', loadPost);
+</script>
+
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

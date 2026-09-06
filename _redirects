@@ -1,0 +1,354 @@
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+# UYEH TECH â€” Netlify Redirects
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+#
+# TARGET URL FORMAT:
+#   uyehtech.com/marketplace/storename  â†’  loads creator-store.html
+#   uyehtech.com/marketplace/storename/?product=ID&ref=CODE  â†’ same page,
+#     creator-store.html reads ?product= and ?ref= client-side
+## ═══════════════════════════════════════════════════════════
+# UYEH TECH — Netlify Redirects
+# ═══════════════════════════════════════════════════════════
+#
+# TARGET URL FORMAT:
+#   uyehtech.com/marketplace/storename  →  loads creator-store.html
+#   uyehtech.com/marketplace/storename/?product=ID&ref=CODE  → same page,
+#     creator-store.html reads ?product= and ?ref= client-side
+#
+# HOW NETLIFY READS THIS FILE:
+#   Rules are matched TOP TO BOTTOM — first match wins.
+#   Specific rules must come BEFORE broad catch-alls.
+#
+# ═══════════════════════════════════════════════════════════
+
+# ── STEP 1: Protect real .html pages inside /marketplace/ ────
+# List every actual file in your /marketplace/ folder here.
+# Netlify serves these directly — they are never treated as a store slug.
+#
+# ⚠️ CONFIRM THESE FILENAMES — I only have direct evidence of the ones
+# marked ✅ from the files you've uploaded so far. The rest are inferred
+# from links pointing at them; please check actual filenames on disk
+# before deploying this, especially login/signup/checkout/orders/profile.
+
+/marketplace/index.html            /marketplace/index.html            200
+/marketplace/login.html            /marketplace/login.html            200
+/marketplace/signup.html           /marketplace/signup.html           200
+/marketplace/dashboard.html        /marketplace/dashboard.html        200
+# ✅ uploaded, confirmed
+/marketplace/checkout.html         /marketplace/checkout.html         200
+/marketplace/orders.html           /marketplace/orders.html           200
+/marketplace/profile.html          /marketplace/profile.html          200
+/marketplace/settings.html         /marketplace/settings.html         200
+# ⚠️ keep this line only if settings.html still exists as its own page —
+# remove it if it was folded into profile.html as previously discussed
+/marketplace/my-products.html      /marketplace/my-products.html      200
+/marketplace/support.html          /marketplace/support.html          200
+/marketplace/affiliate.html        /marketplace/affiliate.html        200
+# ✅ uploaded, confirmed
+/marketplace/creator-apply.html    /marketplace/creator-apply.html    200
+# ✅ uploaded, confirmed
+/marketplace/creator-login.html    /marketplace/creator-login.html    200
+# ✅ uploaded, confirmed
+/marketplace/creator-dashboard.html /marketplace/creator-dashboard.html 200
+# ✅ uploaded, confirmed
+/marketplace/creator-store.html    /marketplace/creator-store.html    200
+# ✅ uploaded, confirmed — also the catch-all target below
+/marketplace/creators.html         /marketplace/creators.html         200
+# ✅ uploaded, confirmed
+
+# ── STEP 2: Creator stores also work via query param (fallback) ──
+#
+# uyehtech.com/marketplace/creator-store?store=uyeh-store&product=ID&ref=CODE
+#        → serves /marketplace/creator-store.html
+#        → store, product, ref are read client-side from the query string
+#
+# This still works after Step 3b below adds the vanity slug rule — both
+# forms are supported because creator-store.html's resolveSlug() checks
+# ?store= / ?slug= first, then falls back to reading the path itself.
+
+# ── STEP 3: Clean URLs for the pages above (no .html in the address bar) ─
+# These make /marketplace/dashboard, /marketplace/login, /marketplace/creator-store
+# etc. work without typing .html.
+
+/marketplace/                      /marketplace/index.html            200
+/marketplace/login                 /marketplace/login.html            200
+/marketplace/signup                /marketplace/signup.html           200
+/marketplace/dashboard             /marketplace/dashboard.html        200
+/marketplace/checkout              /marketplace/checkout.html         200
+/marketplace/orders                /marketplace/orders.html           200
+/marketplace/profile               /marketplace/profile.html          200
+/marketplace/settings              /marketplace/settings.html         200
+/marketplace/my-products           /marketplace/my-products.html      200
+/marketplace/support               /marketplace/support.html          200
+/marketplace/affiliate             /marketplace/affiliate.html        200
+/marketplace/creator-apply         /marketplace/creator-apply.html    200
+/marketplace/creator-login         /marketplace/creator-login.html    200
+/marketplace/creator-dashboard     /marketplace/creator-dashboard.html 200
+/marketplace/creators              /marketplace/creators.html         200
+/marketplace/creator-store         /marketplace/creator-store.html    200
+# ── STEP 3: Standalone product page (added — closes a real gap) ──
+#
+# uyehtech.com/marketplace/product/PRODUCT_ID
+#   → serves /marketplace/product.html
+#   → product.html reads the ID from the URL path itself
+#
+# Why this exists: Product.creatorId is OPTIONAL on the server — some
+# products (admin/platform-managed) have no creator attached at all.
+# Those products had NO possible working link before this rule, since
+# creator-store.html requires a store to display and there was no
+# dedicated product page. This route works for every product, whether
+# it has a creator or not (creator-attached products show a small
+# "Sold by {creator}" link back to their store; creator-less ones
+# simply omit it).
+#
+# MUST come before Step 3b's catch-all below — /marketplace/product/:id
+# would otherwise be swallowed by :storeSlug and try to load a store
+# literally named "product".
+
+/marketplace/product.html          /marketplace/product.html          200
+/marketplace/product/:id           /marketplace/product.html          200
+
+# ── STEP 3a: Standalone product page (added — closes a real gap) ──
+#
+# uyehtech.com/marketplace/product/PRODUCT_ID
+#   → serves /marketplace/product.html
+#   → product.html reads the ID from the URL path itself
+#
+# Why this exists: Product.creatorId is OPTIONAL on the server — some
+# products (admin/platform-managed) have no creator attached at all.
+# Those products had NO possible working link before this rule, since
+# creator-store.html requires a store to display and there was no
+# dedicated product page. This route works for every product, whether
+# it has a creator or not (creator-attached products show a small
+# "Sold by {creator}" link back to their store; creator-less ones
+# simply omit it).
+#
+# MUST come before Step 3b's catch-all below — /marketplace/product/:id
+# would otherwise be swallowed by :storeSlug and try to load a store
+# literally named "product".
+
+/marketplace/product.html          /marketplace/product.html          200
+/marketplace/product/:id           /marketplace/product.html          200
+
+# ── STEP 3b: Vanity creator-store slugs (the actual fix) ──────
+#
+# uyehtech.com/marketplace/uyeh-store  →  serves /marketplace/creator-store.html
+#        → creator-store.html reads the slug from the URL path itself
+#          (resolveSlug() falls back to the last path segment when there's
+#          no ?store=/?slug= param — see creator-store.html line ~1735)
+#
+# MUST come after every specific rule above (Steps 1 & 3) — first match
+# wins, so /marketplace/login etc. will always match their own exact rule
+# first and never fall through to this catch-all.
+#
+# Trade-off, accepted: a mistyped /marketplace/whatever with no matching
+# store will match this rule and load creator-store.html, which then shows
+# its own "Store not found" error state (showError()) rather than a real
+# Netlify 404. That's a deliberate choice to support clean vanity links —
+# not a bug, but worth knowing if you're ever debugging a "wrong" 404.
+
+# Two-segment clean product links — /marketplace/{storeSlug}/{productId}
+# MUST come before the single-segment :storeSlug rule below, since
+# Netlify matches top-to-bottom and this is the more specific pattern.
+/marketplace/:storeSlug/:productId /marketplace/creator-store.html    200
+
+/marketplace/:storeSlug            /marketplace/creator-store.html    200
+
+# ── STEP 4: /super-admin/ — admin + agent, together ───────
+# Same pattern: protect real files first if you add clean URLs for these later.
+# For now these are linked with .html directly from emails, so no rewrite
+# is strictly required — added here for when the frontend audit reaches them.
+
+/super-admin/admin-dashboard.html  /super-admin/admin-dashboard.html  200
+/super-admin/agent-dashboard.html  /super-admin/agent-dashboard.html  200
+
+# ── STEP 4b: Affiliate vanity links — proxy to the Render backend ─
+#
+# /ref/:slug is an Express route on Render, not a Netlify page.
+# Without this rule, uyehtech.com/ref/somecreator 404s on Netlify —
+# it never reaches the backend at all.
+#
+# 301 = simple redirect: browser briefly shows the Render domain, then
+# Render's own res.redirect() bounces it again to /marketplace/?ref=CODE
+# on uyehtech.com. Two hops, but simple and reliable.
+#
+# If you'd rather the address bar never shows the Render domain, change
+# 301 to 200 to make Netlify reverse-proxy it instead (keeps uyehtech.com
+# in the bar throughout) — test this option before relying on it, proxy
+# behavior with upstream redirects can be inconsistent across Netlify plans.
+
+#   /marketplace/STORE_SLUG/
+#     ↑ storeUrl from GET /api/creator/me (trailing slash always present)
+#
+#   /marketplace/STORE_SLUG/?product=PRODUCT_ID&ref=AFFILIATE_CODE
+#     ↑ affiliateLink for product-specific links (lines 17430, 17469)
+#
+#   /marketplace/STORE_SLUG/?product=ID&ref=CODE&utm_campaign=X
+#     ↑ same + campaign UTM (line 17474 generate route)
+#
+#   /marketplace/STORE_SLUG/?product=ID&ref=CODE&utm_source=X&utm_medium=Y
+#     ↑ same + source/medium UTM params
+#
+/ref/*            https://uyehtechbackend.onrender.com/ref/:splat   301
+
+# ── STEP 5: Passthrough all other real folders ────────────
+
+/blog/*           /blog/:splat            200
+/images/*         /images/:splat          200
+/css/*            /css/:splat             200
+/js/*             /js/:splat              200
+/fonts/*          /fonts/:splat           200
+/uploads/*        /uploads/:splat         200
+
+# ── STEP 6: Root-level static pages ──────────────────────
+
+/about.html       /about.html             200
+/services.html    /services.html          200
+/projects.html    /projects.html          200
+/contact.html     /contact.html           200
+/index.html       /index.html             200
+
+# HOW NETLIFY READS THIS FILE:
+#   Rules are matched TOP TO BOTTOM â€” first match wins.
+#   Specific rules must come BEFORE broad catch-alls.
+#
+# â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+# â”€â”€ STEP 1: Protect real .html pages inside /marketplace/ â”€â”€â”€â”€
+# List every actual file in your /marketplace/ folder here.
+# Netlify serves these directly â€” they are never treated as a store slug.
+#
+# âš ï¸ CONFIRM THESE FILENAMES â€” I only have direct evidence of the ones
+# marked âœ… from the files you've uploaded so far. The rest are inferred
+# from links pointing at them; please check actual filenames on disk
+# before deploying this, especially login/signup/checkout/orders/profile.
+
+/marketplace/index.html            /marketplace/index.html            200
+/marketplace/login.html            /marketplace/login.html            200
+/marketplace/signup.html           /marketplace/signup.html           200
+/marketplace/dashboard.html        /marketplace/dashboard.html        200
+# âœ… uploaded, confirmed
+/marketplace/checkout.html         /marketplace/checkout.html         200
+/marketplace/orders.html           /marketplace/orders.html           200
+/marketplace/profile.html          /marketplace/profile.html          200
+/marketplace/settings.html         /marketplace/settings.html         200
+# âš ï¸ keep this line only if settings.html still exists as its own page â€”
+# remove it if it was folded into profile.html as previously discussed
+/marketplace/my-products.html      /marketplace/my-products.html      200
+/marketplace/support.html          /marketplace/support.html          200
+/marketplace/affiliate.html        /marketplace/affiliate.html        200
+# âœ… uploaded, confirmed
+/marketplace/creator-apply.html    /marketplace/creator-apply.html    200
+# âœ… uploaded, confirmed
+/marketplace/creator-login.html    /marketplace/creator-login.html    200
+# âœ… uploaded, confirmed
+/marketplace/creator-dashboard.html /marketplace/creator-dashboard.html 200
+# âœ… uploaded, confirmed
+/marketplace/creator-store.html    /marketplace/creator-store.html    200
+# âœ… uploaded, confirmed â€” also the catch-all target below
+/marketplace/creators.html         /marketplace/creators.html         200
+# âœ… uploaded, confirmed
+
+# â”€â”€ STEP 2: Creator stores also work via query param (fallback) â”€â”€
+#
+# uyehtech.com/marketplace/creator-store?store=uyeh-store&product=ID&ref=CODE
+#        â†’ serves /marketplace/creator-store.html
+#        â†’ store, product, ref are read client-side from the query string
+#
+# This still works after Step 3b below adds the vanity slug rule â€” both
+# forms are supported because creator-store.html's resolveSlug() checks
+# ?store= / ?slug= first, then falls back to reading the path itself.
+
+# â”€â”€ STEP 3: Clean URLs for the pages above (no .html in the address bar) â”€
+# These make /marketplace/dashboard, /marketplace/login, /marketplace/creator-store
+# etc. work without typing .html.
+
+/marketplace/                      /marketplace/index.html            200
+/marketplace/login                 /marketplace/login.html            200
+/marketplace/signup                /marketplace/signup.html           200
+/marketplace/dashboard             /marketplace/dashboard.html        200
+/marketplace/checkout              /marketplace/checkout.html         200
+/marketplace/orders                /marketplace/orders.html           200
+/marketplace/profile               /marketplace/profile.html          200
+/marketplace/settings              /marketplace/settings.html         200
+/marketplace/my-products           /marketplace/my-products.html      200
+/marketplace/support               /marketplace/support.html          200
+/marketplace/affiliate             /marketplace/affiliate.html        200
+/marketplace/creator-apply         /marketplace/creator-apply.html    200
+/marketplace/creator-login         /marketplace/creator-login.html    200
+/marketplace/creator-dashboard     /marketplace/creator-dashboard.html 200
+/marketplace/creators              /marketplace/creators.html         200
+/marketplace/creator-store         /marketplace/creator-store.html    200
+
+# â”€â”€ STEP 3b: Vanity creator-store slugs (the actual fix) â”€â”€â”€â”€â”€â”€
+#
+# uyehtech.com/marketplace/uyeh-store  â†’  serves /marketplace/creator-store.html
+#        â†’ creator-store.html reads the slug from the URL path itself
+#          (resolveSlug() falls back to the last path segment when there's
+#          no ?store=/?slug= param â€” see creator-store.html line ~1735)
+#
+# MUST come after every specific rule above (Steps 1 & 3) â€” first match
+# wins, so /marketplace/login etc. will always match their own exact rule
+# first and never fall through to this catch-all.
+#
+# Trade-off, accepted: a mistyped /marketplace/whatever with no matching
+# store will match this rule and load creator-store.html, which then shows
+# its own "Store not found" error state (showError()) rather than a real
+# Netlify 404. That's a deliberate choice to support clean vanity links â€”
+# not a bug, but worth knowing if you're ever debugging a "wrong" 404.
+
+/marketplace/:storeSlug            /marketplace/creator-store.html    200
+
+# â”€â”€ STEP 4: /super-admin/ â€” admin + agent, together â”€â”€â”€â”€â”€â”€â”€
+# Same pattern: protect real files first if you add clean URLs for these later.
+# For now these are linked with .html directly from emails, so no rewrite
+# is strictly required â€” added here for when the frontend audit reaches them.
+
+/super-admin/admin-dashboard.html  /super-admin/admin-dashboard.html  200
+/super-admin/agent-dashboard.html  /super-admin/agent-dashboard.html  200
+
+# â”€â”€ STEP 4b: Affiliate vanity links â€” proxy to the Render backend â”€
+#
+# /ref/:slug is an Express route on Render, not a Netlify page.
+# Without this rule, uyehtech.com/ref/somecreator 404s on Netlify â€”
+# it never reaches the backend at all.
+#
+# 301 = simple redirect: browser briefly shows the Render domain, then
+# Render's own res.redirect() bounces it again to /marketplace/?ref=CODE
+# on uyehtech.com. Two hops, but simple and reliable.
+#
+# If you'd rather the address bar never shows the Render domain, change
+# 301 to 200 to make Netlify reverse-proxy it instead (keeps uyehtech.com
+# in the bar throughout) â€” test this option before relying on it, proxy
+# behavior with upstream redirects can be inconsistent across Netlify plans.
+
+#   /marketplace/STORE_SLUG/
+#     ↑ storeUrl from GET /api/creator/me (trailing slash always present)
+#
+#   /marketplace/STORE_SLUG/?product=PRODUCT_ID&ref=AFFILIATE_CODE
+#     ↑ affiliateLink for product-specific links (lines 17430, 17469)
+#
+#   /marketplace/STORE_SLUG/?product=ID&ref=CODE&utm_campaign=X
+#     ↑ same + campaign UTM (line 17474 generate route)
+#
+#   /marketplace/STORE_SLUG/?product=ID&ref=CODE&utm_source=X&utm_medium=Y
+#     ↑ same + source/medium UTM params
+#
+/ref/*            https://uyehtechbackend.onrender.com/ref/:splat   301
+
+# â”€â”€ STEP 5: Passthrough all other real folders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+/blog/*           /blog/:splat            200
+/images/*         /images/:splat          200
+/css/*            /css/:splat             200
+/js/*             /js/:splat              200
+/fonts/*          /fonts/:splat           200
+/uploads/*        /uploads/:splat         200
+
+# â”€â”€ STEP 6: Root-level static pages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+
+/about.html       /about.html             200
+/services.html    /services.html          200
+/projects.html    /projects.html          200
+/contact.html     /contact.html           200
+/index.html       /index.html             200

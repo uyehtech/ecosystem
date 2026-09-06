@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - UYEH TECH</title>
+
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+  <script src="/site-controller.js" defer></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cFdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Flutterwave SDK -->
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <!-- Paystack SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    
+    <!-- CSS -->
+    <style>
+      /* ========== UYEH TECH - PROFESSIONAL CHECKOUT CSS ========== */
+
+:root{
+  --g:#00ff88; --g2:#00c96a; --g3:rgba(0,255,136,.08); --g4:rgba(0,255,136,.14); --g5:rgba(0,255,136,.22);
+  --ink:#07090c; --ink2:#0c0f14; --ink3:#111620; --ink4:#18202e; --card:#0e1318;
+  --line:rgba(255,255,255,.06); --line2:rgba(0,255,136,.18);
+  --t1:#edf2f7; --t2:#8a96a8; --t3:#4a5568;
+  --red:#ff4d4d; --amber:#f5a623; --blue:#5b9cf6; --purple:#a78bfa;
+  --r:12px; --r2:18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #00ff88;
+    text-decoration: none;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.back-link {
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+/* ========== PROGRESS STEPS ========== */
+.progress-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--t2);
+    transition: all 0.3s;
+}
+
+.progress-step.active .step-number {
+    background: linear-gradient(135deg, #00c96a, #00ff88);
+    border-color: #00ff88;
+    color: white;
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: var(--t2);
+    font-weight: 600;
+}
+
+.progress-step.active .step-label {
+    color: #00ff88;
+}
+
+.progress-line {
+    height: 2px;
+    width: 80px;
+    background: rgba(0, 255, 136, 0.2);
+    margin: 0 10px;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+}
+
+.checkout-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.checkout-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: #00ff88;
+    margin-bottom: 10px;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+.checkout-header p {
+    color: var(--t2);
+    font-size: 1.1rem;
+}
+
+/* ========== CHECKOUT LAYOUT ========== */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+}
+
+/* ========== LEFT SIDE - FORM ========== */
+.checkout-form-section {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.form-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #00ff88;
+    margin-bottom: 25px;
+}
+
+.subsection-title {
+    font-size: 1.2rem;
+    color: #00ff88;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    color: #00ff88;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ========== COUPON SECTION ========== */
+.coupon-section {
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+}
+
+.coupon-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-apply-coupon {
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #00c96a, #00ff88);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    white-space: nowrap;
+}
+
+.btn-apply-coupon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+.btn-apply-coupon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.coupon-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: none;
+}
+
+.coupon-message.success {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    display: block;
+}
+
+.coupon-message.error {
+    background: rgba(255, 68, 68, 0.2);
+    color: var(--red);
+    display: block;
+}
+
+/* ========== PAYMENT INFO BOX ========== */
+.payment-info-box {
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.payment-provider {
+    margin-bottom: 15px;
+}
+
+.payment-provider img {
+    height: 30px;
+    filter: brightness(0) invert(1);
+}
+
+.payment-info-box p {
+    color: var(--t2);
+    margin-bottom: 20px;
+}
+
+.payment-methods-accepted {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.payment-methods-accepted span {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #00ff88;
+}
+
+/* ========== SECURITY BADGES ========== */
+.security-badges {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.security-badge {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 10px;
+}
+
+.security-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.security-badge-text {
+    color: var(--t2);
+    font-size: 0.85rem;
+    display: block;
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.submit-btn {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #00c96a, #00ff88);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 30px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+}
+
+.submit-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+}
+
+.terms-text {
+    text-align: center;
+    color: var(--t2);
+    font-size: 0.85rem;
+    margin-top: 20px;
+}
+
+.terms-text a {
+    color: #00ff88;
+    text-decoration: none;
+}
+
+.terms-text a:hover {
+    text-decoration: underline;
+}
+
+/* ========== RIGHT SIDE - ORDER SUMMARY ========== */
+.order-summary {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.summary-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #00ff88;
+    margin-bottom: 25px;
+}
+
+.order-items-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.order-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.order-item:hover {
+    background: rgba(0, 255, 136, 0.1);
+    transform: translateX(5px);
+}
+
+.order-item-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-title {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.order-item-category {
+    color: var(--t2);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.order-item-price {
+    color: #00ff88;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.summary-divider {
+    height: 1px;
+    background: rgba(0, 255, 136, 0.2);
+    margin: 25px 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--t1);
+    font-size: 1rem;
+}
+
+.discount-amount {
+    color: #00ff88 !important;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #00ff88;
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.delivery-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 12px;
+}
+
+.delivery-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--t1);
+}
+
+.delivery-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.delivery-icon {
+    font-size: 1.2rem;
+}
+
+/* ========== EMPTY CART ========== */
+.empty-cart {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-cart-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.empty-cart h2 {
+    font-family: 'Playfair Display', serif;
+    color: #00ff88;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.empty-cart-btn {
+    margin-top: 30px;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #00c96a, #00ff88);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.empty-cart-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+/* ========== LOADING OVERLAY ========== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-content {
+    text-align: center;
+    color: #00ff88;
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0, 255, 136, 0.2);
+    border-top-color: #00ff88;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.loading-content p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 968px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: relative;
+        top: 0;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .security-badges {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        padding: 15px 20px;
+    }
+
+    .container {
+        padding: 0 20px 60px;
+    }
+
+    .checkout-header h1 {
+        font-size: 2rem;
+    }
+
+    .progress-steps {
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .progress-line {
+        width: 40px;
+    }
+
+    .checkout-form-section {
+        padding: 25px;
+    }
+
+    .coupon-input-group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-form-section {
+        padding: 20px;
+    }
+
+    .order-summary {
+        padding: 20px;
+    }
+
+    .summary-total {
+        font-size: 1.5rem;
+    }
+}
+
+/* ========== AFFILIATE BANNER ========== */
+.affiliate-notice {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(0, 255, 136, 0.07);
+    border: 1px solid rgba(0, 255, 136, 0.25);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+    color: var(--t1);
+    line-height: 1.5;
+}
+.affiliate-notice.visible { display: flex; }
+.affiliate-notice i { color: #00ff88; font-size: 1.1rem; flex-shrink: 0; }
+.affiliate-notice strong { color: #00ff88; }
+
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="/index.html" class="logo">
+            <img src="uyehtech logo.png" width="50px" height="50px" alt="UYEH TECH">
+        </a>
+        <a href="/marketplace/" class="back-link">← Back to Store</a>
+    </nav>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p id="loadingText">Processing your order...</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container" id="mainContainer">
+        <!-- Empty Cart Message -->
+        <div class="empty-cart" id="emptyCart" style="display: none;">
+            <div class="empty-cart-icon">🛒</div>
+            <h2>Your Cart is Empty</h2>
+            <p style="color: var(--t2);">Add some products before checking out</p>
+            <a href="/marketplace/" class="empty-cart-btn">Browse Products</a>
+        </div>
+
+        <!-- Checkout Content -->
+        <div id="checkoutContent" style="display: none;">
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Cart</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step active">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Checkout</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Complete</div>
+                </div>
+            </div>
+
+            <div class="checkout-header">
+                <h1>Secure Checkout</h1>
+                <p>Complete your purchase securely with Flutterwave</p>
+            </div>
+
+            <div class="checkout-grid">
+                <!-- LEFT: Checkout Form -->
+                <div class="checkout-form-section">
+                    <!-- AFFILIATE NOTICE — shown when buyer arrived via affiliate link -->
+                    <div class="affiliate-notice" id="affiliateNotice">
+                        <i class="fas fa-link"></i>
+                        <span>You arrived via an affiliate link. The promoter earns a small commission on this purchase — <strong>at no extra cost to you</strong>.</span>
+                    </div>
+
+                    <h2 class="form-section-title">📋 Billing Information</h2>
+                    
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-input" id="fullName" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-input" id="email" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-input" id="phone" placeholder="+234 XXX XXX XXXX" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Country *</label>
+                                <select class="form-select" id="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="NG">Nigeria 🇳🇬</option>
+                                    <option value="US">United States 🇺🇸</option>
+                                    <option value="UK">United Kingdom 🇬🇧</option>
+                                    <option value="CA">Canada 🇨🇦</option>
+                                    <option value="GH">Ghana 🇬🇭</option>
+                                    <option value="KE">Kenya 🇰🇪</option>
+                                    <option value="ZA">South Africa 🇿🇦</option>
+                                    <option value="OTHER">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Code Section -->
+                        <div class="coupon-section">
+                            <h3 class="subsection-title">💰 Have a Coupon Code?</h3>
+                            <div class="coupon-input-group">
+                                <input type="text" class="form-input" id="couponCode" placeholder="Enter coupon code (e.g., WELCOME10, FREE100)">
+                                <button type="button" class="btn-apply-coupon" id="applyCouponBtn">Apply</button>
+                            </div>
+                            <div id="couponMessage" class="coupon-message"></div>
+                        </div>
+
+                        <h2 class="form-section-title" style="margin-top: 40px;">💳 Payment Method</h2>
+
+                        <div class="payment-gateway-picker" style="display:flex; gap:12px; margin-bottom:16px;">
+                            <label style="flex:1; cursor:pointer;">
+                                <input type="radio" name="gateway" value="flutterwave" checked style="margin-right:6px;">
+                                Flutterwave
+                            </label>
+                            <label style="flex:1; cursor:pointer;">
+                                <input type="radio" name="gateway" value="paystack" style="margin-right:6px;">
+                                Paystack
+                            </label>
+                        </div>
+
+                        <div class="payment-info-box">
+                            <div class="payment-provider">
+                                <img src="https://flutterwave.com/images/logo/full.svg" alt="Flutterwave" style="height: 30px;">
+                            </div>
+                            <p>Secure payment powered by Flutterwave</p>
+                            <div class="payment-methods-accepted">
+                                <span>💳 Card</span>
+                                <span>🏦 Bank Transfer</span>
+                                <span>📱 Mobile Money</span>
+                                <span>💰 USSD</span>
+                            </div>
+                        </div>
+
+                        <div class="security-badges">
+                            <div class="security-badge">
+                                <span class="security-icon">🔒</span>
+                                <span class="security-badge-text">256-bit SSL Encrypted</span>
+                            </div>
+                            <div class="security-badge">
+                                <span class="security-icon">✅</span>
+                                <span class="security-badge-text">PCI DSS Compliant</span>
+                            </div>
+                            <div class="security-badge">
+                                <span class="security-icon">💯</span>
+                                <span class="security-badge-text">Money-back Guarantee</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span id="submitBtnText">🔐 Complete Secure Payment</span>
+                            <span id="btnTotal" class="btn-amount">$0</span>
+                        </button>
+
+                        <p class="terms-text">
+                            By completing this purchase, you agree to our 
+                            <a href="/terms.html">Terms of Service</a> and 
+                            <a href="/privacy.html">Privacy Policy</a>
+                        </p>
+                    </form>
+                </div>
+
+                <!-- RIGHT: Order Summary -->
+                <div class="order-summary">
+                    <h2 class="summary-title">📦 Order Summary</h2>
+
+                    <div id="orderItems" class="order-items-list">
+                        <!-- Items loaded by JavaScript -->
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0</span>
+                    </div>
+
+                    <div class="summary-row" id="discountRow" style="display: none;">
+                        <span>Discount (<span id="discountCode"></span>):</span>
+                        <span id="discount" class="discount-amount">-$0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Tax (0%):</span>
+                        <span id="tax">$0</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total">$0</span>
+                    </div>
+
+                    <div class="delivery-info">
+                        <div class="delivery-info-item">
+                            <span class="delivery-icon">📥</span>
+                            <span>Instant digital delivery</span>
+                        </div>
+                        <div class="delivery-info-item">
+                            <span class="delivery-icon">📧</span>
+                            <span>Receipt sent via email</span>
+                        </div>
+                        <div class="delivery-info-item">
+                            <span class="delivery-icon">♾️</span>
+                            <span>Lifetime access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      // ========== UYEH TECH - CHECKOUT WITH ENHANCED COUPON SYSTEM ==========
+
+const API_URL = 'https://uyehtechbackend.onrender.com';
+let currencySymbol = '$'; // updated from /api/profile once the page loads, see fetchUserCurrency()
+let currencyRate    = 1;  // USD → buyer's currency, for live preview only — server is still the source of truth
+
+// Convert a USD amount to the buyer's display currency
+function toDisplay(usdAmount) {
+    return parseFloat(usdAmount || 0) * currencyRate;
+}
+async function fetchUserCurrency() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    try {
+        const res  = await fetch(`${API_URL}/api/profile`, { headers: { 'Authorization': `Bearer ${token}` } });
+        const data = await res.json();
+        if (data.success) {
+            currencySymbol = data.symbol || '$';
+            currencyRate   = data.rate   || 1;
+            displayOrderSummary(); // re-render item prices now that rate is loaded
+            calculateTotals();
+        }
+    } catch (_) { /* keep $/1:1 fallback */ }
+}
+let FLUTTERWAVE_PUBLIC_KEY = ''; // populated from /api/settings/public on page load — do not hardcode
+
+let cart = [];
+let currentUser = null;
+let appliedCoupon = null;
+let isFreeOrder = false;
+
+// ========== AFFILIATE REF HELPER ==========
+// Reads canonical keys written by index.html / creator-store.html on any ?ref= click.
+// Keys: uyeh_ref (UPPERCASE code) | uyeh_ref_expiry (epoch ms) | uyeh_ref_product (optional)
+// Returns null only when no code is stored OR expiry was set and has passed.
+function getAffiliateRef() {
+    const code = localStorage.getItem('uyeh_ref');
+    if (!code) return null;
+    const expiry = parseInt(localStorage.getItem('uyeh_ref_expiry') || '0');
+    // Only expire when expiry was explicitly written AND it has passed
+    if (expiry && Date.now() > expiry) {
+        localStorage.removeItem('uyeh_ref');
+        localStorage.removeItem('uyeh_ref_expiry');
+        localStorage.removeItem('uyeh_ref_product');
+        return null;
+    }
+    return code;
+}
+
+// ── Fire affiliate funnel event when buyer lands on checkout ─────────────────
+(function fireCheckoutStartEvent() {
+  try {
+    const _c = localStorage.getItem('uyeh_ref');
+    if (!_c) return;
+    const _exp = parseInt(localStorage.getItem('uyeh_ref_expiry') || '0');
+    if (_exp && Date.now() > _exp) return;
+    fetch(API_URL + '/api/affiliate/track-event', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ affiliateCode: _c, eventType: 'checkout_start' })
+    }).catch(() => {});
+  } catch (_) {}
+})();
+
+// ========== INITIALIZE PAGE ==========
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('🚀 Initializing checkout page...');
+
+    // ── Step 1: Load Flutterwave public key from server (never hardcode) ──
+    try {
+        const settingsRes = await fetch(`${API_URL}/api/settings/public`);
+        const body        = await settingsRes.json();
+        const settings    = body.settings || {};
+        if (settings.flutterwavePublicKey) {
+            FLUTTERWAVE_PUBLIC_KEY = settings.flutterwavePublicKey;
+        } else {
+            console.warn('⚠️ flutterwavePublicKey missing from /api/settings/public response — check Render env var FLUTTERWAVE_PUBLIC_KEY is set');
+        }
+    } catch (_) {
+        console.warn('⚠️ Could not load public settings — Flutterwave key unavailable');
+    }
+
+    // ── Step 2: Render cart immediately from localStorage ─────────────────
+    // Cart is local — no server needed. User sees their items right away
+    // even while Render is cold-starting.
+    loadCart();
+    initializeEventListeners();
+    showAffiliateBanner();
+
+    // ── Step 3: Auth runs after cart is already visible ───────────────────
+    const authResult = await checkAuthentication();
+    if (!authResult) return;
+
+    currentUser = authResult;
+    console.log('✅ User authenticated:', currentUser.email);
+
+    // Reuse currency data already returned by the profile fetch in checkAuthentication
+    // so we do not make a second /api/profile call via fetchUserCurrency
+    if (authResult.symbol && authResult.rate) {
+        currencySymbol = authResult.symbol;
+        currencyRate   = authResult.rate;
+        displayOrderSummary(); // re-render item prices with correct currency
+        calculateTotals();
+    } else {
+        fetchUserCurrency();
+    }
+
+    // Prefill form fields now that we know the user
+    prefillUserInfo();
+});
+
+// ========== CHECK AUTHENTICATION ==========
+async function checkAuthentication() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+        showNotification('Please login to complete your purchase', 'error');
+        sessionStorage.setItem('redirect_after_login', '/marketplace/checkout');
+        setTimeout(() => window.location.href = '/marketplace/login', 2000);
+        return null;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/api/profile`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.user) {
+            return {
+                id:      data.user.id,
+                name:    data.user.name,
+                email:   data.user.email,
+                phone:   data.user.phone   || '',
+                country: data.user.country || '',
+                symbol:  data.symbol       || '$',
+                rate:    data.rate         || 1
+            };
+        } else if (response.status === 401 || response.status === 403) {
+            // Server explicitly rejected the token — genuinely expired or invalid
+            showNotification('Session expired. Please login again.', 'error');
+            localStorage.removeItem('token');
+            setTimeout(() => window.location.href = '/marketplace/login', 2000);
+            return null;
+        } else {
+            throw new Error('Failed to fetch user profile');
+        }
+    } catch (error) {
+        console.error('❌ Auth check failed:', error);
+        if (error instanceof TypeError) {
+            // TypeError = network failure (Render cold-start, no connection, etc.)
+            // Do NOT remove the token — it is still valid, the server just was not ready.
+            showNotification('⚠️ Connection problem. Please refresh and try again.', 'error');
+        } else {
+            showNotification('Session expired. Please login again.', 'error');
+            localStorage.removeItem('token');
+            setTimeout(() => window.location.href = '/marketplace/login', 2000);
+        }
+        return null;
+    }
+}
+
+// ========== INITIALIZE EVENT LISTENERS ==========
+function initializeEventListeners() {
+    const form = document.getElementById('checkoutForm');
+    if (form) {
+        form.addEventListener('submit', handleCheckout);
+    }
+
+    const applyCouponBtn = document.getElementById('applyCouponBtn');
+    if (applyCouponBtn) {
+        applyCouponBtn.addEventListener('click', applyCoupon);
+    }
+
+    const couponInput = document.getElementById('couponCode');
+    if (couponInput) {
+        couponInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyCoupon();
+            }
+        });
+    }
+
+    // ── Gateway radio change: swap the payment info box ───────────────────
+    document.querySelectorAll('input[name="gateway"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            var infoBox = document.querySelector('.payment-info-box');
+            if (!infoBox) return;
+
+            if (this.value === 'paystack') {
+                infoBox.innerHTML =
+                    '<div class="payment-provider">' +
+                        '<img src="https://website-v3-assets.s3.amazonaws.com/assets/img/hero/Paystack-Logo.png" alt="Paystack" style="height:30px;">' +
+                    '</div>' +
+                    '<p>Secure payment powered by Paystack</p>' +
+                    '<div class="payment-methods-accepted">' +
+                        '<span>💳 Card</span>' +
+                        '<span>🏦 Bank Transfer</span>' +
+                        '<span>📱 USSD</span>' +
+                    '</div>';
+            } else {
+                infoBox.innerHTML =
+                    '<div class="payment-provider">' +
+                        '<img src="https://flutterwave.com/images/logo/full.svg" alt="Flutterwave" style="height:30px;">' +
+                    '</div>' +
+                    '<p>Secure payment powered by Flutterwave</p>' +
+                    '<div class="payment-methods-accepted">' +
+                        '<span>💳 Card</span>' +
+                        '<span>🏦 Bank Transfer</span>' +
+                        '<span>📱 Mobile Money</span>' +
+                        '<span>💰 USSD</span>' +
+                    '</div>';
+            }
+        });
+    });
+}
+
+
+// ========== SHOW AFFILIATE BANNER ==========
+function showAffiliateBanner() {
+    const ref = getAffiliateRef();
+    if (ref) {
+        const banner = document.getElementById('affiliateNotice');
+        if (banner) banner.classList.add('visible');
+    }
+}
+
+// ========== LOAD CART ==========
+function loadCart() {
+    console.log('📦 Loading cart...');
+
+    try {
+        // Canonical cart key used by all pages: 'uyehtech_cart'
+        const stored = localStorage.getItem('uyehtech_cart');
+        cart = stored ? JSON.parse(stored) : [];
+        console.log('✅ Cart loaded:', cart.length, 'items');
+
+        if (cart.length === 0) {
+            document.getElementById('emptyCart').style.display = 'block';
+            document.getElementById('checkoutContent').style.display = 'none';
+        } else {
+            document.getElementById('emptyCart').style.display = 'none';
+            document.getElementById('checkoutContent').style.display = 'block';
+            displayOrderSummary();
+            // NOTE: prefillUserInfo() is intentionally NOT called here.
+            // loadCart() now runs before auth completes (currentUser is still null).
+            // prefillUserInfo() is called in DOMContentLoaded once auth resolves.
+        }
+    } catch (error) {
+        console.error('❌ Error loading cart:', error);
+        cart = [];
+        document.getElementById('emptyCart').style.display = 'block';
+        document.getElementById('checkoutContent').style.display = 'none';
+    }
+}
+
+// ========== PREFILL USER INFO ==========
+function prefillUserInfo() {
+    if (currentUser) {
+        const nameInput = document.getElementById('fullName');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const countryInput = document.getElementById('country');
+        
+        if (nameInput) nameInput.value = currentUser.name || '';
+        if (emailInput) emailInput.value = currentUser.email || '';
+        if (phoneInput && currentUser.phone) phoneInput.value = currentUser.phone;
+        if (countryInput && currentUser.country) countryInput.value = currentUser.country;
+    }
+}
+
+// ========== DISPLAY ORDER SUMMARY ==========
+function displayOrderSummary() {
+    const orderItems = document.getElementById('orderItems');
+    
+    orderItems.innerHTML = cart.map(item => {
+        // Prefer the server-converted displayPrice saved at cart-add time.
+        // Fall back to client-side conversion via toDisplay() for any legacy
+        // cart items that pre-date the displayPrice-in-cart fix.
+        const sym   = (item.displayPrice && item.displayPrice.symbol)    || currencySymbol;
+        const price = (item.displayPrice && item.displayPrice.converted != null)
+                        ? item.displayPrice.converted
+                        : toDisplay(item.price || 0);
+        return `
+        <div class="order-item">
+            <div class="order-item-icon">${item.icon || '📦'}</div>
+            <div class="order-item-info">
+                <div class="order-item-title">${item.title || 'Product'}</div>
+                <div class="order-item-category">${item.category || 'Digital Product'}</div>
+            </div>
+            <div class="order-item-price">${sym}${parseFloat(price).toFixed(2)}</div>
+        </div>`;
+    }).join('');
+
+    calculateTotals();
+}
+
+// ========== CALCULATE TOTALS ==========
+function calculateTotals() {
+    // cart item prices are USD (catalog source of truth) — all math below
+    // happens in USD, then gets converted ONCE for display.
+    const subtotalUSD = cart.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
+    let discountUSD = 0;
+
+    if (appliedCoupon) {
+        discountUSD = appliedCoupon.discountAmount || 0;
+
+        const discountRow = document.getElementById('discountRow');
+        const discountCode = document.getElementById('discountCode');
+        const discountAmount = document.getElementById('discount');
+
+        if (discountRow && discountCode && discountAmount) {
+            discountRow.style.display = 'flex';
+            discountCode.textContent = appliedCoupon.code;
+            discountAmount.textContent = `-${currencySymbol}${(discountUSD * currencyRate).toFixed(2)}`;
+        }
+    } else {
+        const discountRow = document.getElementById('discountRow');
+        if (discountRow) discountRow.style.display = 'none';
+    }
+
+    const taxUSD = 0;
+    const totalUSD = Math.max(0, subtotalUSD - discountUSD + taxUSD);
+    isFreeOrder = totalUSD === 0;
+
+    // Converted-for-display values — purely cosmetic preview. The actual
+    // charge amount/currency always comes from the server (initialize-payment,
+    // Patch 4), so this can never drift into actually charging the wrong thing.
+    const subtotal = subtotalUSD * currencyRate;
+    const tax      = taxUSD      * currencyRate;
+    const total    = totalUSD    * currencyRate;
+
+    // Update UI
+    const subtotalEl = document.getElementById('subtotal');
+    const taxEl = document.getElementById('tax');
+    const totalEl = document.getElementById('total');
+    const btnTotalEl = document.getElementById('btnTotal');
+    const submitBtnText = document.getElementById('submitBtnText');
+
+    if (subtotalEl) subtotalEl.textContent = `${currencySymbol}${subtotal.toFixed(2)}`;
+    if (taxEl) taxEl.textContent = `${currencySymbol}${tax.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `${currencySymbol}${total.toFixed(2)}`;
+    if (btnTotalEl) btnTotalEl.textContent = `${currencySymbol}${total.toFixed(2)}`;
+    
+    // Update button text based on whether order is free
+    if (submitBtnText) {
+        if (isFreeOrder) {
+            submitBtnText.innerHTML = '🎉 Complete FREE Order';
+        } else {
+            submitBtnText.innerHTML = '🔐 Complete Secure Payment';
+        }
+    }
+    
+    console.log('💰 Totals:', { subtotal, discount, tax, total, isFree: isFreeOrder });
+}
+
+// ========== APPLY COUPON (SERVER-SIDE VALIDATION) ==========
+async function applyCoupon() {
+    const couponInput = document.getElementById('couponCode');
+    const messageEl = document.getElementById('couponMessage');
+    const applyBtn = document.getElementById('applyCouponBtn');
+    
+    if (!couponInput || !messageEl) return;
+    
+    const couponCode = couponInput.value.trim().toUpperCase();
+    
+    if (!couponCode) {
+        messageEl.className = 'coupon-message error';
+        messageEl.textContent = '⚠️ Please enter a coupon code';
+        return;
+    }
+    
+    // Show loading
+    const originalText = applyBtn.textContent;
+    applyBtn.disabled = true;
+    applyBtn.textContent = 'Validating...';
+    
+    try {
+        const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
+        const token = localStorage.getItem('token');
+        
+        console.log('🎫 Validating coupon:', couponCode);
+        
+        const response = await fetch(`${API_URL}/api/coupons/validate`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                code: couponCode,
+                orderTotal: subtotal
+            })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success && result.coupon) {
+            appliedCoupon = result.coupon;
+            messageEl.className = 'coupon-message success';
+            messageEl.textContent = result.message;
+            
+            console.log('✅ Coupon applied:', result.coupon);
+            
+            // Show special message if order is free
+            if (result.coupon.isFree) {
+                showNotification('🎉 Amazing! This order is 100% FREE!', 'success');
+            } else {
+                showNotification(`✅ Saved $${result.coupon.discountAmount.toFixed(2)}!`, 'success');
+            }
+            
+            calculateTotals();
+        } else {
+            messageEl.className = 'coupon-message error';
+            messageEl.textContent = result.message || '❌ Invalid coupon code';
+            appliedCoupon = null;
+            calculateTotals();
+            showNotification(result.message || 'Invalid coupon code', 'error');
+        }
+        
+    } catch (error) {
+        console.error('❌ Error validating coupon:', error);
+        messageEl.className = 'coupon-message error';
+        messageEl.textContent = '❌ Error validating coupon. Please try again.';
+        appliedCoupon = null;
+        calculateTotals();
+        showNotification('Failed to validate coupon', 'error');
+    } finally {
+        applyBtn.disabled = false;
+        applyBtn.textContent = originalText;
+    }
+}
+
+// ========== HANDLE CHECKOUT ==========
+async function handleCheckout(e) {
+    e.preventDefault();
+    
+    console.log('🛒 Processing checkout...');
+    
+    const fullName = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const country = document.getElementById('country').value;
+    
+    if (!fullName || !email || !phone || !country) {
+        showNotification('❌ Please fill in all required fields', 'error');
+        return;
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        showNotification('❌ Please enter a valid email address', 'error');
+        return;
+    }
+    
+    const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.price || 0), 0);
+    const orderReference = 'UYEH-' + Date.now() + '-' + Math.random().toString(36).substring(2, 9).toUpperCase();
+    
+    showLoading('Creating order...');
+    
+    try {
+        // ✅ FIX: Read affiliate ref and attach it to the order
+        const affiliateCode = getAffiliateRef();
+
+        const orderData = {
+            items: cart,
+            subtotal: subtotal,
+            couponCode: appliedCoupon ? appliedCoupon.code : null,
+            affiliateCode: affiliateCode || null,   // ✅ sent to server
+            customerInfo: {
+                name: fullName,
+                email: email,
+                phone: phone,
+                country: country
+            },
+            orderReference: orderReference
+        };
+        
+        const token = localStorage.getItem('token');
+        
+        console.log('📤 Creating order:', orderData);
+        
+        const response = await fetch(`${API_URL}/api/orders/create-with-coupon`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
+        });
+        
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('❌ Server error:', errorText);
+            throw new Error(`Server error: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.message || 'Failed to create order');
+        }
+        
+        console.log('✅ Order created:', result.order._id);
+        
+        hideLoading();
+        
+        // Check if order is free (100% coupon discount)
+        if (result.order.isFree) {
+            console.log('🎉 Order is FREE - skipping payment');
+            
+            // Clear cart — both key variants
+            localStorage.removeItem('uyehtech_cart');
+            localStorage.removeItem('cart'); 
+            // Clear ALL affiliate attribution keys after order is placed
+            localStorage.removeItem('uyeh_ref');
+            localStorage.removeItem('uyeh_ref_expiry');
+            localStorage.removeItem('uyeh_ref_product');
+            localStorage.removeItem('checkout_affiliate_code');
+            localStorage.setItem('last_order', JSON.stringify(result.order));
+            
+            // Save order for success page
+            localStorage.setItem('last_order', JSON.stringify(result.order));
+            
+            // Show success message
+            showNotification('🎉 Order completed! Redirecting to your products...', 'success');
+            
+            // Redirect to success page
+            setTimeout(() => {
+                window.location.href = '/marketplace/success';
+            }, 2000);
+            
+        } else {
+            // Order requires payment — ask the server what to actually charge.
+            // Never trust a client-computed amount/currency for the payment widget.
+            const chosenGateway = (document.querySelector('input[name="gateway"]:checked') || {}).value
+                || 'flutterwave';
+            try {
+                const initRes = await fetch(`${API_URL}/api/orders/initialize-payment`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ orderId: result.order._id, gateway: chosenGateway })
+                });
+                const initData = await initRes.json();
+
+                if (!initData.success) {
+                    throw new Error(initData.message || 'Failed to initialize payment');
+                }
+
+                console.log('🔎 initData.payment for gateway=' + initData.gateway + ':', initData.payment);
+
+                if (initData.gateway === 'paystack') {
+                    makePaystackPayment({
+                        publicKey:      initData.payment.publicKey,
+                        amountInKobo:   initData.payment.amountInKobo,
+                        currency:       initData.payment.currency,
+                        email:          initData.payment.customer.email || email,
+                        reference:      initData.payment.reference,
+                        orderId:        result.order._id
+                    });
+                } else {
+                    makePayment({
+                        amount: initData.payment.amount,
+                        currency: initData.payment.currency,
+                        email: initData.payment.customer.email || email,
+                        name: initData.payment.customer.name || fullName,
+                        phone: initData.payment.customer.phone || phone,
+                        orderReference: initData.payment.tx_ref,
+                        orderId: result.order._id
+                    });
+                }
+            } catch (initErr) {
+                console.error('❌ Error initializing payment:', initErr);
+                hideLoading();
+                var errMsg    = initErr.message || '';
+                var isDisabled = errMsg.toLowerCase().indexOf('disabled') !== -1;
+                var altGateway = chosenGateway === 'paystack' ? 'Flutterwave' : 'Paystack';
+                var chosenLabel = chosenGateway.charAt(0).toUpperCase() + chosenGateway.slice(1);
+                showNotification(
+                    isDisabled
+                        ? '❌ ' + chosenLabel + ' is currently unavailable. Please switch to ' + altGateway + ' and try again.'
+                        : '❌ Could not start payment: ' + errMsg,
+                    'error'
+                );
+            }
+        }
+        
+    } catch (error) {
+        console.error('❌ Error creating order:', error);
+        hideLoading();
+        showNotification('❌ Error creating order: ' + error.message, 'error');
+    }
+}
+
+// ========== FLUTTERWAVE PAYMENT ==========
+function makePayment(paymentData) {
+    console.log('💳 Initializing Flutterwave payment...');
+    
+    if (typeof FlutterwaveCheckout !== 'function') {
+        console.error('❌ Flutterwave SDK not loaded');
+        showNotification('❌ Payment system not loaded. Please refresh the page.', 'error');
+        return;
+    }
+
+    // Guard: FlutterwaveCheckout fails SILENTLY (no error, no modal) if
+    // required fields are missing — surface that instead of letting it
+    // vanish with zero feedback.
+    const missing = [];
+    if (!FLUTTERWAVE_PUBLIC_KEY) missing.push('public key');
+    if (!paymentData.amount)     missing.push('amount');
+    if (!paymentData.orderReference) missing.push('transaction reference');
+    if (!paymentData.email)      missing.push('email');
+    if (missing.length) {
+        console.error('❌ Cannot open Flutterwave — missing: ' + missing.join(', '), paymentData);
+        showNotification('❌ Could not start Flutterwave payment (missing ' + missing.join(', ') + '). Please try Paystack or contact support.', 'error');
+        return;
+    }
+    
+    FlutterwaveCheckout({
+        public_key: FLUTTERWAVE_PUBLIC_KEY,
+        tx_ref: paymentData.orderReference,
+        amount: paymentData.amount,
+        currency: paymentData.currency || 'USD',
+        payment_options: 'card,banktransfer,ussd,mobilemoney',
+        customer: {
+            email: paymentData.email,
+            name: paymentData.name,
+            phone_number: paymentData.phone
+        },
+        customizations: {
+            title: 'UYEH TECH',
+            description: 'Digital Products Purchase',
+            logo: 'https://uyehtech.com/logo.png'
+        },
+        callback: function(response) {
+            console.log('✅ Payment response received:', response);
+            
+            if (response.status === 'successful' || response.status === 'completed') {
+                verifyPayment(response.transaction_id, paymentData.orderId);
+            } else {
+                showNotification('⚠️ Payment was not completed. Please try again.', 'error');
+            }
+        },
+        onclose: function() {
+            console.log('⚠️ Payment window closed');
+            showNotification('⚠️ Payment window closed', 'info');
+        }
+    });
+}
+
+// ========== PAYSTACK PAYMENT ==========
+function makePaystackPayment(paymentData) {
+    console.log('💳 Initializing Paystack payment...');
+
+    if (typeof PaystackPop === 'undefined') {
+        console.error('❌ Paystack SDK not loaded');
+        showNotification('❌ Payment system not loaded. Please refresh the page.', 'error');
+        return;
+    }
+
+    if (!paymentData.publicKey) {
+        console.error('❌ Paystack public key missing — check PAYSTACK_PUBLIC_KEY env var on Render');
+        showNotification('❌ Paystack is not configured on this server. Please use Flutterwave or contact support.', 'error');
+        return;
+    }
+
+    const handler = PaystackPop.setup({
+        key:      paymentData.publicKey,
+        email:    paymentData.email,
+        amount:   paymentData.amountInKobo, // smallest currency unit, per server
+        currency: paymentData.currency || 'NGN',
+        ref:      paymentData.reference,
+        callback: function(response) {
+            console.log('✅ Paystack response received:', response);
+            verifyPaystackPayment(response.reference, paymentData.orderId);
+        },
+        onClose: function() {
+            console.log('⚠️ Paystack window closed');
+            showNotification('⚠️ Payment window closed', 'info');
+        }
+    });
+    handler.openIframe();
+}
+
+// ========== VERIFY PAYSTACK PAYMENT ==========
+async function verifyPaystackPayment(reference, orderId) {
+    console.log('🔍 Verifying Paystack payment...');
+    showLoading('Verifying payment...');
+
+    try {
+        const token = localStorage.getItem('token');
+
+        const response = await fetch(`${API_URL}/api/orders/verify-paystack-payment`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                reference:     reference,
+                orderId:       orderId,
+                affiliateCode: getAffiliateRef() || undefined
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`Verification failed: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.success) {
+            console.log('✅ Paystack payment verified');
+
+            localStorage.removeItem('uyehtech_cart');
+            localStorage.removeItem('uyeh_ref');
+            localStorage.removeItem('uyeh_ref_expiry');
+            localStorage.removeItem('uyeh_ref_product');
+            localStorage.removeItem('checkout_affiliate_code');
+            localStorage.setItem('last_order', JSON.stringify(result.order));
+
+            showNotification('✅ Payment successful! Redirecting...', 'success');
+
+            setTimeout(() => {
+                window.location.href = '/marketplace/success';
+            }, 1500);
+        } else {
+            throw new Error(result.message || 'Payment verification failed');
+        }
+    } catch (error) {
+        console.error('❌ Error verifying Paystack payment:', error);
+        showNotification('❌ ' + error.message, 'error');
+    } finally {
+        hideLoading();
+    }
+}
+
+// ========== VERIFY PAYMENT ==========
+async function verifyPayment(transactionId, orderId) {
+    console.log('🔍 Verifying payment...');
+    showLoading('Verifying payment...');
+    
+    try {
+        const token = localStorage.getItem('token');
+        
+        const response = await fetch(`${API_URL}/api/orders/verify-payment`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                transactionId: transactionId,
+                orderId: orderId,
+                 affiliateCode: getAffiliateRef() || undefined
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Verification failed: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            console.log('✅ Payment verified');
+
+            localStorage.removeItem('uyehtech_cart');
+            localStorage.removeItem('uyeh_ref');
+            localStorage.removeItem('uyeh_ref_expiry');
+            localStorage.removeItem('uyeh_ref_product');
+            localStorage.removeItem('checkout_affiliate_code');
+            localStorage.setItem('last_order', JSON.stringify(result.order));
+
+            hideLoading();
+            showNotification('✅ Payment successful! Redirecting...', 'success');
+
+            setTimeout(() => {
+                window.location.href = '/marketplace/success';
+            }, 1500);
+        } else {
+            throw new Error(result.message || 'Payment verification failed');
+        }
+
+    } catch (error) {
+        console.error('❌ Error verifying payment:', error);
+        hideLoading();
+        showNotification('❌ Error verifying payment: ' + error.message, 'error');
+    }
+}
+
+// ========== LOADING FUNCTIONS ==========
+function showLoading(message = 'Processing...') {
+    const loadingText = document.getElementById('loadingText');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    if (loadingText) loadingText.textContent = message;
+    if (loadingOverlay) loadingOverlay.classList.add('active');
+}
+
+function hideLoading() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) loadingOverlay.classList.remove('active');
+}
+
+// ========== NOTIFICATION SYSTEM ==========
+function showNotification(message, type = 'info') {
+    const existing = document.querySelectorAll('.custom-notification');
+    existing.forEach(n => n.remove());
+    
+    const notification = document.createElement('div');
+    notification.className = 'custom-notification';
+    
+    const colors = {
+        success: 'linear-gradient(135deg, #00c96a, #00ff88)',
+        error: 'linear-gradient(135deg, var(--red), #ff6b6b)',
+        info: 'linear-gradient(135deg, var(--blue), var(--g))'
+    };
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        background: ${colors[type] || colors.info};
+        color: white;
+        padding: 18px 25px;
+        border-radius: 12px;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        max-width: 400px;
+        font-family: 'Montserrat', sans-serif;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    if (!document.getElementById('notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(400px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(400px)';
+        notification.style.transition = 'all 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+console.log('✅ Checkout with enhanced coupon system loaded');
+  
+// ── AFFILIATE REF CAPTURE ──────────────────────────────────────────
+(function captureAffiliateRef() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get('ref');
+        if (!ref) return;
+
+        const code = ref.trim().toUpperCase();
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+        // Save ref — checkout.html reads these keys
+        localStorage.setItem('uyeh_ref', code);
+        localStorage.setItem('uyeh_ref_expiry', String(Date.now() + THIRTY_DAYS));
+
+        // Save the specific product if ?product= is also in the URL
+        const productId = params.get('product');
+        if (productId) localStorage.setItem('uyeh_ref_product', productId);
+
+        // Track the click server-side (fire and forget)
+        fetch('https://uyehtechbackend.onrender.com/api/affiliate/track-click', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                affiliateCode: code,
+                productId: productId || null
+            })
+        }).catch(() => {}); // Silent fail — never block the user
+
+        // Clean ?ref= from the URL bar without reloading (looks cleaner)
+        if (window.history && window.history.replaceState) {
+            const cleanUrl = new URL(window.location.href);
+            cleanUrl.searchParams.delete('ref');
+            window.history.replaceState({}, '', cleanUrl.toString());
+        }
+    } catch (_) {}
+})();
+
+  </script>
+  
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

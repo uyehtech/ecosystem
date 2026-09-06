@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - UYEH TECH</title>
+    <meta name="description" content="UYEH TECH sitemap - Find all pages and sections of our website in one place.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+                <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #d1d5db;
+            line-height: 1.8;
+            padding-top: 100px;
+        }
+
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        /* Header */
+        .sitemap-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .sitemap-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .sitemap-header p {
+            font-size: 1.1em;
+            color: #d1d5db;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 50px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 25px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff88;
+            font-size: 1.2em;
+        }
+
+        /* Sitemap Grid */
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .sitemap-section {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .sitemap-section:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .section-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .section-links {
+            list-style: none;
+        }
+
+        .section-links li {
+            margin-bottom: 12px;
+        }
+
+        .section-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            padding: 8px 0;
+        }
+
+        .section-links a:hover {
+            color: #00ff88;
+            transform: translateX(5px);
+        }
+
+        .section-links a::before {
+            content: '→';
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #00ff88;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #d1d5db;
+            font-size: 0.9em;
+        }
+
+        /* Quick Access */
+        .quick-access {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .quick-access h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .quick-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 25px;
+            color: #00ff88;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .quick-link:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        /* No Results Message */
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .sitemap-container {
+                padding: 40px 20px 80px;
+            }
+
+            .sitemap-header h1 {
+                font-size: 2em;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sitemap-container">
+        <!-- Header -->
+        <div class="sitemap-header" data-aos="fade-down">
+            <h1>Site Map</h1>
+            <p>Navigate through all pages and sections of UYEH TECH website</p>
+        </div>
+
+
+        <!-- Stats Section -->
+        <div class="stats-section" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-card">
+                <div class="stat-number" id="totalPages">0</div>
+                <div class="stat-label">Total Pages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalSections">0</div>
+                <div class="stat-label">Main Sections</div>
+            </div>
+        </div>
+
+        <!-- Quick Access -->
+        <div class="quick-access" data-aos="fade-up" data-aos-delay="300">
+            <h2>⚡ Quick Access</h2>
+            <div class="quick-links">
+                <a href="/" class="quick-link">Home</a>
+                <a href="/marketplace/" class="quick-link">Marketplace</a>
+                <a href="/uyehtech/" class="quick-link">Creator's Hub</a>
+                <a href="/blog/" class="quick-link">Blog</a>
+                <a href="/contact" class="quick-link">Contact</a>
+            </div>
+        </div>
+
+        <!-- Sitemap Grid -->
+        <div id="sitemapGrid" class="sitemap-grid">
+
+            <!-- Home Section -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="100">
+                <div class="section-icon">🏠</div>
+                <h2 class="section-title">Home</h2>
+                <ul class="section-links">
+                    <li><a href="/">Homepage</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Marketplace / Store Section -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="200">
+                <div class="section-icon">🛒</div>
+                <h2 class="section-title">Marketplace</h2>
+                <ul class="section-links">
+                    <li><a href="/marketplace/">Shop / Browse Products</a></li>
+                    <li><a href="/marketplace/login">Login</a></li>
+                    <li><a href="/marketplace/signup">Sign Up</a></li>
+                    <li><a href="/marketplace/dashboard">Dashboard</a></li>
+                    <li><a href="/marketplace/my-products">My Downloads</a></li>
+                    <li><a href="/marketplace/forgot-password">Forgot Password</a></li>
+                </ul>
+            </div>
+
+            <!-- Creators & Affiliates Section -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="300">
+                <div class="section-icon">👥</div>
+                <h2 class="section-title">Creators & Affiliates</h2>
+                <ul class="section-links">
+                    <li><a href="/marketplace/creator-apply">Become a Creator</a></li>
+                    <li><a href="/marketplace/creators">Browse Creators</a></li>
+                    <li><a href="/marketplace/creator-dashboard">Creator Dashboard</a></li>
+                    <li><a href="/marketplace/creator-login">Creator Login</a></li>
+                    <li><a href="/marketplace/affiliate">Affiliate Program</a></li>
+                </ul>
+            </div>
+
+            <!-- Creator's Hub Section (Developer) -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="400">
+                <div class="section-icon">🎨</div>
+                <h2 class="section-title">Creator's Hub</h2>
+                <ul class="section-links">
+                    <li><a href="/uyehtech/">About Me</a></li>
+                    <li><a href="/uyehtech/services">Services</a></li>
+                    <li><a href="/uyehtech/portfolio">Portfolio</a></li>
+                    <li><a href="/uyehtech/contact">Meet Me (Personal Contact)</a></li>
+                </ul>
+            </div>
+
+            <!-- Blog Section -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="500">
+                <div class="section-icon">✍️</div>
+                <h2 class="section-title">Blog</h2>
+                <ul class="section-links">
+                    <li><a href="/blog/">All Blog Posts</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal Section -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="600">
+                <div class="section-icon">⚖️</div>
+                <h2 class="section-title">Legal</h2>
+                <ul class="section-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <!-- External Links -->
+            <div class="sitemap-section" data-aos="fade-up" data-aos-delay="700">
+                <div class="section-icon">🔗</div>
+                <h2 class="section-title">Connect</h2>
+                <ul class="section-links">
+                    <li><a href="https://github.com/BayorTV68" target="_blank">GitHub</a></li>
+                    <li><a href="https://linkedin.com/in/basseyokon" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://x.com/UyehTech" target="_blank">Twitter/X</a></li>
+                    <li><a href="https://instagram.com/UyehTech" target="_blank">Instagram</a></li>
+                    <li><a href="https://facebook.com/profile.php?id=61583247992766" target="_blank">Facebook</a></li>
+                    <li><a href="https://wa.me/2349055658460" target="_blank">WhatsApp</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+       
+        <!-- Back Link -->
+        <a href="index.html" class="back-link" data-aos="fade-up">← Back to Home</a>
+    </div>
+
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Count total pages and sections — both computed live, nothing hardcoded
+        const totalLinks = document.querySelectorAll('.section-links a').length;
+        document.getElementById('totalPages').textContent = totalLinks;
+
+        const totalSections = document.querySelectorAll('.sitemap-section').length;
+        document.getElementById('totalSections').textContent = totalSections;
+
+        console.log('✅ Sitemap loaded with', totalLinks, 'links across', totalSections, 'sections');
+    </script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

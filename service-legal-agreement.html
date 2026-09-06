@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UYEH TECH - Service Level Agreement (SLA)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+              <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .page-header {
+            background: radial-gradient(circle at top, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff88;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #11ff88;
+            gap: 0.75rem;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: #b3b3b3;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 25px;
+            color: #00ff88;
+            font-size: 0.9rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.05) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            position: sticky;
+            top: 2rem;
+            z-index: 100;
+        }
+
+        .nav-title {
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding-left: 1.5rem;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.03) 0%, rgba(10, 10, 10, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .section-intro {
+            color: #b3b3b3;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .subsection {
+            margin-bottom: 2.5rem;
+        }
+
+        .subsection:last-child {
+            margin-bottom: 0;
+        }
+
+        .subsection-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .subsection-content {
+            color: #cccccc;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Response Time Table */
+        .response-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .response-table thead {
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .response-table th {
+            padding: 1.25rem;
+            text-align: left;
+            color: #00ff88;
+            font-weight: 700;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .response-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: white;
+        }
+
+        .response-table tbody tr:hover {
+            background: rgba(0, 255, 136, 0.05);
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .priority-low {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .priority-medium {
+            background: rgba(255, 170, 0, 0.2);
+            color: #ffaa00;
+        }
+
+        .priority-high {
+            background: rgba(255, 136, 0, 0.2);
+            color: #ff8800;
+        }
+
+        .priority-critical {
+            background: rgba(255, 51, 51, 0.2);
+            color: #ff3333;
+        }
+
+        /* Uptime Guarantee */
+        .uptime-card {
+            background: rgba(0, 255, 136, 0.05);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .uptime-percentage {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .uptime-label {
+            color: #b3b3b3;
+            font-size: 1.1rem;
+        }
+
+        /* Service Coverage */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-name {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* List Styles */
+        .content-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .content-list li {
+            padding: 0.75rem 0 0.75rem 2rem;
+            color: #cccccc;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .content-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid #00ff88;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .highlight-title {
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .highlight-content {
+            color: white;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            color: #b3b3b3;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #11ff88;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .content-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .response-table {
+                font-size: 0.85rem;
+            }
+
+            .response-table th,
+            .response-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .quick-nav {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="page-header">
+        <a href="support-center.html" class="back-link">← Back to Support Center</a>
+        <h1 class="page-title">Service Level Agreement</h1>
+        <p class="page-subtitle">
+            Our commitment to you: transparent, enterprise-level support and service guarantees
+        </p>
+        <div class="last-updated">Last Updated: February 2026</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Quick Navigation -->
+        <div class="quick-nav">
+            <div class="nav-title">📑 Quick Navigation</div>
+            <div class="nav-links">
+                <a href="#response-times" class="nav-link">⏱️ Response Times</a>
+                <a href="#uptime" class="nav-link">🚀 Uptime Guarantee</a>
+                <a href="#coverage" class="nav-link">🛡️ Service Coverage</a>
+                <a href="#support-hours" class="nav-link">🕐 Support Hours</a>
+                <a href="#escalation" class="nav-link">📈 Escalation Process</a>
+                <a href="#maintenance" class="nav-link">🔧 Maintenance Windows</a>
+            </div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="content-section">
+            <h2 class="section-title">Service Level Agreement Overview</h2>
+            <p class="section-intro">
+                At UYEH TECH, we take your business seriously. This Service Level Agreement (SLA) outlines our commitments to you regarding service availability, response times, and support quality. We maintain enterprise-grade infrastructure and professional support to ensure your digital experiences run smoothly 24/7.
+            </p>
+
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <span>💡</span>
+                    Key Principle
+                </div>
+                <div class="highlight-content">
+                    This SLA is not just a legal document—it's our promise to you. We're held accountable to these standards, and we track our performance metrics transparently. If we fail to meet our SLA commitments, we make it right.
+                </div>
+            </div>
+        </div>
+
+        <!-- Response Times -->
+        <div class="content-section" id="response-times">
+            <h2 class="section-title">Support Response Times</h2>
+            <p class="section-intro">
+                We respond to your requests based on priority level. Our response times are measured from the moment you submit a request to when our team provides the first substantive response (not an automated acknowledgment).
+            </p>
+
+            <table class="response-table">
+                <thead>
+                    <tr>
+                        <th>Priority Level</th>
+                        <th>Definition</th>
+                        <th>First Response</th>
+                        <th>Resolution Target</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="priority-badge priority-critical">Critical</span></td>
+                        <td>Complete service outage affecting production</td>
+                        <td><strong>1-2 hours</strong></td>
+                        <td>4-8 hours</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge priority-high">High</span></td>
+                        <td>Significant feature unavailable or degraded performance</td>
+                        <td><strong>4-8 hours</strong></td>
+                        <td>24-48 hours</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge priority-medium">Medium</span></td>
+                        <td>Minor feature issue or general inquiry</td>
+                        <td><strong>12-24 hours</strong></td>
+                        <td>3-5 business days</td>
+                    </tr>
+                    <tr>
+                        <td><span class="priority-badge priority-low">Low</span></td>
+                        <td>Feature request or general question</td>
+                        <td><strong>24-48 hours</strong></td>
+                        <td>5-7 business days</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <span>⚡</span>
+                    Pro Tip
+                </div>
+                <div class="highlight-content">
+                    Properly categorizing your request helps us respond faster. When in doubt, choose a higher priority—we'll adjust if needed. For true emergencies, use the "Critical" designation in our <a href="service-request.html" style="color: #00ff88;">Service Request Portal</a>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Uptime Guarantee -->
+        <div class="content-section" id="uptime">
+            <h2 class="section-title">Uptime Guarantee</h2>
+            <p class="section-intro">
+                We guarantee industry-leading uptime for all services hosted on our infrastructure. Our redundant systems and proactive monitoring ensure your digital experiences are always available.
+            </p>
+
+            <div class="uptime-card">
+                <div class="uptime-percentage">99.9%</div>
+                <div class="uptime-label">Guaranteed Uptime</div>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">What This Means</h3>
+                <ul class="content-list">
+                    <li>Maximum allowed downtime: 43.8 minutes per month</li>
+                    <li>8.76 hours maximum per year</li>
+                    <li>Excludes scheduled maintenance windows (communicated 72 hours in advance)</li>
+                    <li>Monitored 24/7/365 with automated alerts</li>
+                    <li>Full transparency via our <a href="system-status.html" style="color: #00ff88;">System Status Page</a></li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Service Credits</h3>
+                <div class="subsection-content">
+                    If we fail to meet our 99.9% uptime guarantee, you are eligible for service credits:
+                </div>
+                <ul class="content-list">
+                    <li>99.0% - 99.9% uptime: 10% monthly service credit</li>
+                    <li>95.0% - 99.0% uptime: 25% monthly service credit</li>
+                    <li>Below 95.0% uptime: 50% monthly service credit</li>
+                </ul>
+                <div class="subsection-content">
+                    Credits must be requested within 30 days of the incident and are applied to your next billing cycle.
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Coverage -->
+        <div class="content-section" id="coverage">
+            <h2 class="section-title">Covered Services</h2>
+            <p class="section-intro">
+                Our SLA covers all services delivered by UYEH TECH. Each service category has specific guarantees and support protocols.
+            </p>
+
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <div class="service-name">Web Hosting</div>
+                    <div class="service-description">
+                        99.9% uptime, automatic backups, SSL certificates, and CDN integration included.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <div class="service-name">UI/UX Design</div>
+                    <div class="service-description">
+                        Design revisions, asset delivery, and ongoing design support as per project scope.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <div class="service-name">Web Development</div>
+                    <div class="service-description">
+                        Bug fixes, security patches, performance optimization, and feature enhancements.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <div class="service-name">API Services</div>
+                    <div class="service-description">
+                        99.9% API uptime, rate limit support, and integration assistance.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <div class="service-name">Mobile Applications</div>
+                    <div class="service-description">
+                        App updates, crash monitoring, and platform compliance support.
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <div class="service-name">Security & Compliance</div>
+                    <div class="service-description">
+                        SSL/TLS encryption, regular security audits, and vulnerability patching.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Hours -->
+        <div class="content-section" id="support-hours">
+            <h2 class="section-title">Support Availability</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title">Standard Support Hours</h3>
+                <ul class="content-list">
+                    <li><strong>Monday - Friday:</strong> 8:00 AM - 8:00 PM (WAT - West Africa Time)</li>
+                    <li><strong>Saturday:</strong> 10:00 AM - 4:00 PM (WAT)</li>
+                    <li><strong>Sunday:</strong> Emergency support only for Critical issues</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">After-Hours Emergency Support</h3>
+                <div class="subsection-content">
+                    For Critical issues that occur outside standard hours:
+                </div>
+                <ul class="content-list">
+                    <li>Emergency hotline available 24/7 for production outages</li>
+                    <li>Maximum 2-hour response time for Critical issues</li>
+                    <li>Dedicated on-call engineer assigned to your account</li>
+                    <li>All emergency incidents tracked and reviewed for prevention</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Escalation Process -->
+        <div class="content-section" id="escalation">
+            <h2 class="section-title">Issue Escalation Process</h2>
+            <p class="section-intro">
+                If you're not satisfied with the response or resolution time, here's how to escalate:
+            </p>
+
+            <div class="subsection">
+                <h3 class="subsection-title">Escalation Levels</h3>
+                
+                <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 1.5rem; margin: 1rem 0;">
+                    <div style="color: #00ff88; font-weight: 700; margin-bottom: 0.5rem;">Level 1: Support Team</div>
+                    <div style="color: #cccccc; line-height: 1.8;">
+                        Initial point of contact via our Service Request Portal or email.
+                        <br><strong>Expected response:</strong> As per priority level above
+                    </div>
+                </div>
+
+                <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 1.5rem; margin: 1rem 0;">
+                    <div style="color: #00ff88; font-weight: 700; margin-bottom: 0.5rem;">Level 2: Technical Lead</div>
+                    <div style="color: #cccccc; line-height: 1.8;">
+                        If no response within SLA timeframe, or issue requires senior technical expertise.
+                        <br><strong>Email:</strong> tech@uyehtech.com
+                        <br><strong>Expected response:</strong> Within 4 hours
+                    </div>
+                </div>
+
+                <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 1.5rem; margin: 1rem 0;">
+                    <div style="color: #00ff88; font-weight: 700; margin-bottom: 0.5rem;">Level 3: Management</div>
+                    <div style="color: #cccccc; line-height: 1.8;">
+                        For unresolved Critical issues or SLA violations.
+                        <br><strong>Email:</strong> ceo@uyehtech.com
+                        <br><strong>Expected response:</strong> Within 2 hours
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <span>📞</span>
+                    Emergency Contact
+                </div>
+                <div class="highlight-content">
+                    For life-or-death emergencies (e.g., security breach, complete production outage affecting critical business operations), contact our emergency hotline immediately. This number is provided to all active clients.
+                </div>
+            </div>
+        </div>
+
+        <!-- Maintenance Windows -->
+        <div class="content-section" id="maintenance">
+            <h2 class="section-title">Scheduled Maintenance</h2>
+            
+            <div class="subsection">
+                <h3 class="subsection-title">Maintenance Policy</h3>
+                <ul class="content-list">
+                    <li>All scheduled maintenance is announced 72 hours in advance via email and status page</li>
+                    <li>Maintenance windows are typically scheduled during off-peak hours (2:00 AM - 6:00 AM WAT)</li>
+                    <li>Maximum 4 hours of scheduled downtime per month (excluded from uptime calculation)</li>
+                    <li>Emergency security patches may be applied with shorter notice</li>
+                    <li>You can request to reschedule maintenance windows with 48-hour notice</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3 class="subsection-title">What Happens During Maintenance</h3>
+                <div class="subsection-content">
+                    During scheduled maintenance windows:
+                </div>
+                <ul class="content-list">
+                    <li>Your service may experience brief interruptions (typically &lt; 15 minutes)</li>
+                    <li>A maintenance page is displayed to visitors if needed</li>
+                    <li>All data backups are performed before any changes</li>
+                    <li>Post-maintenance testing ensures everything works correctly</li>
+                    <li>Summary email sent after completion with any notable changes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exclusions -->
+        <div class="content-section">
+            <h2 class="section-title">SLA Exclusions</h2>
+            <p class="section-intro">
+                This SLA does not apply in the following circumstances:
+            </p>
+            <ul class="content-list">
+                <li>Scheduled maintenance windows (announced 72+ hours in advance)</li>
+                <li>Issues caused by third-party services or integrations outside our control</li>
+                <li>Downtime resulting from client-requested changes or customizations</li>
+                <li>Force majeure events (natural disasters, acts of war, etc.)</li>
+                <li>Issues caused by unauthorized access or modifications to your services</li>
+                <li>ISP or network connectivity issues on the client side</li>
+                <li>DDoS attacks or other malicious activities (though we have protection in place)</li>
+            </ul>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Questions About Our SLA?</h2>
+            <p class="cta-text">
+                Our team is here to clarify any terms or discuss how our SLA applies to your specific needs.
+            </p>
+            <a href="contact.html" class="cta-button">Contact Support Team</a>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        console.log('⚖️ UYEH TECH SLA Page initialized');
+    </script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

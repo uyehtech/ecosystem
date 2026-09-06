@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — UYEH TECH Marketplace</title>
+    <meta name="description" content="Privacy Policy for the UYEH TECH Marketplace — how we collect, use, and protect data for buyers, creators, affiliates, and support agents.">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+    <script src="/site-controller.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #d1d5db;
+            line-height: 1.8;
+            padding-top: 100px;
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .terms-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .last-updated {
+            color: #00ff88;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-top: 20px;
+            color: #d1d5db;
+        }
+
+        .toc {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+            break-inside: avoid;
+        }
+
+        .toc a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc a:hover {
+            color: #00ff88;
+            transform: translateX(5px);
+        }
+
+        .toc a::before {
+            content: '→';
+            color: #00ff88;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(0, 255, 136, 0.03);
+            border-left: 4px solid #00ff88;
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #00ff88;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box strong {
+            color: #00ff88;
+        }
+
+        .warning-box {
+            background: rgba(255, 136, 0, 0.1);
+            border: 1px solid rgba(255, 136, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box strong {
+            color: #ff8800;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.92em;
+        }
+
+        .data-table th {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            text-align: left;
+            padding: 12px 14px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .data-table td {
+            padding: 12px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            vertical-align: top;
+        }
+
+        .data-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-box h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00b359, #00ff88);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .terms-container {
+                padding: 40px 20px 80px;
+            }
+
+            .terms-header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+
+            .toc ul {
+                columns: 1;
+            }
+
+            .data-table {
+                font-size: 0.8em;
+            }
+
+            .data-table th, .data-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: July 14, 2026</p>
+            <p class="intro-text">
+                This Privacy Policy explains how UYEH TECH collects, uses, stores, and
+                protects information when you use the <strong>UYEH TECH Marketplace</strong>
+                at uyehtech.com/marketplace — as a Buyer, Creator, Affiliate, or Support
+                Agent applicant. It is separate from the privacy policy covering UYEH
+                TECH's web development and design services. Please read this alongside
+                our Marketplace Terms of Service.
+            </p>
+        </div>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#collect">1. Information We Collect</a></li>
+                <li><a href="#role-data">2. Data Specific to Your Role</a></li>
+                <li><a href="#use">3. How We Use Your Information</a></li>
+                <li><a href="#automated">4. Automated Decision-Making</a></li>
+                <li><a href="#cookies">5. Cookies We Actually Use</a></li>
+                <li><a href="#sharing">6. Who We Share Data With</a></li>
+                <li><a href="#chat">7. Live Chat & Support Data</a></li>
+                <li><a href="#retention">8. Data Retention</a></li>
+                <li><a href="#security">9. Security</a></li>
+                <li><a href="#breach">10. Data Breach Notification</a></li>
+                <li><a href="#transfers">11. International Data Transfers</a></li>
+                <li><a href="#rights">12. Your Rights</a></li>
+                <li><a href="#ndpa">13. Nigerian Data Protection (NDPA)</a></li>
+                <li><a href="#gdpr">14. GDPR (EU/UK Users)</a></li>
+                <li><a href="#ccpa">15. CCPA (California Users)</a></li>
+                <li><a href="#children">16. Children's Privacy</a></li>
+                <li><a href="#changes">17. Changes to This Policy</a></li>
+                <li><a href="#contact">18. Contact Us</a></li>
+            </ul>
+        </div>
+
+        <!-- 1 -->
+        <div class="section" id="collect">
+            <h2>1. Information We Collect</h2>
+            <p>What we collect depends on how you use the Marketplace — browsing
+               requires nothing at all; buying, selling, referring, or applying as
+               Support staff each require progressively more.</p>
+
+            <h3>1.1 Provided Directly by You</h3>
+            <ul>
+                <li>Account details: full name, email address, password (stored as a secure hash — we never see or store your actual password), phone number</li>
+                <li>Store details, if you're a Creator: store name, description, logo, business/tax information you choose to add</li>
+                <li>Payout details, if you're a Creator or Affiliate: bank account or payout method information, used solely to send you money you've earned</li>
+                <li>Identity verification documents, if you apply to become a Support Agent: government ID (front and back), a selfie for identity matching, and proof of address</li>
+                <li>Messages, files, and images you send through live chat with Support or with UYEH TECH staff</li>
+                <li>Product content, if you're a Creator: files, images, and descriptions you upload for sale</li>
+                <li>Anything you type into a contact form, review, or coupon/order note</li>
+            </ul>
+
+            <h3>1.2 Collected Automatically</h3>
+            <ul>
+                <li>Device and browser information, IP address, approximate location (used mainly to set a sensible default currency)</li>
+                <li>Pages visited, actions taken, and referral link clicks (for Affiliate tracking)</li>
+                <li>Cookies and local storage data — see Section 4</li>
+            </ul>
+
+            <h3>1.3 From Payment Processors</h3>
+            <p>When you pay for a product, request a payout, or pay a coupon activation
+               fee, our payment processors (Paystack and Flutterwave) handle your card
+               or bank details directly. We receive confirmation of the transaction
+               (amount, status, a transaction reference) but we do <strong>not</strong>
+               receive or store your full card number, CVV, or banking password at any
+               point.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="section" id="role-data">
+            <h2>2. Data Specific to Your Role</h2>
+            <table class="data-table">
+                <tr><th>Role</th><th>Additional data collected</th><th>Why</th></tr>
+                <tr>
+                    <td>Buyer</td>
+                    <td>Purchase history, order references, review content</td>
+                    <td>Deliver your purchases, provide order support, display your reviews</td>
+                </tr>
+                <tr>
+                    <td>Creator</td>
+                    <td>Store/business info, payout/bank details, earnings ledger, product files</td>
+                    <td>Run your storefront, calculate and pay your earnings</td>
+                </tr>
+                <tr>
+                    <td>Affiliate</td>
+                    <td>Referral link activity, click and conversion data, payout details</td>
+                    <td>Track and pay your commission accurately</td>
+                </tr>
+                <tr>
+                    <td>Support Agent applicant</td>
+                    <td>Government ID (front/back), selfie, proof of address</td>
+                    <td>Verify your identity before granting access to customer support tools and user data</td>
+                </tr>
+            </table>
+            <div class="warning-box">
+                <strong>On identity documents:</strong> ID, selfie, and proof-of-address
+                files submitted by Support Agent applicants are treated as sensitive
+                data. Access is restricted to the personnel responsible for reviewing
+                applications. See Section 7 for how long this is kept, including what
+                happens if an application is not approved.
+            </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="section" id="use">
+            <h2>3. How We Use Your Information</h2>
+            <ul>
+                <li>To create and manage your account, and authenticate you when you log in</li>
+                <li>To process purchases, deliver digital products, and calculate/pay Creator and Affiliate earnings</li>
+                <li>To verify Support Agent applicants before granting them access to the support system</li>
+                <li>To provide customer support, including through live chat</li>
+                <li>To detect and prevent fraud — including affiliate referral abuse, fraudulent coupon use, and payment disputes</li>
+                <li>To send you transactional communications (order confirmations, payout notices, security alerts) — these are not optional and are not "marketing"</li>
+                <li>To send newsletter or promotional emails, only if you've opted in, and always with an unsubscribe option</li>
+                <li>To improve the Marketplace, understand usage patterns, and fix bugs</li>
+                <li>To comply with legal obligations, including tax and financial recordkeeping requirements</li>
+            </ul>
+        </div>
+
+        <!-- 4 -->
+        <div class="section" id="automated">
+            <h2>4. Automated Decision-Making & Fraud Detection</h2>
+            <p>We use automated systems to help detect fraud and abuse on the
+               Marketplace — for example, unusual referral link activity, suspicious
+               coupon usage patterns, or payment behavior that resembles a chargeback
+               risk. These systems may automatically flag an account or transaction for
+               review, or in some cases temporarily restrict an action (such as a
+               payout) while a flag is investigated by a human. Automated flagging is
+               not the final word: any suspension or termination decision made as a
+               result of a flag is reviewed by a person before it is finalized, and you
+               can always contact Support (Section 18) to ask about or challenge a
+               decision that affected you.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="section" id="cookies">
+            <h2>5. Cookies We Actually Use</h2>
+            <p>This is the specific list of cookies our own systems set — matching what
+               our cookie preference center shows you, not a generic description.</p>
+            <table class="data-table">
+                <tr><th>Cookie</th><th>Purpose</th><th>Duration</th><th>Category</th></tr>
+                <tr><td><code>uyeh_auth_token</code></td><td>Keeps you logged in</td><td>7 days</td><td>Essential</td></tr>
+                <tr><td><code>uyeh_user</code></td><td>Stores basic session profile info</td><td>7 days</td><td>Essential</td></tr>
+                <tr><td><code>uyeh_access_session</code></td><td>Temporary elevated-access session (e.g., admin tools)</td><td>30 minutes</td><td>Essential</td></tr>
+                <tr><td><code>_ga</code></td><td>Distinguishes users for Google Analytics</td><td>2 years</td><td>Analytics</td></tr>
+                <tr><td><code>_gid</code></td><td>Distinguishes users for Google Analytics</td><td>24 hours</td><td>Analytics</td></tr>
+                <tr><td><code>_gat</code></td><td>Throttles Google Analytics request rate</td><td>1 minute</td><td>Analytics</td></tr>
+                <tr><td><code>_fbp</code></td><td>Meta/Facebook Pixel — ad measurement</td><td>90 days</td><td>Marketing</td></tr>
+                <tr><td><code>fr</code></td><td>Meta/Facebook — ad delivery and measurement</td><td>90 days</td><td>Marketing</td></tr>
+            </table>
+            <p>We also use your browser's local storage (not a cookie, but similar in
+               effect) to remember things like your preferred currency, whether you've
+               already seen the newsletter popup, and cart contents — this stays on your
+               device and is categorized as a Preference cookie in our consent center.</p>
+            <p>Essential cookies cannot be disabled, since the Marketplace cannot
+               function without them (you'd be logged out on every page load). Analytics
+               and Marketing cookies are optional — manage them any time through the
+               cookie preferences link in our footer.</p>
+        </div>
+
+        <!-- 6 -->
+        <div class="section" id="sharing">
+            <h2>6. Who We Share Data With</h2>
+            <p>We do not sell your personal data. We share data only with the following
+               categories of third parties, each strictly for the purpose described:</p>
+            <table class="data-table">
+                <tr><th>Who</th><th>What they receive</th><th>Why</th></tr>
+                <tr><td>Paystack, Flutterwave</td><td>Payment amount, currency, your email — never full card details</td><td>Process payments and payouts</td></tr>
+                <tr><td>Cloudinary</td><td>Images and files you upload — product images, chat attachments, KYC documents</td><td>File storage and delivery</td></tr>
+                <tr><td>MongoDB Atlas</td><td>All platform data in our database</td><td>Database hosting</td></tr>
+                <tr><td>Render, Netlify</td><td>Application code and the data it processes</td><td>Backend and frontend hosting</td></tr>
+                <tr><td>Google Analytics</td><td>Anonymized usage and traffic data</td><td>Understand how the Marketplace is used (only if you accept Analytics cookies)</td></tr>
+                <tr><td>Meta/Facebook</td><td>Ad interaction data</td><td>Measure ad performance (only if you accept Marketing cookies)</td></tr>
+            </table>
+            <p>We may also disclose information where required by law, to enforce our
+               Terms of Service, or to protect the rights, property, or safety of UYEH
+               TECH, our users, or the public.</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="section" id="chat">
+            <h2>7. Live Chat & Support Data</h2>
+            <p>Conversations you have with Support through the live chat widget —
+               including any images or files you send or receive — are stored as part
+               of your support history. This lets us follow up on unresolved issues and
+               maintain a record of what was discussed. Support Agents can see your
+               chat history and any files shared within it, for the purpose of assisting
+               you. Please avoid sharing passwords or full payment card numbers in chat;
+               our Support staff will never ask you for these.</p>
+        </div>
+
+        <!-- 8 -->
+        <div class="section" id="retention">
+            <h2>8. Data Retention</h2>
+            <ul>
+                <li><strong>Account data:</strong> kept for as long as your account is active, and for a limited period after closure to comply with tax, accounting, and dispute-resolution obligations.</li>
+                <li><strong>Transaction and earnings records:</strong> retained for as long as required by applicable financial recordkeeping laws.</li>
+                <li><strong>Support chat history:</strong> retained to maintain a service record; you may request deletion subject to Section 10.</li>
+                <li><strong>Support Agent applicant identity documents:</strong> if your application is <em>approved</em>, retained as part of your staff record for as long as you remain an agent, plus a reasonable period after. If your application is <em>rejected</em> or withdrawn, these documents are deleted within a reasonable period after the decision, unless we're required to retain them longer by law.</li>
+            </ul>
+        </div>
+
+        <!-- 9 -->
+        <div class="section" id="security">
+            <h2>9. Security</h2>
+            <p>We use industry-standard measures to protect your data, including
+               encrypted password storage, authenticated and role-restricted API access
+               (so, for example, a buyer's account cannot access another user's
+               dashboard data), and encrypted connections (HTTPS) across the platform.
+               No system is completely immune to risk, and we cannot guarantee absolute
+               security — but we take reasonable, ongoing steps to protect what you
+               share with us and to close gaps when we find them.</p>
+        </div>
+
+        <!-- 10 -->
+        <div class="section" id="breach">
+            <h2>10. Data Breach Notification</h2>
+            <p>If a data breach occurs that creates a real risk to your rights or
+               freedoms — for example, unauthorized access to account credentials,
+               payout details, or identity verification documents — we will notify
+               affected users without undue delay, using the contact details on your
+               account, and will describe what happened, what data was involved, and
+               what steps you can take to protect yourself. Where required by the
+               Nigeria Data Protection Act 2023 or other applicable law, we will also
+               notify the relevant regulator.</p>
+        </div>
+
+        <!-- 11 -->
+        <div class="section" id="transfers">
+            <h2>11. International Data Transfers</h2>
+            <p>Some of our infrastructure providers (payment processors, cloud hosting,
+               analytics) operate servers outside Nigeria. Where your data is
+               transferred internationally, we rely on those providers' own security and
+               compliance standards (including, where applicable, standard contractual
+               clauses or equivalent safeguards) to protect it in transit and at rest.</p>
+        </div>
+
+        <!-- 12 -->
+        <div class="section" id="rights">
+            <h2>12. Your Rights</h2>
+            <p>Regardless of where you're located, you can ask us to:</p>
+            <ul>
+                <li><strong>Access</strong> — get a copy of the personal data we hold about you</li>
+                <li><strong>Correct</strong> — fix inaccurate or outdated information</li>
+                <li><strong>Delete</strong> — request deletion of your account and associated data, subject to the retention obligations in Section 8</li>
+                <li><strong>Object or restrict</strong> — object to certain uses, such as marketing emails, analytics tracking, or automated fraud flagging described in Section 4</li>
+                <li><strong>Port</strong> — request your data in a portable format</li>
+            </ul>
+            <p>To exercise any of these rights, contact us using the details in Section
+               18. We will respond within a reasonable timeframe and may need to verify
+               your identity first.</p>
+        </div>
+
+        <!-- 13 -->
+        <div class="section" id="ndpa">
+            <h2>13. Nigerian Data Protection (NDPA)</h2>
+            <p>UYEH TECH is based in Nigeria, and the Marketplace's primary user base is
+               Nigerian. We process personal data in accordance with the Nigeria Data
+               Protection Act 2023 (NDPA) and the regulations of the Nigeria Data
+               Protection Commission (NDPC). Under the NDPA, you have the right to be
+               informed about how your data is processed (this document), to access and
+               correct your data, to withdraw consent where processing is based on
+               consent (such as marketing cookies), and to lodge a complaint with the
+               NDPC if you believe your rights have been violated.</p>
+            <p>Our legal basis for processing your data under the NDPA is, depending on
+               the activity: performance of a contract (fulfilling a purchase, payout,
+               or Support Agent application), consent (marketing cookies and newsletter
+               emails), legitimate interest (fraud prevention, platform security,
+               analytics), or compliance with a legal obligation (tax and financial
+               recordkeeping). If you have questions about which basis applies to a
+               specific use of your data, contact us using the details in Section 18.</p>
+        </div>
+
+        <!-- 14 -->
+        <div class="section" id="gdpr">
+            <h2>14. GDPR (EU/UK Users)</h2>
+            <p>If you are located in the European Economic Area or the United Kingdom,
+               you have rights under the General Data Protection Regulation in addition
+               to those described above, including the right to lodge a complaint with
+               your local data protection authority. Our legal basis for processing
+               your data is, depending on the activity: performance of a contract
+               (fulfilling a purchase or payout), consent (marketing cookies), or
+               legitimate interest (fraud prevention, analytics).</p>
+        </div>
+
+        <!-- 15 -->
+        <div class="section" id="ccpa">
+            <h2>15. CCPA (California Users)</h2>
+            <p>If you are a California resident, you have the right to know what
+               personal information we collect, to request deletion, and to opt out of
+               the "sale" of personal information — we do not sell personal information,
+               so there is nothing to opt out of in that respect. You will not be
+               discriminated against for exercising any privacy right.</p>
+        </div>
+
+        <!-- 16 -->
+        <div class="section" id="children">
+            <h2>16. Children's Privacy</h2>
+            <p>The Marketplace is not directed at, and is not intended for use by,
+               anyone under the age of 18. We do not knowingly collect personal
+               information from minors. If we become aware that we have collected data
+               from someone under 18 without appropriate consent, we will delete it.</p>
+        </div>
+
+        <!-- 17 -->
+        <div class="section" id="changes">
+            <h2>17. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy as the Marketplace evolves. Material
+               changes will be posted on this page with a new "Last Updated" date.
+               We encourage you to review this page periodically.</p>
+        </div>
+
+        <!-- 18 -->
+        <div class="section" id="contact">
+            <h2>18. Contact Us</h2>
+            <p>Questions, requests, or concerns about this policy can be sent to:</p>
+            <p>📧 Email: uyehtech@gmail.com</p>
+            <p>📍 Location: Nigeria</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Have a Privacy Question?</h3>
+            <p>Reach out any time — we're happy to explain exactly how your data is handled.</p>
+            <a href="/marketplace/contact" class="contact-btn">Contact Support</a>
+        </div>
+
+        <a href="/marketplace/" class="back-link">← Back to Marketplace</a>
+    </div>
+<!-- ===== BACK TO TOP BUTTON ===== -->
+<button id="backToTopBtn" aria-label="Back to top" title="Back to top">↑</button>
+
+<style>
+#backToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #00b359, #00ff88);
+    color: #0a0a0a;
+    font-size: 1.4em;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s, box-shadow 0.3s;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.35);
+}
+
+#backToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTopBtn:hover {
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.55);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    #backToTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2em;
+    }
+}
+</style>
+
+<script>
+(function () {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    let ticking = false;
+    function toggleVisibility() {
+        if (window.scrollY > 400) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(toggleVisibility);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    toggleVisibility(); // handles page-refresh mid-scroll
+})();
+</script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

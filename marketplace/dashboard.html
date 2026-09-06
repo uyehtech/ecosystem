@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — UYEH TECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+       <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+<style>
+:root{--g:#00ff88;--g2:#00c96a;--g3:rgba(0,255,136,.08);--g4:rgba(0,255,136,.14);--g5:rgba(0,255,136,.22);--ink:#07090c;--ink2:#0c0f14;--ink3:#111620;--ink4:#18202e;--card:#0e1318;--line:rgba(255,255,255,.06);--line2:rgba(0,255,136,.18);--t1:#edf2f7;--t2:#8a96a8;--t3:#4a5568;--red:#ff4d4d;--amber:#f5a623;--blue:#5b9cf6;--purple:#a78bfa;--sb-w:268px;--hdr:60px;--r:12px;--r2:18px}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--ink);color:var(--t1);display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--ink2)}::-webkit-scrollbar-thumb{background:var(--ink4);border-radius:2px}
+a{text-decoration:none;color:inherit}
+#loadingOverlay{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .4s}
+#loadingOverlay.fade{opacity:0;pointer-events:none}
+.ld-ring{width:52px;height:52px;border:3px solid rgba(0,255,136,.15);border-top-color:var(--g);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
+.ld-text{font-size:.72rem;color:var(--t3);font-family:'JetBrains Mono',monospace;letter-spacing:1.5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sidebar{width:var(--sb-w);background:var(--ink2);border-right:1px solid var(--line);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:300;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.sidebar::-webkit-scrollbar{width:0}
+.sb-brand{padding:20px 18px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;flex-shrink:0}
+.sb-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--g2),var(--g));border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Playfair Display',serif;font-weight:900;font-size:.8rem;color:var(--ink);overflow:hidden}
+.sb-mark img{width:100%;height:100%;object-fit:contain}
+.sb-name{font-family:'Playfair Display',serif;font-weight:900;font-size:.98rem;color:var(--g)}
+.sb-sub{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.sb-user{margin:14px 14px 0;padding:10px 12px;background:var(--g3);border:1px solid var(--line2);border-radius:11px;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--ink);flex-shrink:0;overflow:hidden}
+.sb-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.sb-uname{font-weight:600;font-size:.8rem;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-urole{font-size:.62rem;color:var(--g);font-weight:500;margin-top:1px}
+.sb-nav{flex:1;padding:14px 12px;overflow-y:auto}.sb-nav::-webkit-scrollbar{width:0}
+.sb-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:2px;padding:14px 10px 6px}
+.sb-label:first-child{padding-top:4px}
+.nav-link{display:flex;align-items:center;gap:11px;padding:10px 12px;color:var(--t2);border-radius:9px;font-weight:500;font-size:.845rem;margin-bottom:2px;transition:all .15s;position:relative;border:1px solid transparent}
+.nav-link:hover{background:var(--g3);color:var(--t1)}
+.nav-link.active{background:var(--g4);color:var(--g);border-color:var(--line2)}
+.nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:55%;background:var(--g);border-radius:0 3px 3px 0}
+.nav-link i{width:18px;text-align:center;font-size:.88rem;flex-shrink:0;opacity:.8}
+.nav-link.active i{opacity:1}
+.sb-divider{height:1px;background:var(--line);margin:8px 12px}
+.sb-footer{padding:12px 12px 18px;border-top:1px solid var(--line);flex-shrink:0}
+.sb-store{display:flex;align-items:center;gap:9px;padding:9px 12px;color:var(--t2);border-radius:9px;font-size:.82rem;font-weight:500;margin-bottom:8px;transition:all .15s;border:1px solid transparent}
+.sb-store:hover{background:var(--g3);color:var(--g);border-color:var(--line2)}
+.sb-store i{width:18px;text-align:center;font-size:.88rem}
+.sb-logout{width:100%;padding:10px 14px;background:rgba(255,77,77,.06);border:1px solid rgba(255,77,77,.18);border-radius:9px;color:var(--red);font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.sb-logout:hover{background:rgba(255,77,77,.13)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:299;backdrop-filter:blur(2px)}
+.sb-overlay.open{display:block}
+.main{flex:1;margin-left:var(--sb-w);min-height:100vh;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:200;height:var(--hdr);background:rgba(7,9,12,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tb-left{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:none;border:none;color:var(--t1);font-size:1.15rem;cursor:pointer;padding:6px;border-radius:6px;transition:background .15s}
+.menu-btn:hover{background:var(--g3)}
+.tb-greeting{font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1)}
+.tb-greeting span{color:var(--g)}
+.tb-right{display:flex;align-items:center;gap:8px}
+.tb-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--ink3);display:flex;align-items:center;justify-content:center;color:var(--t2);cursor:pointer;transition:all .15s;font-size:.88rem}
+.tb-btn:hover{border-color:var(--line2);color:var(--g);background:var(--g3)}
+.tb-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--ink);cursor:pointer;overflow:hidden;flex-shrink:0;border:2px solid transparent;transition:border-color .15s}
+.tb-avatar:hover{border-color:var(--g)}
+.tb-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.content{flex:1;padding:28px;max-width:1400px;width:100%}
+.hero-banner{background:linear-gradient(135deg,rgba(0,255,136,.07) 0%,rgba(0,201,106,.04) 50%,rgba(91,156,246,.05) 100%);border:1px solid var(--line2);border-radius:var(--r2);padding:28px 32px;margin-bottom:28px;display:flex;align-items:center;gap:24px;position:relative;overflow:hidden}
+.hero-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,255,136,.08) 0%,transparent 70%);pointer-events:none}
+.hero-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--ink);flex-shrink:0;border:3px solid var(--g5);overflow:hidden}
+.hero-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.hero-text{flex:1;min-width:0}
+.hero-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--t1);margin-bottom:4px}
+.hero-title span{color:var(--g)}
+.hero-sub{font-size:.82rem;color:var(--t2);margin-bottom:12px}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap}
+.hbadge{padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:600;font-family:'JetBrains Mono',monospace;letter-spacing:.3px;border:1px solid}
+.hbadge-green{background:var(--g3);border-color:var(--line2);color:var(--g)}
+.hbadge-amber{background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.25);color:var(--amber)}
+.hbadge-purple{background:rgba(167,139,250,.08);border-color:rgba(167,139,250,.25);color:var(--purple)}
+.hbadge-blue{background:rgba(91,156,246,.08);border-color:rgba(91,156,246,.25);color:var(--blue)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;border:none;transition:all .18s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--g2),var(--g));color:var(--ink)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,136,.3)}
+.btn-ghost{background:var(--g3);border:1px solid var(--line2);color:var(--g)}
+.btn-ghost:hover{background:var(--g4)}
+.btn-dim{background:var(--ink3);border:1px solid var(--line);color:var(--t2)}
+.btn-dim:hover{border-color:var(--line2);color:var(--t1)}
+.btn-sm{padding:7px 14px;font-size:.78rem}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:22px 20px;transition:all .2s;position:relative;overflow:hidden}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent,var(--g)),transparent);opacity:0;transition:opacity .2s}
+.stat-card:hover{border-color:var(--line2);box-shadow:0 4px 24px rgba(0,0,0,.3);transform:translateY(-2px)}
+.stat-card:hover::after{opacity:1}
+.stat-card.c-green{--accent:var(--g)}.stat-card.c-blue{--accent:var(--blue)}.stat-card.c-purple{--accent:var(--purple)}.stat-card.c-amber{--accent:var(--amber)}
+.stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.stat-label{font-size:.68rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.stat-icon-wrap{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.si-g{background:var(--g3);color:var(--g)}.si-b{background:rgba(91,156,246,.1);color:var(--blue)}.si-p{background:rgba(167,139,250,.1);color:var(--purple)}.si-a{background:rgba(245,166,35,.1);color:var(--amber)}
+.stat-value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--t1);line-height:1;margin-bottom:6px}
+.stat-value.sg{color:var(--g)}
+.stat-meta{font-size:.7rem;color:var(--t3)}
+.two-col{display:grid;grid-template-columns:1fr 360px;gap:20px;margin-bottom:28px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.panel-hdr{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--t1)}
+.panel-sub{font-size:.68rem;color:var(--t3);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.panel-body{padding:20px 22px}
+.panel-footer{padding:12px 22px;border-top:1px solid var(--line);text-align:center}
+.view-all{font-size:.75rem;color:var(--t3);font-weight:600;transition:color .15s}
+.view-all:hover{color:var(--g)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g);margin-right:8px;vertical-align:middle}
+.act-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.act-item:last-child{border-bottom:none;padding-bottom:0}
+.act-item:first-child{padding-top:0}
+.act-dot{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0}
+.act-dot.o{background:var(--g3);color:var(--g)}.act-dot.d{background:rgba(91,156,246,.1);color:var(--blue)}.act-dot.c{background:rgba(167,139,250,.1);color:var(--purple)}
+.act-body{flex:1;min-width:0}
+.act-title{font-size:.83rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.act-meta{font-size:.68rem;color:var(--t3);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.act-badge{padding:3px 9px;border-radius:5px;font-size:.64rem;font-weight:700;font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.badge-ok{background:var(--g3);color:var(--g);border:1px solid var(--line2)}
+.badge-pend{background:rgba(245,166,35,.1);color:var(--amber);border:1px solid rgba(245,166,35,.2)}
+.course-card{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:10px;transition:border-color .15s}
+.course-card:last-child{margin-bottom:0}
+.course-card:hover{border-color:var(--line2)}
+.course-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.course-thumb{width:40px;height:40px;border-radius:9px;background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;overflow:hidden}
+.course-thumb img{width:100%;height:100%;object-fit:cover;border-radius:9px}
+.course-name{font-size:.83rem;font-weight:600;color:var(--t1);line-height:1.3;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.course-type{font-size:.64rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.prog-wrap{background:rgba(255,255,255,.05);border-radius:4px;height:5px;overflow:hidden;margin-bottom:5px}
+.prog-bar{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--g2),var(--g));transition:width .6s ease}
+.prog-lbl{display:flex;justify-content:space-between;font-size:.64rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.prog-lbl span:last-child{color:var(--g)}
+.qa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qa-btn{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .18s;color:var(--t1)}
+.qa-btn:hover{border-color:var(--line2);background:var(--g3);color:var(--g)}
+.qa-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;flex-shrink:0}
+.qa-label{font-size:.8rem;font-weight:600}
+.qa-sub{font-size:.64rem;color:var(--t3);margin-top:1px}
+.chart-wrap{height:110px;display:flex;align-items:flex-end;gap:5px;padding-top:8px}
+.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.chart-bar{width:100%;border-radius:3px 3px 0 0;background:var(--g3);border:1px solid var(--line2);min-height:4px;transition:background .2s;cursor:default}
+.chart-bar:hover{background:var(--g4)}
+.chart-bar.peak{background:var(--g4);border-color:var(--g)}
+.chart-lbl{font-size:.56rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.aff-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.aff-row:last-child{border-bottom:none;padding-bottom:0}
+.aff-row:first-child{padding-top:0}
+.aff-key{font-size:.73rem;color:var(--t3)}
+.aff-val{font-size:.83rem;font-weight:700;color:var(--t1);font-family:'JetBrains Mono',monospace}
+.aff-code-box{background:var(--ink3);border:1px solid var(--line2);border-radius:9px;padding:9px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.aff-code{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--g);font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.copy-btn{background:none;border:none;color:var(--t3);cursor:pointer;font-size:.82rem;padding:2px 4px;transition:color .15s}
+.copy-btn:hover{color:var(--g)}
+.cb-banner{background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(0,255,136,.06));border:1px solid rgba(167,139,250,.2);border-radius:var(--r2);padding:18px 22px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all .2s;margin-bottom:28px}
+.cb-banner:hover{border-color:rgba(167,139,250,.4);box-shadow:0 4px 24px rgba(167,139,250,.1)}
+.cb-icon{width:44px;height:44px;border-radius:11px;background:rgba(167,139,250,.12);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cb-body{flex:1;min-width:0}
+.cb-t{font-size:.88rem;font-weight:700;color:var(--t1);margin-bottom:2px}
+.cb-s{font-size:.73rem;color:var(--t3)}
+.cb-arr{color:var(--t3);font-size:.82rem;transition:transform .2s}
+.cb-banner:hover .cb-arr{transform:translateX(4px);color:var(--purple)}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.rec-card{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r);padding:12px 13px;display:flex;align-items:center;gap:10px;transition:all .18s;cursor:pointer}
+.rec-card:hover{border-color:var(--line2);background:var(--g3)}
+.rec-thumb{width:36px;height:36px;border-radius:8px;background:var(--ink4);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;overflow:hidden}
+.rec-thumb img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.rec-t{font-size:.78rem;font-weight:600;color:var(--t1);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rec-p{font-size:.7rem;color:var(--g);font-weight:700;font-family:'JetBrains Mono',monospace}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--ink2);border:1px solid var(--line);border-radius:var(--r2);width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
+.modal::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--ink4)}
+.modal-hdr{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--t1)}
+.modal-close{width:30px;height:30px;border-radius:7px;border:1px solid var(--line);background:none;color:var(--t2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{border-color:rgba(255,77,77,.3);color:var(--red)}
+.modal-body{padding:24px}
+.f-group{margin-bottom:16px}
+.f-label{display:block;font-size:.68rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.f-input,.f-select,.f-textarea{width:100%;padding:11px 14px;background:var(--ink3);border:1px solid var(--line);border-radius:9px;color:var(--t1);font-family:'Montserrat',sans-serif;font-size:.875rem;outline:none;transition:border-color .15s;resize:vertical}
+.f-input:focus,.f-select:focus,.f-textarea:focus{border-color:var(--line2)}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--t3)}
+.f-select option{background:var(--ink3)}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.slug-preview{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--g);margin-top:5px}
+.info-box{background:var(--g3);border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin-bottom:18px;font-size:.8rem;color:var(--t2);line-height:1.7}
+.info-box strong{color:var(--g)}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end}
+.empty{text-align:center;padding:36px 20px;color:var(--t3)}
+.empty i{font-size:1.8rem;margin-bottom:10px;display:block;opacity:.4}
+.empty p{font-size:.8rem}
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:.8rem;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.4);pointer-events:all;animation:tin .25s ease;max-width:300px}
+.toast.ok{border-color:var(--line2);color:var(--g)}
+.toast.err{border-color:rgba(255,77,77,.3);color:var(--red)}
+@keyframes tin{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+@media(max-width:1100px){.stats-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.rec-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-btn{display:flex}.content{padding:18px}.stats-grid{grid-template-columns:1fr 1fr}.hero-banner{flex-direction:column;text-align:center}.hero-actions{justify-content:center}.two-col{grid-template-columns:1fr}.qa-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.stats-grid{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loadingOverlay"><div class="ld-ring"></div><div class="ld-text">LOADING DASHBOARD…</div></div>
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <a href="/marketplace/" class="sb-brand">
+    <div class="sb-mark"><img src="/marketplace/uyehtech logo.png" alt="UT" onerror="this.style.display='none'"></div>
+    <div><div class="sb-name">UYEH TECH</div><div class="sb-sub">Marketplace</div></div>
+  </a>
+  <div class="sb-user">
+    <div class="sb-avatar" id="sbAvatar">U</div>
+    <div style="min-width:0"><div class="sb-uname" id="sbName">Loading…</div><div class="sb-urole" id="sbRole">Member</div></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-label">Menu</div>
+    <a href="/marketplace/dashboard" class="nav-link active"><i class="fas fa-gauge-high"></i>Dashboard</a>
+    <a href="/marketplace/my-products" class="nav-link"><i class="fas fa-box-open"></i>My Library</a>
+    <a href="/marketplace/orders" class="nav-link"><i class="fas fa-receipt"></i>Order History</a>
+    <a href="/marketplace/affiliate" class="nav-link"><i class="fas fa-link"></i>Affiliate</a>
+    <div class="sb-divider"></div>
+    <div class="sb-label">Account</div>
+    <a href="/marketplace/profile" class="nav-link"><i class="fas fa-user-circle"></i>My Profile</a>
+    <a href="/marketplace/settings" class="nav-link"><i class="fas fa-sliders"></i>Settings</a>
+    <a href="/marketplace/creator-dashboard" class="nav-link" id="sbCreatorLink" style="display:none"><i class="fas fa-store"></i>Creator Studio</a>
+    <a href="/marketplace/affiliate" class="nav-link" id="sbAffiliateLink" style="display:none"><i class="fas fa-people-arrows"></i>Affiliate Panel</a>
+    <a href="/marketplace/support" class="nav-link"><i class="fas fa-headset"></i>Help & Support</a>
+  </nav>
+  <div class="sb-footer">
+    <a href="/marketplace/" class="sb-store"><i class="fas fa-store"></i>Browse Store</a>
+    <button class="sb-logout" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i>Log Out</button>
+  </div>
+</aside>
+
+<div class="main">
+  <header class="topbar">
+    <div class="tb-left">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+      <div class="tb-greeting">Good <span id="greetTime">day</span>, <span id="greetName">there</span></div>
+    </div>
+    <div class="tb-right">
+      <button class="tb-btn" title="Notifications" id="notifBellBtn" style="position:relative">
+        <i class="fas fa-bell"></i>
+        <span id="notifBadge" style="display:none;position:absolute;top:-2px;right:-2px;background:var(--red);color:#fff;font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;"></span>
+      </button>
+
+      <div id="notifPanel" style="display:none;position:absolute;top:calc(var(--hdr) + 8px);right:20px;width:360px;max-width:calc(100vw - 40px);max-height:480px;background:var(--card);border:1px solid var(--line);border-radius:var(--r2);box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:500;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);">
+          <strong style="color:var(--t1);font-size:.95em;">Notifications</strong>
+          <button id="notifMarkAllBtn" style="background:none;border:none;color:var(--g);font-size:.8em;cursor:pointer;font-weight:600;">Mark all read</button>
+        </div>
+        <div id="notifList" style="overflow-y:auto;flex:1;"></div>
+        <a href="/marketplace/orders" style="display:block;text-align:center;padding:12px;color:var(--g);font-size:.85em;text-decoration:none;border-top:1px solid var(--line);">View All</a>
+      </div>
+      <a href="/marketplace/profile" class="tb-avatar" id="tbAvatar" title="My Profile">U</a>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- HERO -->
+    <div class="hero-banner">
+      <div class="hero-avatar" id="heroAvatar">U</div>
+      <div class="hero-text">
+        <h1 class="hero-title">Welcome back, <span id="heroName">User</span></h1>
+        <p class="hero-sub" id="heroSub">Loading your account…</p>
+        <div class="hero-badges" id="heroBadges"><span class="hbadge hbadge-green">Member</span></div>
+      </div>
+      <div class="hero-actions">
+        <a href="/marketplace/profile" class="btn btn-ghost btn-sm"><i class="fas fa-user"></i>Profile</a>
+        <a href="/marketplace/" class="btn btn-primary btn-sm"><i class="fas fa-store"></i>Browse Store</a>
+      </div>
+    </div>
+
+    <!-- CREATOR BANNER -->
+    <div class="cb-banner" id="cbBanner" style="display:none" onclick="openCreatorModal()">
+      <div class="cb-icon">🎨</div>
+      <div class="cb-body">
+        <div class="cb-t" id="cbTitle">Become a Creator — Sell your digital products</div>
+        <div class="cb-s" id="cbSub">Join thousands of creators. Keep 80% of every sale. Free to apply.</div>
+      </div>
+      <i class="fas fa-chevron-right cb-arr"></i>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card c-green">
+        <div class="stat-top"><div class="stat-label">Total Orders</div><div class="stat-icon-wrap si-g"><i class="fas fa-bag-shopping"></i></div></div>
+        <div class="stat-value sg" id="sOrders">—</div>
+        <div class="stat-meta" id="sOrdersMeta">loading…</div>
+      </div>
+      <div class="stat-card c-blue">
+        <div class="stat-top"><div class="stat-label">Total Spent</div><div class="stat-icon-wrap si-b"><i class="fas fa-dollar-sign"></i></div></div>
+        <div class="stat-value" id="sSpent">—</div>
+        <div class="stat-meta" id="sSpentMeta">completed orders</div>
+      </div>
+      <div class="stat-card c-purple">
+        <div class="stat-top"><div class="stat-label">Products Owned</div><div class="stat-icon-wrap si-p"><i class="fas fa-box-open"></i></div></div>
+        <div class="stat-value" id="sProducts">—</div>
+        <div class="stat-meta"><a href="/marketplace/my-products" style="color:var(--purple);text-decoration:underline;font-size:.7rem">View library →</a></div>
+      </div>
+      <div class="stat-card c-amber">
+        <div class="stat-top"><div class="stat-label">Active Courses</div><div class="stat-icon-wrap si-a"><i class="fas fa-graduation-cap"></i></div></div>
+        <div class="stat-value" id="sCourses">—</div>
+        <div class="stat-meta" id="sCoursesMeta">in progress</div>
+      </div>
+    </div>
+
+    <!-- MAIN TWO-COL -->
+    <div class="two-col">
+
+      <!-- LEFT -->
+      <div>
+        <div class="panel" style="margin-bottom:20px">
+          <div class="panel-hdr">
+            <div><div class="panel-title"><span class="dot"></span>Recent Activity</div><div class="panel-sub">Orders · Downloads · Progress</div></div>
+            <a href="/marketplace/orders" class="btn btn-dim btn-sm">View All</a>
+          </div>
+          <div class="panel-body" id="actList"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+          <div class="panel-footer"><a href="/marketplace/orders" class="view-all">Full Order History <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+
+        <div class="panel" id="coursesPanel">
+          <div class="panel-hdr">
+            <div><div class="panel-title"><span class="dot"></span>Active Courses</div><div class="panel-sub">Continue where you left off</div></div>
+            <a href="/marketplace/my-products" class="btn btn-dim btn-sm">All Courses</a>
+          </div>
+          <div class="panel-body" id="courseList"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="panel" style="margin-bottom:16px">
+          <div class="panel-hdr"><div class="panel-title"><span class="dot"></span>Quick Actions</div></div>
+          <div class="panel-body">
+            <div class="qa-grid">
+              <a href="/marketplace/my-products" class="qa-btn"><div class="qa-icon si-g"><i class="fas fa-box-open"></i></div><div><div class="qa-label">My Library</div><div class="qa-sub">All products</div></div></a>
+              <a href="/marketplace/orders" class="qa-btn"><div class="qa-icon si-b"><i class="fas fa-receipt"></i></div><div><div class="qa-label">Orders</div><div class="qa-sub">Purchase history</div></div></a>
+              <a href="/marketplace/affiliate" class="qa-btn"><div class="qa-icon si-p"><i class="fas fa-link"></i></div><div><div class="qa-label">Affiliate</div><div class="qa-sub">Earn commissions</div></div></a>
+              <a href="/marketplace/" class="qa-btn"><div class="qa-icon" style="background:rgba(45,212,191,.1);color:#2dd4bf"><i class="fas fa-store"></i></div><div><div class="qa-label">Store</div><div class="qa-sub">Browse products</div></div></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-bottom:16px">
+          <div class="panel-hdr">
+            <div><div class="panel-title"><span class="dot"></span>Affiliate</div><div class="panel-sub" id="affLabel">Loading…</div></div>
+            <a href="/marketplace/affiliate" class="btn btn-dim btn-sm">Manage</a>
+          </div>
+          <div class="panel-body" id="affBody"><div class="empty"><i class="fas fa-spinner fa-spin"></i><p>Loading…</p></div></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-hdr"><div><div class="panel-title"><span class="dot"></span>Spending</div><div class="panel-sub">Last 6 months</div></div></div>
+          <div class="panel-body"><div class="chart-wrap" id="spendChart"><div class="empty" style="width:100%"><i class="fas fa-chart-bar"></i><p>No data</p></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div id="recsSection" style="display:none;margin-bottom:28px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--t1)"><span class="dot"></span>Recommended For You</div>
+        <a href="/marketplace/" class="btn btn-dim btn-sm">Browse All</a>
+      </div>
+      <div class="rec-grid" id="recGrid"></div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- CREATOR MODAL -->
+<div class="modal-overlay" id="creatorModal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title">🎨 Become a Creator</div>
+      <button class="modal-close" onclick="closeCreatorModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="info-box">✅ <strong>Free to join</strong> — No upfront cost<br>✅ Keep <strong>80%</strong> of every sale<br>✅ Reviewed within <strong>24–48 hours</strong></div>
+
+      <div class="f-group"><label class="f-label">Store Name * <span style="color:var(--t3)">(min 3 chars)</span></label><input class="f-input" id="mName" type="text" placeholder="e.g. Alex Design Studio" oninput="updateSlug(this.value); validateCreatorForm();"><div class="slug-preview" id="mSlug"></div></div>
+
+      <div class="f-group"><label class="f-label">Store Description</label><textarea class="f-textarea" id="mDesc" rows="3" placeholder="What do you create and sell?"></textarea></div>
+
+      <div class="f-group"><label class="f-label">Why do you want to join? * <span style="color:var(--t3)">(min 20 chars)</span></label><textarea class="f-textarea" id="mMsg" rows="4" placeholder="Tell us about yourself and what you plan to sell…" oninput="validateCreatorForm();"></textarea></div>
+
+      <div class="f-grid">
+        <div class="f-group"><label class="f-label">Business Type</label><select class="f-select" id="mBiz"><option value="individual">Individual</option><option value="freelancer">Freelancer</option><option value="company">Company</option></select></div>
+        <div class="f-group"><label class="f-label">Country</label><input class="f-input" id="mCountry" type="text" placeholder="e.g. Nigeria"></div>
+      </div>
+
+      <div class="f-grid">
+        <div class="f-group"><label class="f-label">Phone</label><input class="f-input" id="mPhone" type="tel" placeholder="e.g. +234 800 000 0000"></div>
+        <div class="f-group"><label class="f-label">Website <span style="color:var(--t3)">(optional)</span></label><input class="f-input" id="mWebsite" type="url" placeholder="https://…"></div>
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Categories <span style="color:var(--t3)">(select all that apply)</span></label>
+        <div id="mCatChips" style="display:flex;flex-wrap:wrap;gap:8px;">
+          ${['Templates','Courses','Music','Software','eBooks','Components','Video','Downloads','Other'].map(c =>
+            `<button type="button" class="cat-chip" data-cat="${c}" onclick="toggleCategoryChip(this)" style="padding:7px 14px;border-radius:20px;border:1px solid var(--line);background:var(--ink3);color:var(--t2);font-size:.8em;cursor:pointer;transition:.15s;">${c}</button>`
+          ).join('')}
+        </div>
+      </div>
+
+      <div class="f-group">
+        <label class="f-label">Social Links <span style="color:var(--t3)">(optional — helps your application)</span></label>
+        <div class="f-grid">
+          <input class="f-input" id="mTwitter" type="text" placeholder="Twitter / X username">
+          <input class="f-input" id="mInstagram" type="text" placeholder="Instagram username">
+        </div>
+        <div class="f-grid" style="margin-top:8px;">
+          <input class="f-input" id="mLinkedin" type="text" placeholder="LinkedIn URL">
+          <input class="f-input" id="mYoutube" type="text" placeholder="YouTube channel URL">
+        </div>
+      </div>
+
+      <div id="mErr" style="display:none;padding:10px 14px;background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.2);border-radius:8px;color:var(--red);font-size:.8rem;margin-bottom:10px"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-dim" onclick="closeCreatorModal()">Cancel</button>
+      <button class="btn btn-primary" id="mSubmit" onclick="submitCreator()" disabled style="opacity:.5;cursor:not-allowed;"><i class="fas fa-paper-plane"></i>Submit Application</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+'use strict';
+const API = 'https://uyehtechbackend.onrender.com';
+let _token = null, _user = null, _dash = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  _token = localStorage.getItem('token');
+  try { _user = JSON.parse(localStorage.getItem('user') || 'null'); } catch {}
+  if (!_token) { location.href = '/marketplace/login'; return; }
+
+  const h = new Date().getHours();
+  document.getElementById('greetTime').textContent = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+
+  if (_user) { seedFromCache(_user); }
+
+  try {
+    const r = await api('/api/dashboard');
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message || 'Failed');
+    _dash = d.dashboard;
+    // Inject top-level currency fields into the dashboard object so render(d)
+    // can access d.symbol and d.displayTotalSpent without a separate key.
+    // The server now also embeds these inside dashboard.*  (server patch 1A),
+    // but this belt-and-suspenders merge keeps old server responses working too.
+    _dash.currency          = _dash.currency          || d.currency          || 'USD';
+    _dash.symbol            = _dash.symbol            || d.symbol            || '$';
+    _dash.displayTotalSpent = _dash.displayTotalSpent || d.displayTotalSpent || null;
+    _user = _dash.user;
+    localStorage.setItem('user', JSON.stringify(_user));
+    render(_dash);
+  } catch (e) { toast('Could not load dashboard: ' + e.message, 'err'); }
+
+  document.getElementById('loadingOverlay').classList.add('fade');
+
+  document.getElementById('menuBtn').onclick = () => {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sbOverlay').classList.toggle('open');
+  };
+  document.getElementById('sbOverlay').onclick = () => {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sbOverlay').classList.remove('open');
+  };
+  document.getElementById('logoutBtn').onclick = () => {
+    ['token','user','user_orders'].forEach(k => localStorage.removeItem(k));
+    location.href = '/marketplace/login';
+  };
+
+  initNotifications();
+});
+
+// ── NOTIFICATIONS ────────────────────────────────────────────────────────
+// Previously the bell button just redirected to /marketplace/orders — no
+// panel existed at all. This wires it to the notification routes that
+// were already live on the backend but never connected to any UI.
+function initNotifications() {
+  const bellBtn   = document.getElementById('notifBellBtn');
+  const panel     = document.getElementById('notifPanel');
+  const badge     = document.getElementById('notifBadge');
+  const list      = document.getElementById('notifList');
+  const markAllBtn = document.getElementById('notifMarkAllBtn');
+
+  refreshBadge();
+
+  bellBtn.onclick = (e) => {
+    e.stopPropagation();
+    const isOpen = panel.style.display !== 'none';
+    if (isOpen) { panel.style.display = 'none'; return; }
+    panel.style.display = 'flex';
+    loadNotifications();
+  };
+
+  document.addEventListener('click', (e) => {
+    if (!panel.contains(e.target) && e.target !== bellBtn) {
+      panel.style.display = 'none';
+    }
+  });
+
+  markAllBtn.onclick = async () => {
+    try {
+      await api('/api/notifications/read-all', { method: 'POST' });
+      loadNotifications();
+      refreshBadge();
+    } catch (e) {
+      toast('Could not mark all as read', 'err');
+    }
+  };
+
+  async function refreshBadge() {
+    try {
+      const r = await api('/api/notifications/count');
+      const d = await r.json();
+      const count = d.unreadCount || 0;
+      if (count > 0) {
+        badge.textContent = count > 99 ? '99+' : count;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    } catch (_) { /* non-fatal — badge just stays hidden */ }
+  }
+
+  async function loadNotifications() {
+    list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--t2);font-size:.85em;">Loading…</div>';
+    try {
+      const r = await api('/api/notifications?limit=20');
+      const d = await r.json();
+      if (!d.success) throw new Error(d.message || 'Failed to load');
+
+      if (!d.notifications.length) {
+        list.innerHTML = '<div style="padding:32px 16px;text-align:center;color:var(--t2);font-size:.85em;">You\'re all caught up 🎉</div>';
+        return;
+      }
+
+      list.innerHTML = d.notifications.map(n => `
+        <div class="notif-item" data-id="${n._id}" data-url="${esc(n.data?.url || '')}"
+             style="padding:12px 16px;border-bottom:1px solid var(--line);cursor:pointer;${n.read ? '' : 'background:var(--g3);'}">
+          <div style="display:flex;justify-content:space-between;gap:8px;">
+            <strong style="color:var(--t1);font-size:.85em;">${esc(n.title)}</strong>
+            ${n.read ? '' : '<span style="width:7px;height:7px;border-radius:50%;background:var(--g);flex-shrink:0;margin-top:4px;"></span>'}
+          </div>
+          <div style="color:var(--t2);font-size:.8em;margin-top:3px;line-height:1.4;">${esc(n.message)}</div>
+          <div style="color:var(--t3);font-size:.72em;margin-top:5px;">${timeAgo(new Date(n.createdAt))}</div>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.notif-item').forEach(item => {
+        item.onclick = async () => {
+          const id  = item.dataset.id;
+          const url = item.dataset.url;
+          try { await api(`/api/notifications/${id}/read`, { method: 'POST' }); } catch (_) {}
+          refreshBadge();
+          if (url) location.href = url;
+        };
+      });
+
+    } catch (e) {
+      list.innerHTML = '<div style="padding:24px;text-align:center;color:var(--red);font-size:.85em;">Could not load notifications</div>';
+    }
+  }
+}
+
+function api(path, opts = {}) {
+  return fetch(API + path, { ...opts, headers: { 'Authorization': `Bearer ${_token}`, 'Content-Type': 'application/json', ...(opts.headers||{}) } });
+}
+
+function seedFromCache(u) {
+  const name = u.fullName || u.name || 'User';
+  const cachedIsAffiliate = localStorage.getItem('uyeh_is_affiliate') === 'true';
+  setEl('greetName', name.split(' ')[0]);
+  setEl('sbName', name);
+  setEl('sbRole', u.isCreator ? 'Creator' : u.isAgent ? 'Agent' : (cachedIsAffiliate ? 'Affiliate' : 'Member'));
+  setEl('heroName', name.split(' ')[0]);
+  setAvatar('sbAvatar', u.profileImage, name);
+  setAvatar('tbAvatar', u.profileImage, name);
+  setAvatar('heroAvatar', u.profileImage, name);
+  if (u.isCreator) document.getElementById('sbCreatorLink').style.display = 'flex';
+  if (cachedIsAffiliate) document.getElementById('sbAffiliateLink').style.display = 'flex';
+}
+
+function render(d) {
+  const u = d.user, s = d.stats;
+  const name = u.fullName || u.name || 'User';
+  const isAffiliate = !!d.affiliate;
+  localStorage.setItem('uyeh_is_affiliate', isAffiliate ? 'true' : 'false');
+
+  // Sidebar + topbar
+  setEl('greetName', name.split(' ')[0]);
+  setEl('sbName', name); setEl('sbRole', u.isCreator ? 'Creator' : u.isAgent ? 'Agent' : (isAffiliate ? 'Affiliate' : 'Member'));
+  setAvatar('sbAvatar', u.profileImage, name);
+  setAvatar('tbAvatar', u.profileImage, name);
+  if (u.isCreator) document.getElementById('sbCreatorLink').style.display = 'flex';
+  if (isAffiliate) document.getElementById('sbAffiliateLink').style.display = 'flex';
+
+  // Hero
+  setEl('heroName', name.split(' ')[0]);
+  setAvatar('heroAvatar', u.profileImage, name);
+  if (u.memberSince || u.createdAt) {
+    const since = new Date(u.memberSince || u.createdAt);
+    const login = u.lastLogin ? timeAgo(new Date(u.lastLogin)) : 'just now';
+    setEl('heroSub', `Member since ${since.toLocaleDateString('en-US',{month:'short',year:'numeric'})} · Last login: ${login}`);
+  }
+  const badges = document.getElementById('heroBadges');
+  badges.innerHTML = '';
+  if (u.emailVerified) badges.innerHTML += `<span class="hbadge hbadge-green"><i class="fas fa-circle-check" style="margin-right:4px"></i>Verified</span>`;
+  else badges.innerHTML += `<span class="hbadge hbadge-amber"><i class="fas fa-triangle-exclamation" style="margin-right:4px"></i>Unverified</span>`;
+  if (u.isCreator)  badges.innerHTML += `<span class="hbadge hbadge-purple"><i class="fas fa-store" style="margin-right:4px"></i>Creator</span>`;
+  if (u.isAgent)    badges.innerHTML += `<span class="hbadge hbadge-blue"><i class="fas fa-headset" style="margin-right:4px"></i>Agent</span>`;
+  if (isAffiliate)  badges.innerHTML += `<span class="hbadge hbadge-green"><i class="fas fa-people-arrows" style="margin-right:4px"></i>Affiliate</span>`;
+
+  // Stats
+  if (s) {
+    animCount('sOrders',   s.totalOrders || 0);
+    animCount('sProducts', s.productsOwned || s.completedOrders || 0);   // ✅ FIX — was showing order count
+    animCount('sCourses',  s.activeCourses || 0);
+    const _sym = d.symbol || '$';
+    setEl('sSpent', d.displayTotalSpent?.display || (`${_sym}${Number(s.totalSpent || 0).toFixed(2)}`));
+    setEl('sOrdersMeta',  `${s.pendingOrders || 0} pending`);
+    setEl('sCoursesMeta', `${s.completedCourses || 0} completed · ${s.enrolledCourses || 0} enrolled`);   // ✅ FIX
+  }
+
+  // Activity
+  const actEl = document.getElementById('actList');
+  if (!d.recentActivity?.length) {
+    actEl.innerHTML = `<div class="empty"><i class="fas fa-inbox"></i><p>No activity yet</p></div>`;
+  } else {
+    actEl.innerHTML = d.recentActivity.slice(0, 8).map(a => {
+      const cls  = a.type === 'order' ? 'o' : a.type === 'download' ? 'd' : 'c';
+      const icon = a.type === 'order' ? 'fa-bag-shopping' : a.type === 'download' ? 'fa-download' : 'fa-graduation-cap';
+     const badge = a.amount
+        ? `<span class="act-badge badge-ok">${(d.symbol||'$')}${a.amount.toFixed(2)}</span>`
+        : (a.completionPct ?? a.meta?.completionPct)
+          ? `<span class="act-badge badge-ok">${Math.round(a.completionPct ?? a.meta.completionPct)}%</span>`
+          : '';                          // ✅ FIX — reads top-level completionPct, also keeps meta fallback
+      return `<div class="act-item">
+        <div class="act-dot ${cls}"><i class="fas ${icon}"></i></div>
+        <div class="act-body">
+          <div class="act-title">${esc(a.title)}${a.subtitle ? ' — ' + esc(a.subtitle) : ''}</div>
+          <div class="act-meta">${timeAgo(new Date(a.timestamp))}${a.reference ? ' · ' + a.reference : ''}</div>
+        </div>${badge}</div>`;
+    }).join('');
+  }
+
+  // Courses
+  const cPanel = document.getElementById('coursesPanel');
+  const cEl    = document.getElementById('courseList');
+  if (!d.activeCourses?.length) { cPanel.style.display = 'none'; }
+  else {
+    cEl.innerHTML = d.activeCourses.slice(0,4).map(c => `
+      <div class="course-card">
+        <div class="course-row">
+          <div class="course-thumb">${c.image ? `<img src="${esc(c.image)}" alt="">` : (c.icon || '📚')}</div>
+          <div style="flex:1;min-width:0"><div class="course-name">${esc(c.title)}</div><div class="course-type">${c.level || 'Course'} · ${c.totalChapters ? c.totalChapters + ' chapters' : ''}</div></div>
+        </div>
+        <div class="prog-wrap"><div class="prog-bar" style="width:${c.completionPct||0}%"></div></div>
+        <div class="prog-lbl"><span>${c.completedChapters||0}/${c.totalChapters||'?'} chapters</span><span>${Math.round(c.completionPct||0)}%</span></div>
+      </div>`).join('');
+  }
+
+  // Affiliate
+  const aff = d.affiliate;
+  const aEl = document.getElementById('affBody');
+  if (!aff) {
+    setEl('affLabel', 'Not enrolled');
+    aEl.innerHTML = `<div class="empty"><i class="fas fa-link"></i><p>Join to earn commissions</p></div>
+      <div style="margin-top:10px"><a href="/marketplace/affiliate" class="btn btn-primary" style="width:100%;justify-content:center"><i class="fas fa-link"></i>Join Affiliate</a></div>`;
+  } else {
+    setEl('affLabel', aff.affiliateCode || '');
+    const payoutReady = aff.canRequestPayout;
+    const thresholdNote = aff.payoutThreshold
+      ? `${(d.symbol||'$')}${Number(aff.pendingEarnings||0).toFixed(2)} / ${(d.symbol||'$')}${Number(aff.payoutThreshold||0).toFixed(2)} threshold` : '';
+    aEl.innerHTML = `
+      <div class="aff-code-box"><span class="aff-code" id="affLink">${esc(aff.affiliateLink||'')}</span><button class="copy-btn" onclick="copyAff()"><i class="fas fa-copy"></i></button></div>
+      <div class="aff-row"><span class="aff-key">Total Clicks</span><span class="aff-val">${aff.totalClicks||0}</span></div>
+      <div class="aff-row"><span class="aff-key">Conversions</span><span class="aff-val">${aff.totalConversions||0} (${aff.conversionRate||'0.0'}%)</span></div>
+      <div class="aff-row"><span class="aff-key">Total Earned</span><span class="aff-val">${(d.symbol||'$')}${(aff.totalEarnings||0).toFixed(2)}</span></div>
+      <div class="aff-row"><span class="aff-key">Pending Payout</span><span class="aff-val" style="color:var(--amber)">${(d.symbol||'$')}${(aff.pendingEarnings||0).toFixed(2)}</span></div>
+      <div class="aff-row"><span class="aff-key">Already Paid</span><span class="aff-val" style="color:var(--g)">${(d.symbol||'$')}${(aff.paidEarnings||0).toFixed(2)}</span></div>
+      ${thresholdNote ? `<div style="font-size:.65rem;color:var(--t3);text-align:center;padding:6px 0;font-family:'JetBrains Mono',monospace;">${thresholdNote}</div>` : ''}
+      ${payoutReady ? `
+      <div style="margin-top:10px">
+        <a href="/marketplace/affiliate" class="btn btn-primary btn-sm" style="width:100%;justify-content:center;">
+          <i class="fas fa-money-bill-wave"></i>Request Payout
+        </a>
+      </div>` : ''}`;     // ✅ FIX — shows paidEarnings, threshold, payout CTA when eligible
+  }
+
+  // Spend chart
+  if (d.spendingChart?.length) {
+    const max = Math.max(...d.spendingChart.map(c => c.spent), 1);
+    document.getElementById('spendChart').innerHTML = d.spendingChart.map(c => {
+      const pct = (c.spent / max) * 100;
+      return `<div class="chart-col" title="${c.label}: ${(d.symbol||'$')}${c.spent.toFixed(2)}">
+        <div class="chart-bar${pct===100?' peak':''}" style="height:${Math.max(pct,4)}%"></div>
+        <div class="chart-lbl">${c.label.split(' ')[0]}</div></div>`;
+    }).join('');
+  }
+
+  // Recommendations
+  if (d.recommendations?.length) {
+    document.getElementById('recsSection').style.display = 'block';
+    document.getElementById('recGrid').innerHTML = d.recommendations.slice(0,6).map(p => {
+      const stars     = p.rating ? `${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5 - Math.round(p.rating))}` : '';
+      const socialPrf = p.soldCount > 0
+        ? `<div style="font-size:.6rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-top:1px;">${stars} ${p.soldCount} sold</div>`
+        : '';
+      const _sym = p.displayPrice?.symbol || (d.symbol||'$');
+      const _px  = p.displayPrice?.converted ?? p.price;
+      const _cpx = p.displayPrice ? (p.comparePrice ? p.comparePrice * ((d.rates?.toRate)||1) : 0) : p.comparePrice;
+      const comparePrice = p.comparePrice && p.comparePrice > p.price
+        ? `<span style="text-decoration:line-through;color:var(--t3);font-size:.65rem;margin-left:4px;">${_sym}${parseFloat(_cpx||0).toFixed(2)}</span>` : '';
+      return `
+      <a href="/marketplace/product/${esc(p.slug||p.id)}" class="rec-card">
+        <div class="rec-thumb">${p.image ? `<img src="${esc(p.image)}" alt="">` : (p.icon || '📦')}</div>
+        <div style="flex:1;min-width:0">
+          <div class="rec-t">${esc(p.title)}</div>
+          <div class="rec-p">${_sym}${parseFloat(_px||0).toFixed(2)}${comparePrice}</div>
+          ${socialPrf}
+        </div>
+      </a>`;                             // ✅ FIX — now shows rating stars, sold count, compare price
+    }).join('');
+  }
+
+  // Creator banner
+  const banner = document.getElementById('cbBanner');
+  if (d.creator) {
+    banner.style.display = 'flex';
+
+    if (d.creator.isSuspended) {                                                    // ✅ ADD — check suspension first
+      banner.style.borderColor  = 'rgba(255,77,77,.3)';
+      banner.style.background   = 'linear-gradient(135deg,rgba(255,77,77,.07),rgba(0,0,0,0))';
+      document.querySelector('#cbBanner .cb-icon').textContent = '⚠️';
+      setEl('cbTitle', 'Creator Account Suspended');
+      setEl('cbSub',   'Your account has been suspended. Please contact support for assistance.');
+      banner.style.cursor = 'default';
+      banner.onclick = null;
+
+    } else if (d.creator.applicationStatus === 'approved') {
+      const pendingNote = d.creator.pendingProducts                                 // ✅ ADD — show pending products count
+        ? ` · ${d.creator.pendingProducts} pending review` : '';
+      const verifiedMark = d.creator.isVerified ? ' ✓' : '';                       // ✅ ADD — verified badge
+      setEl('cbTitle', `Creator Studio — ${d.creator.storeName}${verifiedMark}`);
+      setEl('cbSub',   `${d.creator.totalSales} sales · ${(d.symbol||'$')}${(d.creator.totalEarnings||0).toFixed(2)} earned · ${d.creator.totalProducts} products${pendingNote}`);
+      banner.onclick = () => location.href = '/marketplace/creator-dashboard';
+
+    } else if (d.creator.applicationStatus === 'pending') {
+      setEl('cbTitle', 'Creator Application Pending Review');
+      setEl('cbSub',   "Your application is under review — we'll notify you within 24–48 hours.");
+      banner.style.cursor = 'default'; banner.onclick = null;
+
+    } else if (d.creator.applicationStatus === 'rejected') {                       // ✅ ADD — handle rejected state
+      banner.style.borderColor = 'rgba(245,166,35,.3)';
+      document.querySelector('#cbBanner .cb-icon').textContent = '📋';
+      setEl('cbTitle', 'Creator Application — Not Approved');
+      setEl('cbSub',   'Your previous application was not approved. You may apply again.');
+      banner.onclick = () => openCreatorModal();
+    }
+
+  } else if (!u.isCreator) { banner.style.display = 'flex'; }
+}
+
+function copyAff() {
+  const t = document.getElementById('affLink')?.textContent || '';
+  navigator.clipboard.writeText(t).then(() => toast('Affiliate link copied!', 'ok'));
+}
+
+// Creator modal
+let _selectedCategories = [];
+
+function openCreatorModal()  {
+  document.getElementById('creatorModal').classList.add('open');
+  validateCreatorForm();
+}
+function closeCreatorModal() { document.getElementById('creatorModal').classList.remove('open'); }
+
+function updateSlug(v) {
+  const s = v.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  setEl('mSlug', s ? '/' + s : '');
+}
+
+// Categories were previously a single-select dropdown wrapped in an array
+// (`categories:[document.getElementById('mCat').value]`) — the backend
+// schema stores this as a real array and accepts multiple. This lets a
+// creator actually select more than one.
+function toggleCategoryChip(btn) {
+  const cat = btn.dataset.cat;
+  const idx = _selectedCategories.indexOf(cat);
+  if (idx === -1) {
+    _selectedCategories.push(cat);
+    btn.style.background = 'var(--g4)';
+    btn.style.borderColor = 'var(--g)';
+    btn.style.color = 'var(--g)';
+  } else {
+    _selectedCategories.splice(idx, 1);
+    btn.style.background = 'var(--ink3)';
+    btn.style.borderColor = 'var(--line)';
+    btn.style.color = 'var(--t2)';
+  }
+}
+
+// Submit now starts disabled and only enables once the two fields the
+// backend actually requires (storeName ≥3 chars, applicationMessage ≥20
+// chars) are valid — previously the button was always clickable and only
+// showed an error message after the fact.
+function validateCreatorForm() {
+  const name = document.getElementById('mName').value.trim();
+  const msg  = document.getElementById('mMsg').value.trim();
+  const btn  = document.getElementById('mSubmit');
+  const valid = name.length >= 3 && msg.length >= 20;
+  btn.disabled = !valid;
+  btn.style.opacity = valid ? '1' : '.5';
+  btn.style.cursor  = valid ? 'pointer' : 'not-allowed';
+}
+
+async function submitCreator() {
+  const name = document.getElementById('mName').value.trim();
+  const msg  = document.getElementById('mMsg').value.trim();
+  const err  = document.getElementById('mErr');
+  err.style.display = 'none';
+
+  // Belt-and-suspenders — button should already be disabled if this fails,
+  // but re-check in case validateCreatorForm() didn't fire for some reason.
+  if (name.length < 3) { err.textContent = 'Store name must be at least 3 characters.'; err.style.display = 'block'; return; }
+  if (msg.length < 20) { err.textContent = 'Please write at least 20 characters.'; err.style.display = 'block'; return; }
+
+  const btn = document.getElementById('mSubmit');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+  const socialLinks = {};
+  const tw = document.getElementById('mTwitter').value.trim();
+  const ig = document.getElementById('mInstagram').value.trim();
+  const li = document.getElementById('mLinkedin').value.trim();
+  const yt = document.getElementById('mYoutube').value.trim();
+  if (tw) socialLinks.twitter   = tw;
+  if (ig) socialLinks.instagram = ig;
+  if (li) socialLinks.linkedin  = li;
+  if (yt) socialLinks.youtube   = yt;
+
+  try {
+    const r = await api('/api/creator/apply', { method:'POST', body: JSON.stringify({
+      storeName:          name,
+      storeDescription:   document.getElementById('mDesc').value.trim(),
+      applicationMessage: msg,
+      businessType:       document.getElementById('mBiz').value,
+      country:            document.getElementById('mCountry').value.trim(),
+      phone:              document.getElementById('mPhone').value.trim(),
+      website:            document.getElementById('mWebsite').value.trim(),
+      socialLinks:        socialLinks,
+      categories:         _selectedCategories,
+    }) });
+    const d = await r.json();
+    if (!d.success) throw new Error(d.message);
+    toast('Application submitted! We\'ll review within 24–48 hours.', 'ok');
+    closeCreatorModal();
+    const banner = document.getElementById('cbBanner');
+    setEl('cbTitle','Creator Application Pending Review');
+    setEl('cbSub','Your application is under review — we\'ll notify you within 24–48 hours.');
+    banner.style.display='flex'; banner.style.cursor='default'; banner.onclick=null;
+  } catch(e) { err.textContent=e.message; err.style.display='block'; }
+  finally { btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i>Submit Application'; validateCreatorForm(); }
+}
+
+// Helpers
+function setEl(id, val) { const e = document.getElementById(id); if (e) e.textContent = val; }
+function setAvatar(id, img, name) {
+  const e = document.getElementById(id); if (!e) return;
+  if (img) e.innerHTML = `<img src="${esc(img)}" alt="avatar">`;
+  else e.textContent = (name||'U')[0].toUpperCase();
+}
+function animCount(id, end) {
+  const el = document.getElementById(id); if (!el) return;
+  let cur = 0; const step = Math.max(1, Math.ceil(end/40));
+  const t = setInterval(() => { cur = Math.min(cur+step,end); el.textContent = cur; if(cur>=end) clearInterval(t); }, 20);
+}
+function timeAgo(date) {
+  const s = Math.floor((Date.now()-date)/1000);
+  if (s<60) return 'just now';
+  if (s<3600) return Math.floor(s/60)+'m ago';
+  if (s<86400) return Math.floor(s/3600)+'h ago';
+  if (s<604800) return Math.floor(s/86400)+'d ago';
+  return date.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+}
+function esc(s){ return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''; }
+function toast(msg, type='ok') {
+  const c = document.getElementById('toast'), d = document.createElement('div');
+  d.className = `toast ${type}`;
+  d.innerHTML = `<i class="fas ${type==='ok'?'fa-circle-check':'fa-circle-xmark'}"></i>${esc(msg)}`;
+  c.appendChild(d); setTimeout(()=>d.remove(), 4000);
+}
+</script>
+
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

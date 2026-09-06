@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — UYEH TECH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="/site-controller.js" defer></script>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+           <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+<style>
+:root{
+  --g:#00ff88;--g2:#00c96a;--g3:rgba(0,255,136,.08);--g4:rgba(0,255,136,.14);
+  --ink:#080a0c;--ink2:#0d1018;--line:rgba(255,255,255,.07);--line2:rgba(0,255,136,.2);
+  --t1:#e8edf2;--t2:#8a96a8;--t3:#4a5568;
+  --red:#ff4d4d;--ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--ink);color:var(--t1);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px 20px;overflow-x:hidden;
+}
+
+/* ── Background mesh ── */
+.bg-mesh{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%,rgba(0,255,136,.04) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(0,201,106,.03) 0%,transparent 60%);
+}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;width:2px;height:2px;background:var(--g);border-radius:50%;opacity:0;animation:float 18s infinite;}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:.25;}90%{opacity:.2;}100%{transform:translateY(-100vh) translateX(40px);opacity:0;}}
+
+/* ── Container ── */
+.auth-wrap{
+  position:relative;z-index:1;
+  width:100%;max-width:460px;
+  animation:fadeUp .55s var(--ease) both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── Logo ── */
+.auth-logo{text-align:center;margin-bottom:36px;}
+.logo-mark{
+  width:60px;height:60px;border-radius:16px;
+  background:linear-gradient(135deg,var(--g2),var(--g));
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;overflow:hidden;
+  box-shadow:0 0 30px rgba(0,255,136,.25);
+}
+.logo-mark img{width:100%;height:100%;object-fit:contain;}
+.logo-initials{font-family:'Playfair Display',serif;font-weight:900;font-size:.9rem;color:#080a0c;}
+.logo-name{
+  font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+  color:var(--g);letter-spacing:1px;
+  text-shadow:0 0 40px rgba(0,255,136,.3);
+  line-height:1;margin-bottom:6px;
+}
+.logo-tagline{font-size:.78rem;color:var(--t3);letter-spacing:.5px;}
+
+/* ── Card ── */
+.auth-card{
+  background:var(--ink2);
+  border:1px solid var(--line2);
+  border-radius:22px;
+  padding:42px 38px;
+  box-shadow:0 0 60px rgba(0,255,136,.06),0 24px 64px rgba(0,0,0,.5);
+  position:relative;overflow:hidden;
+}
+.auth-card::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:200px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--g),transparent);
+}
+.auth-card-head{text-align:center;margin-bottom:32px;}
+.auth-card-title{
+  font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;
+  color:var(--t1);margin-bottom:6px;
+}
+.auth-card-sub{font-size:.82rem;color:var(--t3);}
+
+/* ── Alert boxes ── */
+.alert{
+  display:none;padding:12px 16px;border-radius:10px;
+  font-size:.8rem;font-weight:600;margin-bottom:20px;
+  align-items:center;gap:9px;line-height:1.5;
+}
+.alert.show{display:flex;}
+.alert-error{background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.25);color:var(--red);}
+.alert-success{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);color:var(--g);}
+.alert-info{background:rgba(59,158,255,.08);border:1px solid rgba(59,158,255,.25);color:#3b9eff;}
+
+/* ── Form ── */
+.form-group{margin-bottom:18px;position:relative;}
+.form-label{
+  display:block;font-size:.72rem;font-weight:700;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.8px;margin-bottom:7px;
+}
+.form-input{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:10px;color:var(--t1);font-size:.9rem;font-family:'Syne',sans-serif;
+  outline:none;transition:all .2s var(--ease);
+}
+.form-input:focus{border-color:var(--g);background:var(--g3);box-shadow:0 0 0 3px rgba(0,255,136,.07);}
+.form-input::placeholder{color:var(--t3);}
+.form-input.error{border-color:var(--red);background:rgba(255,77,77,.04);}
+.field-err{font-size:.7rem;color:var(--red);margin-top:4px;display:none;}
+.field-err.show{display:block;}
+
+/* ── Password wrapper ── */
+.pw-wrap{position:relative;}
+.pw-wrap .form-input{padding-right:44px;}
+.pw-toggle{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--t3);cursor:pointer;
+  font-size:.9rem;padding:4px;transition:color .2s;line-height:1;
+}
+.pw-toggle:hover{color:var(--g);}
+
+/* ── Submit button ── */
+.btn-submit{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--g2),var(--g));
+  border:none;border-radius:11px;color:#080a0c;
+  font-family:'Syne',sans-serif;font-size:.95rem;font-weight:800;
+  cursor:pointer;transition:all .25s var(--ease);
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  margin-bottom:6px;
+}
+.btn-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,136,.35);}
+.btn-submit:active:not(:disabled){transform:translateY(0);}
+.btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ── Forgot password ── */
+.forgot-row{text-align:right;margin-bottom:16px;}
+.forgot-row a{font-size:.78rem;color:var(--g);text-decoration:none;font-weight:600;transition:opacity .2s;}
+.forgot-row a:hover{opacity:.7;}
+
+/* ── Divider ── */
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line);}
+.divider span{font-size:.75rem;color:var(--t3);font-weight:600;}
+
+/* ── Social buttons ── */
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px;}
+.btn-social{
+  padding:11px 16px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);
+  border-radius:10px;color:var(--t2);font-family:'Syne',sans-serif;
+  font-size:.8rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .2s;
+}
+.btn-social:hover{background:var(--g3);border-color:var(--line2);color:var(--t1);}
+.btn-social img{width:17px;height:17px;border-radius:3px;}
+
+/* ── Auth link ── */
+.auth-link{text-align:center;font-size:.82rem;color:var(--t3);}
+.auth-link a{color:var(--g);text-decoration:none;font-weight:700;transition:opacity .2s;}
+.auth-link a:hover{opacity:.75;}
+
+/* ── Back links ── */
+.back-links{text-align:center;margin-top:22px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+.back-links a{font-size:.75rem;color:var(--t3);text-decoration:none;transition:color .2s;}
+.back-links a:hover{color:var(--g);}
+
+/* ── Toast container ── */
+.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast{padding:12px 18px;border-radius:10px;font-size:.8rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.4);animation:toastIn .3s var(--ease);pointer-events:auto;max-width:320px;display:flex;align-items:center;gap:8px;}
+.toast.success{background:linear-gradient(135deg,var(--g2),var(--g));color:#080a0c;}
+.toast.error{background:linear-gradient(135deg,#c0392b,var(--red));color:#fff;}
+.toast.info{background:var(--ink2);border:1px solid var(--line2);color:var(--t1);}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+
+@media(max-width:480px){
+  .auth-card{padding:30px 22px;}
+  .social-grid{grid-template-columns:1fr;}
+}
+.otp-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;}
+.otp-digit{width:46px;height:54px;text-align:center;font-size:1.5rem;font-weight:800;font-family:'JetBrains Mono','Courier New',monospace;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);border-radius:11px;color:var(--g);outline:none;transition:border-color .18s,box-shadow .18s,transform .15s;caret-color:transparent;}
+.otp-digit:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(0,255,136,.1);transform:translateY(-2px);}
+.otp-digit.filled{border-color:rgba(0,255,136,.4);background:rgba(0,255,136,.06);}
+.otp-digit.shake{animation:shake .35s ease;}
+.otp-sep{color:var(--t3);font-size:.9rem;margin:0 2px;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+#twoFAWrap{animation:fadeUp .4s cubic-bezier(.4,0,.2,1) both;}
+
+/* ── Role picker modal ── */
+.role-overlay{
+  position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;
+  background:rgba(4,5,7,.82);backdrop-filter:blur(6px);padding:20px;
+}
+.role-overlay.show{display:flex;animation:fadeUp .25s var(--ease) both;}
+.role-card{
+  width:100%;max-width:420px;background:var(--ink2);border:1px solid var(--line2);
+  border-radius:20px;padding:28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.role-card-head{text-align:center;margin-bottom:20px;}
+.role-card-head i{font-size:1.8rem;color:var(--g);margin-bottom:10px;display:block;}
+.role-card-head h2{font-size:1.15rem;font-weight:800;margin-bottom:6px;}
+.role-card-head p{font-size:.82rem;color:var(--t2);}
+.role-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.role-option{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;
+  padding:14px 16px;cursor:pointer;transition:all .2s var(--ease);color:var(--t1);
+}
+.role-option:hover{border-color:var(--line2);background:var(--g3);transform:translateY(-2px);}
+.role-option-icon{
+  width:40px;height:40px;flex-shrink:0;border-radius:10px;background:var(--g4);
+  color:var(--g);display:flex;align-items:center;justify-content:center;font-size:1.05rem;
+}
+.role-option-text{flex:1;display:flex;flex-direction:column;gap:2px;}
+.role-option-label{font-weight:700;font-size:.92rem;}
+.role-option-desc{font-size:.74rem;color:var(--t2);}
+.role-option-arrow{color:var(--t3);font-size:.85rem;}
+.role-remember{
+  display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--t2);
+  justify-content:center;cursor:pointer;
+}
+.role-remember input{accent-color:var(--g);width:15px;height:15px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="particles" id="particles"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="auth-wrap">
+  <!-- Logo -->
+  <div class="auth-logo">
+    <div class="logo-mark">
+      <img src="/marketplace/uyehtech logo.png" alt="UYEH TECH" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="logo-initials" style="display:none;">UT</span>
+    </div>
+    <div class="logo-name">UYEH TECH</div>
+    <div class="logo-tagline">Digital Products Marketplace</div>
+  </div>
+
+  <!-- Card -->
+  <div class="auth-card">
+    <div class="auth-card-head">
+      <div class="auth-card-title">Welcome Back</div>
+      <div class="auth-card-sub">Log in to your account to continue</div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-error" id="alertError"><i class="fas fa-circle-exclamation"></i><span id="alertErrorText"></span></div>
+    <div class="alert alert-success" id="alertSuccess"><i class="fas fa-circle-check"></i><span>Login successful! Redirecting to your dashboard…</span></div>
+    <div class="alert alert-info" id="alertInfo"><i class="fas fa-circle-info"></i><span id="alertInfoText"></span></div>
+
+    <!-- Form -->
+    <form id="loginForm" autocomplete="on">
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        <div class="field-err" id="emailErr"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="pw-wrap">
+          <input class="form-input" type="password" id="password" name="password" placeholder="Your password" autocomplete="current-password" required>
+          <button type="button" class="pw-toggle" id="pwToggle" aria-label="Toggle password visibility"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="field-err" id="passwordErr"></div>
+      </div>
+
+      <div class="forgot-row">
+        <a href="/marketplace/forgot-password">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn-submit" id="loginBtn">
+        <i class="fas fa-arrow-right-to-bracket"></i> Log In
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider"><span>OR</span></div>
+
+    <!-- Social (coming soon) -->
+    <div class="social-grid">
+      <button class="btn-social" onclick="socialLogin('google')">
+        <img src="https://www.google.com/favicon.ico" alt="G"> Google
+      </button>
+      <button class="btn-social" onclick="socialLogin('facebook')">
+        <img src="https://www.facebook.com/favicon.ico" alt="fb"> Facebook
+      </button>
+    </div>
+
+    <div class="auth-link">
+      Don't have an account? <a href="/marketplace/signup">Sign Up Free</a>
+    </div>
+  </div>
+
+  <!-- ── 2FA VERIFICATION CARD (hidden until needed) ── -->
+  <div id="twoFAWrap" style="display:none;">
+    <div class="auth-card" id="twoFACard">
+      <div class="auth-card-head">
+        <div style="width:52px;height:52px;background:linear-gradient(135deg,#00c96a,#00ff88);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 0 28px rgba(0,255,136,.3);">
+          <i class="fas fa-shield-halved" style="color:#080a0c;font-size:1.3rem;"></i>
+        </div>
+        <div class="auth-card-title">Two-Factor Auth</div>
+        <div class="auth-card-sub" id="twoFASubtitle">Enter the 6-digit code from your authenticator app</div>
+      </div>
+
+      <div class="alert alert-error" id="twoFAError"><i class="fas fa-circle-exclamation"></i><span id="twoFAErrorText"></span></div>
+      <div class="alert alert-info"  id="twoFAInfo" ><i class="fas fa-circle-info"></i><span id="twoFAInfoText"></span></div>
+
+      <!-- OTP digit inputs -->
+      <div class="otp-row" id="twoFAOtpRow">
+        <input class="otp-digit" id="tfa0" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code">
+        <input class="otp-digit" id="tfa1" type="text" inputmode="numeric" maxlength="1">
+        <input class="otp-digit" id="tfa2" type="text" inputmode="numeric" maxlength="1">
+        <span class="otp-sep">—</span>
+        <input class="otp-digit" id="tfa3" type="text" inputmode="numeric" maxlength="1">
+        <input class="otp-digit" id="tfa4" type="text" inputmode="numeric" maxlength="1">
+        <input class="otp-digit" id="tfa5" type="text" inputmode="numeric" maxlength="1">
+      </div>
+
+      <!-- Backup code toggle -->
+      <div style="text-align:center;margin-bottom:18px;">
+        <button id="useBackupBtn" onclick="toggleBackupMode()" style="background:none;border:none;color:var(--t3);font-size:.76rem;cursor:pointer;font-family:'Syne',sans-serif;text-decoration:underline;text-underline-offset:3px;">
+          Use a backup code instead
+        </button>
+      </div>
+      <div id="backupInputWrap" style="display:none;margin-bottom:18px;">
+        <input class="form-input" type="text" id="backupCodeInput" placeholder="xxxxxxxx-xxxx-xxxx backup code" autocomplete="off" style="font-family:'Courier New',monospace;letter-spacing:.08em;">
+      </div>
+
+      <button class="btn-submit" id="verifyTFABtn" onclick="submitTwoFA()">
+        <i class="fas fa-shield-check" id="verifyIcon"></i> <span id="verifyLabel">Verify & Log In</span>
+      </button>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:18px;margin-top:16px;">
+        <button onclick="cancelTwoFA()" style="background:none;border:none;color:var(--t3);font-size:.78rem;cursor:pointer;font-family:'Syne',sans-serif;display:flex;align-items:center;gap:5px;">
+          <i class="fas fa-arrow-left" style="font-size:.68rem;"></i> Back to login
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-links">
+    <a href="/marketplace/"><i class="fas fa-store" style="margin-right:5px;"></i>Back to Store</a>
+    <a href="/"><i class="fas fa-house" style="margin-right:5px;"></i>UYEH TECH Home</a>
+  </div>
+</div>
+
+<!-- ═══ Role picker — shown only when a user has more than one valid destination ═══ -->
+<div id="roleOverlay" class="role-overlay">
+  <div class="role-card">
+    <div class="role-card-head">
+      <i class="fas fa-compass"></i>
+      <h2>Where would you like to go?</h2>
+      <p>Your account has more than one dashboard — pick one to continue.</p>
+    </div>
+    <div class="role-options" id="roleOptions"></div>
+    <label class="role-remember">
+      <input type="checkbox" id="rememberRole">
+      Remember my choice for next time
+    </label>
+  </div>
+</div>
+
+<script>
+'use strict';
+const API_URL = 'https://uyehtechbackend.onrender.com';
+
+/* ══════════════════════════════════════════════════════════════
+   RETURN-TO CAPTURE
+   If the user arrived here from a page that required login (e.g.
+   a blog post, a checkout, a specific marketplace page), that page
+   should link here as /marketplace/login?return_to=/the/original/path
+   We capture it once on load and keep it in sessionStorage so it
+   survives the 2FA step too, then use it after a successful login —
+   ahead of any role-based redirect, since completing what the user
+   was already doing takes priority.
+   ══════════════════════════════════════════════════════════════ */
+const RETURN_TO_KEY = 'uyeh_return_to';
+
+(function captureReturnTo() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get('return_to');
+  if (raw && isSafeReturnPath(raw)) {
+    sessionStorage.setItem(RETURN_TO_KEY, raw);
+  }
+})();
+
+// Only allow same-site relative paths — blocks open-redirect attacks via
+// "//evil.com" or "https://evil.com" style values, and blocks looping back
+// to the auth pages themselves.
+function isSafeReturnPath(path) {
+  if (typeof path !== 'string') return false;
+  if (!path.startsWith('/') || path.startsWith('//')) return false;
+  if (/^\/marketplace\/(login|signup)\b/.test(path)) return false;
+  return true;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   POST-LOGIN ROUTING
+   Priority: 1) return_to (finish what they came to do)
+             2) remembered dashboard preference
+             3) exactly one destination available → go straight there
+             4) more than one destination → show the picker
+   ══════════════════════════════════════════════════════════════ */
+const REMEMBER_KEY = 'uyeh_preferred_dashboard';
+const DASHBOARDS = {
+  member:   { label: 'Member Dashboard',   desc: 'Orders, purchases & account settings', icon: 'fa-user',        url: '/marketplace/dashboard' },
+  creator:  { label: 'Creator Dashboard',  desc: 'Manage products, sales & payouts',      icon: 'fa-store',       url: '/marketplace/creator-dashboard' },
+  affiliate:{ label: 'Affiliate Dashboard',desc: 'Referral links, clicks & commissions',  icon: 'fa-people-arrows', url: '/marketplace/affiliate' },
+};
+
+async function routeAfterLogin(user) {
+  // 1) Finish what they were doing, if we captured a valid destination
+  const returnTo = sessionStorage.getItem(RETURN_TO_KEY);
+  if (returnTo && isSafeReturnPath(returnTo)) {
+    sessionStorage.removeItem(RETURN_TO_KEY);
+    window.location.replace(returnTo);
+    return;
+  }
+
+  // 2) Figure out which dashboards this account actually has
+  const roles = ['member'];
+  if (user.isCreator) roles.push('creator');
+
+  const isAffiliate = await checkIsAffiliate();
+  if (isAffiliate) roles.push('affiliate');
+
+  // 3) A remembered preference only applies if it's still valid for this account
+  const remembered = localStorage.getItem(REMEMBER_KEY);
+  if (remembered && roles.includes(remembered)) {
+    window.location.replace(DASHBOARDS[remembered].url);
+    return;
+  }
+
+  // 4) Exactly one destination — no need to ask
+  if (roles.length === 1) {
+    window.location.replace(DASHBOARDS[roles[0]].url);
+    return;
+  }
+
+  // 5) More than one — let them choose
+  showRolePicker(roles);
+}
+
+// Lightweight existence check via the dedicated status endpoint — no more
+// pulling the full dashboard payload (earnings, links, events, payouts)
+// just to answer a yes/no question.
+async function checkIsAffiliate() {
+  try {
+    const token = localStorage.getItem('token');
+    const r = await fetch(`${API_URL}/api/affiliate/status`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (!r.ok) return false; // feature disabled site-wide, or a real error — either way, don't route there
+    const data = await r.json();
+    // Any existing affiliate account counts, regardless of status — a
+    // suspended or pending affiliate should still land on their dashboard
+    // to see *why*, rather than being silently treated as a plain member.
+    return !!(data.success && data.isAffiliate);
+  } catch (e) {
+    return false; // network hiccup — don't block login over this
+  }
+}
+
+function showRolePicker(roles) {
+  const wrap = document.getElementById('roleOptions');
+  wrap.innerHTML = roles.map(key => {
+    const d = DASHBOARDS[key];
+    return `
+      <button class="role-option" data-role="${key}" onclick="chooseRole('${key}')">
+        <span class="role-option-icon"><i class="fas ${d.icon}"></i></span>
+        <span class="role-option-text">
+          <span class="role-option-label">${d.label}</span>
+          <span class="role-option-desc">${d.desc}</span>
+        </span>
+        <i class="fas fa-arrow-right role-option-arrow"></i>
+      </button>`;
+  }).join('');
+  document.getElementById('roleOverlay').classList.add('show');
+}
+
+function chooseRole(key) {
+  if (document.getElementById('rememberRole').checked) {
+    localStorage.setItem(REMEMBER_KEY, key);
+  }
+  window.location.replace(DASHBOARDS[key].url);
+}
+
+
+/* ── Redirect if already logged in ── */
+(function(){
+  if (localStorage.getItem('token') && localStorage.getItem('user')) {
+    routeAfterLogin(JSON.parse(localStorage.getItem('user')));
+  }
+})();
+
+/* ── Particles ── */
+(function(){
+  const c = document.getElementById('particles');
+  const positions = [5,15,25,35,45,55,65,75,85,95];
+  const delays    = [0,2,4,1,3,5,2.5,4.5,1.5,3.5];
+  positions.forEach((l,i) => {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${l}%;animation-delay:${delays[i]}s;animation-duration:${14+i}s;`;
+    c.appendChild(p);
+  });
+})();
+
+/* ── DOM refs ── */
+const loginForm   = document.getElementById('loginForm');
+const emailInput  = document.getElementById('email');
+const passInput   = document.getElementById('password');
+const loginBtn    = document.getElementById('loginBtn');
+const pwToggle    = document.getElementById('pwToggle');
+
+/* ── Password toggle ── */
+pwToggle.addEventListener('click', () => {
+  const hidden = passInput.type === 'password';
+  passInput.type = hidden ? 'text' : 'password';
+  pwToggle.innerHTML = `<i class="fas fa-eye${hidden ? '-slash' : ''}"></i>`;
+});
+
+/* ── Enter key navigation ── */
+emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); passInput.focus(); } });
+passInput.addEventListener('keydown',  e => { if (e.key === 'Enter') { e.preventDefault(); loginForm.requestSubmit(); } });
+
+/* ── Clear field errors on input ── */
+emailInput.addEventListener('input', () => clearFieldErr('emailErr', 'email'));
+passInput.addEventListener('input',  () => clearFieldErr('passwordErr', 'password'));
+
+/* ── Form submit ── */
+loginForm.addEventListener('submit', async e => {
+  e.preventDefault();
+  hideAlerts();
+
+  const email    = emailInput.value.trim().toLowerCase();
+  const password = passInput.value;
+
+  // Client-side validation
+  let valid = true;
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showFieldErr('emailErr', 'email', 'Enter a valid email address'); valid = false;
+  }
+  if (!password) {
+    showFieldErr('passwordErr', 'password', 'Password is required'); valid = false;
+  }
+  if (!valid) return;
+
+  setLoading(true);
+
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (data.success && data.twoFactorRequired) {
+      // ── 2FA required: store pre-auth token and show 2FA step ──────────
+      sessionStorage.setItem('preAuthToken', data.preAuthToken || '');
+      show2FAStep();
+      setLoading(false);
+
+    } else if (data.success) {
+      // ── Normal login: store tokens and route by role / return_to ────────
+      localStorage.setItem('token',        data.token);
+      localStorage.setItem('refreshToken', data.refreshToken || '');
+      localStorage.setItem('user',         JSON.stringify(data.user));
+      showAlert('alertSuccess');
+      setTimeout(() => routeAfterLogin(data.user), 1200);
+
+    } else {
+      const msg = data.message || 'Login failed. Please try again.';
+      if (data.lockedUntil) {
+        // Account locked — show message and auto-enable button when lock expires
+        showAlert('alertError', msg);
+        const unlockMs = new Date(data.lockedUntil) - Date.now();
+        if (unlockMs > 0) {
+          setTimeout(() => {
+            setLoading(false);
+            hideAlerts();
+            showAlert('alertInfo', 'Account unlocked. You can try again now.');
+          }, unlockMs);
+        } else {
+          setLoading(false);
+        }
+      } else if (msg.toLowerCase().includes('password') || msg.toLowerCase().includes('incorrect')) {
+        showFieldErr('passwordErr', 'password', msg);
+        setLoading(false);
+      } else if (msg.toLowerCase().includes('email') || msg.toLowerCase().includes('not found')) {
+        showFieldErr('emailErr', 'email', msg);
+        setLoading(false);
+      } else if (msg.toLowerCase().includes('banned')) {
+        showAlert('alertError', msg);
+        // keep button disabled — banned users cannot log in
+      } else {
+        showAlert('alertError', msg);
+        setLoading(false);
+      }
+    }
+  } catch(err) {
+    showAlert('alertError', 'Network error. Check your connection and try again.');
+    setLoading(false);
+  }
+});
+
+/* ── 2FA helpers ── */
+let _usingBackup = false;
+
+function show2FAStep() {
+  document.querySelector('.auth-wrap > .auth-card').style.display = 'none';
+  document.getElementById('twoFAWrap').style.display = 'block';
+  setTimeout(() => document.getElementById('tfa0').focus(), 80);
+}
+
+function cancelTwoFA() {
+  sessionStorage.removeItem('preAuthToken');
+  _usingBackup = false;
+  document.getElementById('twoFAWrap').style.display = 'none';
+  document.querySelector('.auth-wrap > .auth-card').style.display = 'block';
+  clearOtpDigits();
+  hideAlerts();
+  ['twoFAError','twoFAInfo'].forEach(id => document.getElementById(id).classList.remove('show'));
+}
+
+function clearOtpDigits() {
+  for (let i = 0; i < 6; i++) {
+    const el = document.getElementById('tfa' + i);
+    if (el) { el.value = ''; el.classList.remove('filled','shake'); }
+  }
+  const bi = document.getElementById('backupCodeInput');
+  if (bi) bi.value = '';
+}
+
+function toggleBackupMode() {
+  _usingBackup = !_usingBackup;
+  document.getElementById('twoFAOtpRow').style.display   = _usingBackup ? 'none' : 'flex';
+  document.getElementById('backupInputWrap').style.display = _usingBackup ? 'block' : 'none';
+  document.getElementById('useBackupBtn').textContent = _usingBackup
+    ? 'Use authenticator app instead' : 'Use a backup code instead';
+  document.getElementById('twoFASubtitle').textContent = _usingBackup
+    ? 'Enter one of your saved backup codes' : 'Enter the 6-digit code from your authenticator app';
+  if (_usingBackup) document.getElementById('backupCodeInput').focus();
+  else { clearOtpDigits(); document.getElementById('tfa0').focus(); }
+}
+
+// OTP digit navigation
+(function wireTFAInputs() {
+  const ids = ['tfa0','tfa1','tfa2','tfa3','tfa4','tfa5'];
+  ids.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', () => {
+      const v = el.value.replace(/\D/g, '');
+      el.value = v.slice(-1);
+      el.classList.toggle('filled', !!el.value);
+      if (el.value && i < 5) document.getElementById(ids[i + 1]).focus();
+      if (i === 5 && el.value) submitTwoFA();
+    });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !el.value && i > 0) {
+        document.getElementById(ids[i - 1]).focus();
+      }
+      if (e.key === 'Enter') submitTwoFA();
+    });
+    el.addEventListener('paste', e => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'').slice(0,6);
+      pasted.split('').forEach((ch, j) => {
+        const t = document.getElementById(ids[j]);
+        if (t) { t.value = ch; t.classList.add('filled'); }
+      });
+      const last = document.getElementById(ids[Math.min(pasted.length - 1, 5)]);
+      if (last) last.focus();
+      if (pasted.length === 6) submitTwoFA();
+    });
+  });
+})();
+
+async function submitTwoFA() {
+  const preAuthToken = sessionStorage.getItem('preAuthToken');
+  const errEl  = document.getElementById('twoFAError');
+  const errTxt = document.getElementById('twoFAErrorText');
+  const btn    = document.getElementById('verifyTFABtn');
+
+  errEl.classList.remove('show');
+  document.getElementById('twoFAInfo').classList.remove('show');
+
+  let code;
+  if (_usingBackup) {
+    code = (document.getElementById('backupCodeInput').value || '').trim();
+    if (!code) { errTxt.textContent = 'Enter your backup code'; errEl.classList.add('show'); return; }
+  } else {
+    const digits = ['tfa0','tfa1','tfa2','tfa3','tfa4','tfa5'].map(id => document.getElementById(id)?.value || '').join('');
+    if (digits.length < 6) {
+      errTxt.textContent = 'Enter all 6 digits';
+      errEl.classList.add('show');
+      ['tfa0','tfa1','tfa2','tfa3','tfa4','tfa5'].forEach(id => document.getElementById(id)?.classList.add('shake'));
+      setTimeout(() => ['tfa0','tfa1','tfa2','tfa3','tfa4','tfa5'].forEach(id => document.getElementById(id)?.classList.remove('shake')), 400);
+      return;
+    }
+    code = digits;
+  }
+
+  btn.disabled = true;
+  document.getElementById('verifyIcon').className  = 'fas fa-spinner fa-spin';
+  document.getElementById('verifyLabel').textContent = 'Verifying…';
+
+  try {
+    const r    = await fetch(API_URL + '/api/auth/2fa/verify-login', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ preAuthToken, code }),
+    });
+    const data = await r.json();
+
+    if (!data.success) {
+      errTxt.textContent = data.message || '2FA verification failed';
+      errEl.classList.add('show');
+      if (!_usingBackup) {
+        clearOtpDigits();
+        document.getElementById('tfa0').focus();
+      }
+      if (data.attemptsLeft !== undefined) {
+        document.getElementById('twoFAInfoText').textContent = `${data.attemptsLeft} attempt${data.attemptsLeft !== 1 ? 's' : ''} remaining`;
+        document.getElementById('twoFAInfo').classList.add('show');
+      }
+      btn.disabled = false;
+      document.getElementById('verifyIcon').className  = 'fas fa-shield-check';
+      document.getElementById('verifyLabel').textContent = 'Verify & Log In';
+      return;
+    }
+
+    sessionStorage.removeItem('preAuthToken');
+    localStorage.setItem('token',        data.token);
+    localStorage.setItem('refreshToken', data.refreshToken || '');
+    localStorage.setItem('user',         JSON.stringify(data.user));
+    document.getElementById('verifyIcon').className  = 'fas fa-check';
+    document.getElementById('verifyLabel').textContent = 'Success! Redirecting…';
+    setTimeout(() => routeAfterLogin(data.user), 900);
+
+  } catch(err) {
+    errTxt.textContent = 'Network error — please try again';
+    errEl.classList.add('show');
+    btn.disabled = false;
+    document.getElementById('verifyIcon').className  = 'fas fa-shield-check';
+    document.getElementById('verifyLabel').textContent = 'Verify & Log In';
+  }
+}
+
+/* ── Social login (placeholder) ── */
+function socialLogin(provider) {
+  showToast(`${provider.charAt(0).toUpperCase()+provider.slice(1)} login coming soon!`, 'info');
+}
+
+/* ── Helpers ── */
+function setLoading(on) {
+  loginBtn.disabled = on;
+  loginBtn.innerHTML = on
+    ? '<i class="fas fa-spinner fa-spin"></i> Logging in…'
+    : '<i class="fas fa-arrow-right-to-bracket"></i> Log In';
+}
+function hideAlerts() {
+  ['alertError','alertSuccess','alertInfo'].forEach(id => document.getElementById(id).classList.remove('show'));
+}
+function showAlert(id, msg='') {
+  const el = document.getElementById(id);
+  if (msg) { const span = el.querySelector('span'); if(span) span.textContent = msg; }
+  el.classList.add('show');
+}
+function showFieldErr(errId, inputId, msg) {
+  const e = document.getElementById(errId);
+  if (e) { e.textContent = msg; e.classList.add('show'); }
+  const i = document.getElementById(inputId);
+  if (i) i.classList.add('error');
+}
+function clearFieldErr(errId, inputId) {
+  const e = document.getElementById(errId); if(e) { e.classList.remove('show'); }
+  const i = document.getElementById(inputId); if(i) i.classList.remove('error');
+}
+function showToast(msg, type='info') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type; t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity .3s'; setTimeout(()=>t.remove(),300); }, 4000);
+}
+
+/* ── Auto focus ── */
+window.addEventListener('load', () => emailInput.focus());
+
+/* ── Back-forward cache ── */
+window.addEventListener('pageshow', e => {
+  if (e.persisted && localStorage.getItem('token')) {
+    routeAfterLogin(JSON.parse(localStorage.getItem('user') || '{}'));
+  }
+  // Clear stale 2FA pre-auth sessions on back-nav
+  if (e.persisted) sessionStorage.removeItem('preAuthToken');
+});
+</script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="uyehtech logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- Basic SEO -->
+    <title>UYEH TECH</title>
+    <link rel="icon" href="uyehtech logo.png" type="image/png">
+    <meta name="description" content="UYEH TECH offers web development, mobile apps, UI/UX design, and software solutions. Explore our portfolio and blog.">
+    <meta name="keywords" content="Web Development, Mobile Apps, UI/UX Design, Software Development, UYEH TECH">
+    <meta name="author" content="UYEH TECH">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="UYEH TECH Portfolio">
+    <meta property="og:description" content="Professional web, mobile, and software solutions. Check out our projects and blog.">
+    <meta property="og:image" content="https://uyehtech.com/og-image.jpg">
+    <meta property="og:url" content="https://uyehtech.com">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UYEH TECH",
+      "url": "https://uyehtech.com",
+      "logo": "https://uyehtech.com/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/uyehtech",
+        "https:/X.com/uyehtech",
+        "https://www.linkedin.com/company/uyehtech"
+      ]
+    }
+    </script>
+
+    <!-- Performance & Optimization -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Optional: Canonical URL for SEO -->
+    <link rel="canonical" href="https://uyehtech.com">
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background:black;
+            padding: 40px 20px;
+            line-height: 1.7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 80px;
+            color: white;
+            position: relative;
+        }
+
+        .faq-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .faq-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .faq-header .brand {
+            background: linear-gradient(45deg, #00ff88, #00cc66, #00ff88);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .faq-header p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .faq-question {
+            padding: 30px 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(0, 179, 89, 0.15) 0%, rgba(0, 255, 136, 0.05) 100%);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.15rem;
+            user-select: none;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00ff88, #00cc66);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-item:hover .faq-question::before,
+        .faq-item.active .faq-question::before {
+            opacity: 1;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(0, 179, 89, 0.25) 0%, rgba(0, 255, 136, 0.15) 100%);
+        }
+
+        .faq-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #00ff88;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 136, 0.05);
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: rgba(0, 255, 136, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+            background: rgba(0, 0, 0, 0.3);
+            color: #e0e0e0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 600px;
+            padding: 35px 40px;
+        }
+
+        .faq-answer p {
+            line-height: 1.9;
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer ul {
+            margin-top: 20px;
+            margin-left: 0;
+            list-style: none;
+        }
+
+        .faq-answer li {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            padding-left: 30px;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .faq-answer li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-size: 0.8rem;
+        }
+
+
+
+        .highlight {
+            color: #00ff88;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .faq-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .faq-header p {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            .faq-question {
+                padding: 25px 25px;
+                font-size: 1rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 25px 25px;
+            }
+
+            .faq-icon {
+                width: 35px;
+                height: 35px;
+                margin-left: 15px;
+            }
+        }
+        .hero {
+           
+            text-align: center;
+           
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 20px;
+            }
+
+      .hero p {
+            font-size: 1.1rem;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+       .hero button {
+            margin-top: 25px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+         }
+    .footer {
+        background-color: #0a0a0a;
+        border-top: 2px solid #333;
+        padding: 60px 40px 30px;
+    }
+    
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-section h3 {
+        color: #00ff88;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-section p {
+        color: #888;
+        line-height: 1.6;
+        font-size: 14px;
+    }
+    
+    .footer-links {
+        list-style: none;
+    }
+    
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+    
+    .footer-links a {
+        color: #888;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+        color: #00ff88;
+    }
+    
+    .footer-social {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .social-icon {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: #1a1a1a;
+        color: #00ff88;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        text-decoration: none;
+        border: 1px solid #333;
+        transition: all 0.3s;
+        font-size: 18px;
+    }
+    
+    .social-icon:hover {
+        background-color: #00ff88;
+        color: #0a0a0a;
+        transform: translateY(-3px);
+    }
+    
+    .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+    }
+    
+    .footer-bottom p {
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .footer-bottom a {
+        color: #00ff88;
+        text-decoration: none;
+    }
+    
+    .footer-bottom a:hover {
+        text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+        .footer-container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        
+        .footer-social {
+            justify-content: center;
+        }
+    } 
+
+        .footer::before {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            margin: 0 auto 20px;
+        }
+       .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #00ff88;
+            color: #0a0a0a;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 998;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #00cc6e;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+        }
+        /* Elegant scroll animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+        .faq-item:nth-child(6) { animation-delay: 0.6s; }
+        .faq-item:nth-child(7) { animation-delay: 0.7s; }
+        .faq-item:nth-child(8) { animation-delay: 0.8s; }
+        .faq-item:nth-child(9) { animation-delay: 0.9s; }
+        .faq-item:nth-child(10) { animation-delay: 1s; }
+    
+         button {
+            margin-top: 25px;
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+         }
+
+        button:hover {
+             background: #00cc6e;
+         }
+        .hero {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+  <div class="hero">
+    <a href="/index.html"><img src="uyehtech logo.png" width="50px" height="50px"></a>
+    </div>
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1><span class="brand">UYEH TECH </span></h1>
+            <p>Frequently Asked Questions</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What services does UYEH TECH provide?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>UYEH TECH specializes in comprehensive technology solutions including:</p>
+                <ul>
+                    <li><span class="highlight">Web Development:</span> Modern, responsive websites and web applications</li>
+                    <li><span class="highlight">Mobile Development:</span> Native and cross-platform mobile apps</li>
+                    <li><span class="highlight">UI/UX Design:</span> User-centered design solutions</li>
+                    <li><span class="highlight">Custom Software:</span> Tailored solutions for your business needs</li>
+                    <li><span class="highlight">Technical Consulting:</span> Expert guidance on technology strategy</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What technologies do you work with?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>We work with cutting-edge technologies to deliver robust solutions:</p>
+                <ul>
+                    <li><span class="highlight">Frontend:</span> React, Vue.js, Angular, HTML5, CSS3, JavaScript/TypeScript</li>
+                    <li><span class="highlight">Backend:</span> Node.js, Python, PHP, Java</li>
+                    <li><span class="highlight">Mobile:</span> React Native, Flutter, Swift, Kotlin</li>
+                    <li><span class="highlight">Databases:</span> MongoDB, PostgreSQL, MySQL, Firebase</li>
+                    <li><span class="highlight">Cloud:</span> AWS, Google Cloud, Azure</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How long does a typical project take?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Project timelines vary based on complexity and scope. Generally:</p>
+                <ul>
+                    <li><span class="highlight">Simple Website:</span> 2-4 weeks</li>
+                    <li><span class="highlight">Complex Web Application:</span> 2-4 months</li>
+                    <li><span class="highlight">Mobile App:</span> 3-6 months</li>
+                    <li><span class="highlight">Enterprise Solution:</span> 6+ months</li>
+                </ul>
+                <p>We provide detailed timelines during our initial consultation and keep you updated throughout the development process.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What is your development process?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>We follow an agile methodology to ensure quality and flexibility:</p>
+                <ul>
+                    <li><span class="highlight">Discovery:</span> Understanding your needs and goals</li>
+                    <li><span class="highlight">Planning:</span> Creating detailed project roadmap and specifications</li>
+                    <li><span class="highlight">Design:</span> Crafting wireframes and visual designs</li>
+                    <li><span class="highlight">Development:</span> Building with regular updates and iterations</li>
+                    <li><span class="highlight">Testing:</span> Rigorous quality assurance and bug fixes</li>
+                    <li><span class="highlight">Deployment:</span> Launch and post-launch support</li>
+                </ul>
+
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Do you offer maintenance and support after launch?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We offer comprehensive post-launch support including:</p>
+                <ul>
+                    <li>Bug fixes and technical support</li>
+                    <li>Regular updates and security patches</li>
+                    <li>Performance monitoring and optimization</li>
+                    <li>Feature enhancements and upgrades</li>
+                    <li>24/7 emergency support options available</li>
+                </ul>
+                <p>We offer flexible maintenance packages tailored to your needs and budget.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How much do your services cost?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Pricing varies based on project complexity, features, and timeline. We offer:</p>
+                <ul>
+                    <li><span class="highlight">Fixed Price Projects:</span> For well-defined scopes with clear deliverables</li>
+                    <li><span class="highlight">Hourly Rates:</span> For ongoing development and consulting</li>
+                    <li><span class="highlight">Retainer Packages:</span> For long-term partnerships</li>
+                </ul>
+                <p>Contact us for a free consultation and custom quote based on your specific requirements.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can you help with existing projects?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely! We can assist with:</p>
+                <ul>
+                    <li>Code review and optimization</li>
+                    <li>Bug fixes and troubleshooting</li>
+                    <li>Feature additions and enhancements</li>
+                    <li>Migration to modern technologies</li>
+                    <li>Performance improvements</li>
+                    <li>Security audits and improvements</li>
+                </ul>
+                <p>We're experienced in working with legacy code and can help bring your existing projects up to date.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do I get started with UYEH TECH?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Getting started is easy:</p>
+                <ul>
+                    <li><span class="highlight">Step 1:</span> Contact us through email, phone, or our contact form</li>
+                    <li><span class="highlight">Step 2:</span> Schedule a free consultation to discuss your project</li>
+                    <li><span class="highlight">Step 3:</span> Receive a detailed proposal and quote</li>
+                    <li><span class="highlight">Step 4:</span> Sign agreement and kick off the project</li>
+                </ul>
+                <p>We're excited to hear about your project and help bring your vision to life!</p>
+            </div>
+        </div>
+        </div>
+       
+       
+
+     <a href="#home" class="back-to-top" id="backToTop">↑</a>
+
+   <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+      
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    
+</script>
+
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

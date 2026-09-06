@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Become a Creator — UYEH TECH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <script src="/site-controller.js" defer></script>
+        <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+<style>
+:root {
+  --ink:        #060810;
+  --ink-2:      #0c0f18;
+  --ink-3:      #131825;
+  --ink-4:      #1a2133;
+  --ink-5:      #212840;
+  --line:       rgba(255,255,255,0.07);
+  --line-2:     rgba(255,255,255,0.13);
+  --muted:      #4a5568;
+  --dim:        #64748b;
+  --soft:       #94a3b8;
+  --bright:     #e2e8f0;
+  --white:      #f8fafc;
+  --green:      #00e87a;
+  --green-2:    #00c46a;
+  --green-glow: rgba(0,232,122,0.28);
+  --green-dim:  rgba(0,232,122,0.09);
+  --amber:      #f59e0b;
+  --amber-dim:  rgba(245,158,11,0.1);
+  --red:        #f87171;
+  --red-dim:    rgba(248,113,113,0.1);
+  --blue:       #60a5fa;
+  --blue-dim:   rgba(96,165,250,0.1);
+  --purple:     #a78bfa;
+  --purple-dim: rgba(167,139,250,0.1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--bright); overflow-x: hidden; }
+
+.bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.bg-grid {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,232,122,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,232,122,0.035) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+}
+.bg-glow-top {
+  position: absolute; top: -300px; left: 50%; transform: translateX(-50%);
+  width: 1000px; height: 600px;
+  background: radial-gradient(ellipse, rgba(0,232,122,0.09) 0%, transparent 70%);
+}
+
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 68px;
+  background: rgba(6,8,16,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; z-index: 100;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-mark {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--green-2), var(--green));
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.9rem;
+  color: var(--ink); box-shadow: 0 0 20px var(--green-glow);
+}
+.nav-brand-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--white); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.nav-link { font-size: 0.88rem; color: var(--soft); text-decoration: none; transition: color 0.2s; }
+.nav-link:hover { color: var(--white); }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 18px; border-radius: 9px;
+  font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem;
+  cursor: pointer; transition: all 0.2s; text-decoration: none;
+}
+.nav-btn-ghost { background: var(--ink-3); border: 1px solid var(--line); color: var(--bright); }
+.nav-btn-ghost:hover { background: var(--ink-4); border-color: var(--line-2); }
+.nav-btn-primary { background: linear-gradient(135deg, var(--green-2), var(--green)); border: none; color: var(--ink); }
+.nav-btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--green-glow); }
+
+.hero {
+  position: relative; z-index: 1;
+  padding: 140px 40px 100px; text-align: center;
+  max-width: 880px; margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px; background: var(--green-dim);
+  border: 1px solid rgba(0,232,122,0.22); border-radius: 20px;
+  font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--green);
+  margin-bottom: 28px; animation: fadeDown 0.6s ease both;
+}
+.badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:0.3;} }
+.hero-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.06;
+  letter-spacing: -2px; color: var(--white); margin-bottom: 24px;
+  animation: fadeDown 0.6s ease 0.1s both;
+}
+.hero-title .line-green { color: var(--green); }
+.hero-sub {
+  font-size: 1.1rem; color: var(--dim); line-height: 1.8;
+  max-width: 600px; margin: 0 auto 44px;
+  animation: fadeDown 0.6s ease 0.2s both;
+}
+@keyframes fadeDown { from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);} }
+.hero-cta-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; animation: fadeDown 0.6s ease 0.3s both; }
+.hero-btn-primary {
+  display: inline-flex; align-items: center; gap: 9px; padding: 16px 32px;
+  background: linear-gradient(135deg, var(--green-2), var(--green));
+  border: none; border-radius: 12px; color: var(--ink);
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem;
+  cursor: pointer; transition: all 0.25s; text-decoration: none;
+}
+.hero-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px var(--green-glow); }
+.hero-btn-ghost {
+  display: inline-flex; align-items: center; gap: 9px; padding: 16px 32px;
+  background: var(--ink-3); border: 1px solid var(--line-2); border-radius: 12px; color: var(--bright);
+  font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem;
+  cursor: pointer; transition: all 0.2s; text-decoration: none;
+}
+.hero-btn-ghost:hover { background: var(--ink-4); }
+
+.perks-row {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto 100px; padding: 0 40px;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 16px;
+}
+.perk-card {
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px 20px; text-align: center;
+  transition: all 0.3s; animation: fadeUp 0.6s ease both;
+}
+.perk-card:nth-child(1){animation-delay:0.1s} .perk-card:nth-child(2){animation-delay:0.2s}
+.perk-card:nth-child(3){animation-delay:0.3s} .perk-card:nth-child(4){animation-delay:0.4s}
+.perk-card:hover { transform: translateY(-4px); border-color: var(--line-2); box-shadow: 0 16px 50px rgba(0,0,0,0.3); }
+.perk-icon { font-size: 2.2rem; margin-bottom: 14px; display: block; }
+.perk-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--green); margin-bottom: 4px; line-height: 1; }
+.perk-label { font-size: 0.83rem; color: var(--soft); line-height: 1.5; }
+
+.section-heading { text-align: center; margin-bottom: 48px; position: relative; z-index: 1; padding: 0 40px; }
+.section-eyebrow { font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+.section-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.4rem; color: var(--white); letter-spacing: -0.5px; margin-bottom: 12px; }
+.section-sub { font-size: 0.95rem; color: var(--dim); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+.how-wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto 100px; padding: 0 40px; }
+.steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; position: relative; }
+.steps-grid::before {
+  content:''; position:absolute; top:36px;
+  left:calc(16.66% + 36px); right:calc(16.66% + 36px);
+  height:1px; border-top:1px dashed rgba(0,232,122,0.3);
+}
+.step-card {
+  background: var(--ink-2); border: 1px solid var(--line);
+  border-radius: 16px; padding: 28px 22px 24px; text-align: center; position: relative; transition: all 0.25s;
+}
+.step-card:hover { border-color: rgba(0,232,122,0.25); transform: translateY(-3px); }
+.step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--ink-3); border: 2px solid rgba(0,232,122,0.3);
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+  color: var(--green); margin: 0 auto 16px; position: relative; z-index: 1;
+}
+.step-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+.step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 8px; }
+.step-desc { font-size: 0.84rem; color: var(--dim); line-height: 1.65; }
+
+.form-section { position: relative; z-index: 1; max-width: 880px; margin: 0 auto 80px; padding: 0 40px; }
+.form-wrapper { background: var(--ink-2); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+.form-wrapper-header {
+  padding: 32px 40px; background: linear-gradient(135deg, var(--ink-3), var(--ink-4));
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.form-wrapper-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--white); }
+.form-wrapper-sub { font-size: 0.86rem; color: var(--dim); margin-top: 4px; }
+
+.form-progress { display: flex; align-items: center; gap: 8px; }
+.progress-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.progress-step-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--ink-4); border: 2px solid var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600;
+  color: var(--muted); transition: all 0.3s;
+}
+.progress-step.active .progress-step-dot { background: var(--green-dim); border-color: var(--green); color: var(--green); }
+.progress-step.done   .progress-step-dot { background: var(--green); border-color: var(--green); color: var(--ink); }
+.progress-step-label { font-size: 0.62rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+.progress-step.active .progress-step-label { color: var(--green); }
+.progress-step.done   .progress-step-label { color: var(--soft); }
+.progress-connector { width: 40px; height: 1px; background: var(--line-2); margin-bottom: 16px; transition: background 0.3s; }
+.progress-connector.done { background: var(--green); }
+
+.form-body { padding: 40px; }
+.step-panel { display: none; }
+.step-panel.active { display: block; animation: stepFadeIn 0.3s ease; }
+@keyframes stepFadeIn { from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);} }
+
+.otp-box {
+  display: none; background: var(--ink-3); border: 1px solid rgba(0,232,122,0.2);
+  border-radius: 12px; padding: 22px; margin-top: 16px;
+}
+.otp-box.show { display: block; animation: stepFadeIn 0.3s ease; }
+.otp-input-row { display: flex; gap: 10px; align-items: center; margin-top: 12px; }
+.otp-input {
+  flex: 1; padding: 12px 14px; background: var(--ink-4); border: 1px solid var(--line-2);
+  border-radius: 10px; color: var(--bright); font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem; letter-spacing: 6px; text-align: center; outline: none; transition: all 0.2s;
+}
+.otp-input:focus { border-color: rgba(0,232,122,0.5); box-shadow: 0 0 0 3px rgba(0,232,122,0.07); }
+.otp-input.error { border-color: rgba(248,113,113,0.45); }
+.otp-btn { padding: 12px 18px; border-radius: 10px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }
+.otp-btn-send { background: var(--green-dim); border: 1px solid rgba(0,232,122,0.3); color: var(--green); }
+.otp-btn-send:hover { background: rgba(0,232,122,0.15); }
+.otp-btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+.otp-btn-verify { background: linear-gradient(135deg, var(--green-2), var(--green)); color: var(--ink); }
+.otp-btn-verify:hover { transform: translateY(-1px); box-shadow: 0 4px 14px var(--green-glow); }
+.otp-verified-badge {
+  display: none; align-items: center; gap: 8px; margin-top: 10px;
+  padding: 10px 14px; background: var(--green-dim); border: 1px solid rgba(0,232,122,0.25);
+  border-radius: 8px; font-size: 0.83rem; color: var(--green);
+}
+.otp-verified-badge.show { display: flex; }
+.otp-countdown { font-size: 0.72rem; color: var(--muted); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
+
+.fgroup { margin-bottom: 22px; }
+.flabel { display: block; font-size: 0.74rem; font-family: 'JetBrains Mono', monospace; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+.flabel .req { color: var(--red); margin-left: 2px; }
+.flabel .opt { color: var(--muted); font-size: 0.65rem; text-transform: none; margin-left: 4px; }
+.fwrap { position: relative; }
+.ficon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.85rem; pointer-events: none; }
+.finput, .fselect, .ftextarea {
+  width: 100%; padding: 12px 14px 12px 42px;
+  background: var(--ink-3); border: 1px solid var(--line); border-radius: 10px; color: var(--bright);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: all 0.2s;
+}
+.finput.no-icon, .fselect.no-icon { padding-left: 14px; }
+.ftextarea { padding: 13px 14px; resize: vertical; min-height: 110px; line-height: 1.65; }
+.finput:focus, .fselect:focus, .ftextarea:focus { border-color: rgba(0,232,122,0.5); background: var(--ink-4); box-shadow: 0 0 0 3px rgba(0,232,122,0.07); }
+.finput::placeholder, .ftextarea::placeholder { color: var(--muted); }
+.finput.error, .fselect.error, .ftextarea.error { border-color: rgba(248,113,113,0.45); background: rgba(248,113,113,0.03); }
+.ferror { display: none; font-size: 0.73rem; color: var(--red); margin-top: 5px; font-family: 'JetBrains Mono', monospace; }
+.ferror.show { display: block; }
+.fhint { font-size: 0.74rem; color: var(--muted); margin-top: 5px; line-height: 1.5; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+.type-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 6px; }
+.type-card { background: var(--ink-3); border: 1px solid var(--line); border-radius: 12px; padding: 18px 14px; text-align: center; cursor: pointer; transition: all 0.2s; user-select: none; }
+.type-card:hover { border-color: rgba(0,232,122,0.3); background: var(--ink-4); }
+.type-card.selected { border-color: rgba(0,232,122,0.5); background: var(--green-dim); }
+.type-card-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+.type-card-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--white); margin-bottom: 4px; }
+.type-card-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+.type-card.selected .type-card-name { color: var(--green); }
+
+.cat-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 6px; }
+.cat-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; background: var(--ink-3); border: 1px solid var(--line); border-radius: 20px; font-size: 0.82rem; color: var(--soft); cursor: pointer; transition: all 0.2s; user-select: none; }
+.cat-chip:hover { border-color: rgba(0,232,122,0.3); color: var(--bright); }
+.cat-chip.selected { background: var(--green-dim); border-color: rgba(0,232,122,0.4); color: var(--green); }
+.cat-chip input { display: none; }
+
+.char-counter { display: flex; justify-content: flex-end; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); margin-top: 4px; transition: color 0.2s; }
+.char-counter.warn { color: var(--amber); }
+.char-counter.over { color: var(--red); }
+
+.step-nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 40px; border-top: 1px solid var(--line); background: var(--ink-3); }
+.step-nav-info { font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--muted); }
+.step-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; border: none; }
+.step-btn-back { background: var(--ink-4); border: 1px solid var(--line-2); color: var(--soft); }
+.step-btn-back:hover { background: var(--ink-5); color: var(--white); }
+.step-btn-next { background: linear-gradient(135deg, var(--green-2), var(--green)); color: var(--ink); }
+.step-btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--green-glow); }
+.step-btn-submit { background: linear-gradient(135deg, var(--green-2), var(--green)); color: var(--ink); padding: 13px 28px; }
+.step-btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--green-glow); }
+.step-btn-submit.loading { pointer-events:none; opacity:0.75; }
+.step-btn-spinner { width:16px;height:16px;border:2px solid rgba(6,8,16,0.3);border-top-color:var(--ink);border-radius:50%;animation:spin 0.7s linear infinite;display:none; }
+.step-btn-submit.loading .step-btn-spinner { display: block; }
+.step-btn-submit.loading .submit-text { display: none; }
+@keyframes spin { to{transform:rotate(360deg);} }
+
+.apply-alert { padding: 13px 16px; border-radius: 9px; font-size: 0.83rem; margin-bottom: 22px; display: none; align-items: flex-start; gap: 10px; line-height: 1.5; }
+.apply-alert.show { display: flex; }
+.apply-alert.error { background: var(--red-dim); border: 1px solid rgba(248,113,113,0.22); color: #fca5a5; }
+.apply-alert.success { background: var(--green-dim); border: 1px solid rgba(0,232,122,0.22); color: #6ee7b7; }
+.apply-alert.info { background: var(--blue-dim); border: 1px solid rgba(96,165,250,0.22); color: #93c5fd; }
+
+.success-state { display: none; text-align: center; padding: 60px 40px; animation: fadeUp 0.5s ease; }
+.success-state.show { display: block; }
+.success-icon-wrap {
+  width: 90px; height: 90px; border-radius: 50%; background: var(--green-dim);
+  border: 2px solid rgba(0,232,122,0.3); display: flex; align-items: center; justify-content: center;
+  font-size: 2.8rem; margin: 0 auto 24px;
+  animation: successPop 0.5s cubic-bezier(.34,1.56,.64,1) 0.2s both;
+}
+@keyframes successPop { from{opacity:0;transform:scale(0.5);}to{opacity:1;transform:scale(1);} }
+.success-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--white); margin-bottom: 12px; letter-spacing: -0.3px; }
+.success-sub { font-size: 0.95rem; color: var(--dim); line-height: 1.75; max-width: 480px; margin: 0 auto 28px; }
+.success-timeline { background: var(--ink-3); border: 1px solid var(--line); border-radius: 14px; padding: 22px; max-width: 400px; margin: 0 auto 28px; text-align: left; }
+.timeline-item { display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.timeline-item:last-child { border-bottom: none; }
+.timeline-dot { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; margin-top: 1px; }
+.timeline-body { flex:1; }
+.timeline-label { font-size: 0.87rem; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+.timeline-desc  { font-size: 0.78rem; color: var(--muted); }
+.success-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* ════════════════════════════════════════════════════════
+   CUSTOM CHECKBOX — FIXED
+   
+   THE BUG in the old code:
+   The <label> element WRAPPED the hidden <input type="checkbox">.
+   When you clicked anything inside that label (including the
+   custom div), the browser fired two toggles:
+     1. The div's onclick="toggleCheck(...)" flipped the input.
+     2. The enclosing <label> also fired, flipping it BACK.
+   Net result: zero change. Box appeared stuck.
+
+   THE FIX:
+   - Move the real <input> OUTSIDE the <label>.
+   - Link them with matching id / for attributes.
+   - Remove onclick from the visual div entirely.
+   - Use a `change` event listener in JS to mirror the
+     checkbox state onto the visual div (.checked class).
+   - The label now handles one clean toggle per click.
+   ════════════════════════════════════════════════════════ */
+
+/* Real checkbox — hidden but accessible & functional */
+.agree-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Clickable row — the <label> element */
+.agree-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Visual box — pointer-events none so only the label fires */
+.custom-checkbox-big {
+  width: 20px;
+  min-width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--muted);
+  border-radius: 5px;
+  background: var(--ink-3);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  pointer-events: none;
+}
+
+/* Checkmark via pseudo-element */
+.custom-checkbox-big::after {
+  content: '';
+  display: none;
+  width: 5px;
+  height: 9px;
+  border: 2px solid var(--ink);
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+/* Checked state applied by JS */
+.custom-checkbox-big.checked {
+  background: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(0,232,122,0.15);
+}
+.custom-checkbox-big.checked::after {
+  display: block;
+}
+
+/* Hover feedback on the row */
+.agree-row:hover .custom-checkbox-big:not(.checked) {
+  border-color: rgba(0,232,122,0.5);
+}
+
+.agree-text {
+  font-size: 0.85rem;
+  color: var(--soft);
+  line-height: 1.6;
+  flex: 1;
+}
+.agree-text a { color: var(--green); text-decoration: none; }
+.agree-text a:hover { text-decoration: underline; }
+
+.faq-wrap { position: relative; z-index: 1; max-width: 700px; margin: 0 auto 100px; padding: 0 40px; }
+.faq-item { background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s; }
+.faq-item.open { border-color: rgba(0,232,122,0.25); }
+.faq-q { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 22px; cursor: pointer; font-weight: 600; font-size: 0.93rem; color: var(--bright); transition: color 0.2s; user-select: none; }
+.faq-q:hover { color: var(--white); }
+.faq-item.open .faq-q { color: var(--green); }
+.faq-chevron { flex-shrink: 0; transition: transform 0.3s; color: var(--muted); font-size: 0.75rem; }
+.faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--green); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+.faq-item.open .faq-a { max-height: 300px; }
+.faq-a-inner { padding: 16px 22px 18px; font-size: 0.87rem; color: var(--dim); line-height: 1.75; border-top: 1px solid var(--line); }
+
+@media(max-width:900px) {
+  .perks-row { grid-template-columns: 1fr 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .steps-grid::before { display: none; }
+  .form-body, .step-nav, .form-wrapper-header { padding: 28px 24px; }
+  .type-cards { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:600px) {
+  .nav { padding: 0 20px; }
+  .hero { padding: 120px 20px 70px; }
+  .hero-title { font-size: 2.4rem; }
+  .perks-row { grid-template-columns: 1fr; padding: 0 20px; }
+  .how-wrap, .form-section, .faq-wrap { padding: 0 20px; }
+  .frow { grid-template-columns: 1fr; }
+  .type-cards { grid-template-columns: 1fr; }
+  .form-progress { display: none; }
+  .nav-actions .nav-link { display: none; }
+  .otp-input-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="bg-grid"></div>
+  <div class="bg-glow-top"></div>
+</div>
+
+<nav class="nav">
+  <a href="/index.html" class="nav-brand">
+    <div class="nav-mark">UT</div>
+    <span class="nav-brand-text">UYEH TECH</span>
+  </a>
+  <div class="nav-actions">
+    <a href="/marketplace/" class="nav-link">Store</a>
+    <a href="/marketplace/creator-login" class="nav-btn nav-btn-ghost">Sign In</a>
+    </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span class="badge-dot"></span>Creator Program — Now Open</div>
+  <h1 class="hero-title">Turn your skills<br><span class="line-green">into income.</span></h1>
+  <p class="hero-sub">Join UYEH TECH's creator marketplace. Upload digital products, reach thousands of buyers, and keep the majority of every sale — completely free to apply.</p>
+  <div class="hero-cta-row">
+    <a href="#apply" class="hero-btn-primary"><i class="fas fa-store"></i> Apply Now — It's Free</a>
+    <a href="#how-it-works" class="hero-btn-ghost"><i class="fas fa-play"></i> How It Works</a>
+  </div>
+</section>
+
+<div class="perks-row">
+  <div class="perk-card"><span class="perk-icon">💰</span><div class="perk-val">80%</div><div class="perk-label">Revenue share — you keep the majority of every sale</div></div>
+  <div class="perk-card"><span class="perk-icon">⚡</span><div class="perk-val">24h</div><div class="perk-label">Average product review and approval time</div></div>
+  <div class="perk-card"><span class="perk-icon">⛏️</span><div class="perk-val">Free</div><div class="perk-label">No upfront fees — only pay when you earn</div></div>
+  <div class="perk-card"><span class="perk-icon">🔗</span><div class="perk-val">+10%</div><div class="perk-label">Bonus reach through built-in affiliate network</div></div>
+</div>
+
+<section id="how-it-works">
+  <div class="section-heading">
+    <div class="section-eyebrow">Process</div>
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">From application to first sale in as little as 48 hours.</p>
+  </div>
+  <div class="how-wrap">
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><span class="step-icon">📋</span><div class="step-title">Apply & Get Approved</div><div class="step-desc">Fill out a quick application. Our team reviews within 24 hours and sends you an approval email.</div></div>
+      <div class="step-card"><div class="step-num">02</div><span class="step-icon">📦</span><div class="step-title">Upload Your Products</div><div class="step-desc">Submit digital products via your Creator Studio. Admin reviews for quality then sets the final price.</div></div>
+      <div class="step-card"><div class="step-num">03</div><span class="step-icon">💸</span><div class="step-title">Earn & Get Paid</div><div class="step-desc">Every sale auto-credits your wallet. Request payouts via bank, PayPal, or crypto when you hit $50.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="section-heading">
+    <div class="section-eyebrow">Application</div>
+    <h2 class="section-title">Start your application</h2>
+    <p class="section-sub">Takes about 3 minutes. All fields marked * are required.</p>
+  </div>
+
+  <div class="form-section">
+    <div class="form-wrapper">
+
+      <div class="form-wrapper-header" id="formHeader">
+        <div>
+          <div class="form-wrapper-title">Creator Application</div>
+          <div class="form-wrapper-sub">Step <span id="stepNum">1</span> of 3</div>
+        </div>
+        <div class="form-progress" id="formProgress">
+          <div class="progress-step active" id="ps1"><div class="progress-step-dot">1</div><div class="progress-step-label">Account</div></div>
+          <div class="progress-connector" id="pc1"></div>
+          <div class="progress-step" id="ps2"><div class="progress-step-dot">2</div><div class="progress-step-label">Store</div></div>
+          <div class="progress-connector" id="pc2"></div>
+          <div class="progress-step" id="ps3"><div class="progress-step-dot">3</div><div class="progress-step-label">Review</div></div>
+        </div>
+      </div>
+
+      <div class="form-body" id="formBody">
+        <div class="apply-alert" id="applyAlert"><i class="fas fa-circle-exclamation"></i><span id="applyAlertMsg"></span></div>
+
+        <!-- STEP 1 -->
+        <div class="step-panel active" id="panel1">
+          <div style="margin-bottom:28px;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:6px;">Account Information</div>
+            <div style="font-size:0.85rem;color:var(--dim);">Already have an account? <a href="/marketplace/creator-login.html?redirect=/marketplace/creator-apply" style="color:var(--green);text-decoration:none;font-weight:600;">Sign in here</a> — we'll skip this step.</div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label class="flabel" for="appFullName">Full Name <span class="req">*</span></label>
+              <div class="fwrap"><i class="fas fa-user ficon"></i><input type="text" class="finput" id="appFullName" placeholder="John Doe" autocomplete="name"></div>
+              <div class="ferror" id="errFullName">Please enter your full name.</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="appEmail">Email Address <span class="req">*</span></label>
+              <div class="fwrap"><i class="fas fa-envelope ficon"></i><input type="email" class="finput" id="appEmail" placeholder="you@example.com" autocomplete="email" oninput="onEmailChange()"></div>
+              <div class="ferror" id="errEmail">Enter a valid email address.</div>
+            </div>
+          </div>
+          <div class="otp-box" id="otpBox">
+            <div style="font-size:0.83rem;font-weight:600;color:var(--white);margin-bottom:4px;"><i class="fas fa-shield-halved" style="color:var(--green);margin-right:6px;"></i>Verify your email address</div>
+            <div style="font-size:0.78rem;color:var(--dim);line-height:1.5;">We'll send a 6-digit code to confirm your email before creating your account.</div>
+            <div class="otp-input-row">
+              <input type="text" class="otp-input" id="otpInput" placeholder="— — — — — —" maxlength="6" inputmode="numeric">
+              <button class="otp-btn otp-btn-send" id="btnSendOtp" onclick="sendOtp()"><i class="fas fa-paper-plane"></i> Send Code</button>
+              <button class="otp-btn otp-btn-verify" id="btnVerifyOtp" onclick="verifyOtp()" style="display:none;"><i class="fas fa-check"></i> Verify</button>
+            </div>
+            <div class="otp-countdown" id="otpCountdown"></div>
+            <div class="otp-verified-badge" id="otpVerifiedBadge"><i class="fas fa-circle-check"></i> Email verified successfully!</div>
+          </div>
+          <div class="ferror" id="errOtp" style="margin-top:6px;"></div>
+          <div class="frow" style="margin-top:18px;">
+            <div class="fgroup">
+              <label class="flabel" for="appPassword">Password <span class="req">*</span></label>
+              <div class="fwrap">
+                <i class="fas fa-lock ficon"></i>
+                <input type="password" class="finput" id="appPassword" placeholder="Minimum 8 characters" autocomplete="new-password">
+                <button type="button" onclick="togglePw('appPassword',this)" style="position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.85rem;padding:4px;"><i class="fas fa-eye"></i></button>
+              </div>
+              <div class="ferror" id="errPassword">Password must be at least 8 characters.</div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="appConfirmPw">Confirm Password <span class="req">*</span></label>
+              <div class="fwrap"><i class="fas fa-lock ficon"></i><input type="password" class="finput" id="appConfirmPw" placeholder="Repeat your password" autocomplete="new-password"></div>
+              <div class="ferror" id="errConfirmPw">Passwords do not match.</div>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label class="flabel" for="appPhone">Phone Number <span class="opt">(optional)</span></label>
+              <div class="fwrap"><i class="fas fa-phone ficon"></i><input type="tel" class="finput" id="appPhone" placeholder="+234 800 000 0000"></div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="appCountry">Country <span class="req">*</span></label>
+              <div class="fwrap">
+                <i class="fas fa-globe ficon"></i>
+                <input type="text" class="finput" id="appCountry" placeholder="Nigeria" list="countryList">
+                <datalist id="countryList">
+                  <option>Nigeria</option><option>Ghana</option><option>Kenya</option><option>South Africa</option>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option>
+                  <option>Germany</option><option>France</option><option>India</option>
+                </datalist>
+              </div>
+              <div class="ferror" id="errCountry">Please enter your country.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="step-panel" id="panel2">
+          <div style="margin-bottom:28px;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:6px;">Store Setup</div>
+            <div style="font-size:0.85rem;color:var(--dim);">Tell us about your store and what you plan to sell. This will be visible to buyers.</div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="appStoreName">Store Name <span class="req">*</span></label>
+            <div class="fwrap"><i class="fas fa-store ficon"></i><input type="text" class="finput" id="appStoreName" placeholder="e.g. PixelForge Studio" maxlength="50"></div>
+            <div style="display:flex;justify-content:space-between;margin-top:4px;">
+              <div class="ferror" id="errStoreName"></div>
+              <div class="fhint" id="storeSlugPreview" style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:0.72rem;">yourstore.uyehtech.com</div>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Business Type <span class="req">*</span></label>
+            <div class="type-cards" id="businessTypeCards">
+              <div class="type-card selected" onclick="selectType(this,'individual')"><span class="type-card-icon">🧑‍💻</span><div class="type-card-name">Individual</div><div class="type-card-desc">Solo creator / freelancer</div></div>
+              <div class="type-card" onclick="selectType(this,'freelancer')"><span class="type-card-icon">✏️</span><div class="type-card-name">Freelancer</div><div class="type-card-desc">Part-time digital seller</div></div>
+              <div class="type-card" onclick="selectType(this,'company')"><span class="type-card-icon">🏢</span><div class="type-card-name">Company</div><div class="type-card-desc">Registered business entity</div></div>
+            </div>
+            <input type="hidden" id="appBusinessType" value="individual">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">What will you sell? <span class="req">*</span></label>
+            <div class="cat-chips" id="catChips">
+              <label class="cat-chip selected"><input type="checkbox" value="Templates" checked onchange="updateCats()">📐 Templates</label>
+              <label class="cat-chip"><input type="checkbox" value="Components" onchange="updateCats()">🧩 Components</label>
+              <label class="cat-chip"><input type="checkbox" value="Courses" onchange="updateCats()">📚 Courses</label>
+              <label class="cat-chip"><input type="checkbox" value="Tools" onchange="updateCats()">🔧 Tools</label>
+              <label class="cat-chip"><input type="checkbox" value="Assets" onchange="updateCats()">🖼️ Assets</label>
+              <label class="cat-chip"><input type="checkbox" value="Scripts" onchange="updateCats()">⚙️ Scripts</label>
+              <label class="cat-chip"><input type="checkbox" value="UI Kits" onchange="updateCats()">🎨 UI Kits</label>
+              <label class="cat-chip"><input type="checkbox" value="Other" onchange="updateCats()">📦 Other</label>
+            </div>
+            <div class="ferror" id="errCats">Select at least one product category.</div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel" for="appStoreDesc">Store Description <span class="req">*</span></label>
+            <textarea class="ftextarea" id="appStoreDesc" placeholder="Tell buyers what your store is about, your expertise, and the kind of products you'll be creating..." maxlength="500"></textarea>
+            <div class="char-counter" id="descCounter">0 / 500</div>
+            <div class="ferror" id="errStoreDesc">Please describe your store (minimum 50 characters).</div>
+          </div>
+          <div class="frow">
+            <div class="fgroup">
+              <label class="flabel" for="appWebsite">Website <span class="opt">(optional)</span></label>
+              <div class="fwrap"><i class="fas fa-globe ficon"></i><input type="url" class="finput" id="appWebsite" placeholder="https://yourwebsite.com"></div>
+            </div>
+            <div class="fgroup">
+              <label class="flabel" for="appTwitter">Twitter / X <span class="opt">(optional)</span></label>
+              <div class="fwrap"><i class="fab fa-twitter ficon"></i><input type="url" class="finput" id="appTwitter" placeholder="https://x.com/yourhandle"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="step-panel" id="panel3">
+          <div style="margin-bottom:28px;">
+            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white);margin-bottom:6px;">Review & Submit</div>
+            <div style="font-size:0.85rem;color:var(--dim);">Almost done! Tell us your motivation and agree to our terms.</div>
+          </div>
+          <div style="background:var(--ink-3);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:24px;">
+            <div style="font-size:0.72rem;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px;">Application Summary</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <div><div style="font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:3px;">Name</div><div style="font-size:0.9rem;font-weight:600;color:var(--white);" id="sumName">—</div></div>
+              <div><div style="font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:3px;">Email</div><div style="font-size:0.9rem;font-weight:600;color:var(--white);" id="sumEmail">—</div></div>
+              <div><div style="font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:3px;">Store Name</div><div style="font-size:0.9rem;font-weight:600;color:var(--green);" id="sumStore">—</div></div>
+              <div><div style="font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:3px;">Business Type</div><div style="font-size:0.9rem;font-weight:600;color:var(--white);text-transform:capitalize;" id="sumType">—</div></div>
+              <div style="grid-column:span 2;"><div style="font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:3px;">Categories</div><div style="font-size:0.86rem;color:var(--white);" id="sumCats">—</div></div>
+            </div>
+          </div>
+
+          <div class="fgroup">
+            <label class="flabel" for="appMotivation">Why do you want to become a creator? <span class="req">*</span></label>
+            <textarea class="ftextarea" id="appMotivation" placeholder="Tell us about yourself: What kind of products will you create? What's your experience? Why do you want to join UYEH TECH's creator program?..." maxlength="800" rows="5"></textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+              <div class="ferror" id="errMotivation">Please share your motivation (minimum 80 characters).</div>
+              <div class="char-counter" id="motivCounter" style="margin-top:0;">0 / 800</div>
+            </div>
+          </div>
+
+          <!-- ══ CHECKBOXES — FIXED ══
+               Real <input> is OUTSIDE the <label> (linked via id/for).
+               Visual .custom-checkbox-big has pointer-events:none.
+               JS `change` event on the input syncs the .checked class.
+               One click = one toggle. No more double-toggle bug.
+          -->
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:8px;">
+
+            <!-- Terms -->
+            <input type="checkbox" id="agreeTerms" class="agree-input">
+            <label for="agreeTerms" class="agree-row">
+              <div class="custom-checkbox-big" id="cbTerms"></div>
+              <div class="agree-text">
+                I agree to the <a href="/terms-of-service" target="_blank">Terms of Service</a> and
+                <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+                I understand that platform commission is 20% of each sale.
+              </div>
+            </label>
+
+            <!-- Quality -->
+            <input type="checkbox" id="agreeQuality" class="agree-input">
+            <label for="agreeQuality" class="agree-row">
+              <div class="custom-checkbox-big" id="cbQuality"></div>
+              <div class="agree-text">
+                I agree to only submit original, high-quality digital products that I own the rights to.
+                No plagiarism, no duplicated work.
+              </div>
+            </label>
+
+            <!-- Comms -->
+            <input type="checkbox" id="agreeComms" class="agree-input">
+            <label for="agreeComms" class="agree-row">
+              <div class="custom-checkbox-big" id="cbComms"></div>
+              <div class="agree-text">
+                I agree to receive platform updates and notifications about my creator account via email.
+              </div>
+            </label>
+
+          </div>
+          <div class="ferror" id="errTerms" style="margin-top:4px;">Please agree to all required terms before submitting.</div>
+        </div>
+
+      </div><!-- /form-body -->
+
+      <!-- SUCCESS -->
+      <div class="success-state" id="successState">
+        <div class="success-icon-wrap">🎉</div>
+        <h3 class="success-title">Application Submitted!</h3>
+        <p class="success-sub">Your application is now under review. Our team will get back to you within <strong style="color:var(--white);">24–48 hours</strong>.</p>
+        <div class="success-timeline">
+          <div class="timeline-item"><div class="timeline-dot" style="background:var(--green-dim);border:1px solid rgba(0,232,122,0.3);color:var(--green);">✅</div><div class="timeline-body"><div class="timeline-label">Application Received</div><div class="timeline-desc">Now — your application is in our queue.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" style="background:var(--amber-dim);border:1px solid rgba(245,158,11,0.3);color:var(--amber);">⏳</div><div class="timeline-body"><div class="timeline-label">Team Review</div><div class="timeline-desc">Within 24 hours — we review your application.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" style="background:var(--blue-dim);border:1px solid rgba(96,165,250,0.3);color:var(--blue);">📧</div><div class="timeline-body"><div class="timeline-label">Decision Email</div><div class="timeline-desc">You'll receive an approval or feedback email.</div></div></div>
+          <div class="timeline-item" style="border:none;"><div class="timeline-dot" style="background:var(--purple-dim);border:1px solid rgba(167,139,250,0.3);color:var(--purple);">🚀</div><div class="timeline-body"><div class="timeline-label">Go Live</div><div class="timeline-desc">If approved, log in and start uploading products!</div></div></div>
+        </div>
+        <div class="success-actions">
+          <a href="/marketplace/creator-login" class="hero-btn-primary" style="font-size:0.92rem;padding:12px 24px;"><i class="fas fa-arrow-right-to-bracket"></i> Sign In to Dashboard</a>
+          <a href="/marketplace/" class="hero-btn-ghost" style="font-size:0.92rem;padding:12px 24px;"><i class="fas fa-store"></i> Browse Store</a>
+        </div>
+      </div>
+
+      <div class="step-nav" id="stepNav">
+        <div class="step-nav-info" id="stepNavInfo">Step 1 of 3 — Account Information</div>
+        <div style="display:flex;gap:10px;">
+          <button class="step-btn step-btn-back" id="btnBack" onclick="prevStep()" style="display:none;"><i class="fas fa-arrow-left"></i> Back</button>
+          <button class="step-btn step-btn-next" id="btnNext" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+          <button class="step-btn step-btn-submit" id="btnSubmit" style="display:none;" onclick="submitApplication()">
+            <span class="submit-text"><i class="fas fa-paper-plane"></i> Submit Application</span>
+            <div class="step-btn-spinner"></div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-heading">
+    <div class="section-eyebrow">Questions</div>
+    <h2 class="section-title">Frequently asked</h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">Who can become a creator on UYEH TECH?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">Anyone can apply — freelancers, developers, designers, educators, and business owners. You need to be 18+ and agree to our terms.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does approval take?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">We review all applications within 24–48 hours. You'll receive an email with the outcome.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the revenue split?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">You keep 80% of every sale. UYEH TECH takes 20% as a platform commission. If an affiliate referred the sale, their cut (10%) comes from your 80%.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What types of products can I sell?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">Digital products only — templates, UI components, code snippets, courses, e-books, design assets, tools, and more.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">When and how do I get paid?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">Once your balance reaches $50, you can request a withdrawal via bank transfer, PayPal, Flutterwave, or crypto. Processing takes 3–5 business days.</div></div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I apply if I already have an account?<i class="fas fa-chevron-down faq-chevron"></i></div><div class="faq-a"><div class="faq-a-inner">Yes! Sign in first then revisit this page. Your existing account will be upgraded to a creator account upon approval.</div></div></div>
+  </div>
+</section>
+
+<script>
+const API_URL = 'http://localhost:3000';
+
+let currentStep = 1, selectedType = 'individual', selectedCats = ['Templates'];
+let emailVerified = false, otpCountdownTimer = null, isLoggedIn = false, authToken = null;
+const stepLabels = ['Account Information', 'Store Setup', 'Review & Submit'];
+
+// ════════════════════════════════════════════════════════
+// CHECKBOX FIX
+// syncCheckbox() wires the real <input> change event to the
+// visual twin. No onclick, no toggleCheck() — just clean
+// event-driven syncing.
+// ════════════════════════════════════════════════════════
+function syncCheckbox(inputId, boxId) {
+  const input = document.getElementById(inputId);
+  const box   = document.getElementById(boxId);
+  if (!input || !box) return;
+  input.addEventListener('change', function() {
+    box.classList.toggle('checked', this.checked);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  syncCheckbox('agreeTerms',   'cbTerms');
+  syncCheckbox('agreeQuality', 'cbQuality');
+  syncCheckbox('agreeComms',   'cbComms');
+});
+
+// Init: check existing login
+(function init() {
+  const storedToken = localStorage.getItem('token');
+  const storedUser  = localStorage.getItem('user');
+  if (storedToken && storedUser) {
+    try {
+      const u = JSON.parse(storedUser);
+      isLoggedIn = true; authToken = storedToken;
+      if (u.isCreator) { window.location.href = '/marketplace/creator-dashboard'; return; }
+      if (u.fullName || u.name) document.getElementById('appFullName').value = u.fullName || u.name;
+      if (u.email)  document.getElementById('appEmail').value   = u.email;
+      if (u.country)document.getElementById('appCountry').value = u.country;
+      if (u.phone)  document.getElementById('appPhone').value   = u.phone;
+      emailVerified = true;
+      document.getElementById('otpBox').classList.remove('show');
+      document.getElementById('otpVerifiedBadge').classList.add('show');
+      document.getElementById('appPassword').closest('.frow').style.display = 'none';
+      showAlert('You are signed in. Fill in your store details and submit.', 'info');
+    } catch(e) {}
+  }
+})();
+
+function onEmailChange() {
+  if (isLoggedIn) return;
+  const email = document.getElementById('appEmail').value.trim();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const box   = document.getElementById('otpBox');
+  if (valid && !emailVerified) { box.classList.add('show'); }
+  else if (!valid) { box.classList.remove('show'); emailVerified = false; document.getElementById('otpVerifiedBadge').classList.remove('show'); }
+}
+
+async function sendOtp() {
+  const email = document.getElementById('appEmail').value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFieldError('errOtp','Enter a valid email address first.'); return; }
+  const btn = document.getElementById('btnSendOtp');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/send-email-otp`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email}) });
+    const data = await res.json();
+    if (data.success) { document.getElementById('btnVerifyOtp').style.display=''; btn.innerHTML='<i class="fas fa-redo"></i> Resend'; clearFieldError('errOtp'); showAlert('Verification code sent to '+email,'info'); startCountdown(60); }
+    else { btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Code'; showFieldError('errOtp', data.message||'Failed to send code.'); }
+  } catch(e) { btn.disabled=false; btn.innerHTML='<i class="fas fa-paper-plane"></i> Send Code'; showFieldError('errOtp','Network error.'); }
+}
+
+async function verifyOtp() {
+  const email = document.getElementById('appEmail').value.trim();
+  const code  = document.getElementById('otpInput').value.trim();
+  if (code.length !== 6) { showFieldError('errOtp','Enter the 6-digit code.'); document.getElementById('otpInput').classList.add('error'); return; }
+  const btn = document.getElementById('btnVerifyOtp');
+  btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>';
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/verify-email-otp`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({email,code}) });
+    const data = await res.json();
+    if (data.success) {
+      emailVerified=true; document.getElementById('otpInput').classList.remove('error');
+      document.getElementById('otpVerifiedBadge').classList.add('show');
+      document.getElementById('btnSendOtp').style.display='none'; document.getElementById('btnVerifyOtp').style.display='none';
+      document.getElementById('otpInput').disabled=true; clearFieldError('errOtp');
+      if (otpCountdownTimer) clearInterval(otpCountdownTimer); document.getElementById('otpCountdown').textContent='';
+    } else { btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> Verify'; document.getElementById('otpInput').classList.add('error'); showFieldError('errOtp', data.message||'Invalid code.'); }
+  } catch(e) { btn.disabled=false; btn.innerHTML='<i class="fas fa-check"></i> Verify'; showFieldError('errOtp','Network error.'); }
+}
+
+function startCountdown(seconds) {
+  if (otpCountdownTimer) clearInterval(otpCountdownTimer);
+  const el = document.getElementById('otpCountdown'); let remaining = seconds;
+  el.textContent = `Resend available in ${remaining}s`;
+  otpCountdownTimer = setInterval(() => { remaining--; if (remaining<=0) { clearInterval(otpCountdownTimer); el.textContent=''; document.getElementById('btnSendOtp').disabled=false; } else { el.textContent=`Resend available in ${remaining}s`; } }, 1000);
+}
+
+function nextStep() { if (!validateCurrentStep()) return; if (currentStep>=3) return; currentStep++; if (currentStep===3) populateSummary(); updateStepUI(); }
+function prevStep() { if (currentStep<=1) return; currentStep--; updateStepUI(); }
+function updateStepUI() {
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i+1===currentStep));
+  [1,2,3].forEach(n => { const ps=document.getElementById('ps'+n); const dot=ps.querySelector('.progress-step-dot'); ps.className='progress-step'+(n<currentStep?' done':n===currentStep?' active':''); dot.textContent=n<currentStep?'✓':String(n); });
+  [1,2].forEach(n => document.getElementById('pc'+n).classList.toggle('done', n<currentStep));
+  document.getElementById('stepNum').textContent=currentStep;
+  document.getElementById('stepNavInfo').textContent=`Step ${currentStep} of 3 — ${stepLabels[currentStep-1]}`;
+  document.getElementById('btnBack').style.display=currentStep>1?'':'none';
+  document.getElementById('btnNext').style.display=currentStep<3?'':'none';
+  document.getElementById('btnSubmit').style.display=currentStep===3?'':'none';
+  hideAlert(); window.scrollTo({top:document.getElementById('apply').offsetTop-80,behavior:'smooth'});
+}
+
+function validateCurrentStep() { hideAlert(); if (currentStep===1) return validateStep1(); if (currentStep===2) return validateStep2(); return true; }
+function setFieldError(inputId, errId, condition, msg) {
+  const field=document.getElementById(inputId); const errEl=document.getElementById(errId);
+  if (!condition) { field?.classList.add('error'); if (errEl){errEl.textContent=msg;errEl.style.display='block';} return false; }
+  field?.classList.remove('error'); if (errEl) errEl.style.display='none'; return true;
+}
+function showFieldError(errId, msg) { const el=document.getElementById(errId); if(el){el.textContent=msg;el.style.display='block';} }
+function clearFieldError(errId) { const el=document.getElementById(errId); if(el) el.style.display='none'; }
+function validateStep1() {
+  const name=document.getElementById('appFullName').value.trim(), email=document.getElementById('appEmail').value.trim();
+  const pw=document.getElementById('appPassword').value, cpw=document.getElementById('appConfirmPw').value;
+  const country=document.getElementById('appCountry').value.trim();
+  const v1=setFieldError('appFullName','errFullName',name.length>=2,'Enter your full name (min 2 chars).');
+  const v2=setFieldError('appEmail','errEmail',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),'Enter a valid email address.');
+  let v3=true, v4=true;
+  if (!isLoggedIn) { if (!emailVerified) { showFieldError('errOtp','Please verify your email address first.'); document.getElementById('otpBox').classList.add('show'); return false; } v3=setFieldError('appPassword','errPassword',pw.length>=8,'Password must be at least 8 characters.'); v4=setFieldError('appConfirmPw','errConfirmPw',pw===cpw,'Passwords do not match.'); }
+  const v5=setFieldError('appCountry','errCountry',country.length>=2,'Please enter your country.');
+  return v1&&v2&&v3&&v4&&v5;
+}
+function validateStep2() {
+  const storeName=document.getElementById('appStoreName').value.trim(), desc=document.getElementById('appStoreDesc').value.trim();
+  const v1=setFieldError('appStoreName','errStoreName',storeName.length>=3,'Store name must be at least 3 characters.');
+  const v2=setFieldError('appStoreDesc','errStoreDesc',desc.length>=50,'Please describe your store (min 50 chars).');
+  if (selectedCats.length===0) { document.getElementById('errCats').classList.add('show'); return false; }
+  document.getElementById('errCats').classList.remove('show'); return v1&&v2;
+}
+function validateStep3() {
+  const motivation=document.getElementById('appMotivation').value.trim();
+  const terms=document.getElementById('agreeTerms').checked, quality=document.getElementById('agreeQuality').checked;
+  const v1=setFieldError('appMotivation','errMotivation',motivation.length>=80,'Please share your motivation (min 80 chars).');
+  if (!terms||!quality) { document.getElementById('errTerms').classList.add('show'); return false; }
+  document.getElementById('errTerms').classList.remove('show'); return v1;
+}
+
+function selectType(el, type) { document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected')); el.classList.add('selected'); selectedType=type; document.getElementById('appBusinessType').value=type; }
+function updateCats() { selectedCats=[]; document.querySelectorAll('#catChips input:checked').forEach(cb=>selectedCats.push(cb.value)); document.querySelectorAll('#catChips .cat-chip').forEach(chip=>chip.classList.toggle('selected',chip.querySelector('input').checked)); }
+
+document.getElementById('appStoreName')?.addEventListener('input', function() {
+  const slug=this.value.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  document.getElementById('storeSlugPreview').textContent=slug?`uyehtech.com/marketplace/${slug}`:'yourstore.uyehtech.com';
+});
+
+function initCharCounter(fieldId, counterId, max) {
+  document.getElementById(fieldId)?.addEventListener('input', function() { const len=this.value.length; const el=document.getElementById(counterId); el.textContent=`${len} / ${max}`; el.className='char-counter'+(len>max*0.9?' warn':'')+(len>=max?' over':''); });
+}
+initCharCounter('appStoreDesc','descCounter',500);
+initCharCounter('appMotivation','motivCounter',800);
+
+function populateSummary() {
+  document.getElementById('sumName').textContent=document.getElementById('appFullName').value;
+  document.getElementById('sumEmail').textContent=document.getElementById('appEmail').value;
+  document.getElementById('sumStore').textContent=document.getElementById('appStoreName').value;
+  document.getElementById('sumType').textContent=selectedType;
+  document.getElementById('sumCats').textContent=selectedCats.join(' · ');
+}
+async function submitApplication() {
+  if (!validateStep3()) return;
+  const btn = document.getElementById('btnSubmit');
+  btn.classList.add('loading');
+  hideAlert();
+
+  try {
+    if (!isLoggedIn) {
+      const pwField = document.getElementById('appPassword');
+      const signupPayload = {
+        fullName:      document.getElementById('appFullName').value.trim(),
+        email:         document.getElementById('appEmail').value.trim(),
+        password:      pwField ? pwField.value : '',
+        phone:         document.getElementById('appPhone').value.trim(),
+        country:       document.getElementById('appCountry').value.trim(),
+        emailVerified: true
+      };
+
+      // Guard: password required for non-logged-in users
+      if (!signupPayload.password || signupPayload.password.length < 8) {
+        showAlert('Password must be at least 8 characters.');
+        btn.classList.remove('loading');
+        return;
+      }
+
+      const signupRes  = await fetch(`${API_URL}/api/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(signupPayload)
+      });
+      const signupData = await signupRes.json();
+
+      if (!signupData.success) {
+        showAlert(signupData.message || 'Account creation failed.');
+        btn.classList.remove('loading');
+        return;
+      }
+
+      authToken = signupData.token;
+      localStorage.setItem('token', authToken);
+      localStorage.setItem('user', JSON.stringify(signupData.user));
+    }
+
+    const applyRes = await fetch(`${API_URL}/api/creator/apply`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      },
+      body: JSON.stringify({
+        storeName:          document.getElementById('appStoreName').value.trim(),
+        storeDescription:   document.getElementById('appStoreDesc').value.trim(),
+        businessType:       selectedType,
+        applicationMessage: document.getElementById('appMotivation').value.trim(),
+        country:            document.getElementById('appCountry').value.trim(),
+        phone:              document.getElementById('appPhone').value.trim(),
+        website:            document.getElementById('appWebsite').value.trim(),
+        socialLinks: {
+          twitter: document.getElementById('appTwitter').value.trim()
+        }
+      })
+    });
+    const applyData = await applyRes.json();
+
+    if (applyData.success) {
+      document.getElementById('formBody').style.display     = 'none';
+      document.getElementById('stepNav').style.display      = 'none';
+      document.getElementById('formHeader').style.display   = 'none';
+      document.getElementById('successState').classList.add('show');
+      window.scrollTo({ top: document.getElementById('apply').offsetTop - 80, behavior: 'smooth' });
+    } else {
+      showAlert(applyData.message || 'Application failed.');
+      btn.classList.remove('loading');
+    }
+
+  } catch (err) {
+    console.error('submitApplication error:', err);
+    showAlert('Connection error. Check your internet and try again.');
+    btn.classList.remove('loading');
+  }
+}
+
+function showAlert(msg, type='error') { const el=document.getElementById('applyAlert'); const txt=document.getElementById('applyAlertMsg'); el.className=`apply-alert ${type} show`; txt.textContent=msg; el.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+function hideAlert() { document.getElementById('applyAlert').classList.remove('show'); }
+function togglePw(id, btn) { const f=document.getElementById(id); const i=btn.querySelector('i'); f.type=f.type==='password'?'text':'password'; i.className=f.type==='password'?'fas fa-eye':'fas fa-eye-slash'; }
+function toggleFaq(el) { const item=el.closest('.faq-item'); const isOpen=item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open')); if(!isOpen) item.classList.add('open'); }
+</script>
+
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

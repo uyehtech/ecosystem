@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — UYEH TECH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+          <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+<style>
+:root{
+  --g:#00ff88;--g2:#00c96a;--g3:rgba(36, 71, 55, 0.08);--g4:rgba(0,255,136,.14);
+  --ink:#080a0c;--ink2:#0d1018;--line:rgba(255,255,255,.07);--line2:rgba(0,255,136,.2);
+  --t1:#e8edf2;--t2:#8a96a8;--t3:#4a5568;
+  --red:#ff4d4d;--warn:#ffaa00;--ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Syne',sans-serif;background:var(--ink);color:var(--t1);
+  min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
+  padding:32px 20px 60px;overflow-x:hidden;
+}
+
+/* ── BG ── */
+.bg-mesh{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(0,255,136,.04) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(0,201,106,.03) 0%,transparent 60%);}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.particle{position:absolute;width:2px;height:2px;background:var(--g);border-radius:50%;opacity:0;animation:float 18s infinite;}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0);opacity:0;}10%{opacity:.25;}90%{opacity:.2;}100%{transform:translateY(-100vh) translateX(40px);opacity:0;}}
+
+/* ── Wrap ── */
+.auth-wrap{position:relative;z-index:1;width:100%;max-width:500px;animation:fadeUp .55s var(--ease) both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── Logo ── */
+.auth-logo{text-align:center;margin-bottom:32px;}
+.logo-mark{width:56px;height:56px;border-radius:15px;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;overflow:hidden;box-shadow:0 0 28px rgba(0,255,136,.22);}
+.logo-mark img{width:100%;height:100%;object-fit:contain;}
+.logo-initials{font-family:'Playfair Display',serif;font-weight:900;font-size:.85rem;color:#080a0c;}
+.logo-name{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--g);letter-spacing:1px;text-shadow:0 0 36px rgba(0,255,136,.28);line-height:1;margin-bottom:5px;}
+.logo-tagline{font-size:.75rem;color:var(--t3);}
+
+/* ── Card ── */
+.auth-card{background:var(--ink2);border:1px solid var(--line2);border-radius:22px;padding:40px 36px;box-shadow:0 0 60px rgba(0,255,136,.05),0 24px 64px rgba(0,0,0,.5);position:relative;overflow:hidden;}
+.auth-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent);}
+.auth-card-head{text-align:center;margin-bottom:28px;}
+.auth-card-title{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:900;color:var(--t1);margin-bottom:5px;}
+.auth-card-sub{font-size:.8rem;color:var(--t3);}
+
+/* ── Progress steps ── */
+.progress-steps{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:30px;}
+.step-item{display:flex;align-items:center;gap:0;}
+.step-dot{
+  width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;flex-shrink:0;
+  border:2px solid var(--line);background:transparent;color:var(--t3);
+  transition:all .3s var(--ease);
+}
+.step-dot.active{border-color:var(--g);background:var(--g3);color:var(--g);}
+.step-dot.done{border-color:var(--g2);background:var(--g2);color:#080a0c;}
+.step-label{font-size:.62rem;color:var(--t3);margin-top:4px;text-align:center;white-space:nowrap;}
+.step-col{display:flex;flex-direction:column;align-items:center;gap:0;}
+.step-line{width:40px;height:2px;background:var(--line);margin:0 4px;margin-bottom:18px;transition:background .3s;}
+.step-line.done{background:var(--g2);}
+
+/* ── Alerts ── */
+.alert{display:none;padding:11px 15px;border-radius:10px;font-size:.8rem;font-weight:600;margin-bottom:18px;align-items:center;gap:9px;line-height:1.5;}
+.alert.show{display:flex;}
+.alert-error{background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.25);color:var(--red);}
+.alert-success{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);color:var(--g);}
+.alert-warn{background:rgba(255,170,0,.08);border:1px solid rgba(255,170,0,.25);color:var(--warn);}
+
+/* ── Form ── */
+.form-group{margin-bottom:16px;position:relative;}
+.form-label{display:block;font-size:.7rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+.form-label sup{color:var(--red);margin-left:2px;}
+.form-input{width:100%;padding:11px 15px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:10px;color:var(--t1);font-size:.88rem;font-family:'Syne',sans-serif;outline:none;transition:all .2s var(--ease);}
+.form-input:focus{border-color:var(--g);background:var(--g3);box-shadow:0 0 0 3px rgba(0,255,136,.06);}
+.form-input::placeholder{color:var(--t3);}
+.form-input.error{border-color:var(--red);}
+.form-input.verified{border-color:var(--g2);}
+.form-input:disabled{opacity:.55;cursor:not-allowed;}
+.field-err{font-size:.68rem;color:var(--red);margin-top:3px;display:none;}
+.field-err.show{display:block;}
+
+/* ── Password wrapper ── */
+.pw-wrap{position:relative;}
+.pw-wrap .form-input{padding-right:44px;}
+.pw-toggle{position:absolute;right:13px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);cursor:pointer;font-size:.88rem;padding:4px;transition:color .2s;line-height:1;}
+.pw-toggle:hover{color:var(--g);}
+
+/* ── Password strength ── */
+.strength-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:7px;overflow:hidden;}
+.strength-fill{height:100%;border-radius:2px;transition:width .35s,background .35s;}
+
+/* ── OTP section ── */
+.otp-section{display:none;animation:slideDown .25s var(--ease);}
+.otp-section.show{display:block;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+.otp-hint{font-size:.74rem;color:var(--t3);margin-bottom:10px;line-height:1.6;padding:10px 12px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.1);border-radius:8px;}
+.otp-hint strong{color:var(--g);}
+.otp-input{text-align:center;letter-spacing:8px;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;}
+.otp-status{margin-top:8px;padding:8px 12px;border-radius:8px;font-size:.78rem;font-weight:600;text-align:center;display:none;}
+.otp-status.success{display:block;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2);color:var(--g);}
+.otp-status.error{display:block;background:rgba(255,77,77,.08);border:1px solid rgba(255,77,77,.2);color:var(--red);}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:10px;font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;width:100%;}
+.btn-primary{background:linear-gradient(135deg,var(--g2),var(--g));color:#080a0c;}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,255,136,.35);}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-ghost{background:var(--g3);border:1px solid var(--line2);color:var(--g);}
+.btn-ghost:hover:not(:disabled){background:var(--g4);}
+.btn-ghost:disabled{opacity:.45;cursor:not-allowed;}
+.btn-outline{background:transparent;border:1px solid var(--line);color:var(--t2);font-size:.78rem;padding:9px 14px;}
+.btn-outline:hover{background:var(--g3);border-color:var(--line2);color:var(--t1);}
+.btn-sm{padding:8px 13px;font-size:.78rem;}
+
+/* ── Step navigation ── */
+.step-actions{display:flex;gap:10px;margin-top:20px;}
+.step-actions .btn{flex:1;}
+
+/* ── Terms checkbox ── */
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;}
+.checkbox-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--g);flex-shrink:0;margin-top:2px;cursor:pointer;}
+.checkbox-row label{font-size:.78rem;color:var(--t2);cursor:pointer;line-height:1.55;}
+.checkbox-row label a{color:var(--g);text-decoration:none;font-weight:600;}
+
+/* ── Auth links ── */
+.auth-link{text-align:center;font-size:.8rem;color:var(--t3);margin-top:20px;}
+.auth-link a{color:var(--g);text-decoration:none;font-weight:700;}
+.auth-link a:hover{opacity:.75;}
+.back-links{text-align:center;margin-top:20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+.back-links a{font-size:.72rem;color:var(--t3);text-decoration:none;transition:color .2s;}
+.back-links a:hover{color:var(--g);}
+
+/* ── Toast ── */
+.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast{padding:12px 18px;border-radius:10px;font-size:.8rem;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.4);animation:toastIn .3s var(--ease);pointer-events:auto;max-width:320px;display:flex;align-items:center;gap:8px;}
+.toast.success{background:linear-gradient(135deg,var(--g2),var(--g));color:#080a0c;}
+.toast.error{background:linear-gradient(135deg,#c0392b,var(--red));color:#fff;}
+.toast.info{background:var(--ink2);border:1px solid var(--line2);color:var(--t1);}
+@keyframes toastIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+
+@media(max-width:480px){
+  .auth-card{padding:28px 18px;}
+  .step-line{width:24px;}
+}
+
+/* ── Referral badge (shown when ?ref= is in URL) ── */
+.ref-badge{
+  display:none;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  background:rgba(0,255,136,.06);
+  border:1px solid rgba(0,255,136,.2);
+  border-radius:10px;
+  margin-bottom:20px;
+  font-size:.78rem;
+  color:var(--t2);
+  line-height:1.5;
+}
+.ref-badge.show{display:flex;}
+.ref-badge-icon{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--g2),var(--g));
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.85rem;color:#080a0c;
+}
+.ref-badge-text strong{color:var(--g);}
+.ref-badge-dismiss{
+  margin-left:auto;background:none;border:none;
+  color:var(--t3);cursor:pointer;font-size:.75rem;padding:2px 4px;
+  transition:color .2s;flex-shrink:0;
+}
+.ref-badge-dismiss:hover{color:var(--red);}
+
+/* ── Referral input row on step 3 ── */
+.ref-field-wrap{
+  display:none;
+  margin-bottom:16px;
+}
+.ref-field-wrap.show{display:block;}
+.ref-field-row{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 13px;
+  background:rgba(0,255,136,.04);
+  border:1px solid rgba(0,255,136,.13);
+  border-radius:10px;
+}
+.ref-field-row i{color:var(--g);font-size:.85rem;flex-shrink:0;}
+.ref-field-label{font-size:.72rem;color:var(--t3);flex:1;}
+.ref-field-code{font-size:.8rem;font-weight:700;color:var(--g);font-family:monospace;letter-spacing:.5px;}
+.ref-clear-btn{
+  background:none;border:none;cursor:pointer;
+  color:var(--t3);font-size:.7rem;padding:2px 5px;
+  transition:color .2s;flex-shrink:0;
+}
+.ref-clear-btn:hover{color:var(--red);}
+</style>
+</head>
+<body>
+<div class="bg-mesh"></div>
+<div class="particles" id="particles"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="auth-wrap">
+  <!-- Logo -->
+  <div class="auth-logo">
+    <div class="logo-mark">
+      <img src="/marketplace/uyehtech logo.png" alt="UYEH TECH" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="logo-initials" style="display:none;">UT</span>
+    </div>
+    <div class="logo-name">UYEH TECH</div>
+    <div class="logo-tagline">Digital Products Marketplace</div>
+  </div>
+
+  <!-- Card -->
+  <div class="auth-card">
+    <div class="auth-card-head">
+      <div class="auth-card-title">Create Your Account</div>
+      <div class="auth-card-sub">Join thousands of creators and buyers</div>
+    </div>
+
+    <!-- Referral badge — shown when user arrives via an affiliate invite link -->
+    <div class="ref-badge" id="refBadge">
+      <div class="ref-badge-icon"><i class="fas fa-link"></i></div>
+      <div class="ref-badge-text">
+        You were invited by <strong id="refBadgeName"></strong>.<br>
+        <span style="font-size:.7rem;color:var(--t3);">Create your account to complete your registration.</span>
+      </div>
+      <button class="ref-badge-dismiss" onclick="clearRefCode()" title="Remove referral"><i class="fas fa-xmark"></i></button>
+    </div>
+
+    <!-- Progress steps -->
+    <div class="progress-steps">
+      <div class="step-col">
+        <div class="step-dot active" id="step1Dot">1</div>
+        <div class="step-label">Email</div>
+      </div>
+      <div class="step-line" id="line1"></div>
+      <div class="step-col">
+        <div class="step-dot" id="step2Dot">2</div>
+        <div class="step-label">Verify</div>
+      </div>
+      <div class="step-line" id="line2"></div>
+      <div class="step-col">
+        <div class="step-dot" id="step3Dot">3</div>
+        <div class="step-label">Account</div>
+      </div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="alert alert-error"   id="alertError"><i class="fas fa-circle-exclamation"></i><span id="alertErrorText"></span></div>
+    <div class="alert alert-success" id="alertSuccess"><i class="fas fa-circle-check"></i><span>Account created! Taking you to your dashboard…</span></div>
+    <div class="alert alert-warn"    id="alertWarn"><i class="fas fa-triangle-exclamation"></i><span id="alertWarnText"></span></div>
+
+    <!-- ═══ STEP 1: Email ═══ -->
+    <div id="step1">
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address <sup>*</sup></label>
+        <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+        <div class="field-err" id="emailErr"></div>
+      </div>
+      <button class="btn btn-primary" id="sendOtpBtn" onclick="sendOTP()">
+        <i class="fas fa-paper-plane"></i> Send Verification Code
+      </button>
+    </div>
+
+    <!-- ═══ STEP 2: Verify OTP ═══ -->
+    <div id="step2" style="display:none;">
+      <div class="otp-hint">
+        A 6-digit code was sent to <strong id="sentToEmail"></strong>. Check your inbox (and spam). Code expires in <strong>10 minutes</strong>.
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="otpInput">Verification Code <sup>*</sup></label>
+        <input class="form-input otp-input" type="text" id="otpInput" placeholder="000000" maxlength="6" inputmode="numeric" autocomplete="one-time-code">
+        <div class="otp-status" id="otpStatus"></div>
+        <div class="field-err" id="otpErr"></div>
+      </div>
+      <div class="step-actions">
+        <button class="btn btn-outline btn-sm" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn btn-ghost" id="resendBtn" onclick="resendOTP()"><i class="fas fa-rotate-right"></i> Resend Code</button>
+        <button class="btn btn-primary" id="verifyOtpBtn" onclick="verifyOTP()"><i class="fas fa-check"></i> Verify</button>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3: Account details ═══ -->
+    <div id="step3" style="display:none;">
+      <div class="otp-hint" style="margin-bottom:18px;">
+        ✅ Email <strong id="verifiedEmail"></strong> verified. Fill in your details below.
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fullName">Full Name <sup>*</sup></label>
+        <input class="form-input" type="text" id="fullName" placeholder="Your full name" maxlength="80" autocomplete="name">
+        <div class="field-err" id="nameErr"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password <sup>*</sup> <span style="color:var(--t3);font-size:.65rem;text-transform:none;">(min 8 characters)</span></label>
+        <div class="pw-wrap">
+          <input class="form-input" type="password" id="password" placeholder="Create a strong password" autocomplete="new-password" oninput="checkStrength(this.value)">
+          <button type="button" class="pw-toggle" id="pwToggle1"><i class="fas fa-eye"></i></button>
+        </div>
+        <div class="strength-bar"><div class="strength-fill" id="strengthFill" style="width:0;"></div></div>
+        <div class="field-err" id="passErr"></div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:20px;">
+        <label class="form-label" for="country">
+          Country
+          <span style="color:var(--t3);font-size:.65rem;text-transform:none;">(sets your checkout currency — you can change this later in Settings)</span>
+        </label>
+        <select class="form-input" id="country" autocomplete="country-name">
+          <option value="">Select your country</option>
+          <optgroup label="Africa">
+            <option value="Nigeria">Nigeria</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Kenya">Kenya</option>
+            <option value="South Africa">South Africa</option>
+            <option value="Egypt">Egypt</option>
+            <option value="Ethiopia">Ethiopia</option>
+            <option value="Tanzania">Tanzania</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Ivory Coast">Ivory Coast</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Zambia">Zambia</option>
+            <option value="Zimbabwe">Zimbabwe</option>
+            <option value="Mozambique">Mozambique</option>
+            <option value="Angola">Angola</option>
+            <option value="Mali">Mali</option>
+            <option value="Burkina Faso">Burkina Faso</option>
+            <option value="Niger">Niger</option>
+            <option value="Chad">Chad</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Namibia">Namibia</option>
+            <option value="Madagascar">Madagascar</option>
+            <option value="Malawi">Malawi</option>
+            <option value="Mauritius">Mauritius</option>
+            <option value="Tunisia">Tunisia</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Libya">Libya</option>
+          </optgroup>
+          <optgroup label="Americas">
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Chile">Chile</option>
+            <option value="Peru">Peru</option>
+            <option value="Venezuela">Venezuela</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+          </optgroup>
+          <optgroup label="Europe">
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Greece">Greece</option>
+            <option value="Austria">Austria</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Finland">Finland</option>
+            <option value="Norway">Norway</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Poland">Poland</option>
+            <option value="Czech Republic">Czech Republic</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Romania">Romania</option>
+            <option value="Russia">Russia</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="Turkey">Turkey</option>
+          </optgroup>
+          <optgroup label="Asia">
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="India">India</option>
+            <option value="South Korea">South Korea</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Singapore">Singapore</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Vietnam">Vietnam</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="United Arab Emirates">United Arab Emirates</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Oman">Oman</option>
+            <option value="Israel">Israel</option>
+            <option value="Jordan">Jordan</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Iran">Iran</option>
+          </optgroup>
+          <optgroup label="Oceania">
+            <option value="Australia">Australia</option>
+            <option value="New Zealand">New Zealand</option>
+          </optgroup>
+        </select>
+        <div class="field-err" id="countryErr"></div>
+      </div>
+
+      <!-- Referral attribution row — only shown if ref code is present -->
+      <div class="ref-field-wrap" id="refFieldWrap">
+        <div class="ref-field-row">
+          <i class="fas fa-user-plus"></i>
+          <span class="ref-field-label">Referred by affiliate code</span>
+          <span class="ref-field-code" id="refFieldCode"></span>
+          <button type="button" class="ref-clear-btn" onclick="clearRefCode()" title="Remove referral">
+            <i class="fas fa-xmark"></i> remove
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group checkbox-row" style="margin-bottom:22px;">
+        <input type="checkbox" id="agreeTerms">
+        <label for="agreeTerms">I agree to the <a href="/marketplace/terms" target="_blank">Terms of Service</a> and <a href="/marketplace/privacy" target="_blank">Privacy Policy</a></label>
+      </div>
+
+      <div class="step-actions">
+        <button class="btn btn-outline btn-sm" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+        <button class="btn btn-primary" id="signupBtn" onclick="createAccount()">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </div>
+    </div>
+
+    <div class="auth-link">
+      Already have an account? <a href="/marketplace/login">Log In</a>
+    </div>
+  </div>
+
+  <div class="back-links">
+    <a href="/marketplace/"><i class="fas fa-store" style="margin-right:5px;"></i>Back to Store</a>
+    <a href="/"><i class="fas fa-house" style="margin-right:5px;"></i>UYEH TECH Home</a>
+  </div>
+</div>
+
+<script>
+'use strict';
+const API_URL = 'https://uyehtechbackend.onrender.com';
+
+/* ── Redirect if already logged in ── */
+(function(){
+  if (localStorage.getItem('token') && localStorage.getItem('user')) {
+    window.location.replace('/marketplace/dashboard');
+  }
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   REFERRAL CODE CAPTURE
+   Priority order:
+     1. ?ref= in current URL
+     2. Already stored in localStorage('uyeh_ref')
+   Stored value survives page navigation so the ref persists
+   through the 3-step OTP flow until the account is created.
+══════════════════════════════════════════════════════════════ */
+const REF_KEY = 'uyeh_ref'; // must match backend localStorage key reference
+
+function _sanitizeRef(raw) {
+  // Strip everything except A-Z 0-9 hyphen underscore, max 20 chars
+  if (!raw || typeof raw !== 'string') return null;
+  const cleaned = raw.replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase().slice(0, 20);
+  return cleaned || null;
+}
+
+(function captureRef() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlRef    = _sanitizeRef(urlParams.get('ref'));
+
+  if (urlRef) {
+    // URL ref always wins — store/overwrite
+    localStorage.setItem(REF_KEY, urlRef);
+  }
+
+  const storedRef = _sanitizeRef(localStorage.getItem(REF_KEY));
+  if (storedRef) {
+    _showRefBadge(storedRef);
+  }
+
+  // Clean the ?ref= from the visible URL without reloading
+  if (urlRef && window.history.replaceState) {
+    const clean = window.location.pathname + window.location.hash;
+    window.history.replaceState(null, '', clean);
+  }
+})();
+
+function _showRefBadge(code) {
+  if (!code) return;
+  const badge    = document.getElementById('refBadge');
+  const nameEl   = document.getElementById('refBadgeName');
+  const codeEl   = document.getElementById('refFieldCode');
+  const wrapEl   = document.getElementById('refFieldWrap');
+  if (badge)  { nameEl.textContent = code; badge.classList.add('show'); }
+  if (codeEl) { codeEl.textContent = code; }
+  if (wrapEl) { wrapEl.classList.add('show'); }
+}
+
+function clearRefCode() {
+  localStorage.removeItem(REF_KEY);
+  const badge  = document.getElementById('refBadge');
+  const wrapEl = document.getElementById('refFieldWrap');
+  if (badge)  badge.classList.remove('show');
+  if (wrapEl) wrapEl.classList.remove('show');
+  showToast('Referral removed', 'info');
+}
+
+/* ── Particles ── */
+(function(){
+  const c = document.getElementById('particles');
+  [5,15,25,35,45,55,65,75,85,95].forEach((l,i) => {
+    const p = document.createElement('div'); p.className = 'particle';
+    p.style.cssText = `left:${l}%;animation-delay:${[0,2,4,1,3,5,2.5,4.5,1.5,3.5][i]}s;animation-duration:${14+i}s;`;
+    c.appendChild(p);
+  });
+})();
+
+/* ── State ── */
+let currentEmail    = '';
+let otpSent         = false;
+let emailVerified   = false;
+let resendTimer     = null;
+let resendCountdown = 0;
+
+/* ── Step management ── */
+function goToStep(n) {
+  [1,2,3].forEach(i => {
+    const el = document.getElementById('step'+i);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  });
+  updateProgress(n);
+  hideAlerts();
+}
+
+function updateProgress(active) {
+  [1,2,3].forEach(i => {
+    const dot  = document.getElementById('step'+i+'Dot');
+    if (i < active)       { dot.className = 'step-dot done'; dot.innerHTML = '<i class="fas fa-check" style="font-size:.65rem;"></i>'; }
+    else if (i === active){ dot.className = 'step-dot active'; dot.textContent = i; }
+    else                  { dot.className = 'step-dot'; dot.textContent = i; }
+  });
+  [1,2].forEach(i => {
+    const line = document.getElementById('line'+i);
+    if (line) line.className = 'step-line' + (active > i ? ' done' : '');
+  });
+}
+
+/* ══════════════════════
+   STEP 1 — Send OTP
+   POST /api/auth/send-email-otp
+══════════════════════ */
+async function sendOTP() {
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  clearFieldErr('emailErr','email');
+  hideAlerts();
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return showFieldErr('emailErr','email','Enter a valid email address');
+  }
+
+  currentEmail = email;
+  const btn = document.getElementById('sendOtpBtn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/send-email-otp`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: currentEmail })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      otpSent = true;
+      document.getElementById('sentToEmail').textContent = currentEmail;
+      goToStep(2);
+      showToast('📧 Verification code sent to ' + currentEmail, 'success');
+      startResendTimer(60);
+      setTimeout(() => document.getElementById('otpInput').focus(), 200);
+    } else {
+      showAlert('alertError', data.message || 'Failed to send code. Try again.');
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Verification Code';
+    }
+  } catch(e) {
+    showAlert('alertError', 'Network error. Check your connection.');
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Verification Code';
+  }
+}
+
+async function resendOTP() {
+  if (resendCountdown > 0) return;
+  const btn = document.getElementById('resendBtn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/send-email-otp`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: currentEmail })
+    });
+    const data = await res.json();
+    if (data.success) {
+      showToast('📧 New code sent!', 'success');
+      document.getElementById('otpInput').value = '';
+      document.getElementById('otpStatus').className = 'otp-status';
+      emailVerified = false;
+      startResendTimer(60);
+    } else {
+      showToast(data.message || 'Failed to resend', 'error');
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate-right"></i> Resend Code';
+    }
+  } catch(e) {
+    showToast('Network error', 'error');
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-rotate-right"></i> Resend Code';
+  }
+}
+
+function startResendTimer(seconds) {
+  clearInterval(resendTimer);
+  resendCountdown = seconds;
+  const btn = document.getElementById('resendBtn');
+  btn.disabled = true;
+  resendTimer = setInterval(() => {
+    resendCountdown--;
+    btn.innerHTML = `<i class="fas fa-rotate-right"></i> Resend (${resendCountdown}s)`;
+    if (resendCountdown <= 0) {
+      clearInterval(resendTimer);
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-rotate-right"></i> Resend Code';
+    }
+  }, 1000);
+}
+
+/* ══════════════════════
+   STEP 2 — Verify OTP
+   POST /api/auth/verify-email-otp
+══════════════════════ */
+
+// Auto-verify when 6 digits entered
+document.getElementById('otpInput').addEventListener('input', function() {
+  this.value = this.value.replace(/\D/g,'').substring(0,6);
+  clearFieldErr('otpErr','otpInput');
+  if (this.value.length === 6) verifyOTP();
+});
+
+async function verifyOTP() {
+  const code = document.getElementById('otpInput').value.trim();
+  const statusEl = document.getElementById('otpStatus');
+  clearFieldErr('otpErr','otpInput');
+
+  if (code.length !== 6) return showFieldErr('otpErr','otpInput','Enter the 6-digit code');
+
+  const btn = document.getElementById('verifyOtpBtn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying…';
+
+  try {
+    const res  = await fetch(`${API_URL}/api/auth/verify-email-otp`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: currentEmail, code })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      emailVerified = true;
+      statusEl.className = 'otp-status success';
+      statusEl.textContent = '✅ Email verified successfully!';
+      document.getElementById('otpInput').disabled = true;
+      document.getElementById('verifiedEmail').textContent = currentEmail;
+      clearInterval(resendTimer);
+      showToast('✅ Email verified!', 'success');
+      setTimeout(() => goToStep(3), 800);
+    } else {
+      emailVerified = false;
+      statusEl.className = 'otp-status error';
+      const msg = data.message || 'Invalid code';
+      statusEl.textContent = '❌ ' + msg;
+      if (msg.toLowerCase().includes('expired')) {
+        showAlert('alertWarn', 'Code expired. Click "Resend Code" to get a new one.');
+      }
+      document.getElementById('otpInput').classList.add('error');
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Verify';
+    }
+  } catch(e) {
+    statusEl.className = 'otp-status error';
+    statusEl.textContent = '❌ Network error. Try again.';
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-check"></i> Verify';
+  }
+}
+
+/* ══════════════════════
+   STEP 3 — Create Account
+   POST /api/auth/signup
+   Body: { fullName, email, password, emailVerified: true, ref?: string }
+══════════════════════ */
+async function createAccount() {
+  hideAlerts();
+  clearAllFieldErrors();
+
+  const fullName   = document.getElementById('fullName').value.trim();
+  const password   = document.getElementById('password').value;
+  const confirmPw  = document.getElementById('confirmPassword').value;
+  const agreeTerms = document.getElementById('agreeTerms').checked;
+
+  let valid = true;
+  if (!fullName || fullName.length < 2) {
+    showFieldErr('nameErr','fullName','Enter your full name (min 2 characters)'); valid = false;
+  }
+  if (!password || password.length < 8) {
+    showFieldErr('passErr','password','Password must be at least 8 characters'); valid = false;
+  }
+  if (password !== confirmPw) {
+    showFieldErr('confirmErr','confirmPassword','Passwords do not match'); valid = false;
+  }
+  if (!agreeTerms) {
+    showAlert('alertWarn','Please agree to the Terms of Service to continue.'); valid = false;
+  }
+  if (!emailVerified) {
+    showAlert('alertError','Email not verified. Please go back and verify your email.');
+    return;
+  }
+  if (!valid) return;
+
+  // ── Read referral code from localStorage ────────────────────────────────
+  // This was captured from ?ref= when the user first landed on the page.
+  // We send it to the backend which credits the referrer's totalReferrals.
+  const ref = _sanitizeRef(localStorage.getItem(REF_KEY)) || null;
+
+  const btn = document.getElementById('signupBtn');
+  btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account…';
+
+  try {
+    const country = document.getElementById('country').value;
+
+    const payload = {
+      fullName,
+      email:         currentEmail,
+      password,
+      emailVerified: true,
+    };
+    // Only include ref/country in payload if present — backend treats both as
+    // optional and ignores null/undefined gracefully either way.
+    if (ref)     payload.ref     = ref;
+    if (country) payload.country = country;
+
+    const res  = await fetch(`${API_URL}/api/auth/signup`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      // ── Store auth ──────────────────────────────────────────────────────
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user',  JSON.stringify(data.user));
+
+      // ── Clear referral code — one-time use, never reuse ─────────────────
+      localStorage.removeItem(REF_KEY);
+
+      // ── Success UI ──────────────────────────────────────────────────────
+      showAlert('alertSuccess');
+      [1,2,3].forEach(i => { const el = document.getElementById('step'+i); if(el) el.style.display='none'; });
+      updateProgress(3);
+      if (ref) {
+        showToast('🎉 Account created! Welcome to UYEH TECH.', 'success');
+      }
+      setTimeout(() => window.location.replace('/marketplace/dashboard'), 1500);
+
+    } else {
+      const msg = data.message || 'Signup failed. Please try again.';
+      showAlert('alertError', msg);
+      btn.disabled = false; btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+    }
+  } catch(e) {
+    showAlert('alertError', 'Network error. Check your connection and try again.');
+    btn.disabled = false; btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+  }
+}
+/* ── Password visibility toggles ── */
+document.getElementById('pwToggle1').addEventListener('click', function() {
+  const inp = document.getElementById('password');
+  const h = inp.type === 'password';
+  inp.type = h ? 'text' : 'password';
+  this.innerHTML = `<i class="fas fa-eye${h?'-slash':''}"></i>`;
+});
+document.getElementById('pwToggle2').addEventListener('click', function() {
+  const inp = document.getElementById('confirmPassword');
+  const h = inp.type === 'password';
+  inp.type = h ? 'text' : 'password';
+  this.innerHTML = `<i class="fas fa-eye${h?'-slash':''}"></i>`;
+});
+
+/* ── Password strength ── */
+function checkStrength(pw) {
+  const fill = document.getElementById('strengthFill');
+  if (!pw) { fill.style.width='0'; return; }
+  let s = 0;
+  if (pw.length >= 8)         s++;
+  if (pw.length >= 12)        s++;
+  if (/[A-Z]/.test(pw))       s++;
+  if (/[0-9]/.test(pw))       s++;
+  if (/[^A-Za-z0-9]/.test(pw))s++;
+  const levels = [
+    {w:'16%',c:'var(--red)'},
+    {w:'32%',c:'#ff6b35'},
+    {w:'55%',c:'var(--warn)'},
+    {w:'78%',c:'#90ee90'},
+    {w:'100%',c:'var(--g)'},
+  ];
+  const l = levels[Math.min(s,4)];
+  fill.style.width = l.w; fill.style.background = l.c;
+}
+
+/* ── Confirm password live check ── */
+document.getElementById('confirmPassword').addEventListener('input', function() {
+  const pw = document.getElementById('password').value;
+  if (this.value && this.value !== pw) {
+    showFieldErr('confirmErr','confirmPassword','Passwords do not match');
+  } else {
+    clearFieldErr('confirmErr','confirmPassword');
+  }
+});
+
+/* ── Enter key on email ── */
+document.getElementById('email').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); sendOTP(); }
+});
+
+/* ── Helpers ── */
+function hideAlerts() {
+  ['alertError','alertSuccess','alertWarn'].forEach(id => document.getElementById(id).classList.remove('show'));
+}
+function showAlert(id, msg='') {
+  const el = document.getElementById(id);
+  if (msg) {
+    const span = el.querySelector('span:last-child');
+    if (span) span.textContent = msg;
+    else { const t = el.querySelector('[id$="Text"]'); if(t) t.textContent = msg; }
+  }
+  el.classList.add('show');
+}
+function showFieldErr(errId, inputId, msg) {
+  const e = document.getElementById(errId); if(e){e.textContent=msg;e.classList.add('show');}
+  const i = document.getElementById(inputId); if(i) i.classList.add('error');
+}
+function clearFieldErr(errId, inputId) {
+  const e = document.getElementById(errId); if(e) e.classList.remove('show');
+  const i = document.getElementById(inputId); if(i) i.classList.remove('error');
+}
+function clearAllFieldErrors() {
+  ['emailErr','otpErr','nameErr','passErr','confirmErr'].forEach(id => {
+    const e = document.getElementById(id); if(e) e.classList.remove('show');
+  });
+  ['email','otpInput','fullName','password','confirmPassword'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.classList.remove('error');
+  });
+}
+function showToast(msg, type='info') {
+  const c = document.getElementById('toastContainer');
+  const t = document.createElement('div'); t.className='toast '+type; t.textContent=msg;
+  c.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300);},4500);
+}
+
+/* ── Back-forward cache ── */
+window.addEventListener('pageshow', e => {
+  if (e.persisted && localStorage.getItem('token')) window.location.replace('/marketplace/dashboard');
+});
+</script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

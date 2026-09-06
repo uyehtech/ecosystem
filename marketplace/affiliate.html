@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affiliate Dashboard — UYEH TECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+      
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+     <style>
+:root{
+  --g:#00ff88;--g2:#00c96a;--g3:rgba(0,255,136,.08);--g4:rgba(0,255,136,.14);--g5:rgba(0,255,136,.22);
+  --ink:#07090c;--ink2:#0c0f14;--ink3:#111620;--ink4:#18202e;--card:#0e1318;
+  --line:rgba(255,255,255,.06);--line2:rgba(0,255,136,.18);
+  --t1:#edf2f7;--t2:#8a96a8;--t3:#4a5568;
+  --red:#ff4d4d;--amber:#f5a623;--blue:#5b9cf6;--purple:#a78bfa;--teal:#2dd4bf;
+  --sb-w:268px;--hdr:60px;--r:12px;--r2:18px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--ink);color:var(--t1);display:flex;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:var(--ink2)}
+::-webkit-scrollbar-thumb{background:var(--ink4);border-radius:2px}
+a{text-decoration:none;color:inherit}
+#loader{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .4s}
+#loader.gone{opacity:0;pointer-events:none}
+.ld-ring{width:52px;height:52px;border:3px solid rgba(0,255,136,.15);border-top-color:var(--g);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:14px}
+.ld-txt{font-size:.72rem;color:var(--t3);font-family:'JetBrains Mono',monospace;letter-spacing:1.5px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sidebar{width:var(--sb-w);background:var(--ink2);border-right:1px solid var(--line);position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:300;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.sidebar::-webkit-scrollbar{width:0}
+.sb-brand{padding:20px 18px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px;flex-shrink:0}
+.sb-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--g2),var(--g));border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:.8rem;color:var(--ink);flex-shrink:0;overflow:hidden}
+.sb-mark img{width:100%;height:100%;object-fit:contain}
+.sb-name{font-family:'Playfair Display',serif;font-weight:900;font-size:.98rem;color:var(--g)}
+.sb-sub{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.sb-user{margin:14px 14px 0;padding:10px 12px;background:var(--g3);border:1px solid var(--line2);border-radius:11px;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.sb-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--g2),var(--g));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;color:var(--ink);flex-shrink:0;overflow:hidden}
+.sb-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.sb-uname{font-weight:600;font-size:.8rem;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-urole{font-size:.62rem;color:var(--g);font-weight:500;margin-top:1px}
+.sb-nav{flex:1;padding:14px 12px;overflow-y:auto}.sb-nav::-webkit-scrollbar{width:0}
+.sb-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:2px;padding:14px 10px 6px}
+.sb-lbl:first-child{padding-top:4px}
+.nav-link{display:flex;align-items:center;gap:11px;padding:10px 12px;color:var(--t2);border-radius:9px;font-weight:500;font-size:.845rem;margin-bottom:2px;transition:all .15s;position:relative;border:1px solid transparent}
+.nav-link:hover{background:var(--g3);color:var(--t1)}
+.nav-link.active{background:var(--g4);color:var(--g);border-color:var(--line2)}
+.nav-link.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:55%;background:var(--g);border-radius:0 3px 3px 0}
+.nav-link i{width:18px;text-align:center;font-size:.88rem;flex-shrink:0;opacity:.8}
+.nav-link.active i{opacity:1}
+.sb-div{height:1px;background:var(--line);margin:8px 12px}
+.sb-footer{padding:12px 12px 18px;border-top:1px solid var(--line);flex-shrink:0}
+.sb-store{display:flex;align-items:center;gap:9px;padding:9px 12px;color:var(--t2);border-radius:9px;font-size:.82rem;font-weight:500;margin-bottom:8px;transition:all .15s;border:1px solid transparent}
+.sb-store:hover{background:var(--g3);color:var(--g);border-color:var(--line2)}
+.sb-store i{width:18px;text-align:center;font-size:.88rem}
+.sb-logout{width:100%;padding:10px 14px;background:rgba(255,77,77,.06);border:1px solid rgba(255,77,77,.18);border-radius:9px;color:var(--red);font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.sb-logout:hover{background:rgba(255,77,77,.13)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:299;backdrop-filter:blur(2px)}
+.sb-overlay.open{display:block}
+.main{flex:1;margin-left:var(--sb-w);min-height:100vh;display:flex;flex-direction:column}
+.topbar{position:sticky;top:0;z-index:200;height:var(--hdr);background:rgba(7,9,12,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tb-left{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:none;border:none;color:var(--t1);font-size:1.15rem;cursor:pointer;padding:6px;border-radius:6px;transition:background .15s}
+.menu-btn:hover{background:var(--g3)}
+.tb-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1)}
+.tb-right{display:flex;align-items:center;gap:8px}
+.status-pill{display:none;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:.68rem;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;border:1px solid rgba(0,255,136,.25);background:rgba(0,255,136,.07);color:var(--g)}
+.status-pill.show{display:flex}
+.status-pill.suspended{border-color:rgba(245,166,35,.3);background:rgba(245,166,35,.07);color:var(--amber)}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--g);animation:blink 2s ease-in-out infinite}
+.suspended .sdot{background:var(--amber)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.tb-btn{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--ink3);display:flex;align-items:center;justify-content:center;color:var(--t2);cursor:pointer;transition:all .15s;font-size:.88rem}
+.tb-btn:hover{border-color:var(--line2);color:var(--g);background:var(--g3)}
+.tb-btn.spin i{animation:spin .7s linear infinite}
+.content{flex:1;padding:28px;max-width:1400px;width:100%}
+.join-wrap{min-height:calc(100vh - var(--hdr));display:none;align-items:center;justify-content:center;padding:60px 28px}
+.join-wrap.show{display:flex}
+.join-card{max-width:580px;width:100%;background:var(--ink2);border:1px solid var(--line2);border-radius:24px;padding:52px 44px;text-align:center;box-shadow:0 0 60px rgba(0,255,136,.08),0 40px 80px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.join-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:160px;height:1px;background:linear-gradient(90deg,transparent,var(--g),transparent)}
+.join-glyph{width:72px;height:72px;background:var(--g3);border:1px solid var(--line2);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 26px}
+.join-card h2{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:900;color:var(--t1);margin-bottom:12px}
+.join-card p{color:var(--t2);line-height:1.75;margin-bottom:28px;font-size:.9rem}
+.join-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px;text-align:left}
+.join-feat{display:flex;align-items:flex-start;gap:10px;padding:13px 14px;background:var(--g3);border:1px solid var(--line2);border-radius:10px}
+.feat-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.feat-t{font-size:.8rem;color:var(--t1);font-weight:600;display:block;margin-bottom:2px}
+.feat-s{font-size:.72rem;color:var(--t3)}
+.btn-join{width:100%;padding:16px;background:linear-gradient(135deg,var(--g2),var(--g));color:var(--ink);border:none;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-join:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,255,136,.4)}
+.btn-join:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.sec-lbl{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;margin-top:28px}
+.sec-lbl:first-child{margin-top:0}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--line)}
+.sec-lbl i{color:var(--g);font-size:.68rem}
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:4px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:18px;transition:all .22s;position:relative;overflow:hidden}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--kc,var(--g)),transparent);opacity:0;transition:opacity .2s}
+.kpi:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.kpi:hover::after{opacity:1}
+.kpi-icon{font-size:1.1rem;margin-bottom:10px}
+.kpi-lbl{font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.kpi-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--g);line-height:1}
+.kpi-val.w{color:var(--t1)}.kpi-val.a{color:var(--amber)}.kpi-val.b{color:var(--blue)}.kpi-val.p{color:var(--purple)}
+.kpi-sub{font-size:.66rem;color:var(--t3);margin-top:4px;font-family:'JetBrains Mono',monospace}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer;border:none;transition:all .18s;text-decoration:none}
+.btn-primary{background:linear-gradient(135deg,var(--g2),var(--g));color:var(--ink)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,255,136,.3)}
+.btn-ghost{background:var(--g3);border:1px solid var(--line2);color:var(--g)}
+.btn-ghost:hover{background:var(--g4)}
+.btn-dim{background:var(--ink3);border:1px solid var(--line);color:var(--t2)}
+.btn-dim:hover{border-color:var(--line2);color:var(--t1)}
+.btn-sm{padding:7px 14px;font-size:.78rem}
+.btn-full{width:100%;justify-content:center}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none !important;box-shadow:none !important}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden}
+.panel-hdr{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-title{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;color:var(--t1);display:flex;align-items:center;gap:8px}
+.panel-title i{color:var(--g);font-size:.8rem}
+.panel-badge{font-size:.66rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.panel-body{padding:20px 22px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--g);margin-right:8px;vertical-align:middle}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.code-big{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--g);letter-spacing:6px;line-height:1;margin-bottom:4px}
+.code-sub{font-size:.7rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.link-row{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:8px;transition:border-color .2s}
+.link-row:hover{border-color:var(--line2)}
+.link-lbl{padding:10px 12px;font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;white-space:nowrap;border-right:1px solid var(--line);background:rgba(0,0,0,.2);font-family:'JetBrains Mono',monospace}
+.link-url{flex:1;padding:10px 12px;background:none;border:none;outline:none;color:var(--t2);font-size:.75rem;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-copy{padding:9px 14px;background:var(--g3);border:none;border-left:1px solid var(--line);color:var(--g);font-size:.72rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.link-copy:hover{background:var(--g4)}
+.link-copy.ok{background:var(--g5);color:var(--t1)}
+.share-bar{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.sh-btn{padding:7px 12px;border-radius:7px;cursor:pointer;font-size:.72rem;font-weight:600;font-family:'Montserrat',sans-serif;border:1px solid var(--line);background:var(--ink3);color:var(--t2);display:flex;align-items:center;gap:5px;transition:all .2s}
+.sh-btn:hover{color:var(--t1);background:var(--ink4)}
+.sh-wa:hover{border-color:rgba(37,211,102,.35);color:#25d366;background:rgba(37,211,102,.07)}
+.sh-tw:hover{border-color:rgba(29,161,242,.35);color:#1da1f2;background:rgba(29,161,242,.07)}
+.sh-tg:hover{border-color:rgba(0,136,204,.35);color:#0088cc;background:rgba(0,136,204,.07)}
+.sh-li:hover{border-color:rgba(0,119,181,.35);color:#0077b5;background:rgba(0,119,181,.07)}
+.chart-area{height:120px;display:flex;align-items:flex-end;gap:5px;padding-top:8px}
+.chart-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:default}
+.chart-bar{width:100%;border-radius:3px 3px 0 0;min-height:4px;transition:all .3s}
+.chart-bar.clicks{background:rgba(91,156,246,.25);border:1px solid rgba(91,156,246,.35)}
+.chart-bar.clicks:hover{background:rgba(91,156,246,.5)}
+.chart-bar.earnings{background:var(--g3);border:1px solid var(--line2)}
+.chart-bar.earnings:hover{background:var(--g4)}
+.chart-lbl{font-size:.55rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.chart-legend{display:flex;gap:14px;margin-bottom:8px}
+.cleg{display:flex;align-items:center;gap:5px;font-size:.68rem;color:var(--t3);font-family:'JetBrains Mono',monospace}
+.cleg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.prog-wrap{margin:12px 0}
+.prog-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--t3);margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.prog-track{height:6px;background:rgba(255,255,255,.05);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--g2),var(--g));border-radius:4px;transition:width 1.2s cubic-bezier(.34,1.56,.64,1)}
+.bal-card{background:linear-gradient(135deg,rgba(0,255,136,.07),rgba(0,201,106,.03));border:1px solid var(--line2);border-radius:var(--r2);padding:26px;display:flex;flex-direction:column;gap:16px}
+.bal-lbl{font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;font-family:'JetBrains Mono',monospace;margin-bottom:4px}
+.bal-amount{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--g);line-height:1}
+.bal-currency{font-size:1.4rem;vertical-align:super;margin-right:2px}
+.bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bk-item{background:rgba(0,0,0,.25);border-radius:9px;padding:11px 13px}
+.bk-lbl{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.bk-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--t1)}
+.payout-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:24px}
+.payout-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.payout-card h3 i{color:var(--g)}
+.payout-card .sub{font-size:.75rem;color:var(--t3);margin-bottom:20px;font-family:'JetBrains Mono',monospace}
+.method-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px}
+.m-tab{border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;transition:all .2s;background:var(--ink3);text-align:center;user-select:none}
+.m-tab:hover{border-color:var(--line2);background:var(--ink4)}
+.m-tab.active{border-color:var(--g);background:var(--g3);box-shadow:0 0 0 3px rgba(0,255,136,.06)}
+.m-tab .ti{font-size:1.3rem;margin-bottom:4px}
+.m-tab .tn{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:var(--t1)}
+.m-tab.active .tn{color:var(--g)}
+.m-tab .ts{font-size:.62rem;color:var(--t3);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.pay-sec{display:none;animation:fadeUp .2s ease}
+.pay-sec.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.method-hint{padding:10px 13px;background:var(--ink3);border:1px solid var(--line);border-radius:8px;margin-bottom:14px;font-size:.75rem;color:var(--t2);line-height:1.6}
+.method-hint strong{color:var(--t1)}
+.form-stack{display:flex;flex-direction:column;gap:13px}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f-group{display:flex;flex-direction:column;gap:5px}
+.f-lbl{font-size:.64rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.f-input,.f-select{width:100%;padding:10px 13px;background:var(--ink3);border:1px solid var(--line);border-radius:9px;color:var(--t1);font-size:.86rem;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s}
+.f-input:focus,.f-select:focus{border-color:var(--line2)}
+.f-input::placeholder{color:var(--t3)}
+.f-select option{background:var(--ink3)}
+.f-hint{font-size:.66rem;color:var(--t3);line-height:1.5}
+.f-hint.danger{color:var(--red)}
+.saved-badge{display:none;font-size:.66rem;padding:3px 9px;border-radius:20px;background:var(--g3);color:var(--g);border:1px solid var(--line2);font-family:'JetBrains Mono',monospace}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pc{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r2);padding:16px;display:flex;flex-direction:column;gap:12px;transition:all .22s}
+.pc:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.pc-top{display:flex;align-items:flex-start;gap:12px}
+.pc-thumb{width:46px;height:46px;border-radius:10px;background:var(--g3);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;overflow:hidden}
+.pc-thumb img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.pc-name{font-weight:700;font-size:.88rem;color:var(--t1);margin-bottom:3px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-store{font-size:.7rem;color:var(--g);font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.pc-store a{color:var(--g)}
+.pc-price{font-size:.74rem;color:var(--t3)}
+.pc-badges{display:flex;gap:7px;flex-wrap:wrap}
+.bdg-comm{padding:3px 9px;border-radius:20px;font-size:.66rem;font-weight:700;background:var(--g3);border:1px solid var(--line2);color:var(--g)}
+.bdg-earn{padding:3px 9px;border-radius:20px;font-size:.66rem;font-weight:600;background:var(--ink4);color:var(--t3);border:1px solid var(--line)}
+.pc-link-row{display:flex;align-items:center;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.pc-url{flex:1;padding:7px 9px;background:none;border:none;outline:none;color:var(--t3);font-size:.66rem;font-family:'JetBrains Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-copy{padding:7px 11px;background:var(--g3);border:none;border-left:1px solid var(--line);color:var(--g);font-size:.66rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.pc-copy:hover{background:var(--g4)}
+.pc-copy.ok{background:var(--g5);color:var(--t1)}
+.pc-actions{display:flex;gap:6px}
+.pc-sh{flex:1;padding:6px 0;border-radius:7px;cursor:pointer;font-size:.7rem;font-family:'Montserrat',sans-serif;border:1px solid var(--line);background:var(--ink4);color:var(--t2);display:flex;align-items:center;justify-content:center;gap:4px;transition:all .2s;font-weight:600}
+.pc-sh:hover{background:var(--ink3);color:var(--t1)}
+.pc-sh.wa:hover{border-color:rgba(37,211,102,.35);color:#25d366}
+.pc-sh.tw:hover{border-color:rgba(29,161,242,.35);color:#1da1f2}
+.pc-sh.tg:hover{border-color:rgba(0,136,204,.35);color:#0088cc}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+thead th{padding:10px 14px;text-align:left;font-size:.6rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--t3);font-weight:700;border-bottom:1px solid var(--line);background:rgba(0,0,0,.15);white-space:nowrap;font-family:'JetBrains Mono',monospace}
+tbody td{padding:12px 14px;color:var(--t2);border-bottom:1px solid rgba(255,255,255,.03);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(0,255,136,.02)}
+.tr-conv td:first-child{border-left:2px solid var(--g)}
+.empty-row td{text-align:center;padding:44px 20px;color:var(--t3)}
+.empty-row i{display:block;font-size:1.5rem;margin-bottom:10px;opacity:.25}
+.bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.66rem;font-weight:700;white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.bdg::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.bdg-green{background:var(--g3);color:var(--g)}.bdg-green::before{background:var(--g)}
+.bdg-amber{background:rgba(245,166,35,.1);color:var(--amber)}.bdg-amber::before{background:var(--amber)}
+.bdg-blue{background:rgba(91,156,246,.1);color:var(--blue)}.bdg-blue::before{background:var(--blue)}
+.bdg-red{background:rgba(255,77,77,.1);color:var(--red)}.bdg-red::before{background:var(--red)}
+.bdg-muted{background:rgba(255,255,255,.05);color:var(--t3)}.bdg-muted::before{background:var(--t3)}
+.bdg-purple{background:rgba(167,139,250,.1);color:var(--purple)}.bdg-purple::before{background:var(--purple)}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.how-step{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:18px 14px;text-align:center;position:relative;transition:border-color .2s}
+.how-step:hover{border-color:var(--line2)}
+.how-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--g);font-size:.85rem;opacity:.35;z-index:1}
+.how-num{width:28px;height:28px;border-radius:50%;background:var(--g3);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--g);margin:0 auto 10px}
+.how-icon{font-size:1.5rem;margin-bottom:8px}
+.how-title{font-size:.82rem;font-weight:700;color:var(--t1);margin-bottom:4px}
+.how-desc{font-size:.72rem;color:var(--t3);line-height:1.6}
+.filter-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.filter-input{flex:1;min-width:180px;padding:9px 13px;background:var(--ink3);border:1px solid var(--line);border-radius:9px;color:var(--t1);font-size:.82rem;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s}
+.filter-input:focus{border-color:var(--line2)}
+.filter-input::placeholder{color:var(--t3)}
+.filter-select{padding:9px 13px;background:var(--ink3);border:1px solid var(--line);border-radius:9px;color:var(--t2);font-size:.78rem;font-family:'Montserrat',sans-serif;outline:none;cursor:pointer;transition:border-color .2s}
+.filter-select:focus{border-color:var(--line2)}
+.filter-select option{background:var(--ink3)}
+.perf-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.perf-row:last-child{border-bottom:none;padding-bottom:0}
+.perf-row:first-child{padding-top:0}
+.perf-rank{width:22px;height:22px;border-radius:50%;background:var(--ink4);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--t3);font-family:'JetBrains Mono',monospace;flex-shrink:0}
+.perf-rank.gold{background:rgba(245,166,35,.15);color:var(--amber)}
+.perf-rank.silver{background:rgba(148,163,184,.1);color:#94a3b8}
+.perf-rank.bronze{background:rgba(180,120,80,.1);color:#b47850}
+.perf-thumb{width:32px;height:32px;border-radius:7px;background:var(--g3);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;overflow:hidden}
+.perf-thumb img{width:100%;height:100%;object-fit:cover;border-radius:7px}
+.perf-body{flex:1;min-width:0}
+.perf-name{font-size:.82rem;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.perf-store{font-size:.66rem;color:var(--g);font-family:'JetBrains Mono',monospace}
+.perf-right{text-align:right;flex-shrink:0}
+.perf-earn{font-size:.88rem;font-weight:700;color:var(--g);font-family:'JetBrains Mono',monospace}
+.perf-conv{font-size:.66rem;color:var(--t3)}
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.t-item{background:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:.8rem;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,.4);pointer-events:all;animation:toastIn .25s ease;max-width:300px}
+.t-item.ok{border-color:var(--line2);color:var(--g)}
+.t-item.err{border-color:rgba(255,77,77,.3);color:var(--red)}
+.t-item.info{border-color:rgba(91,156,246,.3);color:var(--blue)}
+@keyframes toastIn{from{transform:translateX(20px);opacity:0}to{transform:translateX(0);opacity:1}}
+.empty-state{text-align:center;padding:40px 20px;color:var(--t3)}
+.empty-state i{font-size:1.8rem;margin-bottom:10px;display:block;opacity:.3}
+.empty-state p{font-size:.8rem}
+
+/* ── V2 NEW STYLES ── */
+.tier-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:800;font-family:'JetBrains Mono',monospace;letter-spacing:.5px;border:1px solid}
+.tier-starter {background:rgba(148,163,184,.08);border-color:rgba(148,163,184,.25);color:#94a3b8}
+.tier-regular {background:rgba(45,212,191,.09); border-color:rgba(45,212,191,.28); color:var(--teal)}
+.tier-pro     {background:rgba(245,166,35,.1);  border-color:rgba(245,166,35,.3);  color:var(--amber)}
+.tier-elite   {background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.35);color:var(--purple)}
+
+/* ── Earnings-locked banner (starter < 10 referrals) ── */
+.locked-banner{
+  display:none;
+  align-items:flex-start;
+  gap:11px;
+  padding:13px 16px;
+  background:rgba(245,166,35,.07);
+  border:1px solid rgba(245,166,35,.25);
+  border-radius:12px;
+  margin-bottom:16px;
+  font-size:.78rem;
+  color:var(--t2);
+  line-height:1.6;
+}
+.locked-banner.show{display:flex;}
+.locked-banner-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+.locked-banner strong{color:var(--amber);}
+.locked-banner .lb-prog{
+  margin-top:8px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.locked-banner .lb-track{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.locked-banner .lb-fill{height:100%;background:linear-gradient(90deg,var(--amber),#f5c842);border-radius:3px;transition:width .8s cubic-bezier(.34,1.56,.64,1);}
+.locked-banner .lb-hint{font-size:.68rem;color:var(--t3);font-family:'JetBrains Mono',monospace;}
+.funnel-wrap{display:flex;flex-direction:column;gap:8px}
+.funnel-step{display:grid;grid-template-columns:110px 1fr 70px;align-items:center;gap:10px;font-size:.78rem}
+.funnel-lbl{color:var(--t3);text-align:right;font-family:'JetBrains Mono',monospace;font-size:.68rem}
+.funnel-track{height:10px;background:rgba(255,255,255,.05);border-radius:6px;overflow:hidden}
+.funnel-fill{height:100%;border-radius:6px;transition:width 1s cubic-bezier(.34,1.56,.64,1)}
+.funnel-val{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--t1);font-size:.78rem}
+.camp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.camp-card{background:var(--ink3);border:1px solid var(--line);border-radius:var(--r2);padding:16px;transition:all .2s}
+.camp-card:hover{border-color:var(--line2)}
+.camp-name{font-weight:700;font-size:.88rem;color:var(--t1);margin-bottom:2px}
+.camp-meta{font-size:.68rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-bottom:12px}
+.camp-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.cstat{background:rgba(0,0,0,.25);border-radius:7px;padding:7px 10px}
+.cstat-lbl{font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:.8px;font-family:'JetBrains Mono',monospace;margin-bottom:2px}
+.cstat-val{font-size:.9rem;font-weight:700;color:var(--t1)}
+.slug-row{display:flex;align-items:center;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.slug-row:focus-within{border-color:var(--line2)}
+.slug-prefix{padding:10px 12px;font-size:.72rem;color:var(--t3);border-right:1px solid var(--line);background:rgba(0,0,0,.2);font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+.slug-input{flex:1;padding:10px 12px;background:none;border:none;outline:none;color:var(--t1);font-size:.8rem;font-family:'JetBrains Mono',monospace}
+.slug-save{padding:9px 14px;background:var(--g3);border:none;border-left:1px solid var(--line);color:var(--g);font-size:.72rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.slug-save:hover{background:var(--g4)}
+.period-tabs{display:flex;gap:4px;padding:3px;background:rgba(0,0,0,.25);border-radius:8px}
+.per-tab{padding:5px 12px;border-radius:6px;font-size:.72rem;font-weight:600;font-family:'JetBrains Mono',monospace;cursor:pointer;border:none;background:none;color:var(--t3);transition:all .15s}
+.per-tab.active{background:var(--g4);color:var(--g)}
+.per-tab:hover:not(.active){color:var(--t1)}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);animation:fadeIn .15s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{background:var(--ink2);border:1px solid var(--line2);border-radius:20px;padding:28px;max-width:480px;width:100%;box-shadow:0 40px 80px rgba(0,0,0,.6);animation:scaleIn .15s ease}
+@keyframes scaleIn{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--t1);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.modal-title i{color:var(--g)}
+.modal-sub{font-size:.78rem;color:var(--t3);margin-bottom:20px;line-height:1.6}
+.modal-actions{display:flex;gap:8px;margin-top:20px}
+.link-result{background:rgba(0,255,136,.04);border:1px solid var(--line2);border-radius:10px;padding:14px 16px;margin-top:12px;display:none}
+.link-result.show{display:block}
+.lr-label{font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-bottom:6px}
+.lr-url{font-size:.74rem;font-family:'JetBrains Mono',monospace;color:var(--g);word-break:break-all;margin-bottom:10px}
+.tier-prog-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r2);padding:20px}
+.tier-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.uq-pill{display:inline-block;padding:2px 7px;border-radius:6px;font-size:.6rem;font-family:'JetBrains Mono',monospace;background:rgba(91,156,246,.1);color:var(--blue);margin-left:5px;font-weight:600}
+.gen-row{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end}
+
+@media(max-width:1200px){.kpi-strip{grid-template-columns:repeat(3,1fr)}.how-grid{grid-template-columns:repeat(2,1fr)}.how-step:not(:last-child)::after{display:none}.prod-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}}
+@media(max-width:1000px){.two-col{grid-template-columns:1fr}.three-col{grid-template-columns:1fr 1fr}.gen-row{grid-template-columns:1fr 1fr;}.gen-row .btn{grid-column:1/-1}}
+@media(max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-btn{display:flex}.content{padding:18px}.kpi-strip{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr 1fr}.three-col{grid-template-columns:1fr}.method-tabs{grid-template-columns:1fr 1fr}.funnel-step{grid-template-columns:80px 1fr 56px}}
+@media(max-width:560px){.kpi-strip{grid-template-columns:1fr 1fr}.join-feats{grid-template-columns:1fr}.f-row2{grid-template-columns:1fr}.bk-grid{grid-template-columns:1fr}.prod-grid{grid-template-columns:1fr}.camp-grid{grid-template-columns:1fr}.gen-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="ld-ring"></div><div class="ld-txt">LOADING AFFILIATE…</div></div>
+<div class="sb-overlay" id="sbOverlay"></div>
+<div id="toast"></div>
+
+<!-- ═══════════════════ SIDEBAR (UNTOUCHED) ═══════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <a href="/marketplace/" class="sb-brand">
+    <div class="sb-mark"><img src="/marketplace/uyehtech logo.png" alt="UT" onerror="this.style.display='none'"></div>
+    <div><div class="sb-name">UYEH TECH</div><div class="sb-sub">Marketplace</div></div>
+  </a>
+  <div class="sb-user">
+    <div class="sb-avatar" id="sbAvatar">U</div>
+    <div style="min-width:0"><div class="sb-uname" id="sbName">Loading…</div><div class="sb-urole" id="sbRole">Member</div></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-lbl">Menu</div>
+    <a href="/marketplace/dashboard"   class="nav-link"><i class="fas fa-gauge-high"></i>Dashboard</a>
+    <a href="/marketplace/my-products" class="nav-link"><i class="fas fa-box-open"></i>My Library</a>
+    <a href="/marketplace/orders"      class="nav-link"><i class="fas fa-receipt"></i>Order History</a>
+    <a href="/marketplace/affiliate"   class="nav-link active"><i class="fas fa-link"></i>Affiliate</a>
+    <div class="sb-div"></div>
+    <div class="sb-lbl">Account</div>
+    <a href="/marketplace/profile"  class="nav-link"><i class="fas fa-user-circle"></i>My Profile</a>
+    <a href="/marketplace/settings" class="nav-link"><i class="fas fa-sliders"></i>Settings</a>
+    <a href="/marketplace/creator-dashboard" class="nav-link" id="sbCreatorLink" style="display:none"><i class="fas fa-store"></i>Creator Studio</a>
+    <a href="/marketplace/support"  class="nav-link"><i class="fas fa-headset"></i>Help & Support</a>
+  </nav>
+  <div class="sb-footer">
+    <a href="/marketplace/" class="sb-store"><i class="fas fa-store"></i>Browse Store</a>
+    <button class="sb-logout" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket"></i>Log Out</button>
+  </div>
+</aside>
+
+<!-- ═══════════════════ MAIN ═══════════════════ -->
+<div class="main">
+
+  <header class="topbar">
+    <div class="tb-left">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+      <div class="tb-title">Affiliate Dashboard</div>
+    </div>
+    <div class="tb-right">
+      <div class="status-pill" id="statusPill"><span class="sdot"></span><span id="statusTxt">Active</span></div>
+      <button class="tb-btn" id="refreshBtn" title="Refresh"><i class="fas fa-rotate-right"></i></button>
+    </div>
+  </header>
+
+  <!-- JOIN SCREEN -->
+  <div class="join-wrap" id="joinWrap">
+    <div class="join-card">
+      <div class="join-glyph">🤝</div>
+      <h2>Join the Affiliate Program</h2>
+      <p>Promote digital products from UYEH TECH creators. Every purchase through your unique link earns you a commission — automatically tracked, tiered, and credited to your account.</p>
+      <div class="join-feats">
+        <div class="join-feat"><div class="feat-icon">🔗</div><div><strong class="feat-t">Per-product tracked links</strong><span class="feat-s">Individual stats per product you promote</span></div></div>
+        <div class="join-feat"><div class="feat-icon">💰</div><div><strong class="feat-t">4-tier commission system</strong><span class="feat-s">Regular 5% · Pro 7% · Elite 10% · unlocks with referrals</span></div></div>
+        <div class="join-feat"><div class="feat-icon">📊</div><div><strong class="feat-t">Full funnel analytics</strong><span class="feat-s">Click → Cart → Purchase tracking</span></div></div>
+        <div class="join-feat"><div class="feat-icon">🌐</div><div><strong class="feat-t">Vanity link + tier upgrades</strong><span class="feat-s">10 refs → Regular · 50 → Pro · 150 → Elite</span></div></div>
+      </div>
+      <div style="margin-bottom:22px;text-align:left">
+        <label class="f-lbl" style="display:block;margin-bottom:6px">Referred by another affiliate? (optional)</label>
+        <input class="f-input" id="joinRefCode" placeholder="Enter their referral code" style="font-family:'JetBrains Mono',monospace">
+      </div>
+      <button class="btn-join" id="joinBtn"><i class="fas fa-rocket"></i>Join Now — It's Free</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SCREEN -->
+  <div id="dashWrap" style="display:none">
+  <div class="content">
+
+    <!-- HOW IT WORKS -->
+    <div class="sec-lbl"><i class="fas fa-map"></i>How It Works</div>
+    <div class="how-grid" style="margin-bottom:28px">
+      <div class="how-step"><div class="how-num">1</div><div class="how-icon">🔗</div><div class="how-title">Generate a link</div><div class="how-desc">Pick any product, click Generate — your code is embedded in a fully tracked URL</div></div>
+      <div class="how-step"><div class="how-num">2</div><div class="how-icon">📣</div><div class="how-title">Share it everywhere</div><div class="how-desc">WhatsApp, Twitter, Telegram, email — your vanity /ref/yourname works anywhere</div></div>
+      <div class="how-step"><div class="how-num">3</div><div class="how-icon">🛒</div><div class="how-title">Full funnel tracked</div><div class="how-desc">Click → view → cart → checkout → purchase — every stage logged for you</div></div>
+      <div class="how-step"><div class="how-num">4</div><div class="how-icon">💸</div><div class="how-title">Earn + tier up</div><div class="how-desc">Commission credited instantly. Hit Pro or Elite for automatic bonus rate increases</div></div>
+    </div>
+
+    <!-- Earnings locked banner — shown for starter tier with < 10 referrals -->
+    <div class="locked-banner" id="lockedBanner">
+      <div class="locked-banner-icon">🔒</div>
+      <div style="flex:1">
+        <strong>Commissions locked until 10 referrals</strong><br>
+        You are on the <strong>Starter tier</strong>. Your commission rate is <strong>2%</strong>,
+        but earnings are <strong>not credited</strong> until you refer 10 people who create accounts.
+        Share your <strong>Invite Link</strong> below to unlock earnings.
+        <div class="lb-prog">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px">
+            <span style="font-size:.68rem;color:var(--t3)">Referrals toward unlock</span>
+            <span style="font-size:.68rem;color:var(--amber);font-family:'JetBrains Mono',monospace" id="lockedRefCount">0 / 10</span>
+          </div>
+          <div class="lb-track"><div class="lb-fill" id="lockedFill" style="width:0%"></div></div>
+          <div class="lb-hint" id="lockedHint">Refer 10 people to unlock Regular tier (5%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="sec-lbl"><i class="fas fa-chart-bar"></i>Your Numbers</div>
+    <div class="kpi-strip" style="margin-bottom:14px">
+      <div class="kpi" style="--kc:var(--blue)"><div class="kpi-icon">🖱️</div><div class="kpi-lbl">Total Clicks</div><div class="kpi-val b" id="kClicks">0</div><div class="kpi-sub" id="kUniqueClicks">0 unique</div></div>
+      <div class="kpi" style="--kc:var(--g)"><div class="kpi-icon">✅</div><div class="kpi-lbl">Conversions</div><div class="kpi-val" id="kConv">0</div><div class="kpi-sub">Clicks → sales</div></div>
+      <div class="kpi" style="--kc:var(--purple)"><div class="kpi-icon">📈</div><div class="kpi-lbl">Conv. Rate</div><div class="kpi-val p" id="kRate">0%</div><div class="kpi-sub">Click-to-sale ratio</div></div>
+      <div class="kpi" style="--kc:var(--g)"><div class="kpi-icon">💰</div><div class="kpi-lbl">Total Earned</div><div class="kpi-val" id="kTotal">$0.00</div><div class="kpi-sub">Lifetime commissions</div></div>
+      <div class="kpi" style="--kc:var(--amber)"><div class="kpi-icon">⏳</div><div class="kpi-lbl">Available</div><div class="kpi-val a" id="kAvail">$0.00</div><div class="kpi-sub">Ready to withdraw</div></div>
+      <div class="kpi" style="--kc:var(--teal)"><div class="kpi-icon">🏦</div><div class="kpi-lbl">Paid Out</div><div class="kpi-val w" id="kPaid">$0.00</div><div class="kpi-sub">Sent to your account</div></div>
+    </div>
+
+    <!-- TIER + SUB-AFFILIATES + VANITY -->
+    <div class="three-col" style="margin-bottom:28px">
+      <div class="tier-prog-card">
+        <div class="tier-row">
+          <div>
+            <div style="font-size:.62rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;margin-bottom:5px">Your Tier</div>
+            <span class="tier-badge tier-starter" id="tierBadge">⭐ Starter</span>
+          </div>
+         <div style="text-align:right">
+            <div style="font-size:.62rem;color:var(--t3);font-family:'JetBrains Mono',monospace;margin-bottom:3px">Commission Rate</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--g)" id="tierCommRate">2%</div>
+          </div>
+        </div>
+        <div id="tierProgressWrap">
+          <div class="prog-labels"><span id="tierProgressLabel">Progress to Pro</span><span id="tierProgressPct">0%</span></div>
+          <div class="prog-track"><div class="prog-fill" id="tierProgressFill" style="width:0%"></div></div>
+          <div style="font-size:.68rem;color:var(--t3);margin-top:6px;font-family:'JetBrains Mono',monospace" id="tierProgressHint"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr">
+          <div class="panel-title"><i class="fas fa-user-plus"></i>Referrals</div>
+          <span class="panel-badge" id="referralCount">0 referred</span>
+        </div>
+        <div class="panel-body" style="padding:14px 18px">
+         <div style="margin-bottom:14px;">
+            <!-- INVITE LINK — for growing referral count & tier -->
+            <div style="font-size:.64rem;color:var(--amber);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+              🔗 Invite Link — counts toward your tier
+            </div>
+            <div style="font-size:.68rem;color:var(--t3);margin-bottom:6px;line-height:1.5;">
+              Share this link. Every person who <strong style="color:var(--t1)">creates an account</strong> through it adds 1 to your referral count.
+            </div>
+            <div class="link-row" style="margin-bottom:10px;">
+              <input class="link-url" id="refInviteLink" readonly placeholder="Loading…">
+              <button class="link-copy" id="refInviteCopyBtn" onclick="copyInviteLink()"><i class="fas fa-copy"></i>Copy</button>
+            </div>
+            <!-- SHOP LINK — for earning commissions on purchases -->
+            <div style="font-size:.64rem;color:var(--g);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+              🛒 Shop Link — earns commission on purchases
+            </div>
+            <div class="link-row">
+              <input class="link-url" id="refShopLink" readonly placeholder="Loading…">
+              <button class="link-copy" id="refShopCopyBtn" onclick="copyShopLink()"><i class="fas fa-copy"></i>Copy</button>
+            </div>
+          </div>
+          <!-- Tier progress by referrals -->
+          <div id="referralTierProgress" style="margin-top:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+              <span style="font-size:.72rem;color:var(--t2);" id="refTierLabel">Progress to Pro</span>
+              <span style="font-size:.7rem;color:var(--g);font-family:'JetBrains Mono',monospace;" id="refTierPct">0%</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="refTierFill" style="width:0%"></div></div>
+            <div style="font-size:.67rem;color:var(--t3);margin-top:5px;font-family:'JetBrains Mono',monospace;" id="refTierHint"></div>
+          </div>
+          <!-- 4-tier rewards table -->
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(148,163,184,.06);border:1px solid rgba(148,163,184,.18);border-radius:8px;padding:8px 12px;">
+              <span style="font-size:.76rem;color:#94a3b8;font-weight:700;">⭐ Starter</span>
+              <span style="font-size:.7rem;color:var(--t3);">0 referrals</span>
+              <span style="font-size:.72rem;color:#94a3b8;font-family:'JetBrains Mono',monospace;font-weight:700;">2% 🔒 locked</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.2);border-radius:8px;padding:8px 12px;">
+              <span style="font-size:.76rem;color:var(--teal);font-weight:700;">🥉 Regular</span>
+              <span style="font-size:.7rem;color:var(--t3);">10 referrals</span>
+              <span style="font-size:.72rem;color:var(--teal);font-family:'JetBrains Mono',monospace;font-weight:700;">5% ✅</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(245,166,35,.06);border:1px solid rgba(245,166,35,.2);border-radius:8px;padding:8px 12px;">
+              <span style="font-size:.76rem;color:var(--amber);font-weight:700;">🥇 Pro</span>
+              <span style="font-size:.7rem;color:var(--t3);">50 referrals</span>
+              <span style="font-size:.72rem;color:var(--amber);font-family:'JetBrains Mono',monospace;font-weight:700;">7% ✅</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.2);border-radius:8px;padding:8px 12px;">
+              <span style="font-size:.76rem;color:var(--purple);font-weight:700;">💎 Elite</span>
+              <span style="font-size:.7rem;color:var(--t3);">150 referrals</span>
+              <span style="font-size:.72rem;color:var(--purple);font-family:'JetBrains Mono',monospace;font-weight:700;">10% ✅</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr">
+          <div class="panel-title"><i class="fas fa-at"></i>Vanity Link</div>
+          <span class="panel-badge" id="vanityStatus">not set</span>
+        </div>
+        <div class="panel-body" style="padding:14px 18px">
+          <div style="font-size:.72rem;color:var(--t3);margin-bottom:10px;line-height:1.6">Set a custom <strong style="color:var(--t1)">/ref/yourname</strong> — clean enough for a bio or business card.</div>
+          <div class="slug-row" style="margin-bottom:8px">
+            <span class="slug-prefix">/ref/</span>
+            <input class="slug-input" id="slugInput" placeholder="yourname" maxlength="30">
+            <button class="slug-save" onclick="saveSlug()"><i class="fas fa-check"></i>Set</button>
+          </div>
+          <div style="font-size:.66rem;color:var(--t3)">Letters, numbers, hyphens, underscores. 3–30 chars.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODE + TOP PERFORMING + CHART -->
+    <div class="sec-lbl"><i class="fas fa-fingerprint"></i>Your Links</div>
+    <div class="three-col" style="margin-bottom:28px">
+      <div class="panel">
+        <div class="panel-hdr"><div class="panel-title"><i class="fas fa-id-badge"></i>Affiliate Code</div></div>
+        <div class="panel-body">
+          <div class="code-big" id="myCode">———</div>
+          <div class="code-sub" style="margin-bottom:14px">Embedded in every link you share</div>
+          <div class="link-row">
+            <span class="link-lbl">Store</span>
+            <input class="link-url" id="generalLink" readonly>
+            <button class="link-copy" id="genCopyBtn" onclick="copyLink()"><i class="fas fa-copy"></i>Copy</button>
+          </div>
+          <div class="share-bar">
+            <button class="sh-btn sh-wa" onclick="share('wa')"><i class="fab fa-whatsapp"></i>WhatsApp</button>
+            <button class="sh-btn sh-tw" onclick="share('tw')"><i class="fab fa-twitter"></i>Twitter</button>
+            <button class="sh-btn sh-tg" onclick="share('tg')"><i class="fab fa-telegram-plane"></i>Telegram</button>
+            <button class="sh-btn" onclick="share('native')"><i class="fas fa-share-alt"></i>Share</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr"><div class="panel-title"><i class="fas fa-trophy"></i>Top Performing</div><span class="panel-badge">by earnings</span></div>
+        <div class="panel-body" id="topPerforming"><div class="empty-state"><i class="fas fa-trophy"></i><p>Generate links to see which products perform best</p></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr">
+          <div class="panel-title"><i class="fas fa-chart-line"></i>Activity</div>
+          <div class="period-tabs">
+            <button class="per-tab active" onclick="setPeriod('7d',this)">7d</button>
+            <button class="per-tab" onclick="setPeriod('30d',this)">30d</button>
+            <button class="per-tab" onclick="setPeriod('90d',this)">90d</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="chart-legend">
+            <div class="cleg"><div class="cleg-dot" style="background:rgba(91,156,246,.6)"></div>Clicks</div>
+            <div class="cleg"><div class="cleg-dot" style="background:var(--g)"></div>Earnings</div>
+          </div>
+          <div class="chart-area" id="actChart"><div class="empty-state" style="width:100%"><i class="fas fa-chart-line"></i><p>No data yet</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FUNNEL ANALYTICS -->
+    <div class="sec-lbl"><i class="fas fa-filter"></i>Funnel Analytics</div>
+    <div class="two-col" style="margin-bottom:28px">
+      <div class="panel">
+        <div class="panel-hdr"><div class="panel-title"><i class="fas fa-route"></i>Conversion Funnel</div><span class="panel-badge" id="funnelPeriodLabel">30 days</span></div>
+        <div class="panel-body"><div class="funnel-wrap" id="funnelWrap"><div class="empty-state"><i class="fas fa-filter"></i><p>Share links to see your funnel</p></div></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hdr"><div class="panel-title"><i class="fas fa-star"></i>Best Performing Product</div></div>
+        <div class="panel-body" id="bestProductPanel"><div class="empty-state"><i class="fas fa-star"></i><p>No conversions yet</p></div></div>
+      </div>
+    </div>
+
+    <!-- LINK GENERATOR -->
+    <div class="sec-lbl"><i class="fas fa-wand-magic-sparkles"></i>Link Generator</div>
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-link"></i>Generate a Tracked Product Link</div>
+        <span class="panel-badge">each link has its own click + conversion stats</span>
+      </div>
+      <div class="panel-body">
+        <div class="gen-row">
+          <div class="f-group">
+            <label class="f-lbl">Product</label>
+            <select class="f-select" id="genProductSel"><option value="">Storewide link (all products)</option></select>
+          </div>
+          <div class="f-group">
+            <label class="f-lbl">Campaign tag (optional)</label>
+            <input class="f-input" id="genCampaign" placeholder="e.g. instagram-bio, email-june">
+          </div>
+          <button class="btn btn-primary" onclick="generateLink()" id="genBtn"><i class="fas fa-bolt"></i>Generate</button>
+        </div>
+        <div class="link-result" id="genResult">
+          <div class="lr-label">Your tracked link — ready to share</div>
+          <div class="lr-url" id="genResultUrl"></div>
+          <div style="display:flex;gap:7px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm" onclick="clipCopy(document.getElementById('genResultUrl').textContent,null)"><i class="fas fa-copy"></i>Copy</button>
+            <button class="sh-btn sh-wa" onclick="shareUrl('wa',document.getElementById('genResultUrl').textContent,'')"><i class="fab fa-whatsapp"></i>WhatsApp</button>
+            <button class="sh-btn sh-tw" onclick="shareUrl('tw',document.getElementById('genResultUrl').textContent,'')"><i class="fab fa-twitter"></i>Twitter</button>
+            <button class="sh-btn sh-tg" onclick="shareUrl('tg',document.getElementById('genResultUrl').textContent,'')"><i class="fab fa-telegram-plane"></i>Telegram</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MY TRACKED LINKS -->
+    <div class="panel" style="margin-bottom:28px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-table-list"></i>My Tracked Links</div>
+        <span class="panel-badge" id="myLinksCount">0 links</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Campaign</th><th>Clicks</th><th>Unique</th><th>Conversions</th><th>Revenue</th><th>Your Earnings</th><th>Actions</th></tr></thead>
+          <tbody id="myLinksBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CAMPAIGNS -->
+    <div class="sec-lbl"><i class="fas fa-bullhorn"></i>Campaigns</div>
+    <div class="panel" style="margin-bottom:28px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-flag"></i>Named Campaigns</div>
+        <button class="btn btn-ghost btn-sm" onclick="document.getElementById('campModal').style.display='flex'"><i class="fas fa-plus"></i>New Campaign</button>
+      </div>
+      <div class="panel-body">
+        <div class="camp-grid" id="campGrid"><div class="empty-state" style="grid-column:1/-1"><i class="fas fa-bullhorn"></i><p>No campaigns yet — create one to group links by channel</p></div></div>
+      </div>
+    </div>
+
+    <!-- PRODUCT CATALOGUE -->
+    <div class="sec-lbl"><i class="fas fa-store"></i>Creator Products to Promote</div>
+    <div class="panel" style="margin-bottom:28px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-tag"></i>All Approved Products<span class="panel-badge" id="prodCount" style="margin-left:8px"></span></div>
+        <button class="btn btn-dim btn-sm" onclick="refreshProducts()"><i class="fas fa-rotate-right"></i>Refresh</button>
+      </div>
+      <div class="panel-body">
+        <div class="filter-bar">
+          <input class="filter-input" id="prodSearch" type="text" placeholder="Search products…" oninput="filterProducts()">
+          <select class="filter-select" id="prodSort" onchange="filterProducts()">
+            <option value="commission">Highest Commission</option>
+            <option value="price">Highest Price</option>
+            <option value="sales">Most Sales</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <select class="filter-select" id="prodCat" onchange="filterProducts()"><option value="">All Categories</option></select>
+        </div>
+        <div class="prod-grid" id="prodGrid"><div class="empty-state" style="grid-column:1/-1"><i class="fas fa-spinner fa-spin"></i><p>Loading products…</p></div></div>
+      </div>
+    </div>
+
+    <!-- RECENT EVENTS -->
+    <div class="sec-lbl"><i class="fas fa-stream"></i>Recent Activity</div>
+    <div class="panel" style="margin-bottom:28px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-wave-square"></i>Funnel Events</div>
+        <span style="font-size:.66rem;color:var(--t3);font-family:'JetBrains Mono',monospace">green row = converted to sale</span>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Date & Time</th><th>Event</th><th>Product</th><th>Campaign</th><th>Unique</th><th>Status</th><th>Sale</th><th>Commission</th></tr></thead>
+          <tbody id="clicksBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- COMMISSION LEDGER -->
+    <div class="sec-lbl"><i class="fas fa-receipt"></i>Commission History</div>
+    <div class="panel" style="margin-bottom:28px">
+      <div class="panel-hdr">
+        <div class="panel-title"><i class="fas fa-coins"></i>All Commission Records</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <select class="filter-select" id="ledgerFilter" onchange="filterLedger()" style="padding:5px 10px;font-size:.74rem">
+            <option value="">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="paid">Paid</option>
+          </select>
+          <span class="panel-badge">Confirmed = ready to withdraw</span>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Product</th><th>Order Ref</th><th>Sale Price</th><th>Rate</th><th>Earned</th><th>Type</th><th>Status</th></tr></thead>
+          <tbody id="earningsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PAYOUT -->
+    <div class="sec-lbl"><i class="fas fa-wallet"></i>Payout</div>
+    <div class="two-col" style="margin-bottom:28px">
+      <div class="bal-card">
+        <div>
+          <div class="bal-lbl">Available to Withdraw</div>
+          <div class="bal-amount"><span class="bal-currency">$</span><span id="balDisplay">0.00</span></div>
+          <div class="prog-wrap" id="progWrap">
+            <div class="prog-labels"><span>Progress to minimum</span><span id="progPct">0%</span></div>
+            <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+          </div>
+          <div style="font-size:.76rem;padding:8px 12px;background:rgba(0,0,0,.25);border-radius:8px;color:var(--t3);line-height:1.6;margin-top:10px" id="threshMsg">Minimum payout is <strong style="color:var(--t1)">$20</strong>.</div>
+        </div>
+        <div class="bk-grid">
+          <div class="bk-item"><div class="bk-lbl">Pending</div><div class="bk-val" id="bkPending">$0.00</div></div>
+          <div class="bk-item"><div class="bk-lbl">Confirmed</div><div class="bk-val" id="bkConfirmed">$0.00</div></div>
+          <div class="bk-item"><div class="bk-lbl">Total Earned</div><div class="bk-val" id="bkTotal">$0.00</div></div>
+          <div class="bk-item" id="bkUnlockWrap"><div class="bk-lbl" id="bkUnlockLbl">Refs to Unlock</div><div class="bk-val" id="bkUnlockVal">10</div></div>
+        </div>
+      </div>
+      <div class="payout-card">
+        <h3><i class="fas fa-paper-plane"></i>Payout Details & Request</h3>
+        <p class="sub">Save your payment details once — reused for all future requests.</p>
+        <div class="method-tabs">
+          <div class="m-tab" data-m="bank_transfer" onclick="selMethod('bank_transfer')"><div class="ti">🏦</div><div class="tn">Bank Transfer</div><div class="ts">Local & International</div></div>
+          <div class="m-tab" data-m="paypal" onclick="selMethod('paypal')"><div class="ti">🅿️</div><div class="tn">PayPal</div><div class="ts">Worldwide</div></div>
+          <div class="m-tab" data-m="flutterwave" onclick="selMethod('flutterwave')"><div class="ti">🌊</div><div class="tn">Flutterwave</div><div class="ts">Africa & Global</div></div>
+          <div class="m-tab" data-m="crypto" onclick="selMethod('crypto')"><div class="ti">₿</div><div class="tn">Crypto</div><div class="ts">USDT & more</div></div>
+        </div>
+        <input type="hidden" id="methodInput">
+        <div class="pay-sec" id="ps_bank_transfer">
+          <div class="method-hint"><strong>Works for:</strong> Nigeria, Ghana, Kenya, USA, UK, Europe and most countries.</div>
+          <div class="form-stack">
+            <div class="f-group"><label class="f-lbl">Country / Region</label><select class="f-select" id="bankCountry" onchange="toggleBankFields()"><option value="nigeria">🇳🇬 Nigeria</option><option value="ghana">🇬🇭 Ghana</option><option value="kenya">🇰🇪 Kenya</option><option value="southafrica">🇿🇦 South Africa</option><option value="usa">🇺🇸 United States</option><option value="uk">🇬🇧 United Kingdom</option><option value="europe">🇪🇺 Europe (SEPA)</option><option value="other">🌍 Other</option></select></div>
+            <div class="f-row2"><div class="f-group"><label class="f-lbl">Bank Name</label><input class="f-input" id="bankName" placeholder="e.g. First Bank, Chase"></div><div class="f-group"><label class="f-lbl">Account Name</label><input class="f-input" id="accName" placeholder="Exact name on account"></div></div>
+            <div class="f-row2"><div class="f-group"><label class="f-lbl" id="accNumLbl">Account Number</label><input class="f-input" id="accNum" placeholder="Account number"></div><div class="f-group" id="sortGrp" style="display:none"><label class="f-lbl">Sort Code</label><input class="f-input" id="sortCode" placeholder="e.g. 040043"></div><div class="f-group" id="swiftGrp" style="display:none"><label class="f-lbl">SWIFT / BIC</label><input class="f-input" id="swiftCode" placeholder="e.g. GTBINGLA"></div></div>
+            <div class="f-group" id="ibanGrp" style="display:none"><label class="f-lbl">IBAN</label><input class="f-input" id="ibanNum" placeholder="e.g. GB29 NWBK 6016 1331 9268 19"></div>
+            <div class="f-group" id="routingGrp" style="display:none"><label class="f-lbl">Routing Number (ABA)</label><input class="f-input" id="routingNum" placeholder="9-digit routing number"></div>
+            <div class="f-group" id="otherGrp" style="display:none"><label class="f-lbl">Additional Details</label><textarea class="f-input" id="otherBank" rows="2" placeholder="Any extra info" style="resize:vertical"></textarea></div>
+          </div>
+        </div>
+        <div class="pay-sec" id="ps_paypal"><div class="method-hint"><strong>Works worldwide.</strong> Funds sent to your verified PayPal account in USD.</div><div class="form-stack"><div class="f-group"><label class="f-lbl">PayPal Email</label><input class="f-input" id="ppEmail" type="email" placeholder="your@paypal.com"></div><div class="f-group"><label class="f-lbl">PayPal Account Name</label><input class="f-input" id="ppName" placeholder="Name on PayPal account"></div></div></div>
+        <div class="pay-sec" id="ps_flutterwave"><div class="method-hint"><strong>Best for Africa.</strong> Nigeria, Ghana, Kenya, Rwanda, Uganda, South Africa, Egypt and more.</div><div class="form-stack"><div class="f-row2"><div class="f-group"><label class="f-lbl">Flutterwave Email / Phone</label><input class="f-input" id="flwEmail" placeholder="Email or phone"></div><div class="f-group"><label class="f-lbl">Bank Account Number</label><input class="f-input" id="flwAccount" placeholder="Account number"></div></div><div class="f-row2"><div class="f-group"><label class="f-lbl">Bank Name</label><input class="f-input" id="flwBank" placeholder="Your bank"></div><div class="f-group"><label class="f-lbl">Country</label><input class="f-input" id="flwCountry" placeholder="e.g. Nigeria"></div></div></div></div>
+        <div class="pay-sec" id="ps_crypto"><div class="method-hint"><strong>Global.</strong> We support USDT. Always verify your wallet address and network.</div><div class="form-stack"><div class="f-group"><label class="f-lbl">Network / Chain</label><select class="f-select" id="cryptoType"><option value="USDT_TRC20">USDT — TRC20 (Tron) — recommended, low fees</option><option value="USDT_ERC20">USDT — ERC20 (Ethereum)</option><option value="USDT_BEP20">USDT — BEP20 (BSC)</option><option value="BTC">Bitcoin (BTC)</option><option value="ETH">Ethereum (ETH)</option><option value="USDC">USDC</option></select></div><div class="f-group"><label class="f-lbl">Wallet Address</label><input class="f-input" id="cryptoAddr" placeholder="Your wallet address — verify carefully" style="font-family:'JetBrains Mono',monospace;font-size:.78rem"><div class="f-hint danger">⚠️ Always verify this address. Crypto payments cannot be reversed.</div></div><div class="f-group"><label class="f-lbl">Wallet Label (optional)</label><input class="f-input" id="cryptoName" placeholder="Name to identify this wallet"></div></div></div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:16px;margin-bottom:4px"><span class="saved-badge" id="savedBadge">✅ Details Saved</span></div>
+        <button class="btn btn-dim btn-full" style="margin-bottom:8px" onclick="savePayoutDetails()"><i class="fas fa-floppy-disk"></i>Save Payment Details</button>
+        <button class="btn btn-primary btn-full" id="payoutBtn" disabled onclick="requestPayout()"><i class="fas fa-paper-plane"></i>Request Payout</button>
+        <p style="font-size:.66rem;color:var(--t3);text-align:center;margin-top:10px;line-height:1.6">Processing takes 3–5 business days after approval. You will be notified by email.</p>
+      </div>
+    </div>
+
+    <!-- PAYOUT HISTORY -->
+    <div class="sec-lbl"><i class="fas fa-history"></i>Payout History</div>
+    <div class="panel" style="margin-bottom:40px">
+      <div class="panel-hdr"><div class="panel-title"><i class="fas fa-clipboard-list"></i>Past Payout Requests</div></div>
+      <div class="tbl-wrap"><table><thead><tr><th>Requested</th><th>Amount</th><th>Method</th><th>Payment Detail</th><th>Status</th><th>Processed</th></tr></thead><tbody id="payoutBody"></tbody></table></div>
+    </div>
+
+  </div><!-- /content -->
+  </div><!-- /dashWrap -->
+</div><!-- /main -->
+
+<!-- CAMPAIGN MODAL -->
+<div class="modal-ov" id="campModal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal-box">
+    <div class="modal-title"><i class="fas fa-bullhorn"></i>New Campaign</div>
+    <div class="modal-sub">Group links by channel. Track performance per campaign separately.</div>
+    <div class="form-stack">
+      <div class="f-group"><label class="f-lbl">Campaign Name</label><input class="f-input" id="campName" placeholder="e.g. Instagram Bio June"></div>
+      <div class="f-row2">
+        <div class="f-group"><label class="f-lbl">UTM Source</label><input class="f-input" id="campSource" placeholder="instagram"></div>
+        <div class="f-group"><label class="f-lbl">UTM Medium</label><input class="f-input" id="campMedium" placeholder="bio"></div>
+      </div>
+      <div class="f-group"><label class="f-lbl">Description (optional)</label><input class="f-input" id="campDesc" placeholder="What is this campaign for?"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" style="flex:1" onclick="createCampaign()"><i class="fas fa-plus"></i>Create Campaign</button>
+      <button class="btn btn-dim" onclick="document.getElementById('campModal').style.display='none'"><i class="fas fa-times"></i>Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const API  = 'https://uyehtechbackend.onrender.com';
+const SITE = window.location.origin;
+let D = null, _token = null, _allProds = [], _allLedger = [], _currentPeriod = '30d';
+
+// ── CURRENCY ─────────────────────────────────────────────────────────────────
+let currencySymbol = '$';
+let currencyRate   = 1;
+
+function toDisplay(usd) { return (Number(usd) || 0) * currencyRate; }
+function fmtMoney(usd, dispPrice) {
+  const sym = dispPrice?.symbol ?? currencySymbol;
+  const amt = dispPrice?.converted != null ? dispPrice.converted : toDisplay(usd);
+  return `${sym}${parseFloat(amt).toFixed(2)}`;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  _token = localStorage.getItem('token');
+  if (!_token) { location.href = '/marketplace/login'; return; }
+  try { const u = JSON.parse(localStorage.getItem('user')||'null'); if (u) seedSidebar(u); } catch {}
+  document.getElementById('menuBtn').onclick = () => { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sbOverlay').classList.toggle('open'); };
+  document.getElementById('sbOverlay').onclick = () => { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOverlay').classList.remove('open'); };
+  // Full cleanup on logout — clears all affiliate keys so stale refs never persist
+  document.getElementById('logoutBtn').onclick = () => {
+    ['token','user','user_orders','uyeh_aff',
+     'uyeh_ref','uyeh_ref_expiry','uyeh_ref_product','checkout_affiliate_code'
+    ].forEach(k => localStorage.removeItem(k));
+    location.href = '/marketplace/login';
+  };
+  document.getElementById('refreshBtn').onclick = () => loadAll(true);
+  document.getElementById('joinBtn').onclick = joinAffiliate;
+  // Auto-fill referral code when page is opened via a sub-affiliate join link:
+  // e.g. /marketplace/affiliate?join=1&ref=BASSEY1234
+  const _urlP = new URLSearchParams(window.location.search);
+  const _refV = _urlP.get('ref');
+  if (_refV) {
+    const _joinInput = document.getElementById('joinRefCode');
+    if (_joinInput) _joinInput.value = _refV.trim().toUpperCase();
+  }
+  const cached = getCache();
+  if (cached) { seedFromCache(cached); showDash(); }
+  await loadAll();
+});
+
+function api(path, method='GET', body) {
+  return fetch(API+path, { method, headers: {'Authorization':`Bearer ${_token}`,'Content-Type':'application/json'}, ...(body?{body:JSON.stringify(body)}:{}) });
+}
+
+async function loadAll(manual=false) {
+  const btn = document.getElementById('refreshBtn');
+  btn.classList.add('spin');
+  try {
+    const [dashRes,earningsRes,payoutsRes,linksRes,campsRes] = await Promise.all([
+      api('/api/affiliate/dashboard'), api('/api/affiliate/earnings?limit=100'),
+      api('/api/affiliate/payout/history'), api('/api/affiliate/links'), api('/api/affiliate/campaigns')
+    ]);
+    const [dd,ed,pd,ld,cd] = await Promise.all([dashRes.json(),earningsRes.json(),payoutsRes.json(),linksRes.json(),campsRes.json()]);
+    if (!dd.success) { if (!getCache()) showJoin(); else if(manual) toast('Could not refresh','info'); return; }
+    D = { ...dd, ledger: ed.ledger||[], payouts: pd.payouts||[], myLinks: ld.links||dd.myLinks||[], campaigns: cd.campaigns||[] };
+    localStorage.setItem('uyeh_aff', JSON.stringify({affiliateCode:D.affiliate.affiliateCode,status:D.affiliate.status,totalEarnings:D.affiliate.totalEarnings}));
+    _allLedger = D.ledger;
+    // Resolve display currency from server response
+    if (D.symbol) { currencySymbol = D.symbol; currencyRate = 1; } // server already converted
+    _allProds = D.availableProducts || [];
+    renderAll(); showDash();
+    if (manual) toast('Dashboard refreshed','ok');
+  } catch(e) { console.error(e); if(!getCache()) showJoin(); if(manual) toast('Network error','info'); }
+  finally { btn.classList.remove('spin'); document.getElementById('loader').classList.add('gone'); }
+}
+
+async function joinAffiliate() {
+  const btn = document.getElementById('joinBtn');
+  btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>Joining…';
+  const refCode = document.getElementById('joinRefCode')?.value.trim()||null;
+  try {
+    const r = await api('/api/affiliate/register','POST',{referredByCode:refCode||undefined});
+    const d = await r.json();
+    if (d.success) { toast('Welcome to the affiliate program! 🎉','ok'); await loadAll(); }
+    else if (d.message?.includes('already')) { await loadAll(); showDash(); }
+    else { toast(d.message||'Registration failed','err'); btn.disabled=false; btn.innerHTML='<i class="fas fa-rocket"></i>Join Now — It\'s Free'; }
+  } catch { toast('Network error. Try again.','err'); btn.disabled=false; btn.innerHTML='<i class="fas fa-rocket"></i>Join Now — It\'s Free'; }
+}
+
+function renderAll() {
+  renderStatus(); renderKPIs(); renderTier(); renderCode();
+  renderSubAffiliate(); renderVanitySlug(); renderProducts();
+  renderTopPerforming(); renderChart(); renderFunnel(); renderBestProduct();
+  renderMyLinks(); renderCampaigns(); renderClicks(); renderEarnings();
+  renderPayouts(); renderBalance(); populateGenProductSelect();
+  if (D.affiliate.payoutMethod) restorePayoutDetails(D.affiliate.payoutMethod, D.affiliate.payoutDetails||{});
+}
+function seedFromCache(c) { setText('myCode',c.affiliateCode); setInput('generalLink',`${SITE}/marketplace?ref=${c.affiliateCode}`); renderStatusPill(c.status); }
+function seedSidebar(u) {
+  const name=u.fullName||u.name||'User'; setText('sbName',name); setText('sbRole',u.isCreator?'Creator':u.isAgent?'Agent':'Member');
+  setAvatar('sbAvatar',u.profileImage,name);
+  if(u.isCreator) document.getElementById('sbCreatorLink').style.display='flex';
+}
+function renderStatus() { renderStatusPill(D.affiliate.status); }
+function renderStatusPill(status) {
+  const pill=document.getElementById('statusPill'); pill.classList.add('show');
+  const ok=status==='active'; pill.className='status-pill show'+(ok?'':' suspended');
+  setText('statusTxt',ok?'Active':cap(status||'active'));
+}
+function renderKPIs() {
+  const a=D.affiliate, e=D.earnings;
+  const confirmed=+(e.confirmed||0),total=+(a.totalEarnings||0),paid=+(e.paid||0),pending=+(e.pending||0);
+  setText('kClicks',a.totalClicks||0); setText('kUniqueClicks',(a.uniqueClicks||0)+' unique');
+  setText('kConv',a.totalConversions||0); setText('kRate',a.conversionRate||'0%');
+  setText('kTotal', currencySymbol+total.toFixed(2)); setText('kAvail', currencySymbol+confirmed.toFixed(2)); setText('kPaid', currencySymbol+paid.toFixed(2));
+  renderBalance(confirmed,total,pending,paid,a.payoutThreshold||20);
+}
+function renderBalance(confirmed,total,pending,paid,threshold) {
+  confirmed=confirmed??+(D?.earnings?.confirmed||0); total=total??+(D?.affiliate?.totalEarnings||0);
+  pending=pending??+(D?.earnings?.pending||0); paid=paid??+(D?.earnings?.paid||0); threshold=threshold??(D?.affiliate?.payoutThreshold||20);
+  setText('balDisplay',confirmed.toFixed(2)); setText('bkPending', currencySymbol+pending.toFixed(2));
+  setText('bkConfirmed', currencySymbol+confirmed.toFixed(2)); setText('bkTotal', currencySymbol+total.toFixed(2));
+  const balCurEl = document.querySelector('.bal-currency');
+  if (balCurEl) balCurEl.textContent = currencySymbol;
+
+  // Replace sub-affiliate earnings with referrals-to-unlock counter
+  const refsToUnlock = D?.affiliate?.referralsToUnlock ?? 0;
+  const isLocked     = D?.affiliate?.earningsLocked ?? false;
+  const unlockWrap   = document.getElementById('bkUnlockWrap');
+  const unlockLbl    = document.getElementById('bkUnlockLbl');
+  const unlockVal    = document.getElementById('bkUnlockVal');
+  if (unlockLbl && unlockVal) {
+    if (isLocked) {
+      unlockLbl.textContent = 'Refs to Unlock';
+      unlockVal.textContent = refsToUnlock;
+      unlockVal.style.color = 'var(--amber)';
+    } else {
+      unlockLbl.textContent = 'Referrals';
+      unlockVal.textContent = D?.affiliate?.totalReferrals ?? 0;
+      unlockVal.style.color = 'var(--g)';
+    }
+  }
+  const pct=Math.min(100,(confirmed/threshold)*100);
+  document.getElementById('progFill').style.width=pct+'%'; setText('progPct',pct.toFixed(0)+'%');
+  const canPay=confirmed>=threshold; document.getElementById('payoutBtn').disabled=!canPay;
+  document.getElementById('threshMsg').innerHTML=canPay?`<span style=\"color:var(--g);font-weight:700\">✅ Ready to withdraw!</span> You have <strong>${currencySymbol}${confirmed.toFixed(2)}</strong> available.`:`Minimum payout is <strong style=\"color:var(--t1)\">${currencySymbol}${threshold}</strong>. You need <strong style=\"color:var(--t1)\">${currencySymbol}${(threshold-confirmed).toFixed(2)}</strong> more.`;
+  if(canPay) document.getElementById('progWrap').style.display='none';
+}
+function renderTier() {
+  const a    = D.affiliate;
+  const tier = a.tier || 'starter';
+
+  // ── Tier icons & badge ───────────────────────────────────────────────────
+  const icons = { starter:'⭐', regular:'🥉', pro:'🥇', elite:'💎' };
+  const badge = document.getElementById('tierBadge');
+  badge.className  = `tier-badge tier-${tier}`;
+  badge.textContent = `${icons[tier] || '⭐'} ${cap(tier)}`;
+
+  // ── Commission rate (actual rate for this tier, not a bonus delta) ───────
+  const rateMap  = { starter:2, regular:5, pro:7, elite:10 };
+  const commRate = a.commissionRate ?? rateMap[tier] ?? 2;
+  setText('tierCommRate', commRate + '%');
+
+  // ── Earnings-locked banner (starter < 10 referrals) ──────────────────────
+  const earningsLocked   = a.earningsLocked ?? (tier === 'starter' && (a.totalReferrals || 0) < 10);
+  const refsToUnlock     = a.referralsToUnlock ?? Math.max(0, 10 - (a.totalReferrals || 0));
+  const currentRefs      = a.totalReferrals || 0;
+  const banner           = document.getElementById('lockedBanner');
+  if (banner) {
+    banner.classList.toggle('show', !!earningsLocked);
+    if (earningsLocked) {
+      const pct = Math.min(100, (currentRefs / 10) * 100);
+      setText('lockedRefCount', currentRefs + ' / 10');
+      setText('lockedHint', refsToUnlock > 0
+        ? `Refer ${refsToUnlock} more person${refsToUnlock !== 1 ? 's' : ''} to unlock Regular tier (5%)`
+        : 'Almost there!');
+      const fill = document.getElementById('lockedFill');
+      if (fill) fill.style.width = pct + '%';
+    }
+  }
+
+  // ── Tier progress (next tier) ─────────────────────────────────────────────
+  const tp = a.tierProgress || null;
+  const tierThresholds = { regular:10, pro:50, elite:150 };
+  const nextTierMap    = { starter:'regular', regular:'pro', pro:'elite', elite:null };
+  const nextTierName   = (typeof tp?.nextTier === 'string' ? tp.nextTier
+                            : (tp?.nextTier && (tp.nextTier.name || tp.nextTier.tier)))
+                          || nextTierMap[tier];
+
+  if (nextTierName) {
+    const thresh    = (tp && tp.thresholdReferrals) ? tp.thresholdReferrals : (tierThresholds[nextTierName] || 1);
+    const needed    = (tp && tp.referralsNeeded  != null) ? tp.referralsNeeded  : Math.max(0, thresh - currentRefs);
+    const pct       = Math.min(100, (currentRefs / thresh) * 100);
+
+    setText('tierProgressLabel', 'Progress to ' + cap(nextTierName));
+    setText('tierProgressPct',   pct.toFixed(0) + '%');
+    document.getElementById('tierProgressFill').style.width = pct + '%';
+    setText('tierProgressHint',  needed > 0
+      ? `Refer ${needed} more person${needed !== 1 ? 's' : ''} to reach ${cap(nextTierName)}`
+      : '');
+    document.getElementById('tierProgressWrap').style.display = 'block';
+
+    // Also update the referral panel twin progress bar
+    const refFill  = document.getElementById('refTierFill');
+    const refLabel = document.getElementById('refTierLabel');
+    const refPct   = document.getElementById('refTierPct');
+    const refHint  = document.getElementById('refTierHint');
+    if (refFill)  refFill.style.width  = pct + '%';
+    if (refLabel) refLabel.textContent = 'Progress to ' + cap(nextTierName);
+    if (refPct)   refPct.textContent   = pct.toFixed(0) + '%';
+    if (refHint)  refHint.textContent  = needed > 0
+      ? `${needed} more referral${needed !== 1 ? 's' : ''} needed`
+      : 'Threshold reached!';
+  } else {
+    // At elite — maximum
+    document.getElementById('tierProgressWrap').innerHTML =
+      '<div style="font-size:.74rem;color:var(--g);font-weight:700;margin-top:4px">💎 Elite tier — maximum 10% commission active!</div>';
+    const rtp = document.getElementById('referralTierProgress');
+    if (rtp) rtp.innerHTML = '<div style="font-size:.74rem;color:var(--g);font-weight:700;">💎 Elite — max commission active!</div>';
+  }
+}
+function renderCode() {
+  const code = D.affiliate.affiliateCode;
+  setText('myCode', code);
+  // Main share link now goes straight to signup — instant ref capture +
+  // immediate registration flow, per the preferred format.
+  setInput('generalLink', `${SITE}/marketplace/signup?ref=${code}`);
+  // Keep the shop link in the referral panel in sync
+  const shopEl = document.getElementById('refShopLink');
+  if (shopEl && !shopEl.value) setInput('refShopLink', `${SITE}/marketplace/?ref=${code}`);
+}
+
+function buildProductLink(p,code) {
+  // Two-segment clean format now has full routing + parsing support —
+  // see the creator-store.html + _redirects patch. This is now the
+  // primary generated format; the old query-param format is still
+  // fully supported for backward compatibility with previously shared links.
+  if(p.storeSlug&&p.productId) return `${SITE}/marketplace/${encodeURIComponent(p.storeSlug)}/${encodeURIComponent(p.productId)}?ref=${code}`;
+  if(p.storeSlug) return `${SITE}/marketplace/${p.storeSlug}?ref=${code}`;
+  if(p.affiliateLink) return p.affiliateLink;
+  return `${SITE}/marketplace/signup?ref=${code}`;
+}
+function renderSubAffiliate() {
+  const aff      = D.affiliate;
+  const code     = aff.affiliateCode;
+  const refCount = aff.totalReferrals || aff.referralCount || 0;
+
+  setText('referralCount', refCount + (refCount === 1 ? ' referred' : ' referred'));
+
+  // ── Invite Link (for getting users to sign up — counts toward tier) ──────
+  // Prefer the inviteLink field returned by the backend (added in affiliate-referral-signup-patch).
+  // Fallback: point directly to the signup page with the ref code embedded.
+  // Fixed: removed the .html extension — every other link on the site uses
+  // the clean-URL form, and this now matches the preferred format exactly.
+  const inviteLink = aff.inviteLink
+    || `${SITE}/marketplace/signup?ref=${code}`;
+  setInput('refInviteLink', inviteLink);
+
+  // ── Shop Link (for earning commissions on purchases) ─────────────────────
+  // Fixed: added the trailing slash so this actually matches the
+  // netlify.toml rule for "/marketplace/" exactly.
+  const shopLink = aff.affiliateLink
+    || `${SITE}/marketplace/?ref=${code}`;
+  setInput('refShopLink', shopLink);
+}
+
+function copyInviteLink() {
+  const el = document.getElementById('refInviteLink');
+  if (!el) return;
+  clipCopy(el.value, 'refInviteCopyBtn');
+}
+
+function copyShopLink() {
+  const el = document.getElementById('refShopLink');
+  if (!el) return;
+  clipCopy(el.value, 'refShopCopyBtn');
+}
+function renderVanitySlug() {
+  const a=D.affiliate;
+  if(a.customSlug) { setInput('slugInput',a.customSlug); setText('vanityStatus','set'); document.getElementById('vanityStatus').style.color='var(--g)'; }
+}
+async function saveSlug() {
+  const slug=document.getElementById('slugInput').value.trim();
+  if(!slug||slug.length<3){toast('Slug must be at least 3 characters','err');return;}
+  try {
+    const r=await api('/api/affiliate/slug','PUT',{slug}); const d=await r.json();
+    if(d.success){toast('Vanity link set: '+d.vanityLink,'ok');setText('vanityStatus','set');document.getElementById('vanityStatus').style.color='var(--g)';if(D?.affiliate)D.affiliate.customSlug=slug;}
+    else toast(d.message||'Failed to set slug','err');
+  } catch{toast('Network error','err');}
+}
+async function renderFunnel() {
+  const wrap=document.getElementById('funnelWrap');
+  try {
+    const r=await api(`/api/affiliate/analytics?period=${_currentPeriod}`); const d=await r.json();
+    if(!d.success) return;
+    const f=d.funnel; setText('funnelPeriodLabel',_currentPeriod==='7d'?'7 days':_currentPeriod==='30d'?'30 days':'90 days');
+    const steps=[
+      {label:'Clicks',val:f.clicks,pct:100,color:'rgba(91,156,246,.7)'},
+      {label:'Unique Clicks',val:f.uniqueClicks,pct:f.clicks>0?(f.uniqueClicks/f.clicks*100):0,color:'rgba(91,156,246,.5)'},
+      {label:'Add to Cart',val:f.addToCart,pct:f.clicks>0?(f.addToCart/f.clicks*100):0,color:'rgba(167,139,250,.7)'},
+      {label:'Checkout',val:f.checkoutStart,pct:f.clicks>0?(f.checkoutStart/f.clicks*100):0,color:'rgba(245,166,35,.7)'},
+      {label:'Purchases',val:f.purchases,pct:f.clicks>0?(f.purchases/f.clicks*100):0,color:'var(--g)'},
+    ];
+    if(f.clicks===0){wrap.innerHTML='<div class="empty-state"><i class="fas fa-filter"></i><p>Share links to see your funnel</p></div>';return;}
+    wrap.innerHTML=steps.map(s=>`<div class="funnel-step"><div class="funnel-lbl">${s.label}</div><div class="funnel-track"><div class="funnel-fill" style="width:${s.pct.toFixed(1)}%;background:${s.color}"></div></div><div class="funnel-val">${s.val}</div></div>`).join('');
+    wrap.insertAdjacentHTML('beforeend',`<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)"><div style="font-size:.72rem;color:var(--t3)">Click→Purchase CVR: <strong style="color:var(--g)">${f.overallCvr}</strong></div><div style="font-size:.72rem;color:var(--t3)">Cart→Purchase: <strong style="color:var(--amber)">${f.cartToPurchase}</strong></div></div>`);
+    if(d.dailyBreakdown?.length) renderChartFromData(d.dailyBreakdown);
+  } catch(e){console.error(e);}
+}
+function renderBestProduct() {
+  const el=document.getElementById('bestProductPanel'); const bp=D.affiliate.bestProduct;
+  if(!bp) return;
+  const prod=_allProds.find(p=>(p.productId||'').toString()===bp.productId?.toString());
+  const url=prod?buildProductLink(prod,D.affiliate.affiliateCode):'#';
+  el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><div class="perf-thumb" style="width:44px;height:44px;font-size:1.3rem">📦</div><div><div style="font-weight:700;color:var(--t1);font-size:.9rem">${esc(bp.title)}</div><div style="font-size:.7rem;color:var(--g);font-family:'JetBrains Mono',monospace;margin-top:2px">Best performer</div></div></div><div class="bk-grid"><div class="bk-item"><div class="bk-lbl">Your Earnings</div><div class="bk-val" style="color:var(--g)">$${(+(bp.revenue||0)).toFixed(2)}</div></div></div><div style="margin-top:10px"><button class="btn btn-ghost btn-sm btn-full" onclick="clipCopy('${esc(url)}',null)"><i class="fas fa-copy"></i>Copy Link</button></div>`;
+}
+async function setPeriod(period,btn) { _currentPeriod=period; document.querySelectorAll('.per-tab').forEach(t=>t.classList.remove('active')); btn.classList.add('active'); await renderFunnel(); }
+function populateGenProductSelect() {
+  const sel=document.getElementById('genProductSel'); if(!sel) return;
+  sel.innerHTML='<option value="">Storewide link (all products)</option>'+(_allProds||[]).map(p=>`<option value="${esc(p.productId||p.creatorProductId||'')}|${esc(p.title||'')}|${esc(p.storeSlug||'')}">${esc(p.title||'Untitled')} — ${esc(p.storeName||'Store')} (${p.effectiveRate||p.commission||0}%)</option>`).join('');
+}
+async function generateLink() {
+  const sel=document.getElementById('genProductSel'); const campaign=document.getElementById('genCampaign').value.trim()||null;
+  const parts=(sel.value||'').split('|'); const pid=parts[0]||null;
+  const btn=document.getElementById('genBtn'); btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>Generating…';
+  try {
+    const body={campaign}; if(pid) body.productId=pid;
+    const r=await api('/api/affiliate/links/generate','POST',body); const d=await r.json();
+    if(d.success){document.getElementById('genResultUrl').textContent=d.link.url;document.getElementById('genResult').classList.add('show');toast('Link generated!','ok');setTimeout(()=>loadLinksOnly(),1200);}
+    else toast(d.message||'Failed to generate link','err');
+  } catch{toast('Network error','err');}
+  finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-bolt"></i>Generate';}
+}
+async function loadLinksOnly() { try{const r=await api('/api/affiliate/links');const d=await r.json();if(d.success){D.myLinks=d.links||[];renderMyLinks();}}catch{} }
+function renderMyLinks() {
+  const tbody=document.getElementById('myLinksBody'); const list=D.myLinks||[];
+  setText('myLinksCount',list.length+' link'+(list.length!==1?'s':''));
+  if(!list.length){tbody.innerHTML=emptyRow('No links yet — use the generator above',8,'fas fa-link');return;}
+  tbody.innerHTML=list.map(lk=>{
+    const prod=lk.productId?.title||lk.creatorProductId?.title||(lk.isStorewideLink?'Storewide':'—');
+    const url=lk.url||`${SITE}/marketplace?ref=${D.affiliate.affiliateCode}`;
+    const camp=lk.campaign?`<span class="bdg bdg-blue">${esc(lk.campaign)}</span>`:'<span style="color:var(--t3)">—</span>';
+    return `<tr><td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(prod)}</td><td>${camp}</td><td style="font-family:'JetBrains Mono',monospace">${lk.clicks||0}</td><td style="font-family:'JetBrains Mono',monospace">${lk.uniqueClicks||0}</td><td style="font-family:'JetBrains Mono',monospace">${lk.conversions||0}</td><td style="font-family:'JetBrains Mono',monospace;color:var(--t3)">$${(+(lk.revenue||0)).toFixed(2)}</td><td style="font-weight:700;color:var(--g);font-family:'JetBrains Mono',monospace">$${(+(lk.earnings||0)).toFixed(2)}</td><td style="display:flex;gap:4px"><button class="btn btn-dim btn-sm" onclick="clipCopy('${esc(url)}',null)"><i class="fas fa-copy"></i></button><button class="btn btn-dim btn-sm" onclick="shareUrl('wa','${esc(url)}','')"><i class="fab fa-whatsapp"></i></button><button class="btn btn-dim btn-sm" onclick="shareUrl('tg','${esc(url)}','')"><i class="fab fa-telegram-plane"></i></button></td></tr>`;
+  }).join('');
+}
+function renderCampaigns() {
+  const grid=document.getElementById('campGrid'); const list=D.campaigns||[];
+  if(!list.length){grid.innerHTML='<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-bullhorn"></i><p>No campaigns yet</p></div>';return;}
+  grid.innerHTML=list.map(c=>`<div class="camp-card"><div class="camp-name">${esc(c.name)}</div><div class="camp-meta">${c.utm_source?esc(c.utm_source):''}${c.utm_medium?' / '+esc(c.utm_medium):''}</div><div class="camp-stats"><div class="cstat"><div class="cstat-lbl">Clicks</div><div class="cstat-val">${c.clicks||0}</div></div><div class="cstat"><div class="cstat-lbl">Conversions</div><div class="cstat-val">${c.conversions||0}</div></div><div class="cstat"><div class="cstat-lbl">Revenue</div><div class="cstat-val">$${(+(c.revenue||0)).toFixed(2)}</div></div><div class="cstat"><div class="cstat-lbl">Your Earnings</div><div class="cstat-val" style="color:var(--g)">$${(+(c.earnings||0)).toFixed(2)}</div></div></div></div>`).join('');
+}
+async function createCampaign() {
+  const name=document.getElementById('campName').value.trim(); if(!name){toast('Campaign name required','err');return;}
+  try{
+    const r=await api('/api/affiliate/campaigns','POST',{name,description:document.getElementById('campDesc').value.trim(),utm_source:document.getElementById('campSource').value.trim()||null,utm_medium:document.getElementById('campMedium').value.trim()||null});
+    const d=await r.json();
+    if(d.success){toast('Campaign created!','ok');document.getElementById('campModal').style.display='none';D.campaigns=[...(D.campaigns||[]),d.campaign];renderCampaigns();populateGenProductSelect();}
+    else toast(d.message||'Failed','err');
+  }catch{toast('Network error','err');}
+}
+function renderProducts() {
+  _allProds=D.availableProducts||[];
+  const cats=[...new Set(_allProds.map(p=>p.category||p.productType).filter(Boolean))];
+  const catSel=document.getElementById('prodCat');
+  catSel.innerHTML='<option value="">All Categories</option>'+cats.map(c=>`<option value="${esc(c)}">${esc(cap(c))}</option>`).join('');
+  filterProducts(); populateGenProductSelect();
+}
+function filterProducts() {
+  const q=document.getElementById('prodSearch').value.toLowerCase(), sort=document.getElementById('prodSort').value, cat=document.getElementById('prodCat').value;
+  let list=_allProds.filter(p=>{const mq=!q||(p.title||'').toLowerCase().includes(q)||(p.storeName||'').toLowerCase().includes(q);const mc=!cat||(p.category||p.productType)===cat;return mq&&mc;});
+  if(sort==='commission') list.sort((a,b)=>(b.effectiveRate||b.commission||0)-(a.effectiveRate||a.commission||0));
+  else if(sort==='price') list.sort((a,b)=>(b.price||0)-(a.price||0));
+  else if(sort==='sales') list.sort((a,b)=>(b.totalSales||0)-(a.totalSales||0));
+  else list.sort((a,b)=>(a.title||'').localeCompare(b.title||''));
+  setText('prodCount',`${list.length} product${list.length!==1?'s':''}`);
+  const grid=document.getElementById('prodGrid');
+  if(!list.length){grid.innerHTML=`<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-box-open"></i><p>${q?'No products match':'No approved products available yet'}</p></div>`;return;}
+  const code=D.affiliate.affiliateCode;
+  grid.innerHTML=list.map((p,i)=>{
+    const url  = buildProductLink(p, code);
+    const eff  = p.effectiveRate || p.commissionRate || p.commission || 0;
+    const earn = p.commissionAmount
+      ? `${currencySymbol}${toDisplay(Number(p.commissionAmount)).toFixed(2)} / sale`
+      : `${eff}%`;
+    const price    = p.price ? fmtMoney(p.price, p.displayPrice) : 'Free';
+    const storeUrl = p.storeSlug ? `${SITE}/marketplace/${p.storeSlug}` : '#';
+    const thumb    = p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : (p.icon || '📦');
+    // tierBonus removed — commission rate shown directly in the bdg-comm badge
+    const bonusBdg = '';
+    const salesBdg=p.totalSales>0?`<span class="bdg bdg-blue">${p.totalSales} sales</span>`:'';
+    return `<div class="pc"><div class="pc-top"><div class="pc-thumb">${thumb}</div><div style="flex:1;min-width:0"><div class="pc-name" title="${esc(p.title)}">${esc(p.title)}</div><div class="pc-store">🏪 <a href="${esc(storeUrl)}" target="_blank" rel="noopener">${esc(p.storeName||p.storeSlug||'Creator Store')}</a></div><div class="pc-price">${price}${p.category?` · ${esc(cap(p.category||p.productType||''))}`:''}${p.totalSales>0?` · ${p.totalSales} sold`:''}</div></div></div><div class="pc-badges"><span class="bdg-comm">${eff}% commission</span><span class="bdg-earn">Earn ${earn}</span>${bonusBdg}</div><div class="pc-link-row"><input class="pc-url" readonly value="${esc(url)}"><button class="pc-copy" id="pb${i}" onclick="clipCopy('${esc(url)}','pb${i}')"><i class="fas fa-copy"></i>Copy</button></div><div class="pc-actions"><button class="pc-sh wa" onclick="shareUrl('wa','${esc(url)}','${esc(p.title)}')"><i class="fab fa-whatsapp"></i>WhatsApp</button><button class="pc-sh tw" onclick="shareUrl('tw','${esc(url)}','${esc(p.title)}')"><i class="fab fa-twitter"></i>Twitter</button><button class="pc-sh tg" onclick="shareUrl('tg','${esc(url)}','${esc(p.title)}')"><i class="fab fa-telegram-plane"></i>Telegram</button><button class="pc-sh" onclick="shareUrl('native','${esc(url)}','${esc(p.title)}')"><i class="fas fa-share-alt"></i></button></div></div>`;
+  }).join('');
+}
+async function refreshProducts(){document.getElementById('prodGrid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><i class="fas fa-spinner fa-spin"></i><p>Refreshing…</p></div>`;await loadAll(false);}
+function renderTopPerforming() {
+  const el=document.getElementById('topPerforming'); const top=D.topLinks||[];
+  if(!top.length){el.innerHTML=`<div class="empty-state"><i class="fas fa-trophy"></i><p>Generate and share links to see top performers</p></div>`;return;}
+  const rc=['gold','silver','bronze'];
+  el.innerHTML=top.map((lk,i)=>`<div class="perf-row"><div class="perf-rank ${rc[i]||''}">${i+1}</div><div class="perf-thumb">${lk.productId?.image?`<img src="${esc(lk.productId.image)}" alt="">`:'📦'}</div><div class="perf-body"><div class="perf-name">${esc(lk.productId?.title||lk.creatorProductId?.title||'Storewide')}</div><div class="perf-store">${lk.conversions||0} sale${(lk.conversions||0)!==1?'s':''} · ${lk.clicks||0} clicks</div></div><div class="perf-right"><div class="perf-earn">$${(+(lk.earnings||0)).toFixed(2)}</div><div class="perf-conv"><a href="#" onclick="clipCopy('${esc(lk.url||'')}',null);return false" style="color:var(--g);font-size:.65rem">copy link →</a></div></div></div>`).join('');
+}
+function renderChart() {
+  const trend=D.dailyTrend||[];
+  if(trend.length){renderChartFromData(trend);return;}
+  const days=[];
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push({label:d.toLocaleDateString('en-US',{weekday:'short'}),dateStr:d.toISOString().slice(0,10),clicks:0,earnings:0});}
+  (D.recentEvents||D.recentClicks||[]).forEach(c=>{const ds=(c.createdAt||c.clickedAt||'').slice(0,10);const day=days.find(d=>d.dateStr===ds);if(day)day.clicks++;});
+  (D.ledger||[]).forEach(e=>{const ds=(e.createdAt||'').slice(0,10);const day=days.find(d=>d.dateStr===ds);if(day)day.earnings+=e.earningAmount||0;});
+  renderChartBuckets(days);
+}
+function renderChartFromData(trend) {
+  const days=trend.map(t=>({label:t._id?.slice(5)||t._id,dateStr:t._id,clicks:t.clicks||0,earnings:0}));
+  (D.ledger||[]).forEach(e=>{const ds=(e.createdAt||'').slice(0,10);const d=days.find(x=>x.dateStr===ds);if(d)d.earnings+=e.earningAmount||0;});
+  renderChartBuckets(days.slice(-30));
+}
+function renderChartBuckets(days) {
+  const el=document.getElementById('actChart');
+  const maxC=Math.max(...days.map(d=>d.clicks),1),maxE=Math.max(...days.map(d=>d.earnings),.01);
+  el.innerHTML=days.map(d=>`<div class="chart-col" title="${d.label}: ${d.clicks} clicks · $${(+d.earnings).toFixed(2)}"><div class="chart-bar earnings" style="height:${Math.max((d.earnings/maxE)*80,d.earnings>0?4:0)}px"></div><div class="chart-bar clicks" style="height:${Math.max((d.clicks/maxC)*80,d.clicks>0?4:0)}px"></div><div class="chart-lbl">${d.label}</div></div>`).join('');
+}
+function renderClicks() {
+  const tbody=document.getElementById('clicksBody'); const list=D.recentEvents||D.recentClicks||[];
+  if(!list.length){tbody.innerHTML=emptyRow('No activity yet — share your links to start tracking',8,'fas fa-stream');return;}
+  const evIcons={click:'🖱️',view:'👁️',add_to_cart:'🛒',checkout_start:'💳',purchase:'✅'};
+  tbody.innerHTML=list.map(c=>{
+    const prod=c.productId?.title||'—', camp=c.campaign?`<span class="bdg bdg-blue" style="font-size:.6rem">${esc(c.campaign)}</span>`:'—';
+    const uniq=c.isUnique?'<span class="uq-pill">unique</span>':'', evType=c.eventType||'click';
+    const evLbl=(evIcons[evType]||'🔹')+' '+evType.replace(/_/g,' ');
+    const conv=c.converted?'<span class="bdg bdg-green">Converted</span>':'<span class="bdg bdg-muted">No sale yet</span>';
+    const sale=c.conversionAmount?'$'+c.conversionAmount.toFixed(2):'—';
+    const comm=c.commissionEarned?`<strong style="color:var(--g)">$${c.commissionEarned.toFixed(2)}</strong>`:'—';
+    return `<tr class="${c.converted?'tr-conv':''}"><td style="color:var(--t3);font-size:.74rem;white-space:nowrap">${fmtDate(c.createdAt||c.clickedAt)}</td><td style="font-size:.76rem">${esc(evLbl)}</td><td>${esc(prod)}</td><td>${camp}</td><td>${uniq}</td><td>${conv}</td><td>${sale}</td><td>${comm}</td></tr>`;
+  }).join('');
+}
+function renderEarnings(list) {
+  const tbody=document.getElementById('earningsBody'); list=list||_allLedger;
+  if(!list.length){tbody.innerHTML=emptyRow('No commission records yet — keep sharing!',8,'fas fa-coins');return;}
+  tbody.innerHTML=list.map(e=>{
+    const prod=e.productId?.title||e.productTitle||'—', ref=e.orderId?.orderReference||e.orderRef||'—';
+    const sale=e.saleAmount?'$'+Number(e.saleAmount).toFixed(2):'—', rate=e.commissionRate?e.commissionRate+'%':'—';
+    const earn=e.earningAmount?'$'+Number(e.earningAmount).toFixed(2):'—';
+    // sub-affiliate entries removed from new ledger — show all as direct commissions
+    const type = '<span class="bdg bdg-muted">direct</span>';
+    const stCls={confirmed:'bdg-green',pending:'bdg-amber',paid:'bdg-blue',reversed:'bdg-red'}[e.status]||'bdg-muted';
+    return `<tr><td style="color:var(--t3);font-size:.74rem;white-space:nowrap">${fmtDate(e.createdAt)}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(prod)}</td><td style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t3)">${esc(ref)}</td><td>${sale}</td><td style="color:var(--t3)">${rate}</td><td style="font-weight:700;color:var(--g)">${earn}</td><td>${type}</td><td><span class="bdg ${stCls}">${e.status}</span></td></tr>`;
+  }).join('');
+}
+function filterLedger(){const st=document.getElementById('ledgerFilter').value;renderEarnings(st?_allLedger.filter(e=>e.status===st):_allLedger);}
+function renderPayouts() {
+  const tbody=document.getElementById('payoutBody'); const list=D.payouts||[];
+  if(!list.length){tbody.innerHTML=emptyRow('No payout requests yet',6,'fas fa-history');return;}
+  const stCls={pending:'bdg-amber',processing:'bdg-blue',completed:'bdg-green',rejected:'bdg-red'};
+  tbody.innerHTML=list.map(p=>{
+    const pd=p.payoutDetails||{}, method=(p.payoutMethod||'—').replace(/_/g,' ');
+    let detail='—';
+    if(pd.bankName&&pd.accountNumber) detail=pd.bankName+' ···'+String(pd.accountNumber).slice(-4);
+    else if(pd.paypalEmail) detail=pd.paypalEmail;
+    else if(pd.cryptoAddress) detail=(pd.cryptoType||'')+' ···'+String(pd.cryptoAddress).slice(-6);
+    else if(pd.flwEmail) detail=pd.flwEmail;
+    return `<tr><td style="color:var(--t3);font-size:.74rem;white-space:nowrap">${fmtDate(p.requestedAt||p.createdAt)}</td><td style="font-family:'Playfair Display',serif;font-weight:900;color:var(--g);font-size:1rem">$${(p.amount||0).toFixed(2)}</td><td style="text-transform:capitalize">${esc(method)}</td><td style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t3)">${esc(detail)}</td><td><span class="bdg ${stCls[p.status]||'bdg-muted'}">${p.status}</span></td><td style="color:var(--t3);font-size:.74rem">${p.processedAt?fmtDate(p.processedAt):'—'}</td></tr>`;
+  }).join('');
+}
+function selMethod(m){document.querySelectorAll('.m-tab').forEach(t=>t.classList.toggle('active',t.dataset.m===m));document.getElementById('methodInput').value=m;document.querySelectorAll('.pay-sec').forEach(s=>s.classList.remove('active'));document.getElementById('ps_'+m)?.classList.add('active');}
+function toggleBankFields(){const c=document.getElementById('bankCountry')?.value,usa=c==='usa',uk=c==='uk',eu=c==='europe',other=c==='other',intl=!['nigeria','ghana','kenya','southafrica'].includes(c);show2('swiftGrp',intl&&!eu&&!other&&!uk);show2('sortGrp',uk);show2('ibanGrp',eu);show2('routingGrp',usa);show2('otherGrp',other);}
+function show2(id,show){const el=document.getElementById(id);if(el)el.style.display=show?'flex':'none';}
+function restorePayoutDetails(method,pd){selMethod(method);const sv=(id,val)=>{const el=document.getElementById(id);if(el&&val)el.value=val;};if(method==='bank_transfer'){sv('bankCountry',pd.country);toggleBankFields();sv('bankName',pd.bankName);sv('accName',pd.accountName);sv('accNum',pd.accountNumber);sv('sortCode',pd.sortCode);sv('swiftCode',pd.swift);sv('ibanNum',pd.iban);sv('routingNum',pd.routingNumber);sv('otherBank',pd.otherDetails);}else if(method==='paypal'){sv('ppEmail',pd.paypalEmail);sv('ppName',pd.paypalName);}else if(method==='flutterwave'){sv('flwEmail',pd.flwEmail);sv('flwAccount',pd.flwAccount);sv('flwBank',pd.flwBank);sv('flwCountry',pd.flwCountry);}else if(method==='crypto'){sv('cryptoType',pd.cryptoType);sv('cryptoAddr',pd.cryptoAddress);sv('cryptoName',pd.cryptoName);}document.getElementById('savedBadge').style.display='inline-flex';}
+async function savePayoutDetails(){const method=document.getElementById('methodInput').value;if(!method){toast('Select a payout method first','err');return;}let pd={};if(method==='bank_transfer'){const bn=v('bankName'),an=v('accNum'),acn=v('accName');if(!bn||!an||!acn){toast('Bank name, account number and name are required','err');return;}pd={country:v('bankCountry')||'nigeria',bankName:bn,accountNumber:an,accountName:acn,sortCode:v('sortCode'),swift:v('swiftCode'),iban:v('ibanNum'),routingNumber:v('routingNum'),otherDetails:v('otherBank')};}else if(method==='paypal'){const em=v('ppEmail');if(!em){toast('PayPal email is required','err');return;}pd={paypalEmail:em,paypalName:v('ppName')};}else if(method==='flutterwave'){const fe=v('flwEmail'),fa=v('flwAccount');if(!fe&&!fa){toast('Provide Flutterwave email or account number','err');return;}pd={flwEmail:fe,flwAccount:fa,flwBank:v('flwBank'),flwCountry:v('flwCountry')};}else if(method==='crypto'){const addr=v('cryptoAddr');if(!addr){toast('Wallet address is required','err');return;}pd={cryptoType:v('cryptoType')||'USDT_TRC20',cryptoAddress:addr,cryptoName:v('cryptoName')};}try{const r=await api('/api/affiliate/payout/details','PUT',{payoutMethod:method,payoutDetails:pd});const d=await r.json();if(d.success){toast('Payment details saved!','ok');document.getElementById('savedBadge').style.display='inline-flex';if(D?.affiliate){D.affiliate.payoutMethod=method;D.affiliate.payoutDetails=pd;}}else toast(d.message||'Save failed','err');}catch{toast('Network error','err');}}
+async function requestPayout(){const method=document.getElementById('methodInput').value,pd=D?.affiliate?.payoutDetails;if(!method||!pd){toast('Save your payment details first','err');return;}const btn=document.getElementById('payoutBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i>Requesting…';try{const r=await api('/api/affiliate/payout/request','POST',{payoutMethod:method,payoutDetails:pd});const d=await r.json();if(d.success){toast(d.message||'Payout request submitted!','ok');setTimeout(()=>loadAll(),1800);}else toast(d.message||'Payout request failed','err');}catch{toast('Network error. Try again.','err');}finally{btn.disabled=false;btn.innerHTML='<i class="fas fa-paper-plane"></i>Request Payout';}}
+function copyLink(){clipCopy(document.getElementById('generalLink').value,'genCopyBtn');}
+function share(platform){shareUrl(platform,document.getElementById('generalLink').value,'UYEH TECH Digital Products');}
+function shareUrl(platform,url,title){const text=`Check out "${title||'UYEH TECH'}" 🔥`;const enc=encodeURIComponent(url),encT=encodeURIComponent(text+'\n'+url);if(platform==='native'){if(navigator.share){navigator.share({title:'UYEH TECH',text,url}).catch(()=>{});return;}clipCopy(url,null);toast('Link copied','info');return;}const map={wa:`https://wa.me/?text=${encT}`,tw:`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${enc}`,tg:`https://t.me/share/url?url=${enc}&text=${encodeURIComponent(text)}`};window.open(map[platform],'_blank','noopener,width=620,height=500');}
+function clipCopy(text,btnId){navigator.clipboard.writeText(text).then(()=>{toast('Link copied!','ok');if(btnId){const btn=document.getElementById(btnId);if(btn){btn.classList.add('ok');const orig=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i>Copied!';setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=orig;},2800);}}}).catch(()=>{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied!','ok');});}
+function showDash(){document.getElementById('dashWrap').style.display='block';document.getElementById('joinWrap').classList.remove('show');}
+function showJoin(){document.getElementById('joinWrap').classList.add('show');document.getElementById('dashWrap').style.display='none';}
+function getCache(){try{const o=JSON.parse(localStorage.getItem('uyeh_aff')||'null');return o?.affiliateCode?o:null;}catch{return null;}}
+function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
+function setInput(id,v){const e=document.getElementById(id);if(e)e.value=v;}
+function v(id){return document.getElementById(id)?.value.trim()||'';}
+function setAvatar(id,img,name){const e=document.getElementById(id);if(!e)return;if(img)e.innerHTML=`<img src="${esc(img)}" alt="avatar">`;else e.textContent=(name||'U')[0].toUpperCase();}
+function cap(s){
+  if (s === null || s === undefined) return '';
+  if (typeof s !== 'string') s = String(s);
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+function esc(s){return s?String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''; }
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return dt.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' '+dt.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});}
+function emptyRow(msg,cols,icon='fas fa-inbox'){return `<tr class="empty-row"><td colspan="${cols}"><i class="${icon}"></i>${msg}</td></tr>`;}
+function toast(msg,type='ok'){const c=document.getElementById('toast'),d=document.createElement('div');d.className=`t-item ${type}`;const icon=type==='ok'?'fa-circle-check':type==='err'?'fa-circle-xmark':'fa-circle-info';d.innerHTML=`<i class="fas ${icon}"></i>${esc(msg)}`;c.appendChild(d);setTimeout(()=>d.remove(),4000);}
+</script>
+
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Browse all verified creators on UYEH TECH Marketplace — discover premium digital products from talented developers, designers and educators.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Creators Directory — UYEH TECH Marketplace">
+<meta property="og:description" content="Discover verified creators selling premium digital products on UYEH TECH.">
+<meta property="og:image" content="/image/uyehtech-logo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>Creators Directory — UYEH TECH</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+<style>
+/* =====================================================
+   UYEH TECH — CREATORS DIRECTORY
+   Matching brand: #00ff88 / Playfair + Montserrat
+   ===================================================== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#00ff88;--primary-dark:#00b359;--dark:#0a0a0a;
+  --dark-2:#111111;--dark-3:#141414;--dark-4:#1a1a1a;
+  --gray:#9ca3af;--gray-light:#d1d5db;--error:#ff4444;
+  --warning:#ffa500;--purple:#7b61ff;
+  --border:rgba(0,255,136,0.2);--card-bg:#111111;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--dark);color:#fff;line-height:1.6;padding-top:80px}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--primary-dark);border-radius:3px}
+
+/* ── NAVIGATION ─────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:15px 40px;display:flex;justify-content:space-between;align-items:center;z-index:1000;box-shadow:0 5px 30px rgba(0,255,136,0.1);animation:navSlide .5s ease-out}
+@keyframes navSlide{from{transform:translateY(-100%);opacity:0}to{transform:translateY(0);opacity:1}}
+nav>a{flex-shrink:0}
+nav>a img{display:block;transition:all .3s}
+nav>a:hover img{transform:scale(1.05);filter:brightness(1.2)}
+.nav-links{display:flex;list-style:none;gap:5px;align-items:center}
+.nav-link{display:block;padding:12px 20px;color:#d1d5db;text-decoration:none;font-weight:500;font-size:.95em;border-radius:8px;transition:all .3s}
+.nav-link:hover{color:#00ff88;background:rgba(0,255,136,.1)}
+.nav-link.active{color:#00ff88;position:relative}
+.nav-link.active::after{content:'';position:absolute;bottom:5px;left:20px;right:20px;height:2px;background:#00ff88}
+.nav-actions{display:flex;align-items:center;gap:20px}
+.cart-btn{position:relative;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);padding:12px 20px;border-radius:12px;color:var(--primary);cursor:pointer;font-weight:600;transition:all .3s;display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;text-decoration:none}
+.cart-btn:hover{background:rgba(0,255,136,.2);transform:translateY(-2px);box-shadow:0 5px 20px rgba(0,255,136,.3)}
+.cart-count{position:absolute;top:-8px;right:-8px;background:linear-gradient(135deg,#ff4444,#ff6666);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700}
+.auth-buttons{display:flex;gap:12px}
+.btn-login,.btn-signup{padding:12px 25px;border-radius:12px;font-weight:600;text-decoration:none;transition:all .3s;font-family:'Montserrat',sans-serif}
+.btn-login{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:var(--primary)}
+.btn-login:hover{background:rgba(0,255,136,.2);transform:translateY(-2px)}
+.btn-signup{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:#fff;border:none}
+.btn-signup:hover{transform:translateY(-2px);box-shadow:0 5px 20px rgba(0,255,136,.4)}
+.user-dropdown{position:relative}
+.user-avatar-btn{display:flex;align-items:center;gap:10px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);padding:8px 15px;border-radius:12px;color:var(--primary);cursor:pointer;font-weight:600;transition:all .3s;font-family:'Montserrat',sans-serif}
+.user-avatar-btn:hover{background:rgba(0,255,136,.2);transform:translateY(-2px)}
+.user-avatar-btn img{width:35px;height:35px;border-radius:50%;border:2px solid var(--primary)}
+.dropdown-arrow{font-size:.7rem;transition:transform .3s}
+.user-dropdown.open .dropdown-arrow{transform:rotate(180deg)}
+.user-menu{position:absolute;top:calc(100% + 10px);right:0;background:rgba(15,15,15,.98);border:1px solid rgba(0,255,136,.3);border-radius:15px;width:280px;padding:10px;display:none;flex-direction:column;gap:5px;box-shadow:0 10px 40px rgba(0,255,136,.2);backdrop-filter:blur(20px);animation:menuIn .25s ease}
+.user-menu.show{display:flex}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.user-menu-header{display:flex;align-items:center;gap:12px;padding:15px;background:rgba(0,255,136,.05);border-radius:10px;margin-bottom:5px}
+.user-menu-header img{width:50px;height:50px;border-radius:50%;border:2px solid var(--primary)}
+.menu-user-name{font-weight:700;color:var(--primary);font-size:1rem}
+.menu-user-email{font-size:.85rem;color:var(--gray)}
+.user-menu-divider{height:1px;background:rgba(0,255,136,.2);margin:5px 0}
+.user-menu-item{display:flex;align-items:center;gap:12px;padding:12px 15px;color:var(--gray-light);text-decoration:none;border-radius:10px;transition:all .3s;font-weight:500;cursor:pointer;border:none;background:transparent;width:100%;text-align:left;font-family:'Montserrat',sans-serif}
+.user-menu-item:hover{background:rgba(0,255,136,.1);color:var(--primary);transform:translateX(5px)}
+.user-menu-item i{font-size:1.1rem;width:20px}
+.logout-item{color:var(--error)}
+.logout-item:hover{background:rgba(255,68,68,.1)!important;color:var(--error)!important}
+.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;flex-shrink:0}
+.menu-toggle span{width:28px;height:3px;background:#00ff88;border-radius:3px;transition:all .3s}
+.menu-toggle.open span:nth-child(1){transform:rotate(45deg) translate(8px,8px)}
+.menu-toggle.open span:nth-child(2){opacity:0}
+.menu-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+@media(max-width:968px){
+  nav{padding:15px 25px}body{padding-top:70px}
+  .nav-links{position:fixed;top:70px;left:-100%;flex-direction:column;background:rgba(10,10,10,.98);backdrop-filter:blur(20px);width:100%;height:calc(100vh - 70px);padding:40px 30px;gap:0;transition:left .3s;border-top:1px solid var(--border);overflow-y:auto}
+  .nav-links.open{left:0}.nav-links li{width:100%;border-bottom:1px solid rgba(0,255,136,.1)}
+  .nav-link{width:100%;padding:18px 0;font-size:1.1em}.menu-toggle{display:flex;order:3}
+}
+@media(max-width:600px){
+  nav{padding:15px 20px}body{padding-top:65px}.nav-links{top:65px;height:calc(100vh - 65px)}
+  .nav-actions{gap:10px}.btn-login,.btn-signup{padding:10px 16px;font-size:.88rem}
+}
+
+/* ── HERO ─────────────────────────────────────── */
+.page-hero{
+  position:relative;padding:84px 40px 76px;
+  background:linear-gradient(160deg,rgba(0,255,136,.06) 0%,rgba(0,0,0,0) 60%);
+  overflow:hidden;text-align:center;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,255,136,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.04) 1px,transparent 1px);
+  background-size:50px 50px;pointer-events:none;
+}
+.page-hero::after{
+  content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+  width:700px;height:480px;
+  background:radial-gradient(ellipse,rgba(0,255,136,.09) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:820px;margin:0 auto}
+.breadcrumb{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;color:var(--gray);margin-bottom:22px;font-family:'JetBrains Mono',monospace;letter-spacing:.5px}
+.breadcrumb a{color:var(--primary);text-decoration:none;transition:opacity .2s}
+.breadcrumb a:hover{opacity:.75}
+.breadcrumb i{font-size:.6rem}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.28);border-radius:50px;padding:8px 20px;font-size:.78rem;font-weight:600;color:var(--primary);margin-bottom:20px;letter-spacing:.5px;animation:fadeUp .5s ease}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pDot 1.6s ease-in-out infinite}
+@keyframes pDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+.hero-title{font-family:'Playfair Display',serif;font-size:3.6rem;font-weight:900;color:#fff;line-height:1.12;margin-bottom:18px;animation:fadeUp .6s ease .1s both}
+.hero-title .green{color:var(--primary);text-shadow:0 0 40px rgba(0,255,136,.4)}
+.hero-subtitle{font-size:1.05rem;color:var(--gray-light);max-width:580px;margin:0 auto 44px;line-height:1.85;animation:fadeUp .6s ease .2s both}
+.hero-stats{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;animation:fadeUp .6s ease .3s both}
+.h-stat{text-align:center}
+.h-stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--primary);display:block;text-shadow:0 0 24px rgba(0,255,136,.3);line-height:1}
+.h-stat-label{font-size:.75rem;color:var(--gray);margin-top:5px;text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.page-hero{padding:56px 20px 52px}.hero-title{font-size:2.4rem}}
+@media(max-width:480px){.hero-title{font-size:1.9rem}.hero-stats{gap:28px}.h-stat-num{font-size:1.9rem}}
+
+/* ── FEATURED TOP-CREATORS STRIP ─────────────── */
+.featured-strip{background:rgba(0,255,136,.025);border-top:1px solid rgba(0,255,136,.1);border-bottom:1px solid rgba(0,255,136,.1);padding:44px 40px}
+.strip-inner{max-width:1400px;margin:0 auto}
+.strip-heading{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--primary);margin-bottom:22px}
+.strip-heading::after{content:'';flex:1;height:1px;background:rgba(0,255,136,.18)}
+.pill-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.pill-scroll::-webkit-scrollbar{height:3px}
+.pill-scroll::-webkit-scrollbar-thumb{background:var(--primary-dark);border-radius:2px}
+.creator-pill{flex-shrink:0;scroll-snap-align:start;display:flex;align-items:center;gap:11px;background:var(--card-bg);border:1px solid rgba(0,255,136,.2);border-radius:60px;padding:9px 18px 9px 9px;cursor:pointer;transition:all .28s;white-space:nowrap}
+.creator-pill:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,255,136,.15)}
+.pill-ava{width:40px;height:40px;border-radius:50%;border:2px solid rgba(0,255,136,.4);overflow:hidden;background:linear-gradient(135deg,#0d2a1a,#1a3d2a);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--primary);flex-shrink:0}
+.pill-ava img{width:100%;height:100%;object-fit:cover}
+.pill-name{font-weight:700;color:#fff;font-size:.88rem}
+.pill-cnt{font-size:.72rem;color:var(--gray)}
+.pill-chk{color:var(--primary);font-size:.7rem;margin-left:3px}
+@media(max-width:768px){.featured-strip{padding:28px 20px}}
+
+/* ── TOOLBAR ──────────────────────────────────── */
+.toolbar-wrap{padding:44px 40px 0;max-width:1400px;margin:0 auto}
+.toolbar-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.search-box{position:relative;flex:1;min-width:220px;max-width:500px}
+.search-box i{position:absolute;left:17px;top:50%;transform:translateY(-50%);color:var(--gray);font-size:.92rem}
+.search-box input{width:100%;padding:13px 17px 13px 46px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.2);border-radius:12px;color:#fff;font-size:.9rem;font-family:'Montserrat',sans-serif;transition:all .3s}
+.search-box input:focus{outline:none;border-color:var(--primary);background:rgba(0,255,136,.07)}
+.search-box input::placeholder{color:var(--gray)}
+.chip-row{display:flex;gap:9px;flex-wrap:wrap}
+.chip{padding:9px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:25px;color:var(--gray);cursor:pointer;font-weight:600;font-size:.8rem;font-family:'Montserrat',sans-serif;transition:all .22s;white-space:nowrap}
+.chip:hover{background:rgba(0,255,136,.08);color:var(--primary);border-color:rgba(0,255,136,.3)}
+.chip.active{background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:var(--dark);border-color:transparent;font-weight:700}
+.sort-wrap{display:flex;align-items:center;gap:9px;margin-left:auto}
+.sort-wrap label{font-size:.8rem;color:var(--gray);white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.sort-sel{padding:11px 34px 11px 14px;background:rgba(0,255,136,.04);border:1px solid rgba(0,255,136,.2);border-radius:10px;color:#fff;font-size:.85rem;font-family:'Montserrat',sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300ff88' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 12px) center}
+.sort-sel:focus{outline:none;border-color:var(--primary)}
+.sort-sel option{background:var(--dark-4)}
+.results-bar{font-size:.84rem;color:var(--gray);padding:0 40px 18px;max-width:1400px;margin:0 auto}
+.results-bar strong{color:var(--primary)}
+@media(max-width:768px){.toolbar-wrap{padding:30px 20px 0}.toolbar-row{flex-direction:column;align-items:stretch}.search-box{max-width:100%}.sort-wrap{margin-left:0}.results-bar{padding:0 20px 14px}}
+
+/* ── CREATORS GRID ────────────────────────────── */
+.creators-section{padding:20px 40px 80px}
+.creators-inner{max-width:1400px;margin:0 auto}
+.creators-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+
+/* ── CARD ─────────────────────────────────────── */
+.creator-card{background:var(--card-bg);border:1px solid rgba(255,255,255,.06);border-radius:20px;overflow:hidden;cursor:pointer;transition:all .32s;position:relative;animation:cardIn .4s ease both}
+.creator-card:hover{border-color:rgba(0,255,136,.4);transform:translateY(-8px);box-shadow:0 20px 55px rgba(0,255,136,.13)}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.card-banner{height:92px;background:linear-gradient(135deg,#0d2a1a 0%,#0a1a10 50%,#051009 100%);position:relative;overflow:hidden}
+.card-banner::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.06) 1px,transparent 1px);background-size:28px 28px}
+.card-banner img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.card-banner-fade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,rgba(17,17,17,.92))}
+.card-featured-ribbon{position:absolute;top:14px;right:-1px;background:linear-gradient(135deg,#b8860b,var(--warning));color:#fff;font-size:.62rem;font-weight:800;padding:4px 13px 4px 11px;letter-spacing:.6px;text-transform:uppercase;clip-path:polygon(9px 0%,100% 0%,100% 100%,9px 100%,0% 50%)}
+
+.card-avatar-wrap{position:relative;margin:-38px 0 0 22px;z-index:2;display:inline-block}
+.card-avatar{width:74px;height:74px;border-radius:16px;border:3px solid var(--card-bg);outline:2px solid rgba(0,255,136,.4);background:linear-gradient(135deg,#0d2a1a,#1a3d2a);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--primary);transition:outline-color .3s}
+.creator-card:hover .card-avatar{outline-color:var(--primary)}
+.card-avatar img{width:100%;height:100%;object-fit:cover}
+.online-dot{position:absolute;bottom:5px;right:5px;width:13px;height:13px;border-radius:50%;background:var(--primary);border:2px solid var(--card-bg)}
+
+.card-body{padding:14px 22px 22px}
+.card-head-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.card-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2;margin-bottom:3px}
+.card-handle{font-size:.76rem;color:var(--gray);font-family:'JetBrains Mono',monospace}
+.badge-wrap{display:flex;flex-direction:column;gap:5px;align-items:flex-end;flex-shrink:0}
+.badge-verified{display:inline-flex;align-items:center;gap:4px;font-size:.63rem;font-weight:700;letter-spacing:.5px;color:var(--primary);background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.25);padding:3px 9px;border-radius:20px}
+.badge-topseller{display:inline-flex;align-items:center;gap:4px;font-size:.63rem;font-weight:700;letter-spacing:.5px;color:var(--warning);background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.25);padding:3px 9px;border-radius:20px}
+
+.card-bio{font-size:.84rem;color:var(--gray);line-height:1.65;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.76em}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:17px}
+.tag{font-size:.68rem;font-weight:600;color:var(--gray);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+
+.card-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.05);border-radius:12px;overflow:hidden;margin-bottom:18px}
+.c-stat{padding:10px 8px;background:rgba(255,255,255,.02);text-align:center;transition:background .2s}
+.c-stat:hover{background:rgba(0,255,136,.05)}
+.c-stat-n{font-size:1.1rem;font-weight:700;color:var(--primary);display:block;font-family:'Playfair Display',serif}
+.c-stat-l{font-size:.62rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+.card-rating{display:flex;align-items:center;gap:6px;margin-bottom:18px;font-size:.82rem}
+.stars{color:#ffc107;letter-spacing:1px;font-size:.78rem}
+.r-num{color:#fff;font-weight:600}
+.r-cnt{color:var(--gray)}
+.member-since{margin-left:auto;font-size:.7rem;color:var(--gray);font-family:'JetBrains Mono',monospace}
+
+.card-cta{display:flex;gap:10px}
+.btn-visit-store{flex:1;padding:11px 16px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border:none;border-radius:10px;color:var(--dark);font-weight:700;font-size:.85rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none}
+.btn-visit-store:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,255,136,.4)}
+.btn-follow-card{padding:11px 16px;background:rgba(0,255,136,.07);border:1px solid rgba(0,255,136,.25);border-radius:10px;color:var(--primary);font-weight:600;font-size:.85rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;white-space:nowrap}
+.btn-follow-card:hover{background:rgba(0,255,136,.15)}
+.btn-follow-card.following{background:rgba(0,255,136,.15);border-color:rgba(0,255,136,.4)}
+
+/* ── SKELETON ─────────────────────────────────── */
+.skeleton-card{background:var(--card-bg);border:1px solid rgba(255,255,255,.04);border-radius:20px;overflow:hidden}
+.sk-banner{height:92px;background:linear-gradient(90deg,#161616 25%,#1f1f1f 50%,#161616 75%);background-size:200% 100%;animation:skShimmer 1.4s infinite}
+.sk-body{padding:14px 22px 22px}
+.sk-avatar{width:74px;height:74px;border-radius:16px;background:linear-gradient(90deg,#161616 25%,#1f1f1f 50%,#161616 75%);background-size:200% 100%;animation:skShimmer 1.4s infinite;margin:-38px 0 14px}
+.sk-line{height:12px;border-radius:6px;background:linear-gradient(90deg,#161616 25%,#1f1f1f 50%,#161616 75%);background-size:200% 100%;animation:skShimmer 1.4s infinite;margin-bottom:10px}
+.sk-line.w80{width:80%}.sk-line.w60{width:60%}.sk-line.w40{width:40%}
+@keyframes skShimmer{to{background-position:-200% 0}}
+
+/* ── EMPTY STATE ──────────────────────────────── */
+.empty-state{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--gray)}
+.empty-state i{font-size:4rem;color:rgba(0,255,136,.15);display:block;margin-bottom:20px}
+.empty-state h3{font-size:1.3rem;color:var(--gray-light);margin-bottom:10px}
+.empty-state p{font-size:.9rem;max-width:380px;margin:0 auto}
+
+/* ── LOAD MORE ────────────────────────────────── */
+.load-more-wrap{text-align:center;padding:10px 0 20px}
+.load-more-btn{padding:14px 44px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.3);border-radius:12px;color:var(--primary);font-weight:700;font-size:.95rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;display:inline-flex;align-items:center;gap:10px}
+.load-more-btn:hover{background:rgba(0,255,136,.15);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,255,136,.2)}
+.load-more-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+@media(max-width:968px){.creators-section{padding:16px 20px 60px}.creators-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}}
+@media(max-width:480px){.creators-grid{grid-template-columns:1fr}}
+
+/* ── BECOME A CREATOR CTA ─────────────────────── */
+.become-cta{margin:0 40px 80px;background:linear-gradient(135deg,rgba(0,255,136,.07) 0%,rgba(123,97,255,.05) 100%);border:1px solid rgba(0,255,136,.2);border-radius:24px;padding:64px 40px;text-align:center;position:relative;overflow:hidden}
+.become-cta::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(0,255,136,.08),transparent 70%);pointer-events:none}
+.become-cta::after{content:'';position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(123,97,255,.06),transparent 70%);pointer-events:none}
+.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.cta-icon{font-size:3rem;margin-bottom:20px;display:block}
+.cta-title{font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;margin-bottom:14px}
+.cta-title span{color:var(--primary)}
+.cta-sub{color:var(--gray-light);font-size:1rem;line-height:1.8;margin-bottom:32px}
+.cta-perks{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:36px}
+.cta-perk{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--gray-light)}
+.cta-perk i{color:var(--primary)}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border-radius:14px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:var(--dark);font-weight:800;font-size:1rem;text-decoration:none;font-family:'Montserrat',sans-serif;transition:all .3s}
+.cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,255,136,.45)}
+@media(max-width:768px){.become-cta{margin:0 20px 60px;padding:44px 24px}.cta-title{font-size:1.7rem}}
+@media(max-width:480px){.cta-perks{flex-direction:column;align-items:center}}
+
+/* ── QUICK-VIEW MODAL ─────────────────────────── */
+.modal-overlay{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.active{opacity:1;pointer-events:all}
+.creator-modal{background:#111;border:1px solid rgba(0,255,136,.25);border-radius:22px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(22px);transition:transform .3s;box-shadow:0 30px 80px rgba(0,255,136,.12)}
+.modal-overlay.active .creator-modal{transform:translateY(0)}
+.modal-banner{height:134px;background:linear-gradient(135deg,#0d2a1a,#0a1a10);position:relative;overflow:hidden;flex-shrink:0}
+.modal-banner::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,255,136,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.06) 1px,transparent 1px);background-size:28px 28px}
+.modal-banner img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;background:rgba(255,68,68,.2);border:1px solid rgba(255,68,68,.4);border-radius:50%;color:#ff4444;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:all .2s}
+.modal-close:hover{background:rgba(255,68,68,.3);transform:rotate(90deg)}
+.modal-body{padding:0 28px 28px}
+.modal-avatar-wrap{margin:-46px 0 14px}
+.modal-avatar{width:90px;height:90px;border-radius:18px;border:4px solid #111;outline:2px solid rgba(0,255,136,.5);background:linear-gradient(135deg,#0d2a1a,#1a3d2a);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--primary)}
+.modal-avatar img{width:100%;height:100%;object-fit:cover}
+.modal-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.modal-name{font-family:'Playfair Display',serif;font-size:1.65rem;color:#fff}
+.modal-bio{color:var(--gray);font-size:.9rem;line-height:1.75;margin-bottom:22px}
+.modal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.05);border-radius:14px;overflow:hidden;margin-bottom:22px}
+.m-stat{padding:14px 10px;background:rgba(255,255,255,.02);text-align:center}
+.m-stat-n{font-size:1.3rem;font-weight:700;color:var(--primary);display:block;font-family:'Playfair Display',serif}
+.m-stat-l{font-size:.68rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.modal-products-title{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;font-family:'JetBrains Mono',monospace}
+.modal-products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.modal-prod-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:12px;cursor:pointer;transition:all .25s;text-decoration:none;display:block}
+.modal-prod-card:hover{border-color:rgba(0,255,136,.3);background:rgba(0,255,136,.04)}
+.mpc-img{width:100%;height:78px;border-radius:8px;background:linear-gradient(135deg,#0d1f15,#1a3d2a);display:flex;align-items:center;justify-content:center;font-size:1.9rem;overflow:hidden;margin-bottom:8px}
+.mpc-img img{width:100%;height:100%;object-fit:cover}
+.mpc-title{font-size:.78rem;font-weight:600;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpc-price{font-size:.82rem;font-weight:700;color:var(--primary)}
+.modal-actions{display:flex;gap:12px}
+.modal-btn-visit{flex:1;padding:13px;background:linear-gradient(135deg,var(--primary-dark),var(--primary));border:none;border-radius:12px;color:var(--dark);font-weight:700;font-size:.92rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px}
+.modal-btn-visit:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,255,136,.4)}
+.modal-btn-follow{padding:13px 20px;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);border-radius:12px;color:var(--primary);font-weight:600;font-size:.92rem;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s}
+.modal-btn-follow:hover{background:rgba(0,255,136,.15)}
+@media(max-width:480px){.modal-stats{grid-template-columns:repeat(2,1fr)}.modal-actions{flex-direction:column}}
+
+/* ── TOAST ────────────────────────────────────── */
+.toast{position:fixed;bottom:28px;right:28px;z-index:9999;background:#1a1a1a;border:1px solid rgba(0,255,136,.3);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 30px rgba(0,0,0,.4);transform:translateX(420px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);max-width:320px;pointer-events:none}
+.toast.show{transform:translateX(0);opacity:1;pointer-events:all}
+.toast-icon{font-size:1.2rem}.toast-msg{font-size:.88rem;color:var(--gray-light)}
+
+
+
+/* ── Dropdown trigger button reset ── */
+.nav-link--dropdown {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 20px;
+    color: #d1d5db;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+ 
+.nav-link--dropdown:hover,
+.nav-item--dropdown.open .nav-link--dropdown {
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
+ 
+/* ── Chevron rotation ── */
+.nav-chevron {
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    color: currentColor;
+    opacity: 0.7;
+}
+ 
+.nav-item--dropdown.open .nav-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+ 
+/* ── Dropdown wrapper positioning ── */
+.nav-item--dropdown {
+    position: relative;
+}
+ 
+/* ── Dropdown panel ── */
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    min-width: 260px;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 136, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 1100;
+}
+ 
+/* Green top accent line */
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+    border-radius: 2px;
+}
+ 
+.nav-item--dropdown.open .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+}
+ 
+/* ── Dropdown items ── */
+.nav-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+ 
+.nav-dropdown__item:hover {
+    background: rgba(0, 255, 136, 0.08);
+}
+ 
+.nav-dropdown__icon {
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 136, 0.07);
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+ 
+.nav-dropdown__label {
+    display: block;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-family: 'Montserrat', sans-serif;
+}
+ 
+.nav-dropdown__desc {
+    display: block;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+ 
+/* ── Divider between sections (optional — add class nav-dropdown__divider to a <hr>) ── */
+.nav-dropdown__divider {
+    border: none;
+    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    margin: 6px 12px;
+}
+ 
+/* ══════════════════════════════════════
+   MOBILE — dropdown becomes stacked list
+   ══════════════════════════════════════ */
+@media (max-width: 968px) {
+ 
+    .nav-link--dropdown {
+        width: 100%;
+        padding: 18px 0;
+        font-size: 1.1em;
+        justify-content: space-between;
+        border-radius: 0;
+    }
+ 
+    .nav-item--dropdown {
+        position: static;
+        width: 100%;
+    }
+ 
+    /* On mobile the dropdown is inline, not absolutely positioned */
+    .nav-dropdown {
+        position: static;
+        transform: none !important;
+        min-width: 100%;
+        background: rgba(0, 255, 136, 0.04);
+        border: none;
+        border-left: 2px solid rgba(0, 255, 136, 0.3);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 4px 0 4px 16px;
+        margin-bottom: 4px;
+        backdrop-filter: none;
+        /* collapsed by default on mobile */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+ 
+    .nav-dropdown::before {
+        display: none;
+    }
+ 
+    .nav-item--dropdown.open .nav-dropdown {
+        max-height: 400px;
+        pointer-events: all;
+        padding: 8px 0 8px 16px;
+    }
+ 
+    .nav-dropdown__item {
+        padding: 10px 8px;
+        border-radius: 6px;
+    }
+ 
+    .nav-dropdown__icon {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+ 
+    .nav-dropdown__label {
+        font-size: 0.92rem;
+    }
+ 
+    .nav-dropdown__desc {
+        font-size: 0.78rem;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <a href="/">
+    <img src="/images/uyehtech-logo.png" width="50px" height="50px" alt="UYEH TECH">
+  </a>
+      <ul class="nav-links" id="navLinks">
+ 
+  <!-- Home -->
+  <li>
+    <a href="/" class="nav-link">Home</a>
+  </li>
+ 
+  <!-- Marketplace (dropdown) -->
+  <li class="nav-item--dropdown" id="dropMarketplace">
+    <button class="nav-link active nav-link--dropdown" aria-expanded="false" aria-haspopup="true">
+      Marketplace
+      <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <div class="nav-dropdown" role="menu">
+      <div class="nav-dropdown__section">
+        <a href="/marketplace/" class="nav-dropdown__item" role="menuitem">
+          <span class="nav-dropdown__icon">🛍️</span>
+          <div>
+            <span class="nav-dropdown__label">Shop</span>
+            <span class="nav-dropdown__desc">Browse digital products</span>
+          </div>
+        </a>
+        <a href="/marketplace/login" class="nav-dropdown__item" role="menuitem">
+          <span class="nav-dropdown__icon">🔐</span>
+          <div>
+            <span class="nav-dropdown__label">Login</span>
+            <span class="nav-dropdown__desc">Access your account</span>
+          </div>
+        </a>
+        <a href="/marketplace/signup" class="nav-dropdown__item" role="menuitem">
+          <span class="nav-dropdown__icon">🔗</span>
+          <div>
+            <span class="nav-dropdown__label">Sign Up</span>
+            <span class="nav-dropdown__desc">Create account today</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </li>
+ 
+  <!-- The builder -->
+  <li>
+    <a href="https://about.uyehtech.com" class="nav-link">Dev Hub</a>
+  </li>
+ 
+  <!-- Blog -->
+  <li>
+    <a href="/blog/" class="nav-link">Blog</a>
+  </li>
+ 
+  <!-- Contact -->
+  <li>
+    <a href="/contact" class="nav-link">Contact</a>
+  </li>
+ 
+        </ul>
+            
+  <div class="nav-actions">
+    <a href="/marketplace/checkout" class="cart-btn">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-text">Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </a>
+    <div id="guestButtons" class="auth-buttons">
+      <a href="/marketplace/login" class="btn-login">Login</a>
+      <a href="/marketplace/signup" class="btn-signup">Sign Up</a>
+    </div>
+    <div id="userDropdown" class="user-dropdown" style="display:none;">
+      <button class="user-avatar-btn" onclick="toggleUserMenu()">
+        <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=00ff88&color=0a0a0a" alt="User">
+        <span id="userName">User</span>
+        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="user-menu" id="userMenu">
+        <div class="user-menu-header">
+          <img id="menuAvatar" src="https://ui-avatars.com/api/?name=User&background=00ff88&color=0a0a0a" alt="User">
+          <div>
+            <div class="menu-user-name" id="menuUserName">User</div>
+            <div class="menu-user-email" id="menuUserEmail"></div>
+          </div>
+        </div>
+        <div class="user-menu-divider"></div>
+        <a href="/marketplace/dashboard" class="user-menu-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+        <a href="/marketplace/orders" class="user-menu-item"><i class="fas fa-receipt"></i><span>My Orders</span></a>
+        <a href="/marketplace/settings" class="user-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+        <div class="user-menu-divider"></div>
+        <button class="user-menu-item logout-item" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="/marketplace/">Marketplace</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Creators</span>
+    </div>
+    <div class="hero-badge"><span class="pulse-dot"></span> Verified Creator Network</div>
+    <h1 class="hero-title">Meet Our <span class="green">Creators</span></h1>
+    <p class="hero-subtitle">Browse talented developers, designers and educators selling premium digital products. Every creator is verified by the UYEH TECH team.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><span class="h-stat-num" id="statCreators">—</span><span class="h-stat-label">Creators</span></div>
+      <div class="h-stat"><span class="h-stat-num" id="statProducts">—</span><span class="h-stat-label">Products</span></div>
+      <div class="h-stat"><span class="h-stat-num" id="statCategories">—</span><span class="h-stat-label">Categories</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURED TOP-CREATORS STRIP
+     ============================================================ -->
+<div class="featured-strip" id="featuredStrip" style="display:none;">
+  <div class="strip-inner">
+    <div class="strip-heading"><i class="fas fa-star"></i> Top Creators This Month</div>
+    <div class="pill-scroll" id="pillScroll"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOOLBAR
+     ============================================================ -->
+<div class="toolbar-wrap">
+  <div class="toolbar-row">
+    <div class="search-box">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Search creators, stores, specialties…" oninput="applyFilters()">
+    </div>
+    <div class="chip-row" id="chipRow">
+      <button class="chip active" data-f="all" onclick="setFilter('all',this)">All Creators</button>
+      <button class="chip" data-f="verified" onclick="setFilter('verified',this)"><i class="fas fa-check-circle" style="font-size:.7rem"></i> Verified</button>
+      <button class="chip" data-f="topseller" onclick="setFilter('topseller',this)">🏆 Top Sellers</button>
+      <button class="chip" data-f="new" onclick="setFilter('new',this)">✨ New</button>
+    </div>
+    <div class="sort-wrap">
+      <label for="sortSel">Sort:</label>
+      <select id="sortSel" class="sort-sel" onchange="applyFilters()">
+        <option value="products">Most Products</option>
+        <option value="newest">Newest First</option>
+        <option value="az">Name A–Z</option>
+        <option value="za">Name Z–A</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="results-bar" id="resultsBar"></div>
+
+<!-- ============================================================
+     CREATORS GRID
+     ============================================================ -->
+<section class="creators-section">
+  <div class="creators-inner">
+    <div class="creators-grid" id="creatorsGrid">
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+      <div class="skeleton-card"><div class="sk-banner"></div><div class="sk-body"><div class="sk-avatar"></div><div class="sk-line w80"></div><div class="sk-line w60"></div><div class="sk-line w40"></div></div></div>
+    </div>
+    <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+      <button class="load-more-btn" onclick="loadMore()"><i class="fas fa-plus-circle"></i> Load More Creators</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BECOME A CREATOR CTA
+     ============================================================ -->
+<div class="become-cta">
+  <div class="cta-inner">
+    <span class="cta-icon">🚀</span>
+    <h2 class="cta-title">Become a <span>Creator</span></h2>
+    <p class="cta-sub">Turn your skills into income. Join UYEH TECH's creator network and sell your digital products to thousands of buyers worldwide.</p>
+    <div class="cta-perks">
+      <div class="cta-perk"><i class="fas fa-percent"></i> Keep up to 80% of every sale</div>
+      <div class="cta-perk"><i class="fas fa-globe"></i> Global audience</div>
+      <div class="cta-perk"><i class="fas fa-chart-line"></i> Built-in analytics</div>
+      <div class="cta-perk"><i class="fas fa-link"></i> Affiliate program</div>
+    </div>
+    <a href="/marketplace/creator-apply" class="cta-btn"><i class="fas fa-rocket"></i> Apply to Become a Creator</a>
+  </div>
+</div>
+
+<!-- ============================================================
+     CREATOR QUICK-VIEW MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="creator-modal" id="creatorModal">
+    <div class="modal-banner" id="modalBanner">
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-avatar-wrap"><div class="modal-avatar" id="modalAvatar"></div></div>
+      <div class="modal-name-row" id="modalNameRow"></div>
+      <p class="modal-bio" id="modalBio"></p>
+      <div class="modal-stats" id="modalStats"></div>
+      <div class="modal-products-title">Latest Products</div>
+      <div class="modal-products-grid" id="modalProds"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOAST
+     ============================================================ -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toastIcon">✅</span>
+  <span class="toast-msg" id="toastMsg"></span>
+</div>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+'use strict';
+
+const API_URL = 'https://uyehtechbackend.onrender.com';
+
+/* ── state ── */
+let allCreators   = [];
+let allProducts   = [];
+let displayList   = [];
+let following     = JSON.parse(localStorage.getItem('uyeh_following') || '[]');
+let activeFilter  = 'all';
+const PAGE_SIZE   = 12;
+let pageShown     = PAGE_SIZE;
+let toastTimer;
+
+/* ══════════════════════════════════════════════════
+   BOOT
+   ══════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async () => {
+  // navbar.js runs checkAuthentication() automatically and fires
+  // 'uyeh-auth-ready' when done — no need to call initAuth() here.
+  syncCartCount();
+  await fetchData();
+  const urlPage = parseInt(new URL(location.href).searchParams.get('page') || '1');
+  if (urlPage > 1) {
+    pageShown = urlPage * PAGE_SIZE;
+  }
+});
+
+function syncCartCount() {
+  try {
+    const c = JSON.parse(localStorage.getItem('uyehtech_cart') || '[]');
+    document.getElementById('cartCount').textContent = c.length;
+  } catch(e) {}
+}
+
+/* ══════════════════════════════════════════════════
+   DATA LOADING
+   ══════════════════════════════════════════════════ */
+async function fetchData() {
+  try {
+    const [crRes, prRes] = await Promise.all([
+      fetch(`${API_URL}/api/marketplace/stores?limit=200`),
+      fetch(`${API_URL}/api/marketplace/products?status=approved&limit=200`)
+    ]);
+
+    const crData = await crRes.json();
+    const prData = await prRes.json();
+
+    allProducts = (prData.success && prData.products) ? prData.products : [];
+
+      // After allCreators is populated, add:
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const fRes = await fetch(`${API_URL}/api/my/following`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const fData = await fRes.json();
+          if (fData.success && fData.following) {
+            following = fData.following.map(c => c._id || c);
+            localStorage.setItem('uyeh_following', JSON.stringify(following));
+          }
+        } catch(e) { /* use localStorage fallback */ }
+      }
+    /* map products per creator */
+    const pmap = {};
+    allProducts.forEach(p => {
+      const cid = (p.creatorId && typeof p.creatorId === 'object') ? p.creatorId._id : p.creatorId;
+      if (!cid) return;
+      if (!pmap[cid]) pmap[cid] = [];
+      pmap[cid].push(p);
+    });
+
+    /* normalise creator records */
+    let raw = [];
+    if (crData.success && crData.stores)    raw = crData.stores;
+    else if (crData.success && crData.data) raw = crData.data;
+    else {
+      /* fallback: derive from products */
+      const seen = new Set();
+      allProducts.forEach(p => {
+        const c = (p.creatorId && typeof p.creatorId === 'object') ? p.creatorId : null;
+        if (!c) return;
+        const id = c._id || c.storeSlug;
+        if (id && !seen.has(id)) { seen.add(id); raw.push(c); }
+      });
+    }
+
+    allCreators = raw.map(c => {
+      const id    = c._id || c.storeSlug;
+
+
+      // Match products by string comparison (handles ObjectId vs string)
+      const prods = pmap[String(id)] || pmap[id] || [];
+
+      // PRIMARY: use backend's own tracked counters (already correct)
+      // FALLBACK: derive from fetched products (may be 0 if IDs mismatched)
+      const totalSales   = c.totalSales    || prods.reduce((s, p) => s + (p.totalSales || 0), 0);
+      const productCount = c.totalProducts || prods.length;
+
+      // Categories: prefer backend field, fall back to scanning products
+      const cats = (c.categories && c.categories.length)
+        ? c.categories
+        : [...new Set(prods.map(p => p.category).filter(Boolean))];
+
+      const ja    = c.approvedAt || c.createdAt || null;
+      const isNew = ja && (Date.now() - new Date(ja)) < 30 * 24 * 60 * 60 * 1000;
+
+      return {
+        _id:           id,
+        storeName:     c.storeName        || 'Creator',
+        storeSlug:     c.storeSlug        || '',
+        storeDesc:     c.storeDescription || c.bio || '',
+        profilePic:    c.profilePic || c.profilePhoto || c.avatar || c.storeLogo || null,
+        storeBanner:   c.storeBanner   || null,
+        isVerified:    c.isVerified    || false,
+        isFeatured:    c.isFeatured    || false,
+        country:       c.country       || '',
+        followerCount: c.followerCount || 0,
+        rating:        c.rating        || 0,
+        approvedAt:    ja,
+        isNew,
+        products:      prods,
+        productCount,
+        categories:    cats,
+        totalSales,
+       topSeller: totalSales >= 50
+      };
+    }).filter(c => c.productCount > 0 || c.storeSlug);
+
+    /* update hero stats */
+    document.getElementById('statCreators').textContent   = allCreators.length || '—';
+    document.getElementById('statProducts').textContent   = allProducts.length > 0 ? allProducts.length + '+' : '—';
+    const allCats = new Set(allCreators.flatMap(c => c.categories));
+    document.getElementById('statCategories').textContent = allCats.size || '—';
+
+    buildDynamicChips(allCreators);
+    renderFeaturedStrip(allCreators);
+    applyFilters();
+
+  } catch (err) {
+    console.error('Creators page error:', err);
+    document.getElementById('creatorsGrid').innerHTML =
+      '<div class="empty-state"><i class="fas fa-exclamation-circle"></i><h3>Could not load creators</h3><p>Please check your connection and try again.</p></div>';
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   FEATURED STRIP
+   ══════════════════════════════════════════════════ */
+function renderFeaturedStrip(creators) {
+ let featured = creators.filter(c => c.isFeatured || c.isVerified).slice(0, 12);
+  // Fallback: if no featured/verified, show top creators by product count
+  if (!featured.length) {
+    featured = [...creators].sort((a, b) => b.productCount - a.productCount).slice(0, 12);
+  }
+  if (!featured.length) return;
+  const scroll = document.getElementById('pillScroll');
+  const strip  = document.getElementById('featuredStrip');
+  if (!scroll || !strip) return;
+
+  scroll.innerHTML = featured.map(c => {
+    const init = (c.storeName || 'C').charAt(0).toUpperCase();
+    const avHTML = c.profilePic
+      ? `<img src="${esc(c.profilePic)}" alt="${esc(c.storeName)}" onerror="this.style.display='none';this.parentElement.textContent='${init}'">`
+      : init;
+    return `
+      <div class="creator-pill" onclick="openCreatorModal('${c._id}')">
+        <div class="pill-ava">${avHTML}</div>
+        <div>
+          <div class="pill-name">${esc(c.storeName)}${c.isVerified ? '<i class="fas fa-check-circle pill-chk"></i>' : ''}${c.isFeatured ? ' 🏆' : ''}</div>
+          <div class="pill-cnt">${c.productCount} product${c.productCount !== 1 ? 's' : ''}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  strip.style.display = 'block';
+}
+
+/* ══════════════════════════════════════════════════
+   DYNAMIC CATEGORY CHIPS
+   ══════════════════════════════════════════════════ */
+function buildDynamicChips(creators) {
+  const cats = [...new Set(creators.flatMap(c => c.categories))].sort().slice(0, 8);
+  const row  = document.getElementById('chipRow');
+  if (!row) return;
+  row.querySelectorAll('[data-cat]').forEach(b => b.remove());
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className   = 'chip';
+    btn.dataset.cat = cat;
+    btn.textContent = cat;
+    btn.onclick     = () => setCatFilter(cat, btn);
+    row.appendChild(btn);
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   FILTER + SORT
+   ══════════════════════════════════════════════════ */
+function setFilter(f, btn) {
+  activeFilter = f;
+  pageShown    = PAGE_SIZE;
+  document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function setCatFilter(cat, btn) {
+  activeFilter = 'cat:' + cat;
+  pageShown    = PAGE_SIZE;
+  document.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function applyFilters() {
+  const q    = (document.getElementById('searchInput').value || '').toLowerCase().trim();
+  const sort = document.getElementById('sortSel').value;
+
+  let res = allCreators.filter(c => {
+    const mq = !q ||
+      (c.storeName  || '').toLowerCase().includes(q) ||
+      (c.storeDesc  || '').toLowerCase().includes(q) ||
+      c.categories.some(t  => t.toLowerCase().includes(q)) ||
+      (c.country    || '').toLowerCase().includes(q);
+
+    let mf = true;
+    if      (activeFilter === 'verified')                mf = c.isVerified;
+    else if (activeFilter === 'topseller')               mf = c.topSeller;
+    else if (activeFilter === 'new')                     mf = c.isNew;
+    else if (activeFilter.startsWith('cat:'))            mf = c.categories.includes(activeFilter.slice(4));
+
+    return mq && mf;
+  });
+
+  switch (sort) {
+    case 'newest': res.sort((a,b) => new Date(b.approvedAt||0) - new Date(a.approvedAt||0)); break;
+    case 'az':     res.sort((a,b) => (a.storeName||'').localeCompare(b.storeName||''));      break;
+    case 'za':     res.sort((a,b) => (b.storeName||'').localeCompare(a.storeName||''));      break;
+    default:       res.sort((a,b) => b.productCount - a.productCount);
+  }
+
+  displayList = res;
+
+  const rb = document.getElementById('resultsBar');
+  if (rb) rb.innerHTML = `Showing <strong>${Math.min(pageShown, res.length)}</strong> of <strong>${res.length}</strong> creator${res.length !== 1 ? 's' : ''}`;
+
+  renderGrid(displayList.slice(0, pageShown));
+
+  const lmw = document.getElementById('loadMoreWrap');
+  if (lmw) lmw.style.display = displayList.length > pageShown ? 'block' : 'none';
+}
+
+function loadMore() {
+  pageShown += PAGE_SIZE;
+  applyFilters();
+  const url = new URL(location.href);
+  url.searchParams.set('page', Math.ceil(pageShown / PAGE_SIZE));
+  history.replaceState(null, '', url);
+}
+
+/* ══════════════════════════════════════════════════
+   RENDER GRID
+   ══════════════════════════════════════════════════ */
+function renderGrid(creators) {
+  const grid = document.getElementById('creatorsGrid');
+  if (!grid) return;
+
+  if (!creators.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-users-slash"></i>
+        <h3>No creators found</h3>
+        <p>Try adjusting your search or filter.</p>
+      </div>`;
+    return;
+  }
+
+  grid.innerHTML = creators.map((c, idx) => cardHTML(c, idx)).join('');
+}
+
+function cardHTML(c, idx) {
+  const init   = (c.storeName || 'C').charAt(0).toUpperCase();
+  const avHTML = c.profilePic
+    ? `<img src="${esc(c.profilePic)}" alt="${esc(c.storeName)}" onerror="this.style.display='none';this.parentElement.textContent='${init}'">`
+    : init;
+
+  // Always show the official UYEH TECH platform banner on every creator card.
+  // Per design decision: all creators share the same branded banner image —
+  // consistent with how the modal already works (line 1236).
+  const bannerHTML = `<img src="/images/official-banner.png" alt="UYEH TECH" crossorigin="anonymous"
+    onerror="this.style.opacity='0.15';this.removeAttribute('onerror')">`;
+
+  const vBadge  = c.isVerified ? `<span class="badge-verified"><i class="fas fa-check-circle"></i> Verified</span>` : '';
+  const tsBadge = c.topSeller  ? `<span class="badge-topseller"><i class="fas fa-trophy"></i> Top Seller</span>`   : '';
+  const ribbon  = c.isFeatured ? `<div class="card-featured-ribbon">Featured</div>` : '';
+  const tagsHTML = c.categories.slice(0, 3).map(t => `<span class="tag">${esc(t)}</span>`).join('');
+
+  const rv    = c.rating || 0;
+  const stars = rv > 0 ? '★'.repeat(Math.round(rv)) + '☆'.repeat(5 - Math.round(rv)) : '☆☆☆☆☆';
+  const isF   = following.includes(c._id);
+  const delay = `animation-delay:${(idx % PAGE_SIZE) * 0.042}s`;
+
+  return `
+    <div class="creator-card" style="${delay}" onclick="openCreatorModal('${c._id}')">
+      <div class="card-banner">
+        ${bannerHTML}
+        <div class="card-banner-fade"></div>
+        ${ribbon}
+      </div>
+      <div class="card-avatar-wrap">
+        <div class="card-avatar">${avHTML}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-head-row">
+          <div>
+            <div class="card-name">${esc(c.storeName)}</div>
+            ${c.storeSlug ? `<div class="card-handle">@${esc(c.storeSlug)}</div>` : ''}
+          </div>
+          <div class="badge-wrap">${vBadge}${tsBadge}</div>
+        </div>
+        <p class="card-bio">${esc(c.storeDesc || 'Creating premium digital products on UYEH TECH Marketplace.')}</p>
+        ${tagsHTML ? `<div class="card-tags">${tagsHTML}</div>` : ''}
+        <div class="card-stats">
+          <div class="c-stat"><span class="c-stat-n">${c.productCount}</span><span class="c-stat-l">Products</span></div>
+          <div class="c-stat"><span class="c-stat-n">${c.totalSales || 0}</span><span class="c-stat-l">Sales</span></div>
+          <div class="c-stat"><span class="c-stat-n">${fmtNum(c.followerCount)}</span><span class="c-stat-l">Followers</span></div>
+        </div>
+        <div class="card-rating">
+          <span class="stars">${stars}</span>
+          <span class="r-num">${rv > 0 ? rv.toFixed(1) : 'New'}</span>
+          ${c.totalSales > 0 ? `<span class="r-cnt">(${c.totalSales} sales)</span>` : ''}
+          ${c.approvedAt ? `<span class="member-since">Since ${new Date(c.approvedAt).getFullYear()}</span>` : ''}
+        </div>
+        <div class="card-cta" onclick="event.stopPropagation()">
+          <a href="/marketplace/${esc(c.storeSlug)}" class="btn-visit-store" onclick="event.stopPropagation()">
+            <i class="fas fa-store"></i> Visit Store
+          </a>
+          <button class="btn-follow-card${isF ? ' following' : ''}" onclick="toggleFollow('${c._id}', this)">
+            ${isF ? '✓ Following' : '+ Follow'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ══════════════════════════════════════════════════
+   FOLLOW / UNFOLLOW
+   ══════════════════════════════════════════════════ */
+async function toggleFollow(creatorId, btn) {
+  const token = localStorage.getItem('token');
+  if (!token) { showToast('⚠️', 'Please login to follow creators'); return; }
+
+  const isF = following.includes(creatorId);
+
+  // Update every follow button for this creator on the page (card + modal)
+  function syncButtons(nowFollowing) {
+    document.querySelectorAll(`[onclick*="toggleFollow('${creatorId}'"]`).forEach(b => {
+      if (b === btn) return; // already handled below
+      b.className  = b.className.replace(' following', '') + (nowFollowing ? ' following' : '');
+      b.innerHTML  = nowFollowing
+        ? '<i class="fas fa-check"></i> Following'
+        : '<i class="fas fa-plus"></i> Follow';
+    });
+  }
+
+  if (isF) {
+    following = following.filter(id => id !== creatorId);
+    btn.innerHTML = '<i class="fas fa-plus"></i> Follow';
+    btn.classList.remove('following');
+    syncButtons(false);
+    showToast('👋', 'Unfollowed creator');
+  } else {
+    following.push(creatorId);
+    btn.innerHTML = '<i class="fas fa-check"></i> Following';
+    btn.classList.add('following');
+    showToast('❤️', 'Now following this creator!');
+  }
+  localStorage.setItem('uyeh_following', JSON.stringify(following));
+
+  try {
+    // Backend uses DELETE /follow to unfollow, POST /follow to follow
+    await fetch(`${API_URL}/api/creators/${creatorId}/follow`, {
+      method: isF ? 'DELETE' : 'POST',
+      headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+    });
+  } catch(e) { console.warn('Follow API:', e); }
+}
+
+/* ══════════════════════════════════════════════════
+   CREATOR QUICK-VIEW MODAL
+   ══════════════════════════════════════════════════ */
+function openCreatorModal(creatorId) {
+  const c = allCreators.find(x => x._id === creatorId);
+  if (!c) return;
+
+  // ── Banner: always the official UYEH TECH platform banner.
+  //    All creators share the same branded banner — intentional
+  //    design decision to keep a consistent platform identity.
+  const banner = document.getElementById('modalBanner');
+  banner.style.background = '';
+  banner.innerHTML = `
+    <img src="/images/official-banner.png" alt="UYEH TECH"
+         style="width:100%;height:100%;object-fit:cover;" onerror="this.remove()">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>`;
+
+  // ── Avatar
+  const init = (c.storeName || 'C').charAt(0).toUpperCase();
+  const av = document.getElementById('modalAvatar');
+  av.innerHTML = c.profilePic
+    ? `<img src="${esc(c.profilePic)}" alt="${esc(c.storeName)}"
+            onerror="this.style.display='none';this.parentElement.textContent='${init}'">`
+    : init;
+
+  // ── Name row: name + badges + location + member-since
+  const joinYear  = c.approvedAt ? new Date(c.approvedAt).getFullYear() : null;
+  document.getElementById('modalNameRow').innerHTML = `
+    <span class="modal-name">${esc(c.storeName)}</span>
+    ${c.isVerified ? `<span class="badge-verified"><i class="fas fa-check-circle"></i> Verified</span>` : ''}
+    ${c.topSeller  ? `<span class="badge-topseller"><i class="fas fa-trophy"></i> Top Seller</span>`    : ''}
+    ${c.isFeatured ? `<span class="badge-featured" style="background:rgba(255,200,0,.12);color:#ffc800;border:1px solid rgba(255,200,0,.25);border-radius:6px;font-size:.68rem;font-weight:700;padding:2px 8px;">⭐ Featured</span>` : ''}
+    <div style="display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap;">
+      ${c.country ? `<span style="font-size:.78rem;color:var(--gray)"><i class="fas fa-map-marker-alt" style="color:var(--primary);margin-right:3px"></i>${esc(c.country)}</span>` : ''}
+      ${joinYear  ? `<span style="font-size:.78rem;color:var(--gray)"><i class="fas fa-calendar-alt" style="color:var(--primary);margin-right:3px"></i>Member since ${joinYear}</span>` : ''}
+    </div>`;
+
+  // ── Bio
+  document.getElementById('modalBio').textContent =
+    c.storeDesc || 'Creating premium digital products on UYEH TECH Marketplace.';
+
+  // ── Categories (new — was completely missing from modal)
+  const catsHTML = c.categories && c.categories.length
+    ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0;">
+         ${c.categories.slice(0, 5).map(t =>
+           `<span style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.18);
+                         color:var(--primary);border-radius:20px;font-size:.7rem;
+                         font-weight:600;padding:2px 10px;">${esc(t)}</span>`
+         ).join('')}
+       </div>`
+    : '';
+  // Inject after bio
+  const bioEl = document.getElementById('modalBio');
+  let catsEl  = document.getElementById('modalCats');
+  if (!catsEl) {
+    catsEl = document.createElement('div');
+    catsEl.id = 'modalCats';
+    bioEl.parentNode.insertBefore(catsEl, bioEl.nextSibling);
+  }
+  catsEl.innerHTML = catsHTML;
+
+  // ── Stats: include visual star rating
+  const rv    = c.rating || 0;
+  const stars = rv > 0
+    ? '★'.repeat(Math.round(rv)) + '☆'.repeat(5 - Math.round(rv))
+    : '☆☆☆☆☆';
+  document.getElementById('modalStats').innerHTML = `
+    <div class="m-stat">
+      <span class="m-stat-n">${c.productCount}</span>
+      <span class="m-stat-l">Products</span>
+    </div>
+    <div class="m-stat">
+      <span class="m-stat-n">${fmtNum(c.totalSales || 0)}</span>
+      <span class="m-stat-l">Sales</span>
+    </div>
+    <div class="m-stat">
+      <span class="m-stat-n">${fmtNum(c.followerCount)}</span>
+      <span class="m-stat-l">Followers</span>
+    </div>
+    <div class="m-stat">
+      <span class="m-stat-n" style="font-size:.95rem;letter-spacing:1px;">${stars}</span>
+      <span class="m-stat-l">${rv > 0 ? rv.toFixed(1) + ' / 5' : 'No reviews yet'}</span>
+    </div>`;
+
+  // ── Latest products: sort newest first, take 4
+  document.getElementById('modalProds').innerHTML = prods.length
+    ? prods.map(p => {
+        const rawPrice  = p.approvedPrice || p.suggestedPrice || 0;
+        const price     = rawPrice === 0
+          ? '<span style="color:#00ff88;font-weight:700;">Free</span>'
+          : `<span>₦${Number(rawPrice).toLocaleString()}</span>`;
+        const imgH      = (p.images && p.images[0])
+          ? `<img src="${esc(p.images[0])}" alt="${esc(p.title)}"
+                  style="width:100%;height:100%;object-fit:cover;border-radius:8px;"
+                  onerror="this.parentElement.innerHTML='📦'">`
+          : '📦';
+        // Clean URL: /marketplace/storeSlug?product=id
+        const href = c.storeSlug
+          ? `/marketplace/${esc(c.storeSlug)}?product=${esc(p._id)}`
+          : `/marketplace/?product=${esc(p._id)}`;
+        return `
+          <a href="${href}" class="modal-prod-card" onclick="closeModal()">
+            <div class="mpc-img">${imgH}</div>
+            <div class="mpc-title">${esc(p.title)}</div>
+            <div class="mpc-price">${price}</div>
+          </a>`;
+      }).join('')
+    : `<p style="color:var(--gray);font-size:.85rem;text-align:center;padding:16px 0;">
+         No products listed yet.
+       </p>`;
+
+  // ── Actions: Visit Store = primary, Follow = secondary
+  const isF       = following.includes(c._id);
+  const storeHref = c.storeSlug ? `/marketplace/${esc(c.storeSlug)}` : '/marketplace/';
+  document.getElementById('modalActions').innerHTML = `
+    <a href="${storeHref}" class="modal-btn-visit" style="flex:2;">
+      <i class="fas fa-store"></i> Visit Full Store
+    </a>
+    <button class="modal-btn-follow${isF ? ' following' : ''}"
+            onclick="toggleFollow('${c._id}', this)" style="flex:1;">
+      ${isF ? '<i class="fas fa-check"></i> Following' : '<i class="fas fa-plus"></i> Follow'}
+    </button>`;
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Hamburger + dropdown logic removed — handled by /js/navbar.js below.
+(function () {
+  'use strict';
+
+  /* ═══════════════════════════════════════════
+     PART 1: Mobile menu + dropdown toggles
+     ═══════════════════════════════════════════ */
+  var menuToggle = document.getElementById('menuToggle');
+  var navLinks   = document.getElementById('navLinks');
+  var dropItems  = document.querySelectorAll('.nav-item--dropdown');
+
+  function closeAllDropdowns() {
+    dropItems.forEach(function (item) {
+      item.classList.remove('open');
+      var btn = item.querySelector('.nav-link--dropdown');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function toggleDropdown(item) {
+    var isOpen = item.classList.contains('open');
+    var btn    = item.querySelector('.nav-link--dropdown');
+    closeAllDropdowns();
+    if (!isOpen) {
+      item.classList.add('open');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  dropItems.forEach(function (item) {
+    var btn = item.querySelector('.nav-link--dropdown');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleDropdown(item);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    var insideNav = navLinks && navLinks.contains(e.target);
+    if (!insideNav) closeAllDropdowns();
+
+    if (navLinks && menuToggle) {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+    }
+  });
+
+  document.querySelectorAll('.nav-dropdown__item').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeAllDropdowns();
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+    });
+  });
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      this.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      if (!navLinks.classList.contains('active')) closeAllDropdowns();
+    });
+  }
+
+  document.querySelectorAll('.nav-links .nav-link:not(.nav-link--dropdown)').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+      closeAllDropdowns();
+    });
+  });
+
+  /* ═══════════════════════════════════════════
+     PART 2: Auth state — guest buttons vs user dropdown
+
+     currentUser lives on `window` — a real global, not scoped to this
+     IIFE — so every page can read `window.currentUser` directly instead
+     of each page maintaining its own separate copy that never gets set.
+     This is the fix for two bugs: pages whose own currentUser never got
+     assigned (login redirect loops), and this function's name previously
+     being declared again by page-level scripts and silently overwriting
+     one or the other depending on script load order.
+     ═══════════════════════════════════════════ */
+  var API_URL = window.API_URL || 'https://uyehtechbackend.onrender.com';
+  window.currentUser = window.currentUser || null;
+
+  function checkAuthentication() {
+    var token = localStorage.getItem('token');
+    var user  = localStorage.getItem('user');
+    if (!token || !user) { showGuestButtons(); _announceAuthReady(); return; }
+
+    try {
+      window.currentUser = JSON.parse(user);
+      showUserDropdown(window.currentUser);
+      _announceAuthReady();
+
+      // Background validation — route is /api/profile (no "/user" segment).
+      fetch(API_URL + '/api/profile', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.currentUser = null;
+          showGuestButtons();
+          return null;
+        }
+        // Any other non-OK status (404, 500, rate limit, offline) is a
+        // server-side problem, not proof the token is bad. Don't log out.
+        return r.ok ? r.json() : null;
+      })
+      .then(function (data) {
+        if (data && data.success && data.user) {
+          window.currentUser = data.user;
+          localStorage.setItem('user', JSON.stringify(data.user));
+          showUserDropdown(data.user);
+        }
+      })
+      .catch(function () {}); // network error — keep showing cached state
+    } catch (e) {
+      // Stored 'user' was corrupted/unparseable — self-heal instead of
+      // getting silently stuck showing "guest" forever on every future load.
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.currentUser = null;
+      showGuestButtons();
+      _announceAuthReady();
+    }
+  }
+
+  // Lets any page know the initial auth check has resolved, without having
+  // to guess script load order or duplicate this logic themselves.
+  function _announceAuthReady() {
+    window.dispatchEvent(new CustomEvent('uyeh-auth-ready', { detail: window.currentUser }));
+  }
+
+  function showUserDropdown(user) {
+    var guestEl = document.getElementById('guestButtons');
+    var userEl  = document.getElementById('userDropdown');
+    if (!guestEl || !userEl) return; // page has no auth widget — skip silently
+
+    guestEl.style.display = 'none';
+    userEl.style.display  = 'block';
+
+    var name   = user.name || user.fullName || 'User';
+    var email  = user.email || '';
+    var avatar = user.profilePic || user.profileImage || user.avatar ||
+      ('https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=00ff88&color=0a0a0a');
+
+    function set(id, val, attr) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (attr) { el[attr] = val; } else { el.textContent = val; }
+    }
+    set('userAvatar', avatar, 'src');
+    set('userName', name.split(' ')[0]);
+    set('menuAvatar', avatar, 'src');
+    set('menuUserName', name);
+    set('menuUserEmail', email);
+  }
+
+  function showGuestButtons() {
+    var guestEl = document.getElementById('guestButtons');
+    var userEl  = document.getElementById('userDropdown');
+    if (!guestEl || !userEl) return;
+    guestEl.style.display = 'flex';
+    userEl.style.display  = 'none';
+  }
+
+  function toggleUserMenu() {
+    var menu = document.getElementById('userMenu');
+    var drop = document.getElementById('userDropdown');
+    if (menu) menu.classList.toggle('active');
+    if (drop) drop.classList.toggle('active');
+  }
+
+  function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.currentUser = null;
+      showGuestButtons();
+      if (typeof showNotification === 'function') {
+        showNotification('👋 Logged out successfully');
+      }
+      setTimeout(function () { window.location.reload(); }, 1000);
+    }
+  }
+
+  // Close the user menu when clicking outside it
+  document.addEventListener('click', function (e) {
+    var dropdown = document.getElementById('userDropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+      var menu = document.getElementById('userMenu');
+      if (menu) menu.classList.remove('active');
+      dropdown.classList.remove('active');
+    }
+  });
+
+  // Expose functions the navbar's inline onclick="" handlers call
+  window.toggleUserMenu      = toggleUserMenu;
+  window.handleLogout        = handleLogout;
+  window.checkAuthentication = checkAuthentication;
+
+  // Run auth check automatically — no per-page call needed
+  checkAuthentication();
+
+}());
+    
+        // Smooth scroll for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+
+/* ══════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════ */
+function showToast(icon, msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastMsg').textContent  = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ══════════════════════════════════════════════════
+   UTILITIES
+   ══════════════════════════════════════════════════ */
+function fmtNum(n) {
+  if (!n) return '0';
+  return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+}
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+console.log('✅ UYEH TECH — Creators Directory loaded');
+</script>
+
+   <div id="footer"></div>
+   <script src="/marketplace/navbar.js"></script>
+   <script src="/footer.js"></script>
+    <div id="cookie-consent"></div>
+ <script src="/cookie.js"></script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+   </html>

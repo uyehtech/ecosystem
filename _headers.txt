@@ -1,0 +1,21 @@
+# Service Worker — must be served with these headers for cross-origin scope to work
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
+
+# Web manifest
+/site.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: no-cache
+
+# PWA install script — never cache so updates apply immediately
+/pwa-install.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Offline page
+/offline.html
+  Cache-Control: no-cache
+
+# Icons — long cache, they change rarely
+/icons/*
+  Cache-Control: public, max-age=604800, immutable

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UYEH TECH - System Status</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+                <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+      <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(0, 255, 136, 0.1);
+            border-top-color: #00ff88;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Error Message */
+        .error-banner {
+            background: rgba(255, 51, 51, 0.1);
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            margin: 1rem 2rem;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .error-banner.show {
+            display: flex;
+        }
+
+        .error-icon {
+            font-size: 2rem;
+        }
+
+        .error-text {
+            flex: 1;
+        }
+
+        .retry-button {
+            padding: 0.5rem 1.5rem;
+            background: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Header */
+        .status-header {
+            background: radial-gradient(circle at top, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff88;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #11ff88;
+            gap: 0.75rem;
+        }
+
+        .status-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .status-subtitle {
+            color: #b3b3b3;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Overall Status Banner */
+        .overall-status {
+            display: inline-flex;
+            padding: 1rem 3rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00ff88;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .overall-status.operational {
+            border-color: #00ff88;
+            color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .overall-status.degraded {
+            border-color: #ffaa00;
+            color: #ffaa00;
+            background: rgba(255, 170, 0, 0.1);
+        }
+
+        .overall-status.outage {
+            border-color: #ff3333;
+            color: #ff3333;
+            background: rgba(255, 51, 51, 0.1);
+            animation: criticalPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes criticalPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 51, 51, 0.5); }
+            50% { box-shadow: 0 0 0 10px rgba(255, 51, 51, 0); }
+        }
+
+        .status-pulse {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 15px currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section Styles */
+        .services-section,
+        .uptime-section,
+        .incidents-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 2rem;
+        }
+
+        /* Service Item */
+        .services-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .service-item {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.03) 0%, rgba(10, 10, 10, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            border-color: #00ff88;
+            transform: translateX(5px);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .service-icon {
+            font-size: 2rem;
+        }
+
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-description {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-status.operational {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .service-status.degraded {
+            background: rgba(255, 170, 0, 0.1);
+            color: #ffaa00;
+            border: 1px solid rgba(255, 170, 0, 0.3);
+        }
+
+        .service-status.outage {
+            background: rgba(255, 51, 51, 0.1);
+            color: #ff3333;
+            border: 1px solid rgba(255, 51, 51, 0.3);
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .service-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00ff88;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Uptime Section */
+        .uptime-container {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.03) 0%, rgba(10, 10, 10, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .uptime-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .uptime-percentage {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #00ff88;
+        }
+
+        .uptime-period {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .uptime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+            gap: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .day-block {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .day-block:hover {
+            transform: scale(1.5);
+            z-index: 10;
+        }
+
+        .day-block.uptime-100 { background: #00ff88; }
+        .day-block.uptime-99 { background: #88ff88; }
+        .day-block.uptime-95 { background: #ffaa00; }
+        .day-block.uptime-90 { background: #ff8800; }
+        .day-block.uptime-low { background: #ff3333; }
+        .day-block.loading { background: #333; }
+
+        /* Incidents */
+        .incident-item {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.03) 0%, rgba(10, 10, 10, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .incident-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .incident-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .incident-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .incident-severity {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .incident-severity.resolved {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+        }
+
+        .incident-severity.investigating {
+            background: rgba(255, 170, 0, 0.1);
+            color: #ffaa00;
+        }
+
+        /* Subscribe Form */
+        .subscribe-section {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .subscribe-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .subscribe-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .subscribe-button {
+            padding: 1rem 2.5rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .subscribe-button:hover {
+            background: #11ff88;
+            transform: scale(1.05);
+        }
+
+        .refresh-info {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .status-title {
+                font-size: 2.5rem;
+            }
+            .service-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .uptime-grid {
+                grid-template-columns: repeat(auto-fill, minmax(10px, 1fr));
+                gap: 3px;
+            }
+            .subscribe-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Error Banner -->
+    <div class="error-banner" id="errorBanner">
+        <span class="error-icon">⚠️</span>
+        <div class="error-text">
+            <strong>Connection Error</strong><br>
+            <span id="errorMessage">Unable to load status data. Please try again.</span>
+        </div>
+        <button class="retry-button" onclick="loadStatusData()">Retry</button>
+    </div>
+
+    <!-- Header -->
+    <div class="status-header">
+        <a href="support-center.html" class="back-link">← Back to Support Center</a>
+        <h1 class="status-title">System Status</h1>
+        <p class="status-subtitle">Real-time monitoring of all UYEH TECH services</p>
+        
+        <div class="overall-status operational" id="overallStatus">
+            <span class="status-pulse"></span>
+            <span id="overallStatusText">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Live Status -->
+        <div class="services-section">
+            <h2 class="section-title">🔴 Live Service Status</h2>
+            <div class="services-grid" id="servicesGrid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Uptime History -->
+        <div class="uptime-section">
+            <div class="uptime-container">
+                <div class="uptime-header">
+                    <div>
+                        <h2 class="section-title" style="margin: 0;">📊 90-Day Uptime History</h2>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="uptime-percentage" id="overallUptime">---%</div>
+                        <div class="uptime-period">Overall Uptime</div>
+                    </div>
+                </div>
+
+                <div class="uptime-grid" id="uptimeGrid">
+                    <!-- Generated by JavaScript -->
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; font-size: 0.85rem; color: #999;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 12px; height: 12px; background: #00ff88; border-radius: 3px;"></div>
+                        <span>100% Uptime</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 12px; height: 12px; background: #88ff88; border-radius: 3px;"></div>
+                        <span>99.0-99.9%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 12px; height: 12px; background: #ffaa00; border-radius: 3px;"></div>
+                        <span>95.0-98.9%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 12px; height: 12px; background: #ff8800; border-radius: 3px;"></div>
+                        <span>90.0-94.9%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div style="width: 12px; height: 12px; background: #ff3333; border-radius: 3px;"></div>
+                        <span>&lt; 90%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Incident History -->
+        <div class="incidents-section">
+            <h2 class="section-title">📋 Recent Incidents</h2>
+            <div id="incidentsContainer">
+                <!-- Populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Subscribe to Updates -->
+        <div class="subscribe-section">
+            <h2 class="subscribe-title">Stay Informed</h2>
+            <p style="color: #b3b3b3; margin-bottom: 2rem;">
+                Subscribe to receive real-time notifications about system status changes
+            </p>
+            <form class="subscribe-form" id="subscribeForm">
+                <input 
+                    type="email" 
+                    class="subscribe-input" 
+                    placeholder="your.email@example.com"
+                    required
+                >
+                <button type="submit" class="subscribe-button">Subscribe</button>
+            </form>
+        </div>
+
+        <div class="refresh-info">
+            Auto-refreshes every 60 seconds • Last updated: <span id="lastUpdate">--:--</span>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // CONFIGURATION
+        // ========================================
+        
+        const API_BASE_URL = 'https://uyehtechbackend.onrender.com/api/status';
+        const REFRESH_INTERVAL = 60000; // 60 seconds
+        
+        // ✅ UPDATED: Service icons matching your actual backend services
+        const serviceIcons = {
+            api: '🔌',           // API Services
+            database: '💾',      // MongoDB Database
+            websocket: '⚡',     // WebSocket Services
+            email: '📧',         // Mailjet Email
+            storage: '💿'        // File Storage
+        };
+
+        // ✅ UPDATED: Service descriptions matching your actual backend
+        const serviceDescriptions = {
+            api: 'Backend REST API endpoints on Render',
+            database: 'MongoDB Atlas database cluster',
+            websocket: 'Real-time chat and notifications',
+            email: 'TERMII email and SMS delivery service',
+            storage: 'File upload and storage system'
+        };
+
+        // ========================================
+        // LOAD STATUS DATA
+        // ========================================
+
+        async function loadStatusData() {
+            try {
+                showLoading();
+                hideError();
+
+                // Fetch current status
+                const statusResponse = await fetch(`${API_BASE_URL}/current`);
+                if (!statusResponse.ok) throw new Error('Failed to fetch status');
+                const statusData = await statusResponse.json();
+
+                // Fetch uptime history
+                const uptimeResponse = await fetch(`${API_BASE_URL}/uptime-history`);
+                if (!uptimeResponse.ok) throw new Error('Failed to fetch uptime history');
+                const uptimeData = await uptimeResponse.json();
+
+                // Fetch incidents
+                const incidentsResponse = await fetch(`${API_BASE_URL}/incidents`);
+                if (!incidentsResponse.ok) throw new Error('Failed to fetch incidents');
+                const incidentsData = await incidentsResponse.json();
+
+                // Update UI
+                updateOverallStatus(statusData.overall);
+                updateServicesGrid(statusData.services);
+                updateUptimeHistory(uptimeData.history, uptimeData.overall);
+                updateIncidents(incidentsData.incidents);
+                updateTimestamp();
+
+                hideLoading();
+            } catch (error) {
+                console.error('Error loading status data:', error);
+                showError(error.message);
+                hideLoading();
+            }
+        }
+
+        // ========================================
+        // UPDATE UI FUNCTIONS
+        // ========================================
+
+        function updateOverallStatus(status) {
+            const statusEl = document.getElementById('overallStatus');
+            const statusTextEl = document.getElementById('overallStatusText');
+            
+            statusEl.className = `overall-status ${status}`;
+            
+            const statusTexts = {
+                operational: 'All Systems Operational',
+                degraded: 'Some Services Degraded',
+                outage: 'Service Outage Detected'
+            };
+            
+            statusTextEl.textContent = statusTexts[status] || 'Status Unknown';
+        }
+
+        function updateServicesGrid(services) {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = '';
+
+            // Define the order of services
+            const serviceOrder = ['api', 'database', 'websocket', 'email', 'storage'];
+
+            serviceOrder.forEach(key => {
+                const service = services[key];
+                if (!service) return;
+
+                const serviceEl = document.createElement('div');
+                serviceEl.className = 'service-item';
+                serviceEl.innerHTML = `
+                    <div class="service-header">
+                        <div class="service-info">
+                            <div class="service-icon">${serviceIcons[key] || '📦'}</div>
+                            <div class="service-details">
+                                <div class="service-name">${service.name}</div>
+                                <div class="service-description">${serviceDescriptions[key] || service.description || ''}</div>
+                            </div>
+                        </div>
+                        <div class="service-status ${service.status}">
+                            <span class="status-indicator"></span>
+                            ${service.status.charAt(0).toUpperCase() + service.status.slice(1)}
+                        </div>
+                    </div>
+                    <div class="service-metrics">
+                        <div class="metric">
+                            <span class="metric-value">${service.uptime.toFixed(2)}%</span>
+                            <span class="metric-label">Uptime (30d)</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">${service.responseTime}ms</span>
+                            <span class="metric-label">Response Time</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">${service.incidents}</span>
+                            <span class="metric-label">Incidents</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(serviceEl);
+            });
+        }
+
+        function updateUptimeHistory(history, overallUptime) {
+            const grid = document.getElementById('uptimeGrid');
+            const uptimeEl = document.getElementById('overallUptime');
+            
+            grid.innerHTML = '';
+            uptimeEl.textContent = `${overallUptime}%`;
+
+            // Generate 90 day blocks
+            for (let i = 89; i >= 0; i--) {
+                const dayBlock = document.createElement('div');
+                dayBlock.className = 'day-block';
+                
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                
+                // Find uptime for this date
+                const dayData = history.find(h => h.date === dateStr);
+                const uptime = dayData ? dayData.uptime : 100;
+                
+                // Set color based on uptime
+                if (uptime >= 99.9) {
+                    dayBlock.classList.add('uptime-100');
+                } else if (uptime >= 99.0) {
+                    dayBlock.classList.add('uptime-99');
+                } else if (uptime >= 95.0) {
+                    dayBlock.classList.add('uptime-95');
+                } else if (uptime >= 90.0) {
+                    dayBlock.classList.add('uptime-90');
+                } else {
+                    dayBlock.classList.add('uptime-low');
+                }
+                
+                dayBlock.title = `${date.toLocaleDateString()}: ${uptime.toFixed(2)}% uptime`;
+                grid.appendChild(dayBlock);
+            }
+        }
+
+        function updateIncidents(incidents) {
+            const container = document.getElementById('incidentsContainer');
+            container.innerHTML = '';
+
+            if (incidents.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.2rem; color: #00ff88; font-weight: 600;">No incidents in the past 90 days</div>
+                        <div style="margin-top: 0.5rem;">Our systems have been running smoothly</div>
+                    </div>
+                `;
+                return;
+            }
+
+            incidents.forEach(incident => {
+                const incidentEl = document.createElement('div');
+                incidentEl.className = 'incident-item';
+                incidentEl.innerHTML = `
+                    <div class="incident-header">
+                        <div>
+                            <div class="incident-title">${incident.title}</div>
+                            <div class="incident-date">${new Date(incident.startTime).toLocaleString()}</div>
+                        </div>
+                        <div class="incident-severity ${incident.status}">
+                            ${incident.status === 'resolved' ? '✓ ' : ''}
+                            ${incident.status.charAt(0).toUpperCase() + incident.status.slice(1)}
+                        </div>
+                    </div>
+                    <div style="color: #cccccc; line-height: 1.8; margin-bottom: 1rem;">
+                        ${incident.description}
+                    </div>
+                    ${incident.updates && incident.updates.length > 0 ? `
+                        <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                            ${incident.updates.map(update => `
+                                <div style="padding: 0.75rem 0; border-left: 3px solid #00ff88; padding-left: 1rem; margin-bottom: 0.75rem;">
+                                    <div style="color: #00ff88; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">
+                                        ${new Date(update.time).toLocaleTimeString()} - ${update.status}
+                                    </div>
+                                    <div style="color: #999; line-height: 1.6;">${update.message}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                `;
+                container.appendChild(incidentEl);
+            });
+        }
+
+        function updateTimestamp() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('lastUpdate').textContent = timeString;
+        }
+
+        // ========================================
+        // UI HELPERS
+        // ========================================
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorBanner').classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('errorBanner').classList.remove('show');
+        }
+
+        // ========================================
+        // SUBSCRIBE FORM
+        // ========================================
+
+        document.getElementById('subscribeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            
+            try {
+                alert(`✅ Success! You'll receive status updates at ${email}`);
+                e.target.reset();
+            } catch (error) {
+                alert('❌ Failed to subscribe. Please try again.');
+            }
+        });
+
+        // ========================================
+        // AUTO-REFRESH
+        // ========================================
+
+        let refreshInterval;
+
+        function startAutoRefresh() {
+            refreshInterval = setInterval(() => {
+                loadStatusData();
+            }, REFRESH_INTERVAL);
+        }
+
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        }
+
+        // Stop refresh when page is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoRefresh();
+            } else {
+                loadStatusData();
+                startAutoRefresh();
+            }
+        });
+
+        // ========================================
+        // INITIALIZE
+        // ========================================
+
+        // Load data on page load
+        window.addEventListener('load', () => {
+            loadStatusData();
+            startAutoRefresh();
+        });
+
+        console.log('🚀 UYEH TECH Real-Time Status Page initialized');
+        console.log(`📡 Connecting to: ${API_BASE_URL}`);
+        console.log(`🔄 Auto-refresh interval: ${REFRESH_INTERVAL/1000}s`);
+    </script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

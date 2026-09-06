@@ -1,0 +1,3289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Store — UYEH TECH</title>
+  <meta name="description" content="Browse this creator's digital products on UYEH TECH Marketplace." />
+   <meta property="og:url" content="https://uyehtech.com/marketplace/creators">
+  <meta property="og:title" content="Creator Store — UYEH TECH">
+  <meta property="og:description" content="Browse digital products from this verified creator on UYEH TECH Marketplace.">
+  <meta property="og:image" content="https://uyehtech.com/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Creator Store — UYEH TECH">
+  <meta name="twitter:description" content="Browse digital products from this verified creator on UYEH TECH Marketplace.">
+  <meta name="twitter:image" content="https://uyehtech.com/images/og-image.jpg">
+  <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/creators" id="canonicalTag">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+         <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+
+ <!-- Fonts — aligned to UYEH TECH brand (matches affiliate dashboard) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Montserrat:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    /* ══════════════════════════════════════════════════
+       DESIGN SYSTEM — MATCHES UYEH TECH GLOBAL THEME
+       ══════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ── UYEH TECH brand design system — mirrors affiliate dashboard ── */
+    :root {
+      /* Brand greens */
+      --g:            #00ff88;
+      --g2:           #00c96a;
+      --g3:           rgba(0,255,136,.08);
+      --g4:           rgba(0,255,136,.14);
+      --g5:           rgba(0,255,136,.22);
+      /* Backgrounds */
+      --ink:          #07090c;
+      --ink2:         #0c0f14;
+      --ink3:         #111620;
+      --ink4:         #18202e;
+      --card:         #0e1318;
+      /* Borders */
+      --line:         rgba(255,255,255,.06);
+      --line2:        rgba(0,255,136,.18);
+      /* Text */
+      --t1:           #edf2f7;
+      --t2:           #8a96a8;
+      --t3:           #4a5568;
+      /* Accents */
+      --red:          #ff4d4d;
+      --amber:        #f5a623;
+      --blue:         #5b9cf6;
+      --purple:       #a78bfa;
+      --teal:         #2dd4bf;
+      /* Legacy aliases — keep so existing classes don't break */
+      --primary:      #00ff88;
+      --primary-dark: #00c96a;
+      --dark:         #07090c;
+      --dark-light:   #0c0f14;
+      --dark-mid:     #111620;
+      --gray:         #8a96a8;
+      --gray-light:   #edf2f7;
+      --error:        #ff4d4d;
+      --success:      #00ff88;
+      --warning:      #f5a623;
+      --card-bg:      #0e1318;
+      --border:       rgba(0,255,136,.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: #fff;
+      line-height: 1.6;
+      padding-top: 75px;
+      min-height: 100vh;
+    }
+
+    /* ══ SCROLLBAR ══ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--primary-dark); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════════════════════════
+   UYEH TECH — Shared Navbar Stylesheet
+   /css/navbar.css
+
+   Self-contained: every value the nav needs is defined right here,
+   so this file never depends on a page having its own matching
+   --primary / --dark variables already set up correctly. Link it
+   on every page that has the navbar:
+
+     <link rel="stylesheet" href="/css/navbar.css">
+
+   Also requires Font Awesome (for the cart + menu icons), already
+   used site-wide:
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --nav-primary:      #00ff88;
+  --nav-primary-dark: #00c96a;
+  --nav-dark:         #07090c;
+  --nav-gray:         #8a96a8;
+  --nav-gray-light:   #edf2f7;
+  --nav-error:        #ff4d4d;
+}
+
+/* Push page content below the fixed nav. If your page already sets
+   body padding-top, this rule is harmless — the more specific one
+   defined later in the page will win. */
+body { padding-top: 80px; }
+
+/* ════════════════════════════════════════════════
+   NAV CONTAINER + LOGO
+   ════════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(10,10,10,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,255,136,0.2);
+  padding: 15px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 1000;
+  box-shadow: 0 5px 30px rgba(0,255,136,0.1);
+  animation: navSlideIn 0.5s ease-out;
+}
+@keyframes navSlideIn { from{transform:translateY(-100%);opacity:0;} to{transform:translateY(0);opacity:1;} }
+
+nav > a { flex-shrink: 0; }
+nav > a img { display: block; transition: all 0.3s ease; }
+nav > a:hover img { transform: scale(1.05); filter: brightness(1.2); }
+
+/* ════════════════════════════════════════════════
+   NAV LINKS
+   ════════════════════════════════════════════════ */
+.nav-links { display:flex; list-style:none; gap:5px; align-items:center; margin:0; padding:0; }
+.nav-link { display:block; padding:12px 20px; color:#d1d5db; text-decoration:none; font-weight:500; font-size:0.95em; border-radius:8px; transition:all 0.3s; }
+.nav-link:hover { color:var(--nav-primary); background:rgba(0,255,136,0.1); }
+.nav-link.active { color:var(--nav-primary); position:relative; }
+.nav-link.active::after { content:''; position:absolute; bottom:5px; left:20px; right:20px; height:2px; background:var(--nav-primary); }
+
+.nav-actions { display:flex; align-items:center; gap:20px; }
+
+/* ════════════════════════════════════════════════
+   DROPDOWN (Marketplace / Creators' Hub, etc.)
+   ════════════════════════════════════════════════ */
+.nav-item--dropdown { position: relative; }
+
+.nav-link--dropdown {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-size: 0.95em;
+  display: flex; align-items: center; gap: 5px;
+  padding: 12px 20px; color: #d1d5db; font-weight: 500;
+  border-radius: 8px; transition: all 0.3s ease; white-space: nowrap;
+}
+.nav-link--dropdown:hover,
+.nav-item--dropdown.open .nav-link--dropdown {
+  color: var(--nav-primary);
+  background: rgba(0, 255, 136, 0.1);
+}
+
+.nav-chevron { transition: transform 0.25s ease; flex-shrink: 0; color: currentColor; opacity: 0.7; }
+.nav-item--dropdown.open .nav-chevron { transform: rotate(180deg); opacity: 1; }
+
+.nav-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 260px;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+  border-radius: 14px; padding: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 136, 0.05);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 1100;
+}
+.nav-dropdown::before {
+  content: ''; position: absolute; top: -1px; left: 20%; right: 20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--nav-primary), transparent);
+  border-radius: 2px;
+}
+.nav-item--dropdown.open .nav-dropdown {
+  opacity: 1; visibility: visible; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown__item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 12px; border-radius: 9px;
+  text-decoration: none; color: inherit;
+  transition: background 0.2s ease; cursor: pointer;
+}
+.nav-dropdown__item:hover { background: rgba(0, 255, 136, 0.08); }
+.nav-dropdown__icon {
+  font-size: 18px; width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 255, 136, 0.07);
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 8px; flex-shrink: 0;
+}
+.nav-dropdown__label { display: block; color: #ffffff; font-size: 0.88rem; font-weight: 600; margin-bottom: 2px; font-family: 'Montserrat', sans-serif; }
+.nav-dropdown__desc  { display: block; color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; font-family: 'Montserrat', sans-serif; font-weight: 400; }
+.nav-dropdown__divider { border: none; border-top: 1px solid rgba(0, 255, 136, 0.1); margin: 6px 12px; }
+
+/* ════════════════════════════════════════════════
+   CART BUTTON
+   ════════════════════════════════════════════════ */
+.cart-btn {
+  position:relative; background:rgba(0,255,136,0.1);
+  border:1px solid rgba(0,255,136,0.3); padding:12px 20px;
+  border-radius:12px; color:var(--nav-primary); cursor:pointer;
+  font-weight:600; transition:all 0.3s; display:flex; align-items:center;
+  gap:8px; font-family:'Montserrat',sans-serif;
+}
+.cart-btn:hover { background:rgba(0,255,136,0.2); transform:translateY(-2px); box-shadow:0 5px 20px rgba(0,255,136,0.3); }
+.cart-count {
+  position:absolute; top:-8px; right:-8px;
+  background:linear-gradient(135deg,#ff4444,#ff6666); color:white;
+  width:24px; height:24px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.75rem; font-weight:700; box-shadow:0 2px 10px rgba(255,68,68,0.4);
+}
+
+/* ════════════════════════════════════════════════
+   AUTH: guest buttons vs. logged-in user dropdown
+   ════════════════════════════════════════════════ */
+.auth-buttons { display:flex; gap:12px; }
+.btn-login, .btn-signup { padding:12px 25px; border-radius:12px; font-weight:600; text-decoration:none; transition:all 0.3s; font-family:'Montserrat',sans-serif; }
+.btn-login  { background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3); color:var(--nav-primary); }
+.btn-login:hover { background:rgba(0,255,136,0.2); transform:translateY(-2px); }
+.btn-signup { background:linear-gradient(135deg,var(--nav-primary-dark),var(--nav-primary)); color:white; border:none; }
+.btn-signup:hover { transform:translateY(-2px); box-shadow:0 5px 20px rgba(0,255,136,0.4); }
+
+.user-dropdown { position:relative; }
+.user-avatar-btn {
+  display:flex; align-items:center; gap:10px;
+  background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3);
+  padding:8px 15px; border-radius:12px; color:var(--nav-primary); cursor:pointer;
+  font-weight:600; transition:all 0.3s; font-family:'Montserrat',sans-serif;
+}
+.user-avatar-btn:hover { background:rgba(0,255,136,0.2); transform:translateY(-2px); }
+.user-avatar-btn img { width:35px; height:35px; border-radius:50%; border:2px solid var(--nav-primary); }
+.dropdown-arrow { font-size:0.7rem; transition:transform 0.3s; }
+.user-dropdown.active .dropdown-arrow { transform:rotate(180deg); }
+
+.user-menu {
+  position:absolute; top:calc(100% + 10px); right:0;
+  background:rgba(15,15,15,0.98); border:1px solid rgba(0,255,136,0.3);
+  border-radius:15px; width:280px; padding:10px;
+  display:none; flex-direction:column; gap:5px;
+  box-shadow:0 10px 40px rgba(0,255,136,0.2); backdrop-filter:blur(20px);
+  animation:navSlideDown 0.3s ease;
+}
+.user-menu.active { display:flex; }
+@keyframes navSlideDown { from{opacity:0;transform:translateY(-10px);} to{opacity:1;transform:translateY(0);} }
+
+.user-menu-header { display:flex; align-items:center; gap:12px; padding:15px; background:rgba(0,255,136,0.05); border-radius:10px; margin-bottom:5px; }
+.user-menu-header img { width:50px; height:50px; border-radius:50%; border:2px solid var(--nav-primary); }
+.menu-user-name  { font-weight:700; color:var(--nav-primary); font-size:1rem; }
+.menu-user-email { font-size:0.85rem; color:var(--nav-gray); }
+.user-menu-divider { height:1px; background:rgba(0,255,136,0.2); margin:5px 0; }
+.user-menu-item {
+  display:flex; align-items:center; gap:12px; padding:12px 15px;
+  color:var(--nav-gray-light); text-decoration:none; border-radius:10px;
+  transition:all 0.3s; font-weight:500; cursor:pointer; border:none;
+  background:transparent; width:100%; text-align:left; font-family:'Montserrat',sans-serif;
+}
+.user-menu-item:hover { background:rgba(0,255,136,0.1); color:var(--nav-primary); transform:translateX(5px); }
+.user-menu-item i { font-size:1.1rem; width:20px; }
+.logout-item { color:var(--nav-error); }
+.logout-item:hover { background:rgba(255,68,68,0.1); color:var(--nav-error); }
+
+/* ════════════════════════════════════════════════
+   MOBILE HAMBURGER
+   ════════════════════════════════════════════════ */
+.menu-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:5px; flex-shrink:0; }
+.menu-toggle span { width:28px; height:3px; background:var(--nav-primary); border-radius:3px; transition:all 0.3s ease; }
+.menu-toggle:hover span { background:var(--nav-primary-dark); }
+.menu-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(8px,8px); }
+.menu-toggle.active span:nth-child(2) { opacity:0; }
+.menu-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(7px,-7px); }
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════════ */
+@media (max-width: 968px) {
+  nav { padding:15px 25px; }
+  body { padding-top: 70px; }
+  .nav-links {
+    position:fixed; top:70px; left:-100%; flex-direction:column;
+    background:rgba(10,10,10,0.98); backdrop-filter:blur(20px);
+    width:100%; height:calc(100vh - 70px); padding:40px 30px; gap:0;
+    transition:left 0.3s ease; border-top:1px solid rgba(0,255,136,0.2);
+    overflow-y:auto;
+  }
+  .nav-links.active { left:0; }
+  .nav-links li { width:100%; border-bottom:1px solid rgba(0,255,136,0.1); }
+  .nav-link { width:100%; padding:18px 0; font-size:1.1em; }
+  .menu-toggle { display:flex; order:3; }
+
+  .nav-link--dropdown { width: 100%; padding: 18px 0; font-size: 1.1em; justify-content: space-between; border-radius: 0; }
+  .nav-item--dropdown { position: static; width: 100%; }
+  .nav-dropdown {
+    position: static; transform: none !important; min-width: 100%;
+    background: rgba(0, 255, 136, 0.04); border: none;
+    border-left: 2px solid rgba(0, 255, 136, 0.3); border-radius: 0;
+    box-shadow: none; padding: 4px 0 4px 16px; margin-bottom: 4px;
+    backdrop-filter: none; max-height: 0; overflow: hidden;
+    opacity: 1; visibility: visible; pointer-events: none;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .nav-dropdown::before { display: none; }
+  .nav-item--dropdown.open .nav-dropdown { max-height: 400px; pointer-events: all; padding: 8px 0 8px 16px; }
+  .nav-dropdown__item { padding: 10px 8px; border-radius: 6px; }
+  .nav-dropdown__icon { width: 30px; height: 30px; font-size: 15px; }
+  .nav-dropdown__label { font-size: 0.92rem; }
+  .nav-dropdown__desc  { font-size: 0.78rem; }
+}
+@media (max-width: 600px) {
+  nav { padding:15px 20px; }
+  body { padding-top:65px; }
+  .nav-actions { gap:10px; }
+  .cart-text { display:none; }
+  .btn-login, .btn-signup { padding:10px 18px; font-size:0.9rem; }
+  .user-avatar-btn span:not(.dropdown-arrow) { display:none; }
+  .nav-links { top:65px; height:calc(100vh - 65px); padding:30px 20px; }
+}
+
+    /* ══════════════════════════════════════════════════
+       LOADING & ERROR STATES
+       ══════════════════════════════════════════════════ */
+    /* ══ SPLASH LOADER ══ */
+    #pageLoader {
+      position: fixed; inset: 0;
+      background: var(--dark);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    #pageLoader.hidden {
+      opacity: 0; transform: scale(1.04); pointer-events: none;
+    }
+
+    /* Neon pulsing orb */
+    .loader-orb {
+      position: relative;
+      width: 80px; height: 80px;
+      margin-bottom: 28px;
+    }
+    .loader-orb::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 38%, #00ff88, #00b359 55%, #003d1f);
+      box-shadow:
+        0 0 0   6px rgba(0,255,136,0.12),
+        0 0 0  16px rgba(0,255,136,0.07),
+        0 0 0  32px rgba(0,255,136,0.04);
+      animation: orb-pulse 1.6s ease-in-out infinite;
+    }
+    /* Orbit ring */
+    .loader-orb::after {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px; right: -10px; bottom: -10px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--primary);
+      border-right-color: rgba(0,255,136,0.3);
+      animation: orbit 0.9s linear infinite;
+    }
+    /* Inner logo letter */
+    .loader-letter {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 16px rgba(0,255,136,0.8);
+      z-index: 1;
+    }
+
+    /* Progress bar */
+    .loader-bar-wrap {
+      width: 160px; height: 2px;
+      background: rgba(0,255,136,0.1);
+      border-radius: 2px; overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .loader-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      border-radius: 2px;
+      width: 0%;
+      animation: bar-fill 2.8s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+
+    .loader-text {
+      color: var(--gray); font-size: 0.78rem;
+      letter-spacing: 2px; text-transform: uppercase;
+      animation: text-fade 0.6s ease 0.3s both;
+    }
+    .loader-timeout-msg {
+      color: var(--error); font-size: 0.78rem;
+      letter-spacing: 1px; margin-top: 10px;
+      display: none; text-align: center; max-width: 220px; line-height: 1.6;
+    }
+
+    @keyframes orb-pulse {
+      0%,100% { box-shadow: 0 0 0 6px rgba(0,255,136,0.12), 0 0 0 16px rgba(0,255,136,0.07), 0 0 0 32px rgba(0,255,136,0.04); }
+      50%      { box-shadow: 0 0 0 10px rgba(0,255,136,0.18), 0 0 0 24px rgba(0,255,136,0.10), 0 0 0 44px rgba(0,255,136,0.05); }
+    }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes bar-fill { to { width: 92%; } }
+    @keyframes text-fade { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform:none; } }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #errorState {
+      display: none;
+      min-height: 60vh; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; text-align: center; padding: 40px;
+    }
+    #errorState.visible { display: flex; }
+    .error-icon { font-size: 4rem; }
+    .error-title { font-size: 1.6rem; font-weight: 700; color: var(--error); }
+    .error-msg { color: var(--gray); max-width: 400px; }
+    .btn-back {
+      padding: 12px 28px; border-radius: 12px;
+      background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3);
+      color: var(--primary); text-decoration: none; font-weight: 600;
+      transition: all 0.3s; margin-top: 8px;
+    }
+    .btn-back:hover { background: rgba(0,255,136,0.2); transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════════════
+       STORE HEADER / BANNER
+       ══════════════════════════════════════════════════ */
+    #storeContent { display: none; }
+    #storeContent.visible { display: block; animation: fadeUp 0.6s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .store-banner {
+      position: relative; width: 100%;
+      height: 260px; overflow: hidden;
+      background: linear-gradient(135deg, #0d1f15 0%, #0a1a10 50%, #051009 100%);
+    }
+
+    .store-banner-img {
+      width: 100%; height: 100%; object-fit: cover; opacity: 0.55;
+    }
+
+    .store-banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, rgba(10,10,10,0.95) 100%);
+    }
+
+    /* Animated grid lines on banner */
+    .store-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ══ PROFILE BLOCK ══ */
+    .store-profile {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 30px;
+      position: relative;
+      margin-top: -80px; z-index: 2;
+    }
+
+    .profile-row {
+      display: flex; align-items: flex-end; gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .store-logo-wrap {
+      flex-shrink: 0;
+      width: 120px; height: 120px;
+      border-radius: 20px; overflow: hidden;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 30px rgba(0,255,136,0.3);
+      background: var(--dark-light);
+    }
+
+    .store-logo-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .store-logo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #0d2a1a, #1a3d2a);
+    }
+
+    .store-info { flex: 1; min-width: 200px; padding-bottom: 6px; }
+
+    .store-name-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    .store-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      color: #fff; line-height: 1.2;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 20px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .badge-verified { background: rgba(0,255,136,0.15); color: var(--primary); border: 1px solid rgba(0,255,136,0.3); }
+    .badge-featured { background: rgba(255,165,0,0.15); color: var(--warning); border: 1px solid rgba(255,165,0,0.3); }
+
+    .store-meta {
+      display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex; align-items: center; gap: 6px;
+      color: var(--gray); font-size: 0.85rem;
+    }
+    .meta-item i { color: var(--primary); font-size: 0.8rem; }
+    .meta-item strong { color: #fff; }
+
+    .store-desc {
+      margin-top: 12px; color: var(--gray); font-size: 0.9rem;
+      max-width: 600px; line-height: 1.7;
+    }
+
+    .store-actions {
+      display: flex; align-items: flex-end; gap: 12px;
+      padding-bottom: 6px; flex-shrink: 0;
+    }
+
+    .btn-follow {
+      padding: 12px 28px; border-radius: 12px; cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; transition: all 0.3s;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #0a0a0a; border: none; font-family: 'Montserrat', sans-serif;
+    }
+    .btn-follow:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,136,0.4); }
+    .btn-follow.following {
+      background: rgba(0,255,136,0.1); color: var(--primary);
+      border: 1px solid rgba(0,255,136,0.3);
+    }
+
+    .btn-share {
+      padding: 12px 18px; border-radius: 12px; cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; transition: all 0.3s;
+      background: rgba(255,255,255,0.05); color: var(--gray-light);
+      border: 1px solid rgba(255,255,255,0.1); font-family: 'Montserrat', sans-serif;
+    }
+    .btn-share:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+    /* Social links */
+    .social-links { display: flex; gap: 8px; margin-top: 14px; }
+    .social-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      color: var(--gray); text-decoration: none; font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+    .social-link:hover { background: rgba(0,255,136,0.1); color: var(--primary); border-color: rgba(0,255,136,0.3); transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════════════
+       STATS BAR
+       ══════════════════════════════════════════════════ */
+    .stats-bar {
+      max-width: 1200px; margin: 28px auto 0;
+      padding: 0 30px;
+    }
+
+    .stats-inner {
+      display: flex; gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+
+    .stat-box {
+      flex: 1; padding: 18px 20px; text-align: center;
+      background: var(--dark-light);
+      transition: background 0.3s;
+    }
+    .stat-box:hover { background: #1f1f1f; }
+    .stat-number { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 0.75rem; color: var(--gray); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ══════════════════════════════════════════════════
+       PRODUCTS SECTION
+       ══════════════════════════════════════════════════ */
+    .products-section {
+      max-width: 1200px; margin: 40px auto 60px;
+      padding: 0 30px;
+    }
+
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; flex-wrap: wrap; gap: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: #fff;
+    }
+    .section-title span { color: var(--primary); }
+
+    /* Filters */
+    .filters-row {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 18px; border-radius: 20px; cursor: pointer;
+      font-size: 0.82rem; font-weight: 600; transition: all 0.3s;
+      background: rgba(255,255,255,0.05); color: var(--gray);
+      border: 1px solid rgba(255,255,255,0.08); font-family: 'Montserrat', sans-serif;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(0,255,136,0.1); color: var(--primary);
+      border-color: rgba(0,255,136,0.35);
+    }
+
+    .search-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--dark-light); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0 14px; width: 240px;
+      transition: border-color 0.3s;
+    }
+    .search-bar:focus-within { border-color: rgba(0,255,136,0.5); }
+    .search-bar i { color: var(--gray); font-size: 0.85rem; }
+    .search-bar input {
+      flex: 1; background: none; border: none; outline: none;
+      color: #fff; font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem; padding: 10px 0;
+    }
+    .search-bar input::placeholder { color: var(--gray); }
+
+    /* ── Grid ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── Product Card ── */
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; overflow: hidden;
+      cursor: pointer; transition: all 0.3s;
+      position: relative;
+    }
+    .product-card:hover {
+      border-color: rgba(0,255,136,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,255,136,0.1);
+    }
+
+    .product-image {
+      position: relative; width: 100%; height: 200px; overflow: hidden;
+      background: linear-gradient(135deg, #0d1f15, #1a3d2a);
+    }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-image-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .product-badge {
+      position: absolute; top: 12px; right: 12px;
+      padding: 4px 10px; border-radius: 6px;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .badge-hot { background: linear-gradient(135deg, #ff4444, #ff6666); color: #fff; }
+    .badge-new { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); color: #0a0a0a; }
+    .badge-featured-prod { background: linear-gradient(135deg, #b8860b, var(--warning)); color: #fff; }
+
+    .product-body { padding: 18px; }
+    .product-category {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 8px;
+    }
+    .product-title {
+      font-size: 1rem; font-weight: 700; color: #fff;
+      line-height: 1.4; margin-bottom: 8px;
+    }
+    .product-desc {
+      font-size: 0.82rem; color: var(--gray); line-height: 1.6;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .product-footer {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .product-price {
+      display: flex; align-items: baseline; gap: 7px;
+    }
+    .price-main { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+    .price-old { font-size: 0.85rem; color: var(--gray); text-decoration: line-through; }
+    .price-free { font-size: 1.3rem; font-weight: 700; color: var(--primary); }
+
+    .btn-add {
+      padding: 8px 18px; border-radius: 8px; cursor: pointer;
+      font-size: 0.82rem; font-weight: 600; transition: all 0.3s;
+      background: rgba(0,255,136,0.1); color: var(--primary);
+      border: 1px solid rgba(0,255,136,0.3); font-family: 'Montserrat', sans-serif;
+    }
+    .btn-add:hover {
+      background: var(--primary); color: #0a0a0a;
+      box-shadow: 0 4px 15px rgba(0,255,136,0.35);
+    }
+
+    /* ── Empty state ── */
+    .empty-products {
+      grid-column: 1/-1; text-align: center;
+      padding: 60px 20px; color: var(--gray);
+    }
+    .empty-products i { font-size: 3.5rem; color: rgba(0,255,136,0.2); margin-bottom: 16px; }
+    .empty-products p { font-size: 1rem; }
+
+    /* ── Loading skeleton ── */
+    .skeleton {
+      background: var(--dark-light);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 16px; overflow: hidden;
+    }
+    .skeleton-img { height: 200px; background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+    .skeleton-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .skeleton-line { height: 12px; border-radius: 6px; background: linear-gradient(90deg, #1a1a1a 25%, #222 50%, #1a1a1a 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+    .skeleton-line.short { width: 50%; }
+    .skeleton-line.medium { width: 75%; }
+
+    @keyframes shimmer { to { background-position: -200% 0; } }
+
+    /* ══════════════════════════════════════════════════
+       PRODUCT MODAL
+       ══════════════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 5000;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: #111; border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 20px; max-width: 700px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      transform: translateY(20px); transition: transform 0.3s;
+      box-shadow: 0 30px 80px rgba(0,255,136,0.15);
+    }
+    .modal-overlay.active .modal { transform: translateY(0); }
+
+    .modal-image {
+      width: 100%; height: 280px; object-fit: cover;
+      background: linear-gradient(135deg, #0d1f15, #1a3d2a);
+    }
+    .modal-image-placeholder {
+      width: 100%; height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0d1f15, #1a3d2a); font-size: 5rem;
+    }
+
+    .modal-body { padding: 28px; }
+    .modal-category { font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin-bottom: 14px; }
+    .modal-desc { color: var(--gray); font-size: 0.92rem; line-height: 1.8; margin-bottom: 20px; }
+
+    .modal-features { margin-bottom: 22px; }
+    .modal-features h4 { font-size: 0.85rem; color: var(--gray-light); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .features-list { display: flex; flex-direction: column; gap: 7px; }
+    .feature-item { display: flex; align-items: center; gap: 10px; color: var(--gray); font-size: 0.88rem; }
+    .feature-item i { color: var(--primary); font-size: 0.75rem; width: 14px; }
+
+    .modal-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .modal-price { display: flex; align-items: baseline; gap: 10px; }
+    .modal-price-main { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .modal-price-old { font-size: 1rem; color: var(--gray); text-decoration: line-through; }
+    .modal-price-free { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+
+    .modal-actions { display: flex; gap: 12px; }
+    .btn-primary-modal {
+      padding: 13px 30px; border-radius: 12px; cursor: pointer;
+      font-weight: 700; font-size: 0.95rem;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #0a0a0a; border: none; font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s;
+    }
+    .btn-primary-modal:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,136,0.4); }
+
+    .btn-close-modal {
+      padding: 13px 18px; border-radius: 12px; cursor: pointer;
+      font-weight: 600; font-size: 0.95rem;
+      background: rgba(255,255,255,0.05); color: var(--gray);
+      border: 1px solid rgba(255,255,255,0.1); font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s;
+    }
+    .btn-close-modal:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* ══════════════════════════════════════════════════
+       NOTIFICATION TOAST
+       ══════════════════════════════════════════════════ */
+    .toast {
+      position: fixed; bottom: 30px; right: 30px; z-index: 9000;
+      background: #1a1a1a; border: 1px solid rgba(0,255,136,0.3);
+      border-radius: 12px; padding: 14px 20px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transform: translateY(20px); opacity: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-width: 340px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-icon { font-size: 1.2rem; }
+    .toast-msg { font-size: 0.88rem; color: var(--gray-light); }
+
+
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE PRODUCT GRID
+       ══════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+      .store-profile { padding: 0 16px; margin-top: -60px; }
+      .store-name { font-size: 1.4rem; }
+      .store-logo-wrap { width: 90px; height: 90px; }
+      .profile-row { gap: 14px; }
+      .store-actions { width: 100%; }
+      .stats-inner { flex-wrap: wrap; }
+      .stat-box { min-width: 50%; }
+      .products-section { padding: 0 16px; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+      .search-bar { width: 100%; }
+      .store-banner { height: 180px; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .modal-footer { flex-direction: column; align-items: flex-start; }
+      .modal-actions { width: 100%; }
+      .btn-primary-modal, .btn-close-modal { flex: 1; text-align: center; }
+    }
+
+    /* ══════════════════════════════════════════════════
+       AFFILIATE LINK PANEL (inside product modal)
+       ══════════════════════════════════════════════════ */
+    .aff-divider {
+      height: 1px; background: rgba(255,255,255,0.07);
+      margin: 20px 0;
+    }
+
+    .aff-section { margin-bottom: 4px; }
+
+    .aff-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--primary);
+      display: flex; align-items: center; gap: 7px;
+      margin-bottom: 10px;
+    }
+    .aff-label i { font-size: 0.8rem; }
+
+    .aff-commission-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 20px;
+      background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.25);
+      font-size: 0.75rem; font-weight: 700; color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .aff-link-box {
+      display: flex; align-items: center; gap: 0;
+      background: #0d0d0d;
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 10px; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .aff-link-box:focus-within,
+    .aff-link-box:hover { border-color: rgba(0,255,136,0.5); }
+
+    .aff-link-input {
+      flex: 1; background: none; border: none; outline: none;
+      color: var(--gray-light); font-family: 'Montserrat', monospace;
+      font-size: 0.78rem; padding: 11px 14px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      cursor: text;
+    }
+
+    .aff-copy-btn {
+      flex-shrink: 0;
+      padding: 11px 16px; cursor: pointer;
+      background: rgba(0,255,136,0.08);
+      border: none; border-left: 1px solid rgba(0,255,136,0.15);
+      color: var(--primary); font-size: 0.82rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.25s; display: flex; align-items: center; gap: 6px;
+      white-space: nowrap;
+    }
+    .aff-copy-btn:hover { background: rgba(0,255,136,0.18); }
+    .aff-copy-btn.copied {
+      background: rgba(0,255,136,0.25); color: #fff;
+    }
+
+    .aff-hint {
+      font-size: 0.74rem; color: var(--gray);
+      margin-top: 8px; line-height: 1.6;
+    }
+    .aff-hint strong { color: var(--primary); }
+
+    /* Share row */
+    .aff-share-row {
+      display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;
+    }
+    .aff-share-btn {
+      padding: 7px 14px; border-radius: 8px; cursor: pointer;
+      font-size: 0.78rem; font-weight: 600; transition: all 0.25s;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04); color: var(--gray-light);
+      font-family: 'Montserrat', sans-serif;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .aff-share-btn:hover { background: rgba(255,255,255,0.1); color: #fff; transform: translateY(-1px); }
+    .aff-share-btn.whatsapp:hover { background: rgba(37,211,102,0.15); color: #25d366; border-color: rgba(37,211,102,0.3); }
+    .aff-share-btn.twitter:hover  { background: rgba(29,161,242,0.12); color: #1da1f2; border-color: rgba(29,161,242,0.3); }
+    .aff-share-btn.telegram:hover { background: rgba(0,136,204,0.12); color: #0088cc; border-color: rgba(0,136,204,0.3); }
+
+    /* Earning preview */
+    .aff-earn-preview {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(0,255,136,0.04); border: 1px solid rgba(0,255,136,0.12);
+      border-radius: 8px; padding: 10px 14px; margin-top: 12px;
+    }
+    .aff-earn-label { font-size: 0.78rem; color: var(--gray); }
+    .aff-earn-amount { font-size: 1rem; font-weight: 700; color: var(--primary); }
+
+
+    /* .nav-cart-btn / .cart-badge removed — dead CSS, replaced by
+       navbar.css's .cart-btn / .cart-count on the shared navbar. */
+
+    /* ══ CART TOAST (bottom-right checkout nudge) ══ */
+    .cart-nudge {
+      position: fixed; bottom: 28px; right: 24px; z-index: 9999;
+      background: #111; border: 1px solid rgba(0,255,136,0.35);
+      border-radius: 16px; padding: 14px 18px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      transform: translateY(120px); opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      max-width: 320px;
+    }
+    .cart-nudge.show { transform: translateY(0); opacity: 1; }
+    .cart-nudge-text { flex: 1; }
+    .cart-nudge-title {
+      font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 2px;
+    }
+    .cart-nudge-sub { font-size: 0.75rem; color: var(--gray); }
+    .cart-nudge-btn {
+      padding: 8px 16px; border-radius: 20px; cursor: pointer;
+      background: var(--primary); color: #000;
+      border: none; font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem; font-weight: 800;
+      white-space: nowrap; transition: all 0.2s;
+    }
+    .cart-nudge-btn:hover { background: #00e07a; transform: scale(1.05); }
+
+    
+/* ── Dropdown trigger button reset ── */
+.nav-link--dropdown {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 12px 20px;
+    color: #d1d5db;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+ 
+.nav-link--dropdown:hover,
+.nav-item--dropdown.open .nav-link--dropdown {
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
+ 
+/* ── Chevron rotation ── */
+.nav-chevron {
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+    color: currentColor;
+    opacity: 0.7;
+}
+ 
+.nav-item--dropdown.open .nav-chevron {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+ 
+/* ── Dropdown wrapper positioning ── */
+.nav-item--dropdown {
+    position: relative;
+}
+ 
+/* ── Dropdown panel ── */
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    min-width: 260px;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 255, 136, 0.05);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 1100;
+}
+ 
+/* Green top accent line */
+.nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+    border-radius: 2px;
+}
+ 
+.nav-item--dropdown.open .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+}
+ 
+/* ── Dropdown items ── */
+.nav-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+ 
+.nav-dropdown__item:hover {
+    background: rgba(0, 255, 136, 0.08);
+}
+ 
+.nav-dropdown__icon {
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 136, 0.07);
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+ 
+.nav-dropdown__label {
+    display: block;
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-family: 'Montserrat', sans-serif;
+}
+ 
+.nav-dropdown__desc {
+    display: block;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+ 
+/* ── Divider between sections (optional — add class nav-dropdown__divider to a <hr>) ── */
+.nav-dropdown__divider {
+    border: none;
+    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    margin: 6px 12px;
+}
+ 
+/* ══════════════════════════════════════
+   MOBILE — dropdown becomes stacked list
+   ══════════════════════════════════════ */
+@media (max-width: 968px) {
+ 
+    .nav-link--dropdown {
+        width: 100%;
+        padding: 18px 0;
+        font-size: 1.1em;
+        justify-content: space-between;
+        border-radius: 0;
+    }
+ 
+    .nav-item--dropdown {
+        position: static;
+        width: 100%;
+    }
+ 
+    /* On mobile the dropdown is inline, not absolutely positioned */
+    .nav-dropdown {
+        position: static;
+        transform: none !important;
+        min-width: 100%;
+        background: rgba(0, 255, 136, 0.04);
+        border: none;
+        border-left: 2px solid rgba(0, 255, 136, 0.3);
+        border-radius: 0;
+        box-shadow: none;
+        padding: 4px 0 4px 16px;
+        margin-bottom: 4px;
+        backdrop-filter: none;
+        /* collapsed by default on mobile */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+ 
+    .nav-dropdown::before {
+        display: none;
+    }
+ 
+    .nav-item--dropdown.open .nav-dropdown {
+        max-height: 400px;
+        pointer-events: all;
+        padding: 8px 0 8px 16px;
+    }
+ 
+    .nav-dropdown__item {
+        padding: 10px 8px;
+        border-radius: 6px;
+    }
+ 
+    .nav-dropdown__icon {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+ 
+    .nav-dropdown__label {
+        font-size: 0.92rem;
+    }
+ 
+    .nav-dropdown__desc {
+        font-size: 0.78rem;
+    }
+}
+
+
+  /* ══════════════════════════════════════════════════
+     PREMIUM CREATOR PROFILE CARD
+     ══════════════════════════════════════════════════ */
+
+  /* ── Stat "Since" box ── */
+  .stat-box .stat-since {
+    font-size: .72rem; color: var(--t3);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px; text-transform: none;
+  }
+
+  /* ── Rating stat: colour-coded ── */
+  .stat-rating-val { color: var(--primary); }
+  .stat-rating-new {
+    font-size: .75rem; color: var(--t2);
+    font-style: italic; line-height: 1.35;
+    font-family: 'Montserrat', sans-serif;
+    display: block; margin-top: 2px;
+  }
+
+  /* ── Full-width creator profile card ── */
+  .creator-profile-card {
+    max-width: 1200px; margin: 28px auto 0;
+    padding: 0 30px;
+  }
+  .creator-profile-inner {
+    background: var(--ink3);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  /* Top strip — avatar + identity + social + quick stats */
+  .cpc-hero {
+    display: flex; align-items: flex-start; gap: 24px;
+    padding: 28px 32px 22px;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .cpc-avatar {
+    flex-shrink: 0;
+    width: 80px; height: 80px; border-radius: 16px;
+    border: 2px solid var(--line2);
+    box-shadow: 0 0 24px rgba(0,255,136,.18);
+    background: var(--ink4);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 2rem; color: var(--g);
+  }
+  .cpc-avatar img {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 14px;
+  }
+  .cpc-identity { flex: 1; min-width: 0; }
+  .cpc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--t1);
+    margin-bottom: 3px;
+  }
+  .cpc-role-row {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .cpc-role-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem; color: var(--g);
+    background: var(--g3); border: 1px solid var(--line2);
+    padding: 2px 9px; border-radius: 20px;
+  }
+  .cpc-meta-chips {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+  }
+  .cpc-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 20px; padding: 3px 10px;
+    font-size: .75rem; color: var(--t2);
+  }
+  .cpc-chip i { color: var(--g); font-size: .7rem; }
+  .cpc-social-row {
+    display: flex; gap: 7px; flex-wrap: wrap; margin-top: 2px;
+  }
+  .cpc-social-btn {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    color: var(--t2); text-decoration: none; font-size: .82rem;
+    transition: all .25s;
+  }
+  .cpc-social-btn:hover {
+    background: var(--g3); color: var(--g);
+    border-color: var(--line2); transform: translateY(-2px);
+  }
+
+  /* Body — bio, skills, portfolio in columns */
+  .cpc-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media(max-width: 680px) { .cpc-body { grid-template-columns: 1fr; } }
+
+  .cpc-col {
+    padding: 22px 32px;
+    border-right: 1px solid var(--line);
+  }
+  .cpc-col:last-child { border-right: none; }
+
+  .cpc-section-label {
+    font-size: .65rem; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--g);
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .cpc-section-label i { font-size: .72rem; }
+
+  .cpc-bio {
+    font-size: .87rem; color: var(--t2); line-height: 1.75;
+  }
+
+  .cpc-skills {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .cpc-skill-tag {
+    background: var(--g3); border: 1px solid var(--line2);
+    color: var(--g); font-size: .72rem; padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .cpc-languages {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+  }
+  .cpc-lang-tag {
+    background: rgba(91,156,246,.08); border: 1px solid rgba(91,156,246,.2);
+    color: var(--blue); font-size: .72rem; padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .cpc-portfolio-links {
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .cpc-portfolio-link {
+    display: flex; align-items: center; gap: 9px;
+    color: var(--blue); text-decoration: none; font-size: .83rem;
+    padding: 7px 10px; border-radius: 8px;
+    background: rgba(91,156,246,.05); border: 1px solid rgba(91,156,246,.12);
+    transition: background .2s;
+  }
+  .cpc-portfolio-link:hover { background: rgba(91,156,246,.12); }
+  .cpc-portfolio-link i { font-size: .72rem; flex-shrink: 0; }
+
+  .cpc-website-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--g); text-decoration: none; font-size: .82rem;
+    padding: 6px 12px; border-radius: 8px;
+    background: var(--g3); border: 1px solid var(--line2);
+    margin-top: 10px; transition: background .2s;
+  }
+  .cpc-website-link:hover { background: var(--g4); }
+
+  /* ── Empty profile card (nothing to show) ── */
+  .cpc-empty { display: none; }
+
+  /* ── Responsive tweaks for profile hero ── */
+  @media (max-width: 680px) {
+    .cpc-hero { padding: 20px; }
+    .cpc-col  { padding: 18px 20px; border-right: none; border-bottom: 1px solid var(--line); }
+    .cpc-col:last-child { border-bottom: none; }
+    .creator-profile-card { padding: 0 16px; }
+  }
+
+  #sortSelect {
+    padding: 8px 14px;
+    background: var(--g3);
+    border: 1px solid var(--line2);
+    border-radius: 9px;
+    color: var(--t1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: .82rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    padding-right: 28px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2300ff88' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ── PAGE LOADER ── -->
+  <div id="pageLoader">
+    <div class="loader-orb"><span class="loader-letter">U</span></div>
+    <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+    <p class="loader-text">Loading store…</p>
+    <p class="loader-timeout-msg" id="loaderTimeoutMsg">Taking longer than usual…<br>Check your connection or try again.</p>
+  </div>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+     ════════════════════════════════════════ -->
+
+<nav>
+  <a href="/index.html" id="siteLogo">
+    <img src="/images/uyehtech-logo.png" width="50px" height="50px" alt="UYEH TECH">
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+
+    <!-- Home -->
+    <li>
+      <a href="/index.html" class="nav-link">Home</a>
+      <!-- CHANGE PER PAGE: add class="nav-link active" to whichever
+           link matches the current page, remove "active" from Home -->
+    </li>
+
+    <!-- Marketplace (dropdown) -->
+    <li class="nav-item--dropdown" id="dropMarketplace">
+      <button class="nav-link active nav-link--dropdown" aria-expanded="false" aria-haspopup="true">
+        Marketplace
+        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="nav-dropdown" role="menu">
+        <div class="nav-dropdown__section">
+          <a href="/marketplace/" class="nav-dropdown__item" role="menuitem">
+            <span class="nav-dropdown__icon">🛍️</span>
+            <div>
+              <span class="nav-dropdown__label">Shop</span>
+              <span class="nav-dropdown__desc">Browse digital products</span>
+            </div>
+          </a>
+          <!-- Login / Sign Up removed on purpose — that's handled by the
+               guestButtons / userDropdown widget in .nav-actions below,
+               which actually reflects login state. Keeping both was the
+               original bug: this dropdown never updated when a member
+               logged in. Don't add Login/Signup links back here. -->
+        </div>
+      </div>
+    </li>
+
+      <!-- The builder -->
+  <li>
+    <a href="https://about.uyehtech.com" class="nav-link">Dev Hub</a>
+  </li>
+
+    <!-- Blog -->
+    <li><a href="/blog/" class="nav-link">Blog</a></li>
+
+    <!-- Contact -->
+    <li><a href="/contact" class="nav-link">Contact</a></li>
+
+  </ul>
+
+  <div class="nav-actions">
+    <!-- CHANGE PER PAGE: remove this cart button entirely on pages that
+         don't sell anything (e.g. blog posts, the founder's portfolio
+         pages) — it calls openCart(), which must exist on the page. -->
+    <button class="cart-btn" onclick="openCart()">
+      <i class="fas fa-shopping-cart cart-icon"></i>
+      <span class="cart-text">Cart</span>
+      <span class="cart-count">0</span>
+    </button>
+
+    <!-- Guest state: shown when logged out -->
+    <div id="guestButtons" class="auth-buttons">
+      <a href="/marketplace/login" class="btn-login">Login</a>
+      <a href="/marketplace/signup" class="btn-signup">Sign Up</a>
+    </div>
+
+    <!-- Logged-in state: shown when a valid token/user exists.
+         navbar.js toggles which of these two blocks is visible. -->
+    <div id="userDropdown" class="user-dropdown" style="display:none;">
+      <button class="user-avatar-btn" onclick="toggleUserMenu()">
+        <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=00ff88&color=0a0a0a" alt="User">
+        <span id="userName">User</span>
+        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+      </button>
+      <div class="user-menu" id="userMenu">
+        <div class="user-menu-header">
+          <img id="menuAvatar" src="https://ui-avatars.com/api/?name=User&background=00ff88&color=0a0a0a" alt="User">
+          <div>
+            <div class="menu-user-name" id="menuUserName">User</div>
+            <div class="menu-user-email" id="menuUserEmail">user@email.com</div>
+          </div>
+        </div>
+        <div class="user-menu-divider"></div>
+        <a href="/marketplace/dashboard" class="user-menu-item"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
+        <a href="/marketplace/my-products" class="user-menu-item"><i class="fas fa-box"></i><span>My Products</span></a>
+        <a href="/marketplace/orders" class="user-menu-item"><i class="fas fa-receipt"></i><span>Orders</span></a>
+        <a href="/marketplace/settings" class="user-menu-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+        <div class="user-menu-divider"></div>
+        <button class="user-menu-item logout-item" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</nav>
+
+  <!-- ══════════════════════ ERROR STATE ══════════════════════ -->
+  <div id="errorState">
+    <div class="error-icon">🏪</div>
+    <div class="error-title" id="errorTitle">Store Not Found</div>
+    <p class="error-msg" id="errorMsg">This store doesn't exist or hasn't been approved yet.</p>
+    <a href="/marketplace/" class="btn-back">← Browse All Products</a>
+  </div>
+
+  <!-- ══════════════════════ STORE CONTENT ══════════════════════ -->
+  <div id="storeContent">
+
+    <!-- Banner -->
+    <div class="store-banner" id="storeBanner">
+      <img class="store-banner-img" id="bannerImg" src="" alt="" style="display:none;" />
+      <div class="store-banner-overlay"></div>
+    </div>
+
+    <!-- Profile -->
+    <div class="store-profile">
+      <div class="profile-row">
+        <!-- Logo -->
+        <div class="store-logo-wrap">
+          <img id="storeLogo" src="" alt="" style="display:none;" />
+          <div class="store-logo-placeholder" id="storeLogoPlaceholder">🏪</div>
+        </div>
+
+        <!-- Info -->
+        <div class="store-info">
+          <div class="store-name-row">
+            <h1 class="store-name" id="storeName">Loading…</h1>
+            <span class="badge badge-verified" id="verifiedBadge" style="display:none;">✅ Verified</span>
+            <span class="badge badge-featured" id="featuredBadge" style="display:none;">⭐ Featured</span>
+          </div>
+
+          <div class="store-meta" id="storeMeta"></div>
+          <p class="store-desc" id="storeDesc"></p>
+          <div class="social-links" id="socialLinks"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="store-actions">
+          <button class="btn-follow" id="followBtn" onclick="handleFollow()">
+            <i class="fas fa-plus"></i> Follow
+          </button>
+          <button class="btn-share" onclick="handleShare()">
+            <i class="fas fa-share-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PREMIUM CREATOR PROFILE CARD ══ -->
+    <div class="creator-profile-card" id="creatorProfileCard" style="display:none;">
+      <div class="creator-profile-inner">
+
+        <!-- Hero row: avatar · name · meta chips · socials -->
+        <div class="cpc-hero">
+          <div class="cpc-avatar" id="cpcAvatar"></div>
+          <div class="cpc-identity">
+            <div class="cpc-name" id="cpcName"></div>
+            <div class="cpc-role-row">
+              <span class="cpc-role-tag" id="cpcBusinessType" style="display:none;"></span>
+              <span class="cpc-role-tag" style="background:rgba(245,166,35,.08);border-color:rgba(245,166,35,.25);color:var(--amber);" id="cpcExpTag" style="display:none;"></span>
+            </div>
+            <div class="cpc-meta-chips" id="cpcMetaChips"></div>
+            <div class="cpc-social-row" id="cpcSocials"></div>
+          </div>
+        </div>
+
+        <!-- Body: bio column + skills/portfolio column -->
+        <div class="cpc-body" id="cpcBody">
+
+          <!-- Left: bio + website -->
+          <div class="cpc-col" id="cpcColBio">
+            <div class="cpc-section-label"><i class="fas fa-user"></i> About</div>
+            <p class="cpc-bio" id="cpcBio"></p>
+            <a class="cpc-website-link" id="cpcWebsite" href="#" target="_blank" rel="noopener" style="display:none;">
+              <i class="fas fa-globe"></i> <span id="cpcWebsiteLabel"></span>
+            </a>
+          </div>
+
+          <!-- Right: skills + languages + portfolio -->
+          <div class="cpc-col" id="cpcColSkills">
+            <div id="cpcSkillsWrap" style="display:none;">
+              <div class="cpc-section-label"><i class="fas fa-tools"></i> Skills</div>
+              <div class="cpc-skills" id="cpcSkills"></div>
+            </div>
+            <div id="cpcLangsWrap" style="margin-top:16px;display:none;">
+              <div class="cpc-section-label"><i class="fas fa-language"></i> Languages</div>
+              <div class="cpc-languages" id="cpcLangs"></div>
+            </div>
+            <div id="cpcPortfolioWrap" style="margin-top:16px;display:none;">
+              <div class="cpc-section-label"><i class="fas fa-external-link-alt"></i> Portfolio</div>
+              <div class="cpc-portfolio-links" id="cpcPortfolio"></div>
+            </div>
+          </div>
+
+        </div><!-- /cpc-body -->
+      </div><!-- /creator-profile-inner -->
+    </div><!-- /creator-profile-card -->
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stats-inner">
+        <div class="stat-box">
+          <div class="stat-number" id="statProducts">—</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="statSales">—</div>
+          <div class="stat-label">Sales</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="statFollowers">—</div>
+          <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number stat-rating-val" id="statRating">—</div>
+          <div class="stat-label">Rating</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number" id="statSince">—</div>
+          <div class="stat-label">Member Since</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <section class="products-section">
+      <div class="section-header">
+        <h2 class="section-title">Products <span id="productCount"></span></h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search products…" oninput="filterProducts()" />
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <select id="sortSelect" onchange="applyFilters()">
+              <option value="newest">Newest</option>
+              <option value="popular">Most Popular</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="free-first">Free First</option>
+            </select>
+            <div class="filters-row" id="filtersRow">
+              <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- skeleton cards -->
+        <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+        <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+        <div class="skeleton"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ══════════════════════ PRODUCT MODAL ══════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="productModal">
+      <div id="modalImageWrap"></div>
+      <div class="modal-body">
+        <div class="modal-category" id="modalCategory"></div>
+        <h2 class="modal-title"    id="modalTitle"></h2>
+        <p  class="modal-desc"     id="modalDesc"></p>
+        <div class="modal-features" id="modalFeatures" style="display:none;">
+          <h4>What's Included</h4>
+          <div class="features-list" id="featuresList"></div>
+        </div>
+        <!-- ── AFFILIATE LINK SECTION ── -->
+        <div class="aff-divider"></div>
+        <div class="aff-section" id="affSection">
+          <div class="aff-label"><i class="fas fa-link"></i> Your Affiliate Link</div>
+          <div class="aff-commission-badge" id="affCommissionBadge">
+            <i class="fas fa-percent"></i> <span id="affCommissionPct">10</span>% commission per sale
+          </div>
+          <div class="aff-link-box" id="affLinkBox">
+            <input class="aff-link-input" id="affLinkInput" readonly value="Loading…" onclick="this.select()" />
+            <button class="aff-copy-btn" id="affCopyBtn" onclick="copyAffLink()">
+              <i class="fas fa-copy"></i> Copy
+            </button>
+          </div>
+          <div class="aff-earn-preview" id="affEarnPreview">
+            <span class="aff-earn-label">You earn per sale</span>
+            <span class="aff-earn-amount" id="affEarnAmount">—</span>
+          </div>
+          <div class="aff-share-row" id="affShareRow">
+            <button class="aff-share-btn whatsapp" onclick="shareAff('whatsapp')"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button class="aff-share-btn twitter"  onclick="shareAff('twitter')"><i class="fab fa-twitter"></i> Twitter</button>
+            <button class="aff-share-btn telegram" onclick="shareAff('telegram')"><i class="fab fa-telegram-plane"></i> Telegram</button>
+            <button class="aff-share-btn"          onclick="shareAff('native')"><i class="fas fa-share-alt"></i> Share</button>
+          </div>
+          <!-- Join prompt (shown when user is not a registered affiliate) -->
+          <div id="affJoinPrompt" style="display:none; margin-top:10px; padding:12px 14px;
+               background:rgba(123,97,255,0.08); border:1px solid rgba(123,97,255,0.25);
+               border-radius:10px; font-size:0.8rem; color:#9ca3af; line-height:1.7;">
+            🔗 <strong style="color:#7b61ff;">Want to earn commissions?</strong><br>
+            Join the affiliate program to get your unique link for this product.<br>
+            <a href="/marketplace/affiliate" style="color:#00ff88; font-weight:700; text-decoration:none;">
+              → Join Affiliate Program
+            </a>
+          </div>
+
+          <p class="aff-hint" id="affHintText">Share your link. When someone buys through it, <strong>you earn your commission automatically</strong>.</p>
+        </div>
+
+        <div class="modal-footer">
+          <div class="modal-price" id="modalPrice"></div>
+          <div class="modal-actions">
+          <button class="btn-close-modal" onclick="closeProductModal()">Close</button>
+          <button class="btn-primary-modal" id="modalAddBtn" onclick="addToCartFromModal()">
+            <i class="fas fa-cart-plus"></i> Add to Cart
+          </button>
+          <button class="btn-primary-modal" id="modalBuyBtn"
+                  onclick="buyNowFromModal()"
+                  style="background:linear-gradient(135deg,#00b359,#00ff88);margin-left:0;">
+            <i class="fas fa-bolt"></i> Buy Now
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════ TOAST ══════════════════════ -->
+  <div class="toast" id="toast">
+    <span class="toast-icon" id="toastIcon">✅</span>
+    <span class="toast-msg"  id="toastMsg">Done!</span>
+  </div>
+
+  <!-- ══════════════════════ CART NUDGE ══════════════════════ -->
+  <div class="cart-nudge" id="cartNudge">
+    <div class="cart-nudge-text">
+      <div class="cart-nudge-title">🛒 Item added to cart</div>
+      <div class="cart-nudge-sub" id="nudgeCount">1 item · ready to checkout</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;">
+      <input id="csCartCouponInput" placeholder="Coupon code" maxlength="32"
+        style="flex:1;padding:8px 11px;background:rgba(0,255,136,.05);border:1px solid rgba(0,255,136,.25);border-radius:8px;color:#fff;font-family:'Montserrat',sans-serif;font-size:.8rem;outline:none;"
+        oninput="this.value=this.value.toUpperCase()">
+      <button onclick="applyCartCoupon()"
+        style="padding:8px 13px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);border-radius:8px;color:var(--primary);font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif;white-space:nowrap;">
+        Apply
+      </button>
+    </div>
+    <div id="csCartCouponMsg" style="font-size:.75rem;margin-bottom:8px;display:none;"></div>
+    <button class="cart-nudge-btn" onclick="goToCheckoutWithCoupon()">
+      <i class="fas fa-shopping-bag"></i> Checkout
+    </button>
+  </div>
+
+  
+  <!-- ════════════════════════════════════════════════════════
+       JAVASCRIPT
+       ════════════════════════════════════════════════════════ -->
+  <script>
+    /* ── CONFIG ── */
+    const API_URL = 'https://uyehtechbackend.onrender.com';
+
+    // ── CURRENCY ───────────────────────────────────────────────────────────
+    let currencySymbol = '$';
+    let currencyRate   = 1;
+
+    async function fetchUserCurrency() {
+      // Primary: pull currency from /api/profile (works for logged-in users)
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const res  = await fetch(`${API_URL}/api/profile`, { headers: { 'Authorization': `Bearer ${token}` } });
+          const data = await res.json();
+          if (data.success) { currencySymbol = data.symbol || '$'; currencyRate = data.rate || 1; }
+        } catch (_) {}
+      }
+      // Note: /api/stores/:slug now always returns displayPrice on each product
+      // (server patch 1C), so even for anonymous visitors fmtMoney() will use
+      // dispPrice.symbol + dispPrice.converted without needing currencyRate at all.
+    }
+
+    function toDisplay(usd) { return (Number(usd) || 0) * currencyRate; }
+    function fmtMoney(usd, dispPrice) {
+      const sym = dispPrice?.symbol ?? currencySymbol;
+      const amt = dispPrice?.converted != null ? dispPrice.converted : toDisplay(usd);
+      return `${sym}${parseFloat(amt).toFixed(2)}`;
+    }
+
+    /* ── STATE ── */
+    let allProducts   = [];
+    let filteredProds = [];
+    let activeFilter  = 'all';
+    let currentSlug   = '';
+    let creatorData   = null;
+    let isFollowing   = false;
+    let activeProductId = null;
+
+    /* ══════════════════════════════════════════════════
+       1. SLUG RESOLUTION
+       Read slug from ?slug=, ?store=, or the URL path itself
+       ══════════════════════════════════════════════════ */
+    // Recognized static filenames that should NEVER be mistaken for a
+    // store slug when falling back to path-based parsing — this is what
+    // let a mangled URL fall back to treating "creator-store" itself as
+    // a slug in the original bug.
+    const RESERVED_PATH_SEGMENTS = new Set([
+      'creator-store', 'creator-store.html', 'index.html', 'login',
+      'signup', 'dashboard', 'checkout', 'orders', 'profile', 'settings',
+      'my-products', 'support', 'affiliate', 'creator-apply',
+      'creator-login', 'creator-dashboard', 'creators', 'product',
+    ]);
+
+    function resolveSlug() {
+      const params = new URLSearchParams(window.location.search);
+      let slug = params.get('slug') || params.get('store') || '';
+
+      if (!slug) {
+        // /marketplace/{storeSlug}/{productId}  or  /marketplace/{storeSlug}
+        const parts = window.location.pathname.split('/').filter(Boolean);
+        // parts[0] is "marketplace" — the slug is whichever segment comes
+        // right after it, NOT necessarily the last segment (the last
+        // segment may be a product ID in the two-segment format).
+        const marketplaceIdx = parts.indexOf('marketplace');
+        const candidate = marketplaceIdx !== -1 ? parts[marketplaceIdx + 1] : parts[parts.length - 1];
+
+        if (candidate && !candidate.includes('.') && !RESERVED_PATH_SEGMENTS.has(candidate)) {
+          slug = candidate;
+        }
+      }
+
+      return slug.trim().toLowerCase();
+    }
+
+    // Reads a product ID from the clean two-segment path format
+    // (/marketplace/{storeSlug}/{productId}), used alongside the
+    // existing ?product= query param reader below.
+    function resolveProductFromPath() {
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const marketplaceIdx = parts.indexOf('marketplace');
+      if (marketplaceIdx === -1) return null;
+      // Slug is parts[marketplaceIdx+1], product (if present) is the segment after that
+      const productSegment = parts[marketplaceIdx + 2];
+      if (productSegment && !productSegment.includes('.')) return productSegment;
+      return null;
+    }
+
+    /* ══════════════════════════════════════════════════
+       2. BOOT
+       ══════════════════════════════════════════════════ */
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Auth (login state, avatar, dropdown, logout) is now handled entirely
+      // by the shared /js/navbar.js — no page-specific checkAuth() needed.
+      await fetchUserCurrency(); // resolve currency before rendering product prices
+
+      currentSlug = resolveSlug();
+      if (!currentSlug) {
+        showError('No store specified', 'Please provide a valid store name in the URL.');
+        return;
+      }
+
+      await loadStore(currentSlug);
+    });
+
+    /* ══════════════════════════════════════════════════
+       4. LOAD STORE DATA
+       ══════════════════════════════════════════════════ */
+    async function loadStore(slug) {
+      // Hard timeout: show warning after 7s, kill loader after 14s
+      const timeoutWarning = setTimeout(() => {
+        const msg = document.getElementById('loaderTimeoutMsg');
+        if (msg) msg.style.display = 'block';
+      }, 7000);
+
+      const timeoutKill = setTimeout(() => {
+        showError('Request Timed Out', 'The server took too long to respond. Please refresh the page or try again later.');
+      }, 14000);
+
+      try {
+        const controller = new AbortController();
+        const _storeHeaders = {};
+        const _storeTok = localStorage.getItem('token');
+        if (_storeTok) _storeHeaders['Authorization'] = 'Bearer ' + _storeTok;
+        const res  = await fetch(`${API_URL}/api/stores/${encodeURIComponent(slug)}`, {
+          signal: controller.signal,
+          headers: _storeHeaders
+        });
+        const data = await res.json();
+        clearTimeout(timeoutWarning);
+        clearTimeout(timeoutKill);
+
+        if (!data.success || !data.creator) {
+          showError('Store Not Found', data.message || "This store doesn't exist or hasn't been approved yet.");
+          return;
+        }
+
+        creatorData = data.creator;
+        allProducts = data.products || [];
+        filteredProds = [...allProducts];
+        if (data.symbol && currencySymbol === '$') currencySymbol = data.symbol;
+    
+        renderStoreHeader(creatorData);
+        renderStats(creatorData);
+        renderProducts(filteredProds);
+        buildCategoryFilters(allProducts);
+        checkFollowStatus();
+
+        document.title = `${creatorData.storeName} — UYEH TECH`;
+
+        // Update OG/Twitter/canonical to reflect the real creator store
+        // so link previews on WhatsApp, Twitter, Facebook show the right store.
+        const _storeUrl = `https://uyehtech.com/marketplace/${encodeURIComponent(creatorData.storeSlug || '')}`;
+        const _storeDesc = creatorData.storeDescription || creatorData.bio
+          || `Browse digital products from ${creatorData.storeName} on UYEH TECH Marketplace.`;
+
+        function _setMeta(selector, attr, val) {
+          const el = document.querySelector(selector);
+          if (el) el.setAttribute(attr, val);
+        }
+        _setMeta('meta[property="og:url"]',         'content', _storeUrl);
+        _setMeta('meta[property="og:title"]',        'content', `${creatorData.storeName} — UYEH TECH`);
+        _setMeta('meta[property="og:description"]',  'content', _storeDesc);
+        _setMeta('meta[name="twitter:title"]',       'content', `${creatorData.storeName} — UYEH TECH`);
+        _setMeta('meta[name="twitter:description"]', 'content', _storeDesc);
+        const canonical = document.getElementById('canonicalTag');
+        if (canonical) canonical.setAttribute('href', _storeUrl);
+
+        // Hide loader, show content
+        hideLoader();
+        document.getElementById('storeContent').classList.add('visible');
+
+      } catch (err) {
+        console.error('Store load error:', err);
+        showError('Connection Error', 'Could not reach the server. Please try again shortly.');
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       5. RENDER STORE HEADER
+       ══════════════════════════════════════════════════ */
+    function renderStoreHeader(c) {
+      /* ── Banner — always official platform image ── */
+      const bannerImg = document.getElementById('bannerImg');
+      bannerImg.src = '/images/official-banner.png';
+      bannerImg.style.display = 'block';
+
+      /* ── Store logo ── */
+      if (c.storeLogo) {
+        const logo = document.getElementById('storeLogo');
+        logo.src = c.storeLogo;
+        logo.style.display = 'block';
+        document.getElementById('storeLogoPlaceholder').style.display = 'none';
+      }
+
+      /* ── Store name + verified/featured badges ── */
+      document.getElementById('storeName').textContent = c.storeName;
+      if (c.isVerified) document.getElementById('verifiedBadge').style.display = 'inline-flex';
+      if (c.isFeatured) document.getElementById('featuredBadge').style.display = 'inline-flex';
+
+      /* ── Store description (headline under logo) ── */
+      if (c.storeDescription) {
+        document.getElementById('storeDesc').textContent = c.storeDescription;
+      }
+
+      /* ── Meta row (categories, business type, location) ── */
+      const metaItems = [];
+      if (c.country)            metaItems.push(`<div class="meta-item"><i class="fas fa-map-marker-alt"></i>${esc(c.country)}</div>`);
+      if (c.businessType)       metaItems.push(`<div class="meta-item"><i class="fas fa-briefcase"></i>${capitalize(c.businessType)}</div>`);
+      if (c.categories?.length) metaItems.push(`<div class="meta-item"><i class="fas fa-tag"></i>${c.categories.slice(0,3).join(', ')}</div>`);
+      document.getElementById('storeMeta').innerHTML = metaItems.join('');
+
+      /* ── Social links on the store header row ── */
+      const socialDefs = {
+        twitter:   { icon: 'fab fa-x-twitter',    build: u => `https://x.com/${u}`             },
+        instagram: { icon: 'fab fa-instagram',     build: u => `https://instagram.com/${u}`     },
+        linkedin:  { icon: 'fab fa-linkedin-in',   build: u => `https://linkedin.com/in/${u}`   },
+        youtube:   { icon: 'fab fa-youtube',       build: u => `https://youtube.com/@${u}`      },
+        tiktok:    { icon: 'fab fa-tiktok',        build: u => `https://tiktok.com/@${u}`       },
+        website:   { icon: 'fas fa-globe',         build: u => u.startsWith('http') ? u : 'https://' + u },
+      };
+      const socials = { ...(c.socialLinks || {}) };
+      if (c.website) socials.website = c.website;
+
+      const socialHTML = Object.entries(socialDefs)
+        .filter(([k]) => socials[k])
+        .map(([k, v]) =>
+          `<a href="${esc(v.build(socials[k]))}" target="_blank" rel="noopener" class="social-link" title="${capitalize(k)}">
+             <i class="${v.icon}"></i>
+           </a>`
+        ).join('');
+      document.getElementById('socialLinks').innerHTML = socialHTML;
+
+      /* ══════════════════════════════════════════════
+         PREMIUM CREATOR PROFILE CARD
+         All server fields — no hardcodes
+         ══════════════════════════════════════════════ */
+      const creatorName   = c.userId?.fullName || c.storeName;
+      const creatorAvatar = c.userId?.profileImage || c.storeLogo || null;
+      const hasBio        = !!c.bio;
+      const hasSkills     = c.skills?.length > 0;
+      const hasLanguages  = c.languages?.length > 0;
+      const hasPortfolio  = c.portfolioLinks?.length > 0;
+      const hasWebsite    = !!c.website;
+      const hasSocials    = Object.values(socials).some(Boolean);
+      const hasAnyContent = hasBio || hasSkills || hasLanguages || hasPortfolio || hasWebsite || hasSocials || c.yearsExperience || c.businessType;
+
+      if (hasAnyContent) {
+        /* ── Avatar ── */
+        const avatarEl = document.getElementById('cpcAvatar');
+        if (creatorAvatar) {
+          avatarEl.innerHTML = `<img src="${esc(creatorAvatar)}" alt="${esc(creatorName)}" />`;
+        } else {
+          avatarEl.textContent = creatorName.charAt(0).toUpperCase();
+        }
+
+        /* ── Name ── */
+        document.getElementById('cpcName').textContent = creatorName;
+
+        /* ── Business type tag ── */
+        if (c.businessType) {
+          const btTag = document.getElementById('cpcBusinessType');
+          btTag.textContent = capitalize(c.businessType);
+          btTag.style.display = 'inline-flex';
+        }
+
+        /* ── Experience tag ── */
+        if (c.yearsExperience) {
+          const expTag = document.getElementById('cpcExpTag');
+          expTag.textContent = `${c.yearsExperience} yrs experience`;
+          expTag.style.display = 'inline-flex';
+        }
+
+        /* ── Meta chips: country, categories, joined year ── */
+        const chips = [];
+        if (c.country)
+          chips.push(`<span class="cpc-chip"><i class="fas fa-map-marker-alt"></i>${esc(c.country)}</span>`);
+        if (c.categories?.length)
+          c.categories.slice(0, 4).forEach(cat =>
+            chips.push(`<span class="cpc-chip"><i class="fas fa-tag"></i>${esc(cat)}</span>`)
+          );
+        if (c.approvedAt)
+          chips.push(`<span class="cpc-chip"><i class="fas fa-calendar-check"></i>Since ${new Date(c.approvedAt).getFullYear()}</span>`);
+        document.getElementById('cpcMetaChips').innerHTML = chips.join('');
+
+        /* ── Social buttons in profile card ── */
+        const socialBtns = Object.entries(socialDefs)
+          .filter(([k]) => socials[k])
+          .map(([k, v]) =>
+            `<a href="${esc(v.build(socials[k]))}" target="_blank" rel="noopener" class="cpc-social-btn" title="${capitalize(k)}">
+               <i class="${v.icon}"></i>
+             </a>`
+          ).join('');
+        document.getElementById('cpcSocials').innerHTML = socialBtns;
+
+        /* ── Bio column ── */
+        if (hasBio) {
+          document.getElementById('cpcBio').textContent = c.bio;
+        } else {
+          document.getElementById('cpcColBio').style.display = 'none';
+        }
+
+        /* ── Website link inside bio column ── */
+        if (hasWebsite) {
+          const wsEl = document.getElementById('cpcWebsite');
+          wsEl.href = socials.website || c.website;
+          let wsLabel = c.website || socials.website || '';
+          wsLabel = wsLabel.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+          document.getElementById('cpcWebsiteLabel').textContent = wsLabel;
+          wsEl.style.display = 'inline-flex';
+        }
+
+        /* ── Skills ── */
+        if (hasSkills) {
+          document.getElementById('cpcSkillsWrap').style.display = 'block';
+          document.getElementById('cpcSkills').innerHTML =
+            c.skills.map(s => `<span class="cpc-skill-tag">${esc(s)}</span>`).join('');
+        }
+
+        /* ── Languages ── */
+        if (hasLanguages) {
+          document.getElementById('cpcLangsWrap').style.display = 'block';
+          document.getElementById('cpcLangs').innerHTML =
+            c.languages.map(l => `<span class="cpc-lang-tag">${esc(l)}</span>`).join('');
+        }
+
+        /* ── Portfolio links ── */
+        if (hasPortfolio) {
+          document.getElementById('cpcPortfolioWrap').style.display = 'block';
+          document.getElementById('cpcPortfolio').innerHTML =
+            c.portfolioLinks.map(pl =>
+              `<a href="${esc(pl.url)}" target="_blank" rel="noopener" class="cpc-portfolio-link">
+                 <i class="fas fa-external-link-alt"></i>${esc(pl.label || pl.url)}
+               </a>`
+            ).join('');
+        }
+
+        /* ── If right column has nothing to show, hide it ── */
+        if (!hasSkills && !hasLanguages && !hasPortfolio) {
+          document.getElementById('cpcColSkills').style.display = 'none';
+          /* Single-column layout — remove grid */
+          document.getElementById('cpcBody').style.gridTemplateColumns = '1fr';
+        }
+
+        document.getElementById('creatorProfileCard').style.display = 'block';
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       6. STATS
+       ══════════════════════════════════════════════════ */
+    function renderStats(c) {
+      document.getElementById('statProducts').textContent  = (c.totalProducts || allProducts.length).toLocaleString();
+      document.getElementById('statSales').textContent     = (c.totalSales    || 0).toLocaleString();
+      document.getElementById('statFollowers').textContent = (c.followerCount  || 0).toLocaleString();
+
+      /* ── Rating: fully dynamic, no hardcoded strings ── */
+      const ratingEl = document.getElementById('statRating');
+      if (c.rating && c.totalRatings) {
+        /* Has ratings — show value + star + count */
+        ratingEl.innerHTML =
+          `${c.rating.toFixed(1)}&thinsp;<span style="color:var(--amber);">★</span>` +
+          `<span style="font-size:.62rem;color:var(--t3);display:block;margin-top:2px;">(${c.totalRatings.toLocaleString()} review${c.totalRatings !== 1 ? 's' : ''})</span>`;
+      } else if (c.rating) {
+        /* Rating stored but no review count yet */
+        ratingEl.innerHTML = `${c.rating.toFixed(1)}&thinsp;<span style="color:var(--amber);">★</span>`;
+      } else {
+        /* No ratings yet — invite instead of hardcoding "New" */
+        ratingEl.innerHTML =
+          `<span style="font-size:1rem;color:var(--amber);">★</span>` +
+          `<span class="stat-rating-new">Be the first<br>to review</span>`;
+      }
+
+      /* ── Member Since: derived from approvedAt ── */
+      const sinceEl = document.getElementById('statSince');
+      if (c.approvedAt) {
+        const d = new Date(c.approvedAt);
+        sinceEl.textContent = d.getFullYear();
+        sinceEl.title = d.toLocaleDateString([], { month: 'long', year: 'numeric' });
+      } else {
+        sinceEl.textContent = '—';
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       7. CATEGORY FILTERS
+       ══════════════════════════════════════════════════ */
+    function buildCategoryFilters(products) {
+      const cats = [...new Set(products.map(p => p.category).filter(Boolean))];
+      const row  = document.getElementById('filtersRow');
+      cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.textContent = cat;
+        btn.onclick = () => setFilter(cat, btn);
+        row.appendChild(btn);
+      });
+    }
+
+    function setFilter(cat, btn) {
+      activeFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilters();
+    }
+
+    function filterProducts() { applyFilters(); }
+
+    function applyFilters() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const sort  = document.getElementById('sortSelect')?.value || 'newest';
+
+      filteredProds = allProducts.filter(p => {
+        const matchCat = activeFilter === 'all' || p.category === activeFilter;
+        const matchQ   = !query ||
+          p.title?.toLowerCase().includes(query) ||
+          p.description?.toLowerCase().includes(query) ||
+          (p.tags || []).some(t => t.toLowerCase().includes(query));
+        return matchCat && matchQ;
+      });
+
+      // Sort
+      if (sort === 'popular')    filteredProds.sort((a,b) => (b.totalSales||0) - (a.totalSales||0));
+      if (sort === 'price-asc')  filteredProds.sort((a,b) => (a.approvedPrice??a.price??0) - (b.approvedPrice??b.price??0));
+      if (sort === 'price-desc') filteredProds.sort((a,b) => (b.approvedPrice??b.price??0) - (a.approvedPrice??a.price??0));
+      if (sort === 'free-first') filteredProds.sort((a,b) => (a.approvedPrice??a.price??0) - (b.approvedPrice??b.price??0));
+      if (sort === 'newest')     filteredProds.sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
+
+      renderProducts(filteredProds);
+    }
+
+    /* ══════════════════════════════════════════════════
+       8. RENDER PRODUCTS
+       ══════════════════════════════════════════════════ */
+    function renderProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      const count = document.getElementById('productCount');
+
+      count.textContent = products.length ? `(${products.length})` : '';
+
+      if (!products.length) {
+        grid.innerHTML = `
+          <div class="empty-products">
+            <i class="fas fa-box-open"></i>
+            <p>No products found in this store yet.</p>
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = products.map(p => productCardHTML(p)).join('');
+
+      // Auto-open product if arriving via affiliate link
+      if (window._autoOpenProduct) {
+        const targetId = window._autoOpenProduct;
+        window._autoOpenProduct = null;
+        const exists = products.find(p => p._id === targetId);
+        if (exists) setTimeout(() => openProduct(targetId), 400);
+      }
+    }
+
+   const PRODUCT_TYPE_MAP = {
+      course:    { label: 'Course',     icon: '🎓', color: '#7c3aed' },
+      software:  { label: 'Software',   icon: '💻', color: '#0ea5e9' },
+      music:     { label: 'Music',      icon: '🎵', color: '#ec4899' },
+      template:  { label: 'Template',   icon: '🎨', color: '#f59e0b' },
+      script:    { label: 'Script',     icon: '⚙️', color: '#10b981' },
+      component: { label: 'Component',  icon: '🧩', color: '#6366f1' },
+      ebook:     { label: 'eBook',      icon: '📖', color: '#14b8a6' },
+      video:     { label: 'Video',      icon: '🎬', color: '#f97316' },
+      download:  { label: 'Download',   icon: '📦', color: '#00ff88' },
+      other:     { label: 'Digital',    icon: '✨', color: '#00ff88' },
+    };
+
+    function productCardHTML(p) {
+      const price     = p.approvedPrice ?? p.price ?? 0;
+      const origPrice = p.price ?? 0;
+      const discount  = origPrice && p.approvedPrice && p.approvedPrice < origPrice
+        ? Math.round(((origPrice - p.approvedPrice) / origPrice) * 100) : 0;
+
+      // Build a displayPrice-like object for the original/compare price so it
+      // converts using the same symbol + rate as the main price.
+      const origDisplayPrice = p.displayPrice
+        ? {
+            symbol:    p.displayPrice.symbol,
+            converted: p.displayPrice.raw > 0
+              ? origPrice * (p.displayPrice.converted / p.displayPrice.raw)
+              : toDisplay(origPrice),
+          }
+        : null;
+
+      const priceHTML = price === 0
+        ? `<span class="price-free">Free</span>`
+        : `<span class="price-main">${fmtMoney(price, p.displayPrice)}</span>${discount > 0 ? `<span class="price-old">${fmtMoney(origPrice, origDisplayPrice)}</span>` : ''}`;
+
+      const daysAgo = p.approvedAt
+        ? Math.floor((Date.now() - new Date(p.approvedAt)) / 86400000) : 999;
+      const badgeHTML = p.isFeatured
+        ? `<span class="product-badge badge-featured-prod">Featured</span>`
+        : discount > 0 ? `<span class="product-badge badge-hot">-${discount}%</span>`
+        : daysAgo < 7  ? `<span class="product-badge badge-new">New</span>` : '';
+
+      const imgHTML = p.image
+        ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />`
+        : `<div class="product-image-placeholder">${p.icon || '📦'}</div>`;
+
+      const typeInfo = PRODUCT_TYPE_MAP[p.productType] || PRODUCT_TYPE_MAP.other;
+      const typeBadge = `<span style="display:inline-flex;align-items:center;gap:4px;background:${typeInfo.color}22;color:${typeInfo.color};border:1px solid ${typeInfo.color}44;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:600;font-family:'JetBrains Mono',monospace;">${typeInfo.icon} ${typeInfo.label}</span>`;
+
+      const tagPills = (p.tags||[]).slice(0,3).map(t =>
+        `<span style="background:var(--g3);color:var(--t3);font-size:.67rem;padding:1px 7px;border-radius:20px;">${esc(t)}</span>`
+      ).join('');
+
+      return `
+        <div class="product-card" onclick="openProduct('${p._id}')">
+          <div class="product-image">${imgHTML}${badgeHTML}</div>
+          <div class="product-body">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap;">
+              <span class="product-category">${esc(p.category || '')}</span>
+              ${typeBadge}
+            </div>
+            <h3 class="product-title">${esc(p.title)}</h3>
+            <p class="product-desc">${esc(p.description || '')}</p>
+            ${tagPills ? `<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;">${tagPills}</div>` : ''}
+            <div class="product-footer">
+              <div class="product-price">${priceHTML}</div>
+              <button class="btn-add" onclick="event.stopPropagation(); addToCart('${p._id}')">
+                <i class="fas fa-cart-plus"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    /* ══════════════════════════════════════════════════
+       9. PRODUCT MODAL
+       ══════════════════════════════════════════════════ */
+    function openProduct(id) {
+      const p = allProducts.find(x => x._id === id);
+      if (!p) return;
+      activeProductId = id;
+
+      const price = p.approvedPrice ?? p.price ?? 0;
+      const origPrice = p.price ?? 0;
+
+      // Image
+      const imgWrap = document.getElementById('modalImageWrap');
+      imgWrap.innerHTML = p.image
+        ? `<img class="modal-image" src="${esc(p.image)}" alt="${esc(p.title)}" />`
+        : `<div class="modal-image-placeholder">${p.icon || '📦'}</div>`;
+
+      document.getElementById('modalCategory').textContent = p.category || '';
+      document.getElementById('modalTitle').textContent    = p.title || '';
+      document.getElementById('modalDesc').textContent     = p.description || '';
+
+      // Features
+      const features = p.features || [];
+      const featWrap  = document.getElementById('modalFeatures');
+      const featList  = document.getElementById('featuresList');
+      if (features.length) {
+        featList.innerHTML = features.map(f =>
+          `<div class="feature-item"><i class="fas fa-check-circle"></i> ${esc(f)}</div>`).join('');
+        featWrap.style.display = 'block';
+      } else {
+        featWrap.style.display = 'none';
+      }
+
+      // Price
+      const priceDiv = document.getElementById('modalPrice');
+      if (price === 0) {
+        priceDiv.innerHTML = `<span class="modal-price-free">Free</span>`;
+      } else {
+        const _modalOrigDisp = p.displayPrice
+          ? {
+              symbol:    p.displayPrice.symbol,
+              converted: p.displayPrice.raw > 0
+                ? origPrice * (p.displayPrice.converted / p.displayPrice.raw)
+                : toDisplay(origPrice),
+            }
+          : null;
+        priceDiv.innerHTML = `<span class="modal-price-main">${fmtMoney(price, p.displayPrice)}</span>
+          ${origPrice > price ? `<span class="modal-price-old">${fmtMoney(origPrice, _modalOrigDisp)}</span>` : ''}`;
+      }
+
+      document.getElementById('modalAddBtn').innerHTML = price === 0
+        ? '<i class="fas fa-gift"></i> Get Free'
+        : '<i class="fas fa-cart-plus"></i> Add to Cart';
+      const buyBtn = document.getElementById('modalBuyBtn');
+      if (buyBtn) buyBtn.style.display = price === 0 ? 'none' : 'inline-flex';
+
+      // ── Inject reviews section into modal ──────────────────────────────
+      const modalBody = document.getElementById('productModal');
+      // Find or create the reviews container
+      let revContainer = document.getElementById('csModalReviews');
+      if (!revContainer) {
+        revContainer = document.createElement('div');
+        revContainer.id = 'csModalReviews';
+        revContainer.style.cssText = 'margin-top:24px;border-top:1px solid var(--line);padding-top:18px;';
+        // Append inside modal content area
+        const modalContent = modalBody?.querySelector('.modal-body, .modal-content, [class*="modal"]');
+        if (modalContent) modalContent.appendChild(revContainer);
+        else if (modalBody) modalBody.appendChild(revContainer);
+      }
+      revContainer.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <span style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--t1);font-weight:700;">Reviews</span>
+          <span id="csRatingSummary" style="font-size:.78rem;color:var(--t2);font-family:'JetBrains Mono',monospace;"></span>
+        </div>
+        <div id="csReviewsList" style="display:flex;flex-direction:column;gap:10px;max-height:220px;overflow-y:auto;"></div>
+        <div id="csWriteReview" style="margin-top:16px;display:none;">
+          <div style="font-size:.78rem;color:var(--g);font-weight:600;margin-bottom:8px;font-family:'JetBrains Mono',monospace;">Leave a Review</div>
+          <div id="csStarPicker" style="display:flex;gap:6px;margin-bottom:8px;">
+            ${[1,2,3,4,5].map(n=>`<span data-star="${n}" onclick="setCsStar(${n})" style="font-size:1.35rem;cursor:pointer;color:var(--t3);transition:color .15s;">★</span>`).join('')}
+          </div>
+          <input id="csReviewTitle" placeholder="Title (optional)" maxlength="120"
+            style="width:100%;padding:8px 11px;background:var(--g3);border:1px solid var(--line2);border-radius:8px;color:var(--t1);font-family:'Montserrat',sans-serif;font-size:.82rem;margin-bottom:7px;outline:none;">
+          <textarea id="csReviewBody" placeholder="Share your experience…" rows="3" maxlength="2000"
+            style="width:100%;padding:8px 11px;background:var(--g3);border:1px solid var(--line2);border-radius:8px;color:var(--t1);font-family:'Montserrat',sans-serif;font-size:.82rem;resize:vertical;outline:none;"></textarea>
+          <button onclick="submitCsReview('${id}')"
+            style="margin-top:9px;padding:8px 18px;background:var(--g4);border:1px solid var(--line2);border-radius:8px;color:var(--g);font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;"
+            onmouseover="this.style.background='var(--g5)'" onmouseout="this.style.background='var(--g4)'">
+            <i class="fas fa-paper-plane"></i> Submit
+          </button>
+        </div>`;
+
+      // Load reviews async
+      loadCsReviews(id, p.productId || p._id);
+
+      // ── Extended product data ───────────────────────────────────────────
+
+      // Product type badge
+      const typeInfo   = PRODUCT_TYPE_MAP[p.productType] || PRODUCT_TYPE_MAP.other;
+      const catEl      = document.getElementById('modalCategory');
+      catEl.innerHTML  = `${esc(p.category || '')}
+        <span style="margin-left:8px;background:${typeInfo.color}22;color:${typeInfo.color};border:1px solid ${typeInfo.color}44;padding:2px 9px;border-radius:20px;font-size:.7rem;font-weight:600;font-family:'JetBrains Mono',monospace;">${typeInfo.icon} ${typeInfo.label}</span>`;
+
+      // Tags
+      let extraHTML = '';
+      if (p.tags?.length) {
+        extraHTML += `<div style="display:flex;flex-wrap:wrap;gap:5px;margin:10px 0;">
+          ${p.tags.map(t=>`<span style="background:var(--g3);border:1px solid var(--line2);color:var(--g);font-size:.72rem;padding:3px 10px;border-radius:20px;font-family:'JetBrains Mono',monospace;">#${esc(t)}</span>`).join('')}
+        </div>`;
+      }
+
+      // Course meta (duration, chapters, level)
+      if (p.productType === 'course' && p.courseData) {
+        const cd = p.courseData;
+        const dur = cd.totalDuration ? Math.round(cd.totalDuration/3600)+'h' : '';
+        const chs = cd.totalChapters ? cd.totalChapters+' chapters' : '';
+        const lvl = cd.level ? cd.level.charAt(0).toUpperCase()+cd.level.slice(1) : '';
+        const cert = cd.certificate ? '🎓 Certificate' : '';
+        const courseMeta = [dur,chs,lvl,cert].filter(Boolean);
+        if (courseMeta.length) {
+          extraHTML += `<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;">
+            ${courseMeta.map(m=>`<span style="background:var(--ink4);border:1px solid var(--line);color:var(--t2);font-size:.74rem;padding:4px 10px;border-radius:8px;">📚 ${m}</span>`).join('')}
+          </div>`;
+        }
+      }
+
+      // Version / file size
+      const vfItems = [];
+      if (p.version)  vfItems.push(`<span style="color:var(--t2);font-size:.76rem;"><i class="fas fa-code-branch" style="color:var(--g);margin-right:4px;"></i>v${esc(p.version)}</span>`);
+      if (p.fileSize) vfItems.push(`<span style="color:var(--t2);font-size:.76rem;"><i class="fas fa-file-archive" style="color:var(--g);margin-right:4px;"></i>${esc(p.fileSize)}</span>`);
+      if (vfItems.length) {
+        extraHTML += `<div style="display:flex;gap:14px;flex-wrap:wrap;margin:8px 0;">${vfItems.join('')}</div>`;
+      }
+
+      // Preview (image / video / audio / iframe)
+      if (p.previewUrl && p.previewType && p.previewType !== 'none') {
+        if (p.previewType === 'image') {
+          extraHTML += `<div style="margin:12px 0;border-radius:10px;overflow:hidden;border:1px solid var(--line);">
+            <img src="${esc(p.previewUrl)}" alt="Preview" style="width:100%;max-height:200px;object-fit:cover;" /></div>`;
+        } else if (p.previewType === 'video') {
+          extraHTML += `<div style="margin:12px 0;border-radius:10px;overflow:hidden;border:1px solid var(--line);">
+            <video src="${esc(p.previewUrl)}" controls style="width:100%;max-height:200px;background:#000;" preload="metadata"></video></div>`;
+        } else if (p.previewType === 'audio') {
+          extraHTML += `<div style="margin:12px 0;">
+            <audio src="${esc(p.previewUrl)}" controls style="width:100%;"></audio></div>`;
+        } else if (p.previewType === 'iframe') {
+          extraHTML += `<div style="margin:12px 0;border-radius:10px;overflow:hidden;border:1px solid var(--line);position:relative;padding-bottom:56.25%;height:0;">
+            <iframe src="${esc(p.previewUrl)}" style="position:absolute;inset:0;width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe></div>`;
+        }
+      }
+
+      // Requirements
+      if (p.requirements?.length) {
+        extraHTML += `<div style="margin:12px 0;background:var(--ink3);border:1px solid var(--line);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--t1);margin-bottom:8px;font-family:'JetBrains Mono',monospace;">📋 Requirements</div>
+          ${p.requirements.map(r=>`<div style="display:flex;align-items:flex-start;gap:7px;font-size:.8rem;color:var(--t2);margin-bottom:5px;"><i class="fas fa-chevron-right" style="color:var(--g);margin-top:2px;font-size:.65rem;flex-shrink:0;"></i>${esc(r)}</div>`).join('')}
+        </div>`;
+      }
+
+      // Creator notes for buyers
+      if (p.notes) {
+        extraHTML += `<div style="margin:12px 0;background:var(--g3);border:1px solid var(--line2);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:.78rem;font-weight:700;color:var(--g);margin-bottom:6px;font-family:'JetBrains Mono',monospace;">📝 Note from Creator</div>
+          <p style="font-size:.8rem;color:var(--t2);line-height:1.6;margin:0;">${esc(p.notes)}</p>
+        </div>`;
+      }
+
+      // Inject all extra content before the affiliate divider
+      const affDivider = document.querySelector('#productModal .aff-divider');
+      if (affDivider && extraHTML) {
+        let extContainer = document.getElementById('modalExtraData');
+        if (!extContainer) {
+          extContainer = document.createElement('div');
+          extContainer.id = 'modalExtraData';
+          affDivider.parentNode.insertBefore(extContainer, affDivider);
+        }
+        extContainer.innerHTML = extraHTML;
+      }
+
+      // Populate affiliate link section
+      populateAffSection(p);
+
+      document.getElementById('modalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      activeProductId = null;
+    }
+
+    function closeModal(e) {
+      if (e.target.id === 'modalOverlay') closeProductModal();
+    }
+
+    function addToCartFromModal() {
+      if (activeProductId) addToCart(activeProductId);
+      closeProductModal();
+    }
+
+    async function buyNowFromModal() {
+      if (!activeProductId) return;
+      const added = await addToCart(activeProductId);
+      closeProductModal();
+      if (added) {
+        window.location.href = '/marketplace/checkout';
+      }
+      // If added is false, addToCart already showed the reason why
+      // (login required, already owned, etc.) — don't navigate anywhere.
+    }
+    /* ══════════════════════════════════════════════════
+       10. CART (uses same localStorage format as index.html)
+       ══════════════════════════════════════════════════ */
+    function addToCart(id) {
+      const p = allProducts.find(x => x._id === id);
+      if (!p) return Promise.resolve(false);
+
+      // Must be logged in
+      const token = localStorage.getItem('token');
+      if (!token) {
+        showToast('⚠️', 'Please login to add products to your cart');
+        sessionStorage.setItem('uyeh_pending_action', JSON.stringify({ type: 'addToCart', productId: id }));
+        const returnTo = window.location.pathname + window.location.search;
+        setTimeout(() => window.location.href = '/marketplace/login?return_to=' + encodeURIComponent(returnTo), 1500);
+        return Promise.resolve(false);
+      }
+
+      let cart = JSON.parse(localStorage.getItem('uyehtech_cart') || '[]');
+      // Use resolved productId (Bug 1 fix) — prefer mirrored Product._id
+      const resolvedId = p.productId || p._id;
+      const exists = cart.find(i => (i.id || i._id) === resolvedId || (i.id || i._id) === id);
+      if (exists) {
+        showToast('⚠️', `${p.title} is already in your cart`);
+        showCartNudge(cart.length, true);
+        return Promise.resolve(true); // already in cart — fine for Buy Now to proceed
+      }
+
+      // Ownership check — don't let someone re-buy what they already own
+      return fetch(`${API_URL}/api/products/${resolvedId}/ownership-check`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.owned) {
+          showToast('✅', `You already own "${p.title}" — check My Products`);
+          return false;
+        }
+        _csPushToCart(p, resolvedId);
+        return true;
+      })
+      .catch(() => { _csPushToCart(p, resolvedId); return true; });
+    }
+
+    function _csPushToCart(p, resolvedId) {
+      let cart = JSON.parse(localStorage.getItem('uyehtech_cart') || '[]');
+      const creatorObj = (p.creatorId && typeof p.creatorId === 'object') ? p.creatorId : null;
+      cart.push({
+        id:               resolvedId,         // ← canonical key (matches Order schema)
+        productId:        resolvedId,
+        _cpId:            p._id,             // ← keep CP._id for affiliate tracking
+        title:            p.title,
+        price:            p.approvedPrice ?? p.price ?? 0,
+        category:         p.category         || 'Digital Product',
+        image:            p.image            || '',
+        icon:             p.icon             || '📦',
+        isCreatorProduct: true,
+        creatorId:        creatorObj?._id    || p.creatorId || null,
+        storeSlug:        creatorObj?.storeSlug || null,
+        storeName:        creatorObj?.storeName || null,
+      });
+      localStorage.setItem('uyehtech_cart', JSON.stringify(cart));
+      // Fire add_to_cart funnel event if visitor arrived via affiliate link
+      const _csRef = getStoredRef();
+      if (_csRef) {
+        fetch(API_URL + '/api/affiliate/track-event', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ affiliateCode: _csRef, eventType: 'add_to_cart', productId: p._id || null })
+        }).catch(() => {});
+      }
+      updateCartBadge(cart.length);
+      showCartNudge(cart.length, false);
+    }
+
+   /* ── Coupon validation ── */
+    let _csCoupon = null;
+    async function applyCartCoupon() {
+      const code  = document.getElementById('csCartCouponInput')?.value?.trim().toUpperCase();
+      const msgEl = document.getElementById('csCartCouponMsg');
+      if (!code) return;
+      const token = localStorage.getItem('token');
+      if (!token) { showToast('⚠️', 'Please login to apply coupons'); return; }
+      try {
+        const cart = JSON.parse(localStorage.getItem('uyehtech_cart') || '[]');
+        const subtotal = cart.reduce((s, i) => s + (i.price || 0), 0);
+        const r = await fetch(`${API_URL}/api/coupons/validate`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code, subtotal })
+        });
+        const d = await r.json();
+        if (d.success && d.coupon) {
+          _csCoupon = d.coupon;
+          localStorage.setItem('checkout_coupon', JSON.stringify(d.coupon));
+          if (msgEl) {
+            msgEl.style.display = 'block';
+            msgEl.style.color   = 'var(--primary)';
+            msgEl.textContent   = `✅ Coupon applied — ${currencySymbol}${(d.coupon.discountAmount != null ? toDisplay(d.coupon.discountAmount).toFixed(2) : d.coupon.discount)} off`;
+          }
+          showToast('✅', `Coupon "${code}" applied!`);
+        } else {
+          if (msgEl) {
+            msgEl.style.display = 'block';
+            msgEl.style.color   = 'var(--error)';
+            msgEl.textContent   = '❌ ' + (d.message || 'Invalid coupon');
+          }
+        }
+      } catch(e) { showToast('❌', 'Could not validate coupon'); }
+    }
+
+    function goToCheckoutWithCoupon() {
+      if (_csCoupon) localStorage.setItem('checkout_coupon', JSON.stringify(_csCoupon));
+      window.location.href = '/marketplace/checkout';
+    }
+
+    /* ── Update cart count badge in nav ── */
+    function updateCartBadge(count) {
+      const badge = document.getElementById('cartCount'); // harmonised with ecosystem convention
+      const label = document.getElementById('navCartLabel');
+      if (!badge) return;
+      badge.textContent = count > 9 ? '9+' : count;
+      if (label) label.textContent = count > 0 ? (count === 1 ? '1 item' : count + ' items') : 'Cart';
+    }
+
+    /* ── Show the bottom-right checkout nudge ── */
+    let nudgeTimer;
+    function showCartNudge(count, alreadyIn) {
+      const nudge = document.getElementById('cartNudge');
+      const sub   = document.getElementById('nudgeCount');
+      if (!nudge) return;
+      if (alreadyIn) {
+        sub.textContent = 'Already in cart — ready to checkout';
+      } else {
+        sub.textContent = count + (count === 1 ? ' item' : ' items') + ' · tap to checkout';
+      }
+      nudge.classList.add('show');
+      clearTimeout(nudgeTimer);
+      nudgeTimer = setTimeout(() => nudge.classList.remove('show'), 4000);
+    }
+
+    /* ── Read cart count on page load ── */
+    (function initCartBadge() {
+      try {
+        const stored = localStorage.getItem('uyehtech_cart');
+        const items  = stored ? JSON.parse(stored) : [];
+        if (items.length > 0) updateCartBadge(items.length);
+      } catch (_) {}
+    })();
+
+    /* ══════════════════════════════════════════════════
+       11. FOLLOW / UNFOLLOW
+       ══════════════════════════════════════════════════ */
+    async function checkFollowStatus() {
+      const token = localStorage.getItem('token');
+      if (!token || !creatorData?._id) return;
+      try {
+        const res  = await fetch(`${API_URL}/api/creators/${creatorData._id}/follow-status`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.isFollowing) setFollowingUI(true);
+      } catch (_) {}
+    }
+
+    async function handleFollow() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        showToast('🔐', 'Please log in to follow this store');
+        setTimeout(() => window.location.href = '/marketplace/login', 1200);
+        return;
+      }
+      if (!creatorData?._id) return;
+
+      const endpoint = isFollowing ? 'unfollow' : 'follow';
+      try {
+        const res  = await fetch(`${API_URL}/api/creators/${creatorData._id}/${endpoint}`, {
+         method: isFollowing ? 'DELETE' : 'POST',
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.success) {
+          setFollowingUI(!isFollowing);
+          document.getElementById('statFollowers').textContent = (data.followerCount || 0).toLocaleString();
+          showToast('✅', data.message || (isFollowing ? 'Unfollowed' : 'Following!'));
+        } else {
+          showToast('⚠️', data.message || 'Could not update follow status');
+        }
+      } catch (err) {
+        showToast('❌', 'Network error. Please try again.');
+      }
+    }
+
+    function setFollowingUI(following) {
+      isFollowing = following;
+      const btn   = document.getElementById('followBtn');
+      if (following) {
+        btn.innerHTML = '<i class="fas fa-check"></i> Following';
+        btn.classList.add('following');
+      } else {
+        btn.innerHTML = '<i class="fas fa-plus"></i> Follow';
+        btn.classList.remove('following');
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       12. SHARE
+       ══════════════════════════════════════════════════ */
+    async function handleShare() {
+     const url = window.location.origin + '/marketplace/creator-store?store=' + currentSlug;
+      const text = `Check out ${creatorData?.storeName || 'this creator'} on UYEH TECH Marketplace!`;
+
+      if (navigator.share) {
+        try { await navigator.share({ title: creatorData?.storeName, text, url }); return; } catch (_) {}
+      }
+
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('🔗', 'Store link copied to clipboard!');
+      } catch (_) {
+        showToast('🔗', `Share: ${url}`);
+      }
+    }
+
+    /* ══════════════════════════════════════════════════
+       13. UI HELPERS
+       ══════════════════════════════════════════════════ */
+    function showError(title, msg) {
+      hideLoader();
+      document.getElementById('errorTitle').textContent = title;
+      document.getElementById('errorMsg').textContent   = msg;
+      document.getElementById('errorState').classList.add('visible');
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById('pageLoader');
+      if (!loader) return;
+      // Fill bar to 100% instantly before fading out
+      const bar = document.getElementById('loaderBar');
+      if (bar) { bar.style.animation = 'none'; bar.style.width = '100%'; bar.style.transition = 'width 0.25s ease'; }
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        setTimeout(() => loader.remove(), 500);
+      }, 260);
+    }
+
+    let toastTimer;
+    function showToast(icon, msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastIcon').textContent = icon;
+      document.getElementById('toastMsg').textContent  = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    function esc(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+/* NAV HAMBURGER — removed. This was a duplicate copy of navbar.js's mobile
+   menu / dropdown logic, both attached to the same #menuToggle element.
+   Two click listeners meant "active" got toggled on, then immediately back
+   off by the second one — same bug already fixed once before on this exact
+   file. navbar.js (loaded via <script> below) already handles all of this,
+   exactly like index.html, which has no inline copy at all. */
+
+    /* ══ Close modal on Escape ══ */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeProductModal();
+    });
+
+    /* ══════════════════════════════════════════════════
+       AFFILIATE LINK SYSTEM
+       ══════════════════════════════════════════════════
+       Only logged-in, registered affiliates get a real
+       affiliate link. Non-affiliates see a prompt to
+       join the program at /store/affiliate.html
+       ══════════════════════════════════════════════════ */
+
+    /* ── Get this user's registered affiliateCode from localStorage ── */
+    // Reads 'uyeh_aff' — the canonical key written by affiliate.html on dashboard load.
+    function getMyAffiliateCode() {
+      try {
+        const aff = JSON.parse(localStorage.getItem('uyeh_aff') || 'null');
+        if (aff?.affiliateCode) return aff.affiliateCode;
+      } catch (_) {}
+      return null;
+    }
+
+    /* ── Build the affiliate link for a product ── */
+    // Canonical format: /marketplace/{storeSlug}/{productId}?ref={CODE}
+    // Matches the URL format used by the affiliate.html dashboard.
+    function buildAffLink(productId) {
+      const code = getMyAffiliateCode();
+      if (!code) return null; // not a registered affiliate
+      const base = window.location.origin + '/marketplace/' + currentSlug + '/' + productId;
+      return base + '?ref=' + encodeURIComponent(code);
+    }
+
+    /* ── Reviews ── */
+    let _csStar = 0;
+    function setCsStar(n) {
+      _csStar = n;
+      document.querySelectorAll('#csStarPicker [data-star]').forEach(s => {
+        s.style.color = parseInt(s.dataset.star) <= n ? 'var(--amber)' : 'var(--t3)';
+      });
+    }
+
+    async function loadCsReviews(cpId, resolvedPid) {
+      const pid      = resolvedPid || cpId;
+      const list     = document.getElementById('csReviewsList');
+      const summary  = document.getElementById('csRatingSummary');
+      const writeEl  = document.getElementById('csWriteReview');
+      if (!list) return;
+      try {
+        const r = await fetch(`${API_URL}/api/reviews/${pid}?limit=5`);
+        const d = await r.json();
+        if (!d.success) return;
+        summary.textContent = d.totalCount > 0
+          ? `${d.avgRating}★ · ${d.totalCount} review${d.totalCount!==1?'s':''}`
+          : 'No reviews yet';
+        list.innerHTML = d.reviews.length
+          ? d.reviews.map(rv => `
+            <div style="background:var(--ink3);border:1px solid var(--line);border-radius:9px;padding:11px 13px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                <span style="font-size:.78rem;font-weight:600;color:var(--t1);">${rv.reviewerName}</span>
+                <span style="color:var(--amber);font-size:.8rem;">${
+                  rv.rating > 0
+                    ? '★'.repeat(Math.round(rv.rating)) + '☆'.repeat(5 - Math.round(rv.rating))
+                    : '☆☆☆☆☆'
+                }</span>
+              </div>
+              ${rv.title ? `<div style="font-size:.78rem;font-weight:600;color:var(--t2);margin-bottom:3px;">${rv.title}</div>` : ''}
+              <div style="font-size:.78rem;color:var(--t2);line-height:1.5;">${rv.body}</div>
+              ${rv.verifiedPurchase ? `<div style="font-size:.68rem;color:var(--g);margin-top:5px;font-family:'JetBrains Mono',monospace;">✅ Verified Purchase</div>` : ''}
+            </div>`).join('')
+          : `<div style="color:var(--t3);font-size:.78rem;text-align:center;padding:14px 0;">No reviews yet.</div>`;
+
+        const token = localStorage.getItem('token');
+        if (token) {
+          const own = await fetch(`${API_URL}/api/products/${pid}/ownership-check`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          }).then(r=>r.json()).catch(()=>({owned:false}));
+          if (own.owned && writeEl) writeEl.style.display = 'block';
+        }
+      } catch(e) {}
+    }
+
+    async function submitCsReview(cpId) {
+      const token = localStorage.getItem('token');
+      if (!token) { showToast('⚠️', 'Please login to review'); return; }
+      if (!_csStar) { showToast('⚠️', 'Please select a star rating'); return; }
+      const body = document.getElementById('csReviewBody')?.value?.trim();
+      if (!body || body.length < 5) { showToast('⚠️', 'Review must be at least 5 characters'); return; }
+      const p = allProducts.find(x => x._id === cpId);
+      const resolvedPid = p?.productId || cpId;
+      const orders = JSON.parse(localStorage.getItem('user_orders') || '[]');
+      const matchOrder = orders.find(o =>
+        (o.items||[]).some(i => [String(i.id), String(i.productId), String(i._id)].includes(String(resolvedPid)) || i.title === p?.title)
+      );
+      if (!matchOrder?._id) { showToast('⚠️', 'Only verified buyers can review'); return; }
+      try {
+        const r = await fetch(`${API_URL}/api/reviews`, {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            productId: resolvedPid,
+            orderId:   matchOrder._id,
+            rating:    _csStar,
+            title:     document.getElementById('csReviewTitle')?.value?.trim() || '',
+            body
+          })
+        });
+        const d = await r.json();
+        if (d.success) {
+          showToast('✅', 'Review submitted!');
+          loadCsReviews(cpId, resolvedPid);
+          document.getElementById('csWriteReview').style.display = 'none';
+        } else {
+          showToast('❌', d.message || 'Failed to submit');
+        }
+      } catch(e) { showToast('❌', 'Failed to submit review'); }
+    }
+
+    /* ── Populate affiliate section when a product modal opens ── */
+    function populateAffSection(product) {
+      const price      = product.approvedPrice ?? product.price ?? 0;
+      const commPct    = product.affiliateCommission ?? 10;
+      const earnAmount = price > 0 ? (price * commPct / 100).toFixed(2) : null;
+      const affLink    = buildAffLink(product._id);
+
+      document.getElementById('affCommissionPct').textContent = commPct;
+
+      const earnEl = document.getElementById('affEarnAmount');
+      earnEl.textContent = earnAmount ? '$' + earnAmount + ' / sale' : 'N/A (free product)';
+
+      const copyBtn = document.getElementById('affCopyBtn');
+      const input   = document.getElementById('affLinkInput');
+
+      if (affLink) {
+        // Registered affiliate — show their real link
+        input.value = affLink;
+        input.dataset.url = affLink;
+        input.style.opacity = '1';
+        copyBtn.disabled = false;
+        copyBtn.classList.remove('copied');
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+
+        // Hide the join prompt if showing
+        const joinPrompt = document.getElementById('affJoinPrompt');
+        if (joinPrompt) joinPrompt.style.display = 'none';
+        document.getElementById('affLinkBox').style.display = 'flex';
+        document.getElementById('affShareRow').style.display = 'flex';
+        document.getElementById('affEarnPreview').style.display = 'flex';
+
+      } else {
+        // Not registered — show join prompt instead of link
+        input.value = 'Join the affiliate program to get your link';
+        input.dataset.url = '';
+        input.style.opacity = '0.45';
+        copyBtn.disabled = true;
+
+        const joinPrompt = document.getElementById('affJoinPrompt');
+        if (joinPrompt) joinPrompt.style.display = 'block';
+        document.getElementById('affShareRow').style.display = 'none';
+        document.getElementById('affEarnPreview').style.display = 'none';
+      }
+    }
+
+    /* ── Copy affiliate link ── */
+    function copyAffLink() {
+      const input = document.getElementById('affLinkInput');
+      const url   = input.dataset.url || input.value;
+      const btn   = document.getElementById('affCopyBtn');
+
+      navigator.clipboard.writeText(url).then(() => {
+        btn.classList.add('copied');
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        showToast('🔗', 'Affiliate link copied! Share it to earn commissions.');
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+        }, 3000);
+      }).catch(() => {
+        // Fallback for older browsers
+        input.select();
+        document.execCommand('copy');
+        showToast('🔗', 'Link copied!');
+      });
+    }
+
+    /* ── Share affiliate link via platform ── */
+    function shareAff(platform) {
+      const input   = document.getElementById('affLinkInput');
+      const url     = input.dataset.url || input.value;
+      const product = allProducts.find(p => p._id === activeProductId);
+      const title   = product?.title || 'Check this out';
+      const store   = creatorData?.storeName || 'this creator';
+      const text    = `Check out "${title}" on ${store} — UYEH TECH Marketplace`;
+
+      const encoded = encodeURIComponent(url);
+      const encText = encodeURIComponent(text + ' ' + url);
+
+      const urls = {
+        whatsapp: `https://wa.me/?text=${encText}`,
+        twitter:  `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encoded}`,
+        telegram: `https://t.me/share/url?url=${encoded}&text=${encodeURIComponent(text)}`,
+        native:   null
+      };
+
+      if (platform === 'native' && navigator.share) {
+        navigator.share({ title, text, url }).catch(() => copyAffLink());
+        return;
+      }
+      if (platform === 'native') { copyAffLink(); return; }
+
+      window.open(urls[platform], '_blank', 'noopener,width=600,height=500');
+    }
+
+    /* ══════════════════════════════════════════════════
+       READ ?ref= AND ?product= ON PAGE LOAD
+       When someone follows an affiliate link, we:
+       1. Save the ref code to localStorage (30-day cookie-like)
+       2. Ping the server's track-click endpoint
+       3. If ?product= is in the URL, auto-open that product
+       ══════════════════════════════════════════════════ */
+    (function readAffiliateRef() {
+      const params    = new URLSearchParams(window.location.search);
+      const rawRef    = params.get('ref');
+      // Product ID can now arrive two ways: ?product=ID (query param,
+      // existing format) or as the second path segment in the clean
+      // URL format (/marketplace/{storeSlug}/{productId}). Query param
+      // wins if somehow both are present.
+      const productId = params.get('product') || resolveProductFromPath();
+
+      if (rawRef) {
+        // ALWAYS uppercase before storing — DB codes are uppercase, attribution depends on this
+        const code        = rawRef.trim().toUpperCase();
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+
+        // Write canonical keys that checkout.html reads
+        localStorage.setItem('uyeh_ref',        code);
+        localStorage.setItem('uyeh_ref_expiry',  String(Date.now() + THIRTY_DAYS));
+        localStorage.setItem('uyeh_ref_product', productId || '');
+
+        // Track click silently (server also normalises to uppercase as safety net)
+        fetch(API_URL + '/api/affiliate/track-click', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ affiliateCode: code, productId: productId || null })
+        }).catch(() => {});
+
+        const keepParams = new URLSearchParams();
+        const storeVal = params.get('store') || params.get('slug');
+        if (storeVal)  keepParams.set('store', storeVal);
+        if (productId) keepParams.set('product', productId);
+        const qs = keepParams.toString();
+        const clean = window.location.pathname + (qs ? '?' + qs : '');
+        history.replaceState(null, '', clean);
+      }
+
+      // Auto-open the product modal if ?product= is present (with or without ref)
+      if (productId) {
+        window._autoOpenProduct = productId;
+      }
+    })();
+
+    /* ── Get stored affiliate ref — canonical version matching all other pages ── */
+    function getStoredRef() {
+      const code = localStorage.getItem('uyeh_ref');
+      if (!code) return null;
+      const expiry = parseInt(localStorage.getItem('uyeh_ref_expiry') || '0');
+      // Only expire when expiry was explicitly set AND has passed
+      if (expiry && Date.now() > expiry) {
+        localStorage.removeItem('uyeh_ref');
+        localStorage.removeItem('uyeh_ref_expiry');
+        localStorage.removeItem('uyeh_ref_product');
+        return null;
+      }
+      return code;
+    }
+
+    (function () {
+  'use strict';
+
+  /* ═══════════════════════════════════════════
+     PART 1: Mobile menu + dropdown toggles
+     ═══════════════════════════════════════════ */
+  var menuToggle = document.getElementById('menuToggle');
+  var navLinks   = document.getElementById('navLinks');
+  var dropItems  = document.querySelectorAll('.nav-item--dropdown');
+
+  function closeAllDropdowns() {
+    dropItems.forEach(function (item) {
+      item.classList.remove('open');
+      var btn = item.querySelector('.nav-link--dropdown');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function toggleDropdown(item) {
+    var isOpen = item.classList.contains('open');
+    var btn    = item.querySelector('.nav-link--dropdown');
+    closeAllDropdowns();
+    if (!isOpen) {
+      item.classList.add('open');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  dropItems.forEach(function (item) {
+    var btn = item.querySelector('.nav-link--dropdown');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleDropdown(item);
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    var insideNav = navLinks && navLinks.contains(e.target);
+    if (!insideNav) closeAllDropdowns();
+
+    if (navLinks && menuToggle) {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeAllDropdowns();
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+    }
+  });
+
+  document.querySelectorAll('.nav-dropdown__item').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeAllDropdowns();
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+    });
+  });
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      this.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      if (!navLinks.classList.contains('active')) closeAllDropdowns();
+    });
+  }
+
+  document.querySelectorAll('.nav-links .nav-link:not(.nav-link--dropdown)').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (menuToggle) menuToggle.classList.remove('active');
+      if (navLinks)   navLinks.classList.remove('active');
+      closeAllDropdowns();
+    });
+  });
+
+  /* ═══════════════════════════════════════════
+     PART 2: Auth state — guest buttons vs user dropdown
+
+     currentUser lives on `window` — a real global, not scoped to this
+     IIFE — so every page can read `window.currentUser` directly instead
+     of each page maintaining its own separate copy that never gets set.
+     This is the fix for two bugs: pages whose own currentUser never got
+     assigned (login redirect loops), and this function's name previously
+     being declared again by page-level scripts and silently overwriting
+     one or the other depending on script load order.
+     ═══════════════════════════════════════════ */
+  var API_URL = window.API_URL || 'https://uyehtechbackend.onrender.com';
+  window.currentUser = window.currentUser || null;
+
+  function checkAuthentication() {
+    var token = localStorage.getItem('token');
+    var user  = localStorage.getItem('user');
+    if (!token || !user) { showGuestButtons(); _announceAuthReady(); return; }
+
+    try {
+      window.currentUser = JSON.parse(user);
+      showUserDropdown(window.currentUser);
+      _announceAuthReady();
+
+      // Background validation — route is /api/profile (no "/user" segment).
+      fetch(API_URL + '/api/profile', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.currentUser = null;
+          showGuestButtons();
+          return null;
+        }
+        // Any other non-OK status (404, 500, rate limit, offline) is a
+        // server-side problem, not proof the token is bad. Don't log out.
+        return r.ok ? r.json() : null;
+      })
+      .then(function (data) {
+        if (data && data.success && data.user) {
+          window.currentUser = data.user;
+          localStorage.setItem('user', JSON.stringify(data.user));
+          showUserDropdown(data.user);
+        }
+      })
+      .catch(function () {}); // network error — keep showing cached state
+    } catch (e) {
+      // Stored 'user' was corrupted/unparseable — self-heal instead of
+      // getting silently stuck showing "guest" forever on every future load.
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.currentUser = null;
+      showGuestButtons();
+      _announceAuthReady();
+    }
+  }
+
+  // Lets any page know the initial auth check has resolved, without having
+  // to guess script load order or duplicate this logic themselves.
+  function _announceAuthReady() {
+    window.dispatchEvent(new CustomEvent('uyeh-auth-ready', { detail: window.currentUser }));
+  }
+
+  function showUserDropdown(user) {
+    var guestEl = document.getElementById('guestButtons');
+    var userEl  = document.getElementById('userDropdown');
+    if (!guestEl || !userEl) return; // page has no auth widget — skip silently
+
+    guestEl.style.display = 'none';
+    userEl.style.display  = 'block';
+
+    var name   = user.name || user.fullName || 'User';
+    var email  = user.email || '';
+    var avatar = user.profilePic || user.profileImage || user.avatar ||
+      ('https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background=00ff88&color=0a0a0a');
+
+    function set(id, val, attr) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (attr) { el[attr] = val; } else { el.textContent = val; }
+    }
+    set('userAvatar', avatar, 'src');
+    set('userName', name.split(' ')[0]);
+    set('menuAvatar', avatar, 'src');
+    set('menuUserName', name);
+    set('menuUserEmail', email);
+  }
+
+  function showGuestButtons() {
+    var guestEl = document.getElementById('guestButtons');
+    var userEl  = document.getElementById('userDropdown');
+    if (!guestEl || !userEl) return;
+    guestEl.style.display = 'flex';
+    userEl.style.display  = 'none';
+  }
+
+  function toggleUserMenu() {
+    var menu = document.getElementById('userMenu');
+    var drop = document.getElementById('userDropdown');
+    if (menu) menu.classList.toggle('active');
+    if (drop) drop.classList.toggle('active');
+  }
+
+  function handleLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.currentUser = null;
+      showGuestButtons();
+      if (typeof showNotification === 'function') {
+        showNotification('👋 Logged out successfully');
+      }
+      setTimeout(function () { window.location.reload(); }, 1000);
+    }
+  }
+
+  // Close the user menu when clicking outside it
+  document.addEventListener('click', function (e) {
+    var dropdown = document.getElementById('userDropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+      var menu = document.getElementById('userMenu');
+      if (menu) menu.classList.remove('active');
+      dropdown.classList.remove('active');
+    }
+  });
+
+  // Expose functions the navbar's inline onclick="" handlers call
+  window.toggleUserMenu      = toggleUserMenu;
+  window.handleLogout        = handleLogout;
+  window.checkAuthentication = checkAuthentication;
+
+  // Run auth check automatically — no per-page call needed
+  checkAuthentication();
+
+}());
+  </script>
+  
+     <div id="footer"></div>
+   <script src="/footer.js"></script>
+    <div id="cookie-consent"></div>
+ <script src="/cookie.js"></script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+
+</body>
+</html>

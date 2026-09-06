@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Basic SEO -->
+    <title>FAQ — UYEH TECH Marketplace, Blog & Ecosystem</title>
+    <meta name="description" content="Answers about buying, selling, and earning on the UYEH TECH Marketplace — plus the affiliate program and the UYEH TECH Blog.">
+    <meta name="keywords" content="UYEH TECH FAQ, marketplace help, creator program, affiliate program, digital products Nigeria">
+    <meta name="author" content="UYEH TECH">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="FAQ — UYEH TECH Marketplace, Blog & Ecosystem">
+    <meta property="og:description" content="Answers about buying, selling, and earning on the UYEH TECH Marketplace — plus the affiliate program and the UYEH TECH Blog.">
+    <meta property="og:image" content="https://uyehtech.com/images/og-image.jpg">
+    <meta property="og:url" content="https://uyehtech.com/faqs">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://uyehtech.com/faqs">
+
+    <!-- Structured Data (JSON-LD) — FAQPage, so questions can surface directly in Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the UYEH TECH Marketplace?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A digital marketplace where verified creators sell templates, courses, software, and other digital products, buyers get instant delivery after payment, and affiliates earn commission by referring buyers." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I become a Creator and start selling?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Apply through the Become a Creator page. Once approved, you get your own storefront, can list products, and track earnings in real time from your dashboard." }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the Affiliate program work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You get a unique referral link. When someone buys after clicking it, you earn commission automatically, paid out of the creator's share of the sale." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get a refund on a digital product?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Digital products deliver instantly, so sales are generally final. Refunds are considered for verified delivery failures, a product materially different from its listing, or a confirmed duplicate charge." }
+        }
+      ]
+    }
+    </script>
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background:black;
+            padding: 40px 20px;
+            line-height: 1.7;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 80px;
+            color: white;
+            position: relative;
+        }
+
+        .faq-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .faq-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .faq-header .brand {
+            background: linear-gradient(45deg, #00ff88, #00cc66, #00ff88);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .faq-header p {
+            font-size: 1.1rem;
+            opacity: 0.7;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .faq-category {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 60px 0 25px;
+            color: #00ff88;
+        }
+        .faq-category:first-of-type { margin-top: 0; }
+        .faq-category h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .faq-category::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,255,136,0.4), transparent);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(0, 255, 136, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 255, 136, 0.1);
+        }
+
+        .faq-question {
+            padding: 30px 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(0, 179, 89, 0.15) 0%, rgba(0, 255, 136, 0.05) 100%);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.15rem;
+            user-select: none;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #00ff88, #00cc66);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-item:hover .faq-question::before,
+        .faq-item.active .faq-question::before {
+            opacity: 1;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(0, 179, 89, 0.25) 0%, rgba(0, 255, 136, 0.15) 100%);
+        }
+
+        .faq-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #00ff88;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 136, 0.05);
+            flex-shrink: 0;
+            margin-left: 20px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            background: rgba(0, 255, 136, 0.15);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+            background: rgba(0, 0, 0, 0.3);
+            color: #e0e0e0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 600px;
+            padding: 35px 40px;
+        }
+
+        .faq-answer p {
+            line-height: 1.9;
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer ul {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 10px;
+            list-style: disc;
+        }
+
+        .highlight {
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .faq-answer a {
+            color: #00ff88;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0,255,136,0.4);
+        }
+        .faq-answer a:hover { border-bottom-color: #00ff88; }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #00ff88;
+            color: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            text-decoration: none;
+            font-weight: 700;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,255,136,0.4);
+            z-index: 999;
+        }
+        .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        .logo-bar { text-align: center; margin-bottom: 40px; position: relative; z-index: 1; }
+
+        .faq-footer-cta {
+            text-align: center;
+            margin-top: 70px;
+            padding: 40px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+        }
+        .faq-footer-cta p { color: #e0e0e0; margin-bottom: 20px; font-size: 1rem; }
+        .faq-footer-cta a {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #00b359, #00ff88);
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .faq-footer-cta a:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,255,136,0.4); }
+
+        @media (max-width: 768px) {
+            .faq-header h1 {
+                font-size: 2.4rem;
+            }
+            .faq-header p {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+            .faq-question {
+                padding: 20px 22px;
+                font-size: 1rem;
+            }
+            .faq-item.active .faq-answer {
+                padding: 25px 22px;
+            }
+            .faq-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.2rem;
+            }
+            .faq-category h2 { font-size: 1.15rem; }
+        }
+</style>
+</head>
+<body>
+
+    <div class="logo-bar">
+        <a href="/"><img src="/images/uyehtech-logo.png" width="50px" height="50px" alt="UYEH TECH"></a>
+    </div>
+
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1><span class="brand">UYEH TECH</span></h1>
+            <p>Marketplace, Blog & Ecosystem — Frequently Asked Questions</p>
+        </div>
+
+        <!-- ═══════════════ GETTING STARTED ═══════════════ -->
+        <div class="faq-category"><h2>Getting Started</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What is the UYEH TECH Marketplace?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>The Marketplace is where verified Creators sell digital products —
+                   templates, courses, UI kits, software, and more — and Buyers get
+                   instant access the moment payment clears. Affiliates can also earn
+                   commission by referring buyers with a personal link. One account can
+                   hold more than one of these roles at once.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Do I need an account to browse?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>No — browsing products, viewing creator stores, and reading the blog
+                   don't require an account. You'll need to sign up when you're ready to
+                   purchase, sell, or refer.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                I forgot my password — what do I do?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Use the <span class="highlight">Forgot Password</span> link on the
+                   login page. You'll get a reset link by email — if it doesn't arrive
+                   within a few minutes, check spam before contacting support.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════════ BUYING ═══════════════ -->
+        <div class="faq-category"><h2>Buying on the Marketplace</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do I purchase a product?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Add a product to your cart (or buy it directly), check out, and pay
+                   with one of our supported payment methods. Your purchase appears in
+                   <span class="highlight">My Products</span> instantly once payment is
+                   confirmed.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What payment methods can I use?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>We accept payments through <span class="highlight">Paystack</span> and
+                   <span class="highlight">Flutterwave</span> — covering cards, bank
+                   transfers, and more, depending on what each processor supports in your
+                   region.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Prices show in my local currency — is that what I'll actually be charged?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Prices are converted for your convenience so you know roughly what
+                   you're paying before checkout. The actual charge settles in the
+                   currency shown at the payment step, using the exchange rate in effect
+                   at that moment.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I get a refund?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Since digital products deliver instantly, sales are generally final
+                   once delivered. Refunds are considered for:</p>
+                <ul>
+                    <li>A verified delivery failure (payment succeeded, product never appeared)</li>
+                    <li>A product materially different from its listing</li>
+                    <li>A confirmed duplicate charge</li>
+                </ul>
+                <p>Submit a support ticket with your order ID if any of these apply.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I leave a review on something I bought?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Yes — buyers with a verified purchase can leave a rating and written
+                   review. Reviews should reflect your genuine experience with the
+                   product.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════════ CREATORS ═══════════════ -->
+        <div class="faq-category"><h2>Selling as a Creator</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do I become a Creator?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Apply through <a href="/marketplace/creator-apply">Become a Creator</a>.
+                   Approval isn't automatic — we review every application before granting
+                   access to a storefront.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What can I sell, and what's not allowed?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Any digital product you have the legal right to sell — templates,
+                   courses, UI kits, ebooks, software, and similar. Every listing is
+                   reviewed before going live; we don't allow content that infringes
+                   someone else's IP, contains malware, or is misleading about what's
+                   actually included.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How much commission does the platform take?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Your exact rate is shown on your Creator dashboard. Where a sale comes
+                   through an affiliate's referral link, that affiliate's commission is
+                   paid out of your share of the sale — it's never added on top of the
+                   platform's own cut, so the platform's percentage never changes based
+                   on whether a sale was referred.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How and when do I get paid?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Confirmed earnings become available once they clear any holding
+                   period. Request a payout any time you're at or above the minimum
+                   threshold shown on your dashboard, in any currency you hold a balance
+                   in. Payouts typically complete within a few business days.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I run discount coupons on my products?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Yes. Creating a coupon involves a small platform fee based on the
+                   coupon's total discount value, paid upfront before the coupon goes
+                   live. Full details are shown when you create one from your dashboard.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════════ AFFILIATES ═══════════════ -->
+        <div class="faq-category"><h2>The Affiliate Program</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How does the Affiliate program work?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>You get a unique referral link. When someone buys after clicking it
+                   (within the tracked window), you earn commission automatically — no
+                   manual follow-up or invoicing needed.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How much do affiliates earn, and does it change over time?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>You're placed into a tier based on your total referral count, and
+                   higher tiers earn a higher commission percentage. Your current tier,
+                   rate, and progress toward the next tier are all shown on your Affiliate
+                   dashboard.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                I just signed up as an affiliate — why isn't my first referral earning anything?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>New affiliates need to reach a minimum referral count before
+                   commission starts being credited — this threshold is shown on your
+                   dashboard. It's a fraud-prevention measure; once you clear it, every
+                   qualifying referral (including ones already tracked) earns normally.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════════ BLOG ═══════════════ -->
+        <div class="faq-category"><h2>The UYEH TECH Blog</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What's on the UYEH TECH Blog?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Articles on web development, the creator economy, building an online
+                   income, and updates about the Marketplace itself — practical, not
+                   just promotional.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I write a guest post or suggest a topic?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Yes — send a short pitch through our
+                   <a href="/marketplace/contact">contact page</a> (select General
+                   Enquiry) with an outline of what you'd like to cover.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do I get notified about new posts?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Subscribe through the newsletter form on the homepage or blog — you'll
+                   get an email confirmation to click before you're fully subscribed
+                   (this keeps the list genuine and spam-free).</p>
+            </div>
+        </div>
+
+        <!-- ═══════════════ SUPPORT & TRUST ═══════════════ -->
+        <div class="faq-category"><h2>Support &amp; Trust</h2></div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do I contact support, and how fast will I hear back?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Use live chat for the fastest response (usually under 5 minutes during
+                   business hours), or submit a support ticket for anything that needs
+                   detail or attachments — tickets are typically answered within 24
+                   hours.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                I already submitted a ticket — how do I check on it?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>On the <a href="/marketplace/contact">Contact &amp; Support</a> page,
+                   switch to the <span class="highlight">Track Existing</span> tab and
+                   enter your Ticket ID with the email you used to submit it.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is my payment information safe?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Payments are handled directly by Paystack and Flutterwave — we never
+                   see or store your full card number or banking password. See our
+                   Privacy Policy for the complete breakdown of what we do and don't
+                   collect.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What if I suspect a scam listing or fraudulent activity?
+                <div class="faq-icon">+</div>
+            </div>
+            <div class="faq-answer">
+                <p>Report it immediately through a support ticket with as much detail as
+                   possible (product link, order ID, screenshots). We investigate every
+                   report and take action, including removing listings and suspending
+                   accounts, where our policies are violated.</p>
+            </div>
+        </div>
+
+        <div class="faq-footer-cta">
+            <p>Still have a question we didn't cover?</p>
+            <a href="/marketplace/contact">Contact Support</a>
+        </div>
+
+    </div>
+
+     <a href="#home" class="back-to-top" id="backToTop">↑</a>
+
+   <script>
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+      
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    
+</script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

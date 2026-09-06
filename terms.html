@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — UYEH TECH Marketplace</title>
+    <meta name="description" content="Terms of Service for the UYEH TECH Marketplace — covering buyers, creators, affiliates, payments, and platform rules.">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+    <script src="/site-controller.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #d1d5db;
+            line-height: 1.8;
+            padding-top: 100px;
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .terms-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .last-updated {
+            color: #00ff88;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-top: 20px;
+            color: #d1d5db;
+        }
+
+        .toc {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 30px;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+            break-inside: avoid;
+        }
+
+        .toc a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc a:hover {
+            color: #00ff88;
+            transform: translateX(5px);
+        }
+
+        .toc a::before {
+            content: '→';
+            color: #00ff88;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(0, 255, 136, 0.03);
+            border-left: 4px solid #00ff88;
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #00ff88;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box strong {
+            color: #00ff88;
+        }
+
+        .warning-box {
+            background: rgba(255, 136, 0, 0.1);
+            border: 1px solid rgba(255, 136, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box strong {
+            color: #ff8800;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .role-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .role-card strong {
+            display: block;
+            color: #00ff88;
+            font-size: 1.05em;
+            margin-bottom: 6px;
+        }
+
+        .role-card span {
+            font-size: 0.85em;
+            color: #9ca3af;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-box h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00b359, #00ff88);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .terms-container {
+                padding: 40px 20px 80px;
+            }
+
+            .terms-header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+
+            .toc ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: July 14, 2026</p>
+            <p class="intro-text">
+                These Terms of Service govern your use of the UYEH TECH Marketplace —
+                the platform at <strong>uyehtech.com/marketplace</strong> where buyers
+                purchase digital products, creators sell their own work, and affiliates
+                earn commission by referring customers. This is a separate agreement
+                from UYEH TECH's web development and design services (covered under a
+                different Terms of Service for that side of the business). By creating
+                an account, browsing, purchasing, or listing a product on the
+                Marketplace, you agree to be bound by these Terms.
+            </p>
+        </div>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#acceptance">1. Acceptance & Eligibility</a></li>
+                <li><a href="#roles">2. Account Types</a></li>
+                <li><a href="#buyers">3. Buying on the Marketplace</a></li>
+                <li><a href="#creators">4. Selling as a Creator</a></li>
+                <li><a href="#affiliates">5. The Affiliate Program</a></li>
+                <li><a href="#coupons">6. Coupons</a></li>
+                <li><a href="#payments">7. Payments & Currency</a></li>
+                <li><a href="#taxes">8. Taxes</a></li>
+                <li><a href="#conduct">9. Acceptable Use</a></li>
+                <li><a href="#content-ip">10. Content & Intellectual Property</a></li>
+                <li><a href="#data-protection">11. Data Protection & Privacy</a></li>
+                <li><a href="#support">12. Support & Live Chat</a></li>
+                <li><a href="#suspension">13. Suspension & Termination</a></li>
+                <li><a href="#disclaimers">14. Disclaimers & Warranties</a></li>
+                <li><a href="#liability">15. Limitation of Liability</a></li>
+                <li><a href="#indemnification">16. Indemnification</a></li>
+                <li><a href="#force-majeure">17. Force Majeure</a></li>
+                <li><a href="#disputes">18. Governing Law & Disputes</a></li>
+                <li><a href="#general">19. General Provisions</a></li>
+                <li><a href="#changes">20. Changes to These Terms</a></li>
+                <li><a href="#contact">21. Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- 1 -->
+        <div class="section" id="acceptance">
+            <h2>1. Acceptance & Eligibility</h2>
+            <p>By accessing or using the UYEH TECH Marketplace, you confirm that you:</p>
+            <ul>
+                <li>Are at least 18 years old, or the age of legal majority in your jurisdiction</li>
+                <li>Have the legal capacity to enter into a binding agreement</li>
+                <li>Will provide accurate, current information when creating an account</li>
+                <li>Will comply with all applicable local, national, and international laws</li>
+            </ul>
+            <p>If you are creating an account on behalf of a business, you confirm you
+               have authority to bind that business to these Terms, and that "you"
+               throughout these Terms refers to that business as well as yourself
+               personally.</p>
+            <p>If UYEH TECH later discovers that any information used to establish your
+               eligibility was false or misleading, this is treated as a breach of
+               these Terms under Section 13, regardless of how long ago the account was
+               created.</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="section" id="roles">
+            <h2>2. Account Types</h2>
+            <p>The Marketplace supports several account roles. A single person may hold
+               more than one role at a time (for example, a Creator who is also a
+               Buyer). Each role carries its own responsibilities under these Terms:</p>
+            <div class="role-grid">
+                <div class="role-card">
+                    <strong>Buyer</strong>
+                    <span>Browses and purchases digital products</span>
+                </div>
+                <div class="role-card">
+                    <strong>Creator</strong>
+                    <span>Applies for approval to sell products through their own store</span>
+                </div>
+                <div class="role-card">
+                    <strong>Affiliate</strong>
+                    <span>Earns commission by referring buyers via a personal referral link</span>
+                </div>
+                <div class="role-card">
+                    <strong>Guest</strong>
+                    <span>Browses without an account; some actions require registration</span>
+                </div>
+            </div>
+            <p>Support agents and administrators who assist users through live chat or
+               manage the platform act on behalf of UYEH TECH and are not "users" under
+               these Terms — their conduct is governed separately.</p>
+
+            <h3>2.5 Account Security</h3>
+            <p>You are responsible for maintaining the confidentiality of your login
+               credentials and for all activity that occurs under your account, whether
+               or not you authorized it. Notify Support immediately if you suspect
+               unauthorized access to your account. UYEH TECH is not liable for any
+               loss arising from your failure to keep your credentials secure, though
+               UYEH TECH will assist in good faith to help you recover a compromised
+               account.</p>
+        </div>
+
+        <!-- 3 -->
+        <div class="section" id="buyers">
+            <h2>3. Buying on the Marketplace</h2>
+
+            <h3>3.1 Purchases</h3>
+            <p>All products listed on the Marketplace are digital goods, delivered
+               electronically. There is no physical shipping. Upon successful payment,
+               access to your purchase is delivered to your account dashboard, typically
+               instantly.</p>
+
+            <h3>3.2 Pricing & Currency</h3>
+            <p>Product prices are set by Creators (or by UYEH TECH, for platform-listed
+               products) and may be displayed to you converted into your local currency
+               for convenience. The amount actually charged is processed in the real
+               transaction currency shown at checkout. Currency conversion rates are
+               refreshed periodically and are not guaranteed to match rates at any other
+               point in time.</p>
+
+            <h3>3.3 Digital Delivery & Refunds</h3>
+            <p>Because purchases are delivered instantly and are non-physical, all sales
+               are generally <strong>final</strong> once a product has been successfully
+               delivered to your account. Refunds may be considered, at UYEH TECH's
+               discretion, only where:</p>
+            <ul>
+                <li>The product was never delivered due to a verified technical or payment failure</li>
+                <li>The product is materially different from its description (e.g., a broken file, missing content advertised as included)</li>
+                <li>A duplicate purchase was made in error and can be verified</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Refund window:</strong>
+                <p>Refund requests must be raised through Support within <strong>7 days</strong>
+                   of purchase. UYEH TECH aims to respond to every refund request within
+                   <strong>5 business days</strong> of it being raised. "Change of mind"
+                   after a working, as-described product has been delivered is not
+                   grounds for a refund.</p>
+            </div>
+            <p>Where a refund is approved, it is returned to the original payment
+               method through the original payment processor. Processing time after
+               approval depends on that processor and is outside UYEH TECH's control.</p>
+
+            <h3>3.4 Buyer Reviews</h3>
+            <p>Buyers who have completed a verified purchase may leave a rating and
+               written review of that product. Reviews must reflect genuine experience
+               with the product and must not contain abusive, defamatory, or unlawful
+               content. UYEH TECH may remove reviews that violate this section.</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="section" id="creators">
+            <h2>4. Selling as a Creator</h2>
+
+            <h3>4.1 Application & Approval</h3>
+            <p>To sell on the Marketplace, you must apply for a Creator account and be
+               approved by UYEH TECH. Approval is at UYEH TECH's discretion and is not
+               guaranteed. UYEH TECH may request additional information to verify your
+               identity or the legitimacy of your business before or after approval.</p>
+
+            <h3>4.2 Your Storefront</h3>
+            <p>Once approved, you may set up a branded storefront, list products,
+               upload cover art and descriptions, and manage your own catalog. You are
+               solely responsible for the accuracy of your listings and for ensuring
+               every product you upload is something you have the legal right to sell.</p>
+
+            <h3>4.3 Product Standards</h3>
+            <p>Every product submitted goes through review before appearing live on the
+               Marketplace. UYEH TECH may reject, request changes to, or take down any
+               listing that:</p>
+            <ul>
+                <li>Infringes copyright, trademark, or any third party's intellectual property</li>
+                <li>Is misleading, broken, incomplete, or materially different from its listing</li>
+                <li>Contains malware, harmful code, or anything designed to damage a buyer's device or data</li>
+                <li>Violates any applicable law, or promotes illegal activity</li>
+                <li>Contains sexually explicit content, hate speech, or content exploiting minors</li>
+            </ul>
+
+            <h3>4.4 Commission Structure</h3>
+            <div class="highlight-box">
+                <strong>How a sale is split:</strong>
+                <p>UYEH TECH takes a platform commission on every sale (the default rate
+                   is disclosed on your Creator dashboard and may be individually
+                   negotiated). Where a sale is credited to an Affiliate's referral
+                   link, the Affiliate's commission is paid <em>out of your remaining
+                   share</em> — it is not added on top of the platform's cut. Your
+                   dashboard's Earnings Ledger shows the exact breakdown for every sale:
+                   platform cut, any affiliate commission, and your net earning.</p>
+            </div>
+
+            <h3>4.5 Payouts</h3>
+            <p>Confirmed earnings become available for withdrawal once they clear any
+               applicable holding period. You may request a payout of any amount at or
+               above the minimum payout threshold shown on your dashboard, in any
+               currency you hold a confirmed balance in. Payouts are processed to the
+               payout method and details you provide, and typically complete within
+               <strong>3–7 business days</strong> of the request, though this is not
+               guaranteed and may take longer due to processor-side verification.</p>
+            <p>You are responsible for providing accurate and up-to-date payout details.
+               UYEH TECH is not liable for funds sent to an incorrect account, wallet,
+               or payment method resulting from inaccurate details you provided.</p>
+
+            <h3>4.6 Creator Coupons</h3>
+            <p>Creators may create discount coupons for their own products, subject to
+               Section 6 below.</p>
+
+            <h3>4.7 Your Ownership</h3>
+            <p>You retain full ownership of the intellectual property in the products
+               you create and list. By listing a product, you grant UYEH TECH a
+               non-exclusive license to host, display, market, and deliver that product
+               to buyers through the Marketplace for as long as your listing remains
+               active. This license ends if you remove the listing or your account is
+               terminated, except for copies already lawfully delivered to buyers before
+               that point, which those buyers retain the right to keep and use.</p>
+        </div>
+
+        <!-- 5 -->
+        <div class="section" id="affiliates">
+            <h2>5. The Affiliate Program</h2>
+
+            <h3>5.1 How It Works</h3>
+            <p>Approved Affiliates receive a unique referral link. When someone makes a
+               purchase after clicking that link (within the platform's tracked
+               attribution window), the Affiliate earns a commission on that sale, paid
+               out of the Creator's share as described in Section 4.4.</p>
+
+            <h3>5.2 Tiers</h3>
+            <p>Affiliates are placed into a tier based on their total referral count,
+               with higher tiers earning a higher commission percentage. Tier names,
+               thresholds, and rates are shown on your Affiliate dashboard and may be
+               adjusted by UYEH TECH from time to time. New affiliates in the entry
+               tier begin earning commission only after reaching the minimum referral
+               count shown on your dashboard.</p>
+
+            <h3>5.3 Prohibited Practices</h3>
+            <p>You may not:</p>
+            <ul>
+                <li>Refer yourself, or use your own link to purchase your own products, to generate commission</li>
+                <li>Use fraudulent, automated, or bot-driven clicks or referrals</li>
+                <li>Misrepresent your relationship with UYEH TECH or any Creator when promoting a link</li>
+                <li>Spam your referral link in a way that violates the terms of the platform you're sharing it on</li>
+            </ul>
+            <p>Commission arising from any prohibited practice may be reversed, and the
+               Affiliate account suspended or terminated.</p>
+        </div>
+
+        <!-- 6 -->
+        <div class="section" id="coupons">
+            <h2>6. Coupons</h2>
+            <p>Creators may create discount coupons for their own products. Creating a
+               coupon requires payment of a platform fee, calculated as a percentage of
+               the coupon's total discount value across its full intended usage, paid
+               upfront through an available payment gateway before the coupon is
+               submitted for admin approval and activated. Coupon fees are separate from
+               and in addition to standard commission on any sale where a coupon is
+               used. UYEH TECH may reject a coupon submission or deactivate a live
+               coupon found to be used fraudulently (e.g., stacking, sharing outside its
+               intended audience in a way that damages platform integrity, or any
+               attempt to game the fee calculation).</p>
+        </div>
+
+        <!-- 7 -->
+        <div class="section" id="payments">
+            <h2>7. Payments & Currency</h2>
+            <p>Payments on the Marketplace are processed through third-party payment
+               gateways (currently Paystack and Flutterwave). By making a purchase,
+               requesting a payout, or paying a coupon fee, you agree to that
+               processor's own terms of service in addition to these Terms. UYEH TECH
+               does not store your full card details — payment data is handled directly
+               by the processor.</p>
+            <p>Prices may be shown converted into a currency of your choosing for
+               display purposes; the actual transaction settles in the currency
+               presented at the point of payment. UYEH TECH is not responsible for
+               currency fluctuations between the time a price is viewed and the time a
+               payment is completed.</p>
+            <div class="warning-box">
+                <strong>Chargebacks:</strong> Filing a chargeback or payment dispute for a
+                digital product that was successfully delivered, without first
+                contacting Support, may result in immediate suspension of your account
+                pending resolution.
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="section" id="taxes">
+            <h2>8. Taxes</h2>
+            <p>You are solely responsible for determining what taxes, if any, apply to
+               your activity on the Marketplace — including income tax, value-added
+               tax (VAT), or withholding tax — and for reporting and remitting those
+               taxes to the correct authority in your jurisdiction. Prices shown to
+               Buyers may or may not include applicable taxes depending on your
+               location; where a tax is not included at checkout, you remain
+               responsible for any import, use, or consumption tax that applies to
+               your purchase under your local law.</p>
+            <p>UYEH TECH does not act as your employer, agent, or tax withholding party
+               unless required to do so by applicable law. UYEH TECH may request tax
+               identification information from Creators or Affiliates where necessary
+               to comply with reporting obligations, and may withhold payouts until
+               requested information is provided if legally required to do so.</p>
+        </div>
+
+        <!-- 9 -->
+        <div class="section" id="conduct">
+            <h2>9. Acceptable Use</h2>
+            <p>Regardless of your account role, you agree not to:</p>
+            <ul>
+                <li>Use the Marketplace for any unlawful purpose</li>
+                <li>Attempt to gain unauthorized access to any account, system, or data that isn't yours</li>
+                <li>Upload or transmit viruses, malware, or any other harmful code</li>
+                <li>Interfere with or disrupt the platform's normal operation</li>
+                <li>Harass, threaten, or abuse other users or UYEH TECH support staff</li>
+                <li>Impersonate any person, business, or UYEH TECH staff member</li>
+                <li>Circumvent any pricing, commission, or fee structure described in these Terms</li>
+            </ul>
+        </div>
+
+        <!-- 10 -->
+        <div class="section" id="content-ip">
+            <h2>10. Content & Intellectual Property</h2>
+            <p>The Marketplace platform itself — its design, code, branding, and
+               underlying software — is the property of UYEH TECH and is protected by
+               applicable intellectual property law. Nothing in these Terms transfers
+               ownership of the platform to any user.</p>
+            <p>Ownership of individual products sold by Creators is addressed in Section
+               4.7.</p>
+
+            <h3>10.1 Reporting Infringement</h3>
+            <p>If you believe a listing on the Marketplace infringes your copyright,
+               trademark, or other intellectual property right, email
+               <strong>uyehtech@gmail.com</strong> with the subject line "IP Complaint"
+               and include:</p>
+            <ul>
+                <li>A description of the work you believe is being infringed</li>
+                <li>The exact URL or location of the listing you're reporting</li>
+                <li>Your contact information</li>
+                <li>A good-faith statement that you believe the use is unauthorized, and that the information you've provided is accurate</li>
+            </ul>
+            <p>UYEH TECH will review the report and may remove or restrict access to the
+               listing while it investigates. The Creator whose listing was reported
+               will be notified and may submit a counter-response with evidence of their
+               right to sell the product; UYEH TECH will make a final determination
+               based on the information provided by both parties.</p>
+
+            <h3>10.2 Your Content</h3>
+            <p>Any reviews, messages, or other content you submit to the platform may be
+               displayed within the platform. By submitting such content, you grant
+               UYEH TECH a non-exclusive, royalty-free license to display, reproduce,
+               and moderate that content for the operation of the Marketplace. Content
+               is retained as described in Section 11 (Data Protection & Privacy).</p>
+        </div>
+
+        <!-- 11 -->
+        <div class="section" id="data-protection">
+            <h2>11. Data Protection & Privacy</h2>
+            <p>UYEH TECH processes your personal data in accordance with the
+               <a href="/privacy.html" style="color:#00ff88;">UYEH TECH Privacy Policy</a>
+               and the Nigeria Data Protection Act 2023 (NDPA). Where a user accesses
+               the Marketplace from outside Nigeria, UYEH TECH also aims to honor the
+               data-subject rights recognized under comparable data protection laws
+               applicable to that user, to the extent reasonably practicable.</p>
+            <p>Your data may be processed and stored by third-party service providers
+               UYEH TECH relies on to operate the Marketplace (for example, cloud
+               media storage, email delivery, and payment processing providers), some
+               of which may be located outside Nigeria. UYEH TECH takes reasonable
+               steps to ensure such providers offer an appropriate level of data
+               protection.</p>
+            <p>You may request access to, correction of, or deletion of your personal
+               data by contacting Support. Some data may need to be retained beyond a
+               deletion request where required for legal, tax, fraud-prevention, or
+               dispute-resolution purposes.</p>
+        </div>
+
+        <!-- 12 -->
+        <div class="section" id="support">
+            <h2>12. Support & Live Chat</h2>
+            <p>The Marketplace provides live chat support for buyers and creators.
+               Messages and any files or images you share through support chat are
+               stored as part of your support history and may be reviewed by UYEH TECH
+               staff to resolve your inquiry, investigate a report, or improve support
+               quality. Do not share sensitive information (passwords, full card
+               numbers) through chat — UYEH TECH staff will never ask you for these.</p>
+        </div>
+
+        <!-- 13 -->
+        <div class="section" id="suspension">
+            <h2>13. Suspension & Termination</h2>
+            <h3>13.1 By You</h3>
+            <p>You may stop using the Marketplace or request account deletion at any
+               time by contacting Support, subject to any pending orders, payouts, or
+               legal retention requirements.</p>
+
+            <h3>13.2 By UYEH TECH</h3>
+            <p>UYEH TECH may suspend or terminate any account, at any time, for
+               violation of these Terms, suspected fraud, abuse of other users or staff,
+               chargebacks disputed in bad faith, or any conduct that puts the platform
+               or its users at risk. Where reasonably possible, you will be notified of
+               the reason. Confirmed, already-earned balances owed to a Creator or
+               Affiliate at the time of suspension are handled on a case-by-case basis
+               and may be withheld pending investigation of the conduct that led to the
+               suspension.</p>
+
+            <h3>13.3 Effect of Termination</h3>
+            <p>Termination of a Creator or Affiliate account does not affect a Buyer's
+               right to continue accessing products already lawfully delivered to their
+               dashboard before termination, unless that specific purchase is itself
+               under investigation for fraud. On termination, a Creator's active
+               listings are taken off the Marketplace and an Affiliate's referral links
+               stop generating new commission. Provisions of these Terms that by their
+               nature should survive termination — including Sections 8 (Taxes), 14
+               (Disclaimers), 15 (Limitation of Liability), 16 (Indemnification), and
+               18 (Governing Law & Disputes) — continue to apply after termination.</p>
+        </div>
+
+        <!-- 14 -->
+        <div class="section" id="disclaimers">
+            <h2>14. Disclaimers & Warranties</h2>
+            <p>The Marketplace is provided "as is" and "as available." UYEH TECH does
+               not guarantee that the platform will be uninterrupted, error-free, or
+               secure at all times. UYEH TECH does not guarantee any level of sales for
+               Creators or any level of commission for Affiliates — earnings depend
+               entirely on market activity that UYEH TECH does not control.</p>
+            <p>UYEH TECH reviews Creator products before they go live but does not
+               independently verify every technical claim made in a product's
+               description; Buyers should exercise their own judgment before
+               purchasing.</p>
+            <p>To the maximum extent permitted by law, UYEH TECH disclaims all implied
+               warranties, including any implied warranty of merchantability, fitness
+               for a particular purpose, or non-infringement. Courses, templates,
+               scripts, and other educational or informational products sold on the
+               Marketplace are provided for general informational purposes only and do
+               not constitute professional, legal, financial, medical, or tax advice
+               unless the Creator's listing explicitly states otherwise and the Creator
+               is appropriately licensed to provide it.</p>
+        </div>
+
+        <!-- 15 -->
+        <div class="section" id="liability">
+            <h2>15. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, UYEH TECH's total liability to
+               you for any claim arising from your use of the Marketplace is limited to
+               the amount you paid to UYEH TECH (as platform commission, fees, or
+               otherwise) in the twelve months preceding the claim. UYEH TECH is not
+               liable for indirect, incidental, or consequential damages, including lost
+               profits or lost data, arising from your use of the platform.</p>
+        </div>
+
+        <!-- 16 -->
+        <div class="section" id="indemnification">
+            <h2>16. Indemnification</h2>
+            <p>You agree to indemnify and hold UYEH TECH harmless from any claim,
+               damage, or expense (including reasonable legal fees) arising from your
+               breach of these Terms, your listed products (if you are a Creator), your
+               referral activity (if you are an Affiliate), or your violation of any
+               law or third-party right.</p>
+            <p>If a claim arises that you may be required to indemnify, UYEH TECH will
+               give you notice of the claim where reasonably possible. UYEH TECH may, at
+               its own expense, assume control of the defense and settlement of any such
+               claim, in which case you agree to reasonably cooperate with that defense.
+               This section does not require you to indemnify UYEH TECH for a claim
+               arising from UYEH TECH's own violation of these Terms or applicable law.</p>
+        </div>
+
+        <!-- 17 -->
+        <div class="section" id="force-majeure">
+            <h2>17. Force Majeure</h2>
+            <p>Neither party is liable for any delay or failure to perform under these
+               Terms caused by events beyond that party's reasonable control, including
+               natural disasters, power or internet infrastructure failures, government
+               action, war, civil unrest, labor disputes, or failures or outages of a
+               third-party service the Marketplace depends on (including payment
+               processors, cloud hosting, or media storage providers). The affected
+               party will make reasonable efforts to resume performance once the event
+               is resolved. This section does not excuse payment obligations that were
+               already due before the event occurred.</p>
+        </div>
+
+        <!-- 18 -->
+        <div class="section" id="disputes">
+            <h2>18. Governing Law & Disputes</h2>
+            <p>These Terms are governed by the laws of Nigeria. In the event of any
+               dispute, both parties agree to first attempt resolution through good
+               faith negotiation, then mediation if negotiation fails. Only after
+               exhausting these steps may either party pursue legal action, which shall
+               be brought exclusively in the courts of Nigeria.</p>
+        </div>
+
+        <!-- 19 -->
+        <div class="section" id="general">
+            <h2>19. General Provisions</h2>
+
+            <h3>19.1 Entire Agreement</h3>
+            <p>These Terms, together with the Privacy Policy and any role-specific
+               agreement referenced on the platform (such as a Creator Agreement or
+               Affiliate Agreement, where applicable), constitute the entire agreement
+               between you and UYEH TECH regarding the Marketplace, and supersede any
+               prior discussion or agreement on the same subject.</p>
+
+            <h3>19.2 Severability</h3>
+            <p>If any provision of these Terms is found by a court of competent
+               jurisdiction to be unenforceable or invalid, that provision will be
+               limited or eliminated to the minimum extent necessary, and the
+               remaining provisions will continue in full force and effect.</p>
+
+            <h3>19.3 No Waiver</h3>
+            <p>UYEH TECH's failure to enforce any right or provision of these Terms is
+               not a waiver of that right or provision, and does not prevent UYEH TECH
+               from enforcing it at a later time.</p>
+
+            <h3>19.4 Assignment</h3>
+            <p>You may not assign or transfer your rights or obligations under these
+               Terms without UYEH TECH's prior written consent. UYEH TECH may assign
+               these Terms, in whole or in part, without restriction, including in
+               connection with a merger, acquisition, or sale of assets.</p>
+
+            <h3>19.5 Notices</h3>
+            <p>UYEH TECH may provide notices to you via the email address on your
+               account or through a notification on your dashboard. Notices to UYEH
+               TECH should be sent to the contact details in Section 21.</p>
+
+            <h3>19.6 Headings</h3>
+            <p>Section headings in these Terms are for convenience only and do not
+               affect the interpretation of any provision.</p>
+        </div>
+
+        <!-- 20 -->
+        <div class="section" id="changes">
+            <h2>20. Changes to These Terms</h2>
+            <p>UYEH TECH may update these Terms from time to time to reflect changes to
+               the Marketplace's features, commission structure, or legal requirements.
+               Material changes will be posted on this page with an updated "Last
+               Updated" date, and where reasonably practicable, notified to you by email
+               or dashboard notification at least <strong>7 days</strong> before they
+               take effect. Minor or non-material changes (such as clarifications that
+               don't change your rights or obligations) take effect as soon as they are
+               posted. Continued use of the Marketplace after a change takes effect
+               constitutes acceptance of the revised Terms.</p>
+        </div>
+
+        <!-- 21 -->
+        <div class="section" id="contact">
+            <h2>21. Contact</h2>
+            <p>Questions about these Terms can be sent to:</p>
+            <p>📧 Email: uyehtech@gmail.com</p>
+            <p>📍 Location: Nigeria</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Have Questions?</h3>
+            <p>Our support team is happy to clarify anything in these Terms before you buy, sell, or refer.</p>
+            <a href="/marketplace/contact" class="contact-btn">Contact Support</a>
+        </div>
+
+        <a href="/marketplace/" class="back-link">← Back to Marketplace</a>
+    </div>
+    <!-- ===== BACK TO TOP BUTTON ===== -->
+<button id="backToTopBtn" aria-label="Back to top" title="Back to top">↑</button>
+
+<style>
+#backToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #00b359, #00ff88);
+    color: #0a0a0a;
+    font-size: 1.4em;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s, box-shadow 0.3s;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.35);
+}
+
+#backToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTopBtn:hover {
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.55);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    #backToTopBtn {
+        bottom: 20px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.2em;
+    }
+}
+</style>
+
+<script>
+(function () {
+    const btn = document.getElementById('backToTopBtn');
+    if (!btn) return;
+
+    let ticking = false;
+    function toggleVisibility() {
+        if (window.scrollY > 400) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(toggleVisibility);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    toggleVisibility(); // handles page-refresh mid-scroll
+})();
+</script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

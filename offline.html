@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Offline — UYEH TECH</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icons/icon-96.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+             <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+     <style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #00ff88;
+    --bg:      #0a0a0a;
+    --card:    #0f0f0f;
+    --gray:    #9ca3af;
+    --error:   #ff4444;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  /* ── Animated background dots ─────────────────────────── */
+  .bg-dots {
+    position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+  }
+  .bg-dot {
+    position: absolute; border-radius: 50%;
+    background: rgba(0,255,136,.04);
+    animation: bgFloat linear infinite;
+  }
+
+  /* ── Card ─────────────────────────────────────────────── */
+  .card {
+    position: relative; z-index: 1;
+    text-align: center;
+    max-width: 480px; width: 100%;
+    background: linear-gradient(135deg, rgba(0,255,136,.07), rgba(0,255,136,.03));
+    border: 1px solid rgba(0,255,136,.22);
+    border-radius: 24px;
+    padding: 60px 44px 48px;
+    box-shadow: 0 0 80px rgba(0,255,136,.07), 0 40px 60px rgba(0,0,0,.5);
+    animation: cardIn .5s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  /* ── Logo ─────────────────────────────────────────────── */
+  .logo {
+    width: 56px; height: 56px; border-radius: 14px;
+    margin: 0 auto 20px;
+    border: 1px solid rgba(0,255,136,.2);
+    overflow: hidden;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── Signal animation ─────────────────────────────────── */
+  .signal-wrap {
+    width: 80px; height: 80px; margin: 0 auto 28px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .signal-ring {
+    position: absolute; border-radius: 50%;
+    border: 2px solid rgba(0,255,136,.3);
+    animation: signalPulse 2.4s ease-out infinite;
+  }
+  .signal-ring:nth-child(1) { width: 80px; height: 80px; animation-delay: 0s; }
+  .signal-ring:nth-child(2) { width: 56px; height: 56px; animation-delay: .4s; }
+  .signal-ring:nth-child(3) { width: 32px; height: 32px; animation-delay: .8s; }
+  .signal-core {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--error);
+    box-shadow: 0 0 12px var(--error);
+    animation: corePulse 2s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--primary);
+    margin-bottom: 14px; line-height: 1.2;
+  }
+
+  p {
+    color: var(--gray); line-height: 1.75;
+    margin-bottom: 10px; font-size: .93rem;
+  }
+
+  /* ── Cached pages list ────────────────────────────────── */
+  .cached-section {
+    margin: 24px 0;
+    background: rgba(0,255,136,.04);
+    border: 1px solid rgba(0,255,136,.12);
+    border-radius: 12px; padding: 16px;
+    text-align: left;
+    display: none; /* shown by JS when pages are found */
+  }
+  .cached-section-title {
+    font-size: .75rem; font-weight: 700; color: var(--gray);
+    text-transform: uppercase; letter-spacing: .07em; margin-bottom: 10px;
+  }
+  .cached-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cached-link {
+    font-size: .8rem; padding: 6px 14px; border-radius: 8px;
+    background: rgba(0,255,136,.08); border: 1px solid rgba(0,255,136,.2);
+    color: var(--primary); text-decoration: none; font-weight: 600;
+    transition: background .2s;
+  }
+  .cached-link:hover { background: rgba(0,255,136,.16); }
+
+  /* ── Buttons ──────────────────────────────────────────── */
+  .btn-group { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 10px; border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: .88rem; font-weight: 700;
+    transition: all .25s; text-decoration: none; white-space: nowrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #00b359, var(--primary));
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0,255,136,.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,255,136,.35); }
+  .btn-secondary {
+    background: transparent; color: var(--gray);
+    border: 1px solid rgba(255,255,255,.15);
+  }
+  .btn-secondary:hover { border-color: rgba(0,255,136,.3); color: var(--primary); }
+
+  /* ── Status strip ─────────────────────────────────────── */
+  .status-strip {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; font-size: .8rem; color: var(--gray);
+    margin-top: 28px;
+  }
+  .status-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--error); flex-shrink: 0;
+    animation: corePulse 2s ease-in-out infinite;
+  }
+  .status-dot.online { background: var(--primary); animation: none; }
+  #statusText { transition: color .4s; }
+
+  /* ── Keyframes ────────────────────────────────────────── */
+  @keyframes cardIn      { from { opacity:0; transform:scale(.92) translateY(20px); } to { opacity:1; transform:none; } }
+  @keyframes signalPulse { 0% { transform:scale(.5); opacity:1; } 100% { transform:scale(1); opacity:0; } }
+  @keyframes corePulse   { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(1.3); } }
+  @keyframes bgFloat     { from { transform:translateY(110vh) rotate(0deg); } to { transform:translateY(-10vh) rotate(360deg); } }
+
+  @media (max-width: 520px) {
+    .card { padding: 44px 24px 36px; }
+    h1    { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient background -->
+<div class="bg-dots" id="bgDots"></div>
+
+<div class="card">
+  <!-- Logo -->
+  <div class="logo">
+    <img src="/icons/icon-192.png" alt="UYEH TECH" onerror="this.parentElement.style.display='none'">
+  </div>
+
+  <!-- Signal animation -->
+  <div class="signal-wrap">
+    <div class="signal-ring"></div>
+    <div class="signal-ring"></div>
+    <div class="signal-ring"></div>
+    <div class="signal-core" id="signalCore"></div>
+  </div>
+
+  <h1>You're Offline</h1>
+  <p>It looks like you've lost your internet connection.<br>
+     Some pages are still available from your local cache.</p>
+
+  <!-- Cached pages available -->
+  <div class="cached-section" id="cachedSection">
+    <div class="cached-section-title">📦 Available Offline</div>
+    <div class="cached-links" id="cachedLinks"></div>
+  </div>
+
+  <!-- Actions -->
+  <div class="btn-group">
+    <button class="btn btn-primary" onclick="tryReload()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/>
+      </svg>
+      Try Again
+    </button>
+    <a href="/" class="btn btn-secondary">
+      🏠 Go Home
+    </a>
+  </div>
+
+  <!-- Status -->
+  <div class="status-strip">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">Waiting for connection…</span>
+  </div>
+</div>
+
+<script>
+  // ── Ambient background dots ──────────────────────────────
+  (function() {
+    const wrap = document.getElementById('bgDots');
+    for (let i = 0; i < 12; i++) {
+      const d = document.createElement('div');
+      d.className = 'bg-dot';
+      const size = Math.random() * 120 + 40;
+      Object.assign(d.style, {
+        width:  size + 'px',
+        height: size + 'px',
+        left:   Math.random() * 100 + '%',
+        top:    Math.random() * 100 + '%',
+        animationDuration: (Math.random() * 20 + 15) + 's',
+        animationDelay:    (Math.random() * -20) + 's',
+      });
+      wrap.appendChild(d);
+    }
+  })();
+
+  // ── Show available cached pages ──────────────────────────
+  const FRIENDLY_NAMES = {
+    '/':              '🏠 Home',
+    '/index.html':    '🏠 Home',
+    '/store.html':    '🛍️ Store',
+    '/blog.html':     '📝 Blog',
+    '/dashboard.html':'📊 Dashboard',
+    '/projects.html': '💼 Projects',
+    '/login.html':    '🔐 Login',
+  };
+
+  if ('caches' in window) {
+    caches.open('uyeh-v2.0-static').then(cache => cache.keys()).then(keys => {
+      const pages = keys
+        .map(r => new URL(r.url).pathname)
+        .filter(p => p !== '/offline.html' && FRIENDLY_NAMES[p])
+        .filter((v, i, a) => a.indexOf(v) === i); // dedupe
+
+      if (pages.length > 0) {
+        const section = document.getElementById('cachedSection');
+        const linksEl = document.getElementById('cachedLinks');
+        pages.forEach(path => {
+          const a = document.createElement('a');
+          a.href      = path;
+          a.className = 'cached-link';
+          a.textContent = FRIENDLY_NAMES[path] || path;
+          linksEl.appendChild(a);
+        });
+        section.style.display = 'block';
+      }
+    }).catch(() => {});
+  }
+
+  // ── Online / offline detection ───────────────────────────
+  const dot    = document.getElementById('statusDot');
+  const text   = document.getElementById('statusText');
+  const core   = document.getElementById('signalCore');
+
+  function setOnline() {
+    dot.className  = 'status-dot online';
+    text.textContent = '✓ Back online! Reloading…';
+    text.style.color = '#00ff88';
+    core.style.background = '#00ff88';
+    core.style.boxShadow  = '0 0 12px #00ff88';
+    setTimeout(() => {
+      window.history.length > 1 ? window.history.back() : (window.location.href = '/');
+    }, 1400);
+  }
+
+  function setOffline() {
+    dot.className  = 'status-dot';
+    text.textContent = 'Waiting for connection…';
+    text.style.color = '';
+    core.style.background = '';
+    core.style.boxShadow  = '';
+  }
+
+  window.addEventListener('online',  setOnline);
+  window.addEventListener('offline', setOffline);
+
+  // Ping the server periodically to catch reconnection when the browser
+  // online event is slow to fire (happens on mobile networks)
+  let pingTimer = setInterval(async () => {
+    try {
+      const res = await fetch('/offline.html', { method: 'HEAD', cache: 'no-store' });
+      if (res.ok && navigator.onLine) { clearInterval(pingTimer); setOnline(); }
+    } catch (_) {}
+  }, 5000);
+
+  function tryReload() {
+    const btn = document.querySelector('.btn-primary');
+    btn.textContent = 'Checking…';
+    btn.disabled = true;
+    fetch('/', { method: 'HEAD', cache: 'no-store' })
+      .then(r => { if (r.ok) window.location.href = '/'; else throw new Error(); })
+      .catch(() => {
+        btn.innerHTML = `<span style="color:#ff9500;">Still offline — try again</span>`;
+        btn.disabled = false;
+        setTimeout(() => {
+          btn.innerHTML = `↺ Try Again`;
+        }, 3000);
+      });
+  }
+</script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

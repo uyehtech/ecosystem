@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - UYEH TECH</title>
+    <meta name="description" content="UYEH TECH Terms of Service - Terms and conditions for using our website and services.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+            <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>  
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #d1d5db;
+            line-height: 1.8;
+            padding-top: 100px;
+        }
+
+        .terms-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .terms-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .last-updated {
+            color: #00ff88;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-top: 20px;
+            color: #d1d5db;
+        }
+
+        .toc {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+        }
+
+        .toc h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 12px;
+        }
+
+        .toc a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toc a:hover {
+            color: #00ff88;
+            transform: translateX(5px);
+        }
+
+        .toc a::before {
+            content: '→';
+            color: #00ff88;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(0, 255, 136, 0.03);
+            border-left: 4px solid #00ff88;
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #00ff88;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #00ff88;
+            font-size: 1.3em;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box strong {
+            color: #00ff88;
+        }
+
+        .warning-box {
+            background: rgba(255, 136, 0, 0.1);
+            border: 1px solid rgba(255, 136, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box strong {
+            color: #ff8800;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-box h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #00b359, #00ff88);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 30px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .terms-container {
+                padding: 40px 20px 80px;
+            }
+
+            .terms-header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: November 21, 2025</p>
+            <p class="intro-text">
+                Welcome to UYEH TECH. By accessing or using our website and services, you agree to be bound by these Terms of Service. Please read them carefully.
+            </p>
+        </div>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                <li><a href="#services">2. Services Description</a></li>
+                <li><a href="#user-obligations">3. User Obligations</a></li>
+                <li><a href="#intellectual-property">4. Intellectual Property Rights</a></li>
+                <li><a href="#payment">5. Payment Terms</a></li>
+                <li><a href="#warranties">6. Warranties and Disclaimers</a></li>
+                <li><a href="#limitation">7. Limitation of Liability</a></li>
+                <li><a href="#termination">8. Termination</a></li>
+                <li><a href="#governing-law">9. Governing Law</a></li>
+                <li><a href="#changes">10. Changes to Terms</a></li>
+                <li><a href="#contact">11. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <div class="section" id="acceptance">
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing, browsing, or using UYEH TECH's website (uyehdata.com.ng) or services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our Privacy Policy.</p>
+            
+            <div class="highlight-box">
+                <strong>Agreement:</strong> If you do not agree to these terms, you must not use our website or services.
+            </div>
+
+            <h3>1.1 Eligibility</h3>
+            <p>You must be at least 18 years old to use our services. By using our services, you represent and warrant that you meet this age requirement.</p>
+
+            <h3>1.2 Business Use</h3>
+            <p>Our services are intended for business and professional use. If you are using our services on behalf of a company or organization, you represent that you have the authority to bind that entity to these terms.</p>
+        </div>
+
+        <div class="section" id="services">
+            <h2>2. Services Description</h2>
+            <p>UYEH TECH provides web development, mobile app development, UI/UX design, and related digital services.</p>
+
+            <h3>2.1 Services Offered</h3>
+            <ul>
+                <li>Custom web development and design</li>
+                <li>Mobile application development (iOS and Android)</li>
+                <li>UI/UX design and prototyping</li>
+                <li>E-commerce solutions</li>
+                <li>Website maintenance and support</li>
+                <li>SEO and digital marketing services</li>
+                <li>Consultation and technical advisory</li>
+            </ul>
+
+            <h3>2.2 Service Modifications</h3>
+            <p>We reserve the right to modify, suspend, or discontinue any aspect of our services at any time without prior notice.</p>
+        </div>
+
+        <div class="section" id="user-obligations">
+            <h2>3. User Obligations</h2>
+            
+            <h3>3.1 Acceptable Use</h3>
+            <p>You agree to use our website and services only for lawful purposes. You must not:</p>
+            <ul>
+                <li>Violate any applicable laws or regulations</li>
+                <li>Infringe on intellectual property rights</li>
+                <li>Transmit harmful code, viruses, or malware</li>
+                <li>Attempt unauthorized access to our systems</li>
+                <li>Engage in any fraudulent activities</li>
+                <li>Harass, abuse, or harm others</li>
+                <li>Interfere with the normal functioning of our services</li>
+            </ul>
+
+            <h3>3.2 Account Security</h3>
+            <p>If you create an account with us, you are responsible for:</p>
+            <ul>
+                <li>Maintaining the confidentiality of your account credentials</li>
+                <li>All activities that occur under your account</li>
+                <li>Notifying us immediately of any unauthorized use</li>
+            </ul>
+
+            <h3>3.3 Content Submission</h3>
+            <p>When you provide content to us (text, images, designs, etc.), you represent that:</p>
+            <ul>
+                <li>You own or have rights to use the content</li>
+                <li>The content does not violate any third-party rights</li>
+                <li>The content is accurate and not misleading</li>
+            </ul>
+        </div>
+
+        <div class="section" id="intellectual-property">
+            <h2>4. Intellectual Property Rights</h2>
+
+            <h3>4.1 Our Property</h3>
+            <p>All content on our website, including but not limited to:</p>
+            <ul>
+                <li>Text, graphics, logos, and images</li>
+                <li>Software and code</li>
+                <li>Design elements and layout</li>
+                <li>Trademarks and brand elements</li>
+            </ul>
+            <p>...are the property of UYEH TECH and are protected by copyright, trademark, and other intellectual property laws.</p>
+
+            <h3>4.2 Client Work</h3>
+            <p>For custom development projects:</p>
+            
+            <div class="highlight-box">
+                <strong>Upon Full Payment:</strong>
+                <ul>
+                    <li>Clients receive full ownership of deliverables created specifically for them</li>
+                    <li>Source code and design files will be transferred</li>
+                    <li>We retain the right to showcase the work in our portfolio (unless otherwise agreed)</li>
+                </ul>
+            </div>
+
+            <h3>4.3 Reusable Components</h3>
+            <p>UYEH TECH retains ownership of:</p>
+            <ul>
+                <li>Pre-existing tools and frameworks</li>
+                <li>Reusable code libraries and components</li>
+                <li>General methodologies and processes</li>
+            </ul>
+
+            <h3>4.4 License</h3>
+            <p>We grant you a limited, non-exclusive, non-transferable license to access and use our website for its intended purpose.</p>
+        </div>
+
+        <div class="section" id="payment">
+            <h2>5. Payment Terms</h2>
+
+            <h3>5.1 Pricing</h3>
+            <p>Prices for our services are:</p>
+            <ul>
+                <li>Quoted on a project-by-project basis</li>
+                <li>Subject to change without notice</li>
+                <li>Specified in the project agreement or quote</li>
+            </ul>
+
+            <h3>5.2 Payment Schedule</h3>
+            <p>Unless otherwise agreed in writing:</p>
+            <ul>
+                <li><strong>Deposit:</strong> 50% upfront payment required to begin work</li>
+                <li><strong>Milestones:</strong> Payments due at agreed project milestones</li>
+                <li><strong>Final Payment:</strong> Due upon project completion and before delivery</li>
+            </ul>
+
+            <h3>5.3 Payment Methods</h3>
+            <p>We accept payment via:</p>
+            <ul>
+                <li>Bank transfer</li>
+                <li>Online payment platforms</li>
+                <li>Other methods as mutually agreed</li>
+            </ul>
+
+            <h3>5.4 Late Payments</h3>
+            <div class="warning-box">
+                <strong>Important:</strong> Late payments may result in:
+                <ul>
+                    <li>Suspension of work</li>
+                    <li>Late fees (as specified in the agreement)</li>
+                    <li>Withholding of deliverables</li>
+                    <li>Termination of services</li>
+                </ul>
+            </div>
+
+            <h3>5.5 Refund Policy</h3>
+            <p>Refunds are handled on a case-by-case basis:</p>
+            <ul>
+                <li>Initial deposits are generally non-refundable</li>
+                <li>Partial refunds may be available for work not yet completed</li>
+                <li>Specific refund terms will be outlined in project agreements</li>
+            </ul>
+        </div>
+
+        <div class="section" id="warranties">
+            <h2>6. Warranties and Disclaimers</h2>
+
+            <h3>6.1 Service Warranty</h3>
+            <p>We warrant that our services will be performed:</p>
+            <ul>
+                <li>In a professional and workmanlike manner</li>
+                <li>In accordance with industry standards</li>
+                <li>As specified in the project agreement</li>
+            </ul>
+
+            <h3>6.2 Website Disclaimer</h3>
+            <div class="warning-box">
+                <strong>Disclaimer:</strong> Our website and services are provided "as is" without warranties of any kind, either express or implied, including but not limited to:
+                <ul>
+                    <li>Merchantability</li>
+                    <li>Fitness for a particular purpose</li>
+                    <li>Non-infringement</li>
+                    <li>Uninterrupted or error-free operation</li>
+                </ul>
+            </div>
+
+            <h3>6.3 Third-Party Services</h3>
+            <p>We may use or recommend third-party services (hosting, plugins, APIs). We are not responsible for the performance or availability of such services.</p>
+
+            <h3>6.4 Results Disclaimer</h3>
+            <p>While we strive for excellence, we cannot guarantee:</p>
+            <ul>
+                <li>Specific business results or outcomes</li>
+                <li>Search engine rankings</li>
+                <li>Traffic or conversion rates</li>
+                <li>Compatibility with all future technologies</li>
+            </ul>
+        </div>
+
+        <div class="section" id="limitation">
+            <h2>7. Limitation of Liability</h2>
+
+            <h3>7.1 Maximum Liability</h3>
+            <p>To the fullest extent permitted by law, UYEH TECH's total liability for any claims arising from our services shall not exceed the amount paid by you for the specific service giving rise to the claim.</p>
+
+            <h3>7.2 Excluded Damages</h3>
+            <p>We shall not be liable for:</p>
+            <ul>
+                <li>Indirect, incidental, or consequential damages</li>
+                <li>Loss of profits, data, or business opportunities</li>
+                <li>Damages resulting from third-party services</li>
+                <li>Unauthorized access to your systems or data</li>
+            </ul>
+
+            <h3>7.3 Force Majeure</h3>
+            <p>We are not liable for delays or failures caused by circumstances beyond our reasonable control, including:</p>
+            <ul>
+                <li>Natural disasters</li>
+                <li>Internet service failures</li>
+                <li>Government actions</li>
+                <li>Labor disputes</li>
+            </ul>
+        </div>
+
+        <div class="section" id="termination">
+            <h2>8. Termination</h2>
+
+            <h3>8.1 Termination by You</h3>
+            <p>You may terminate services by providing written notice. Refunds will be handled according to the project agreement and work completed.</p>
+
+            <h3>8.2 Termination by Us</h3>
+            <p>We reserve the right to terminate services if:</p>
+            <ul>
+                <li>You breach these Terms of Service</li>
+                <li>Payment is not received as agreed</li>
+                <li>You engage in abusive or inappropriate behavior</li>
+                <li>Continued service is not feasible</li>
+            </ul>
+
+            <h3>8.3 Effect of Termination</h3>
+            <p>Upon termination:</p>
+            <ul>
+                <li>All outstanding payments become immediately due</li>
+                <li>We may withhold deliverables until payment is received</li>
+                <li>Certain provisions of these terms will survive termination</li>
+            </ul>
+        </div>
+
+        <div class="section" id="governing-law">
+            <h2>9. Governing Law and Dispute Resolution</h2>
+
+            <h3>9.1 Governing Law</h3>
+            <p>These Terms of Service shall be governed by and construed in accordance with the laws of Nigeria.</p>
+
+            <h3>9.2 Dispute Resolution</h3>
+            <p>In the event of any dispute:</p>
+            <ol>
+                <li>Parties agree to first attempt resolution through good faith negotiation</li>
+                <li>If negotiation fails, mediation will be attempted</li>
+                <li>Only after exhausting the above may parties pursue legal action</li>
+            </ol>
+
+            <h3>9.3 Jurisdiction</h3>
+            <p>Any legal proceedings shall be brought in the courts of Nigeria, and you consent to the jurisdiction of such courts.</p>
+        </div>
+
+        <div class="section" id="changes">
+            <h2>10. Changes to These Terms</h2>
+            <p>We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately upon posting to our website.</p>
+
+            <div class="highlight-box">
+                <strong>Your Responsibility:</strong> It is your responsibility to review these terms periodically. Continued use of our services after changes constitutes acceptance of the modified terms.
+            </div>
+
+            <p>For significant changes, we will make reasonable efforts to notify active clients via email.</p>
+        </div>
+
+        <div class="section" id="contact">
+            <h2>11. Contact Information</h2>
+            <p>For questions, concerns, or disputes regarding these Terms of Service, please contact us:</p>
+            
+            <div class="highlight-box">
+                <p><strong>UYEH TECH</strong></p>
+                <p>📧 Email: <a href="mailto:Uyehtech@gmail.com" style="color: #00ff88; text-decoration:none;">Uyehtech@gmail.com</a></p>
+                <p>📱 Phone: <a href="tel:+2349055658460" style="color: #00ff88; text-decoration:none;">+234 905 565 8460</a></p>
+                <p>📍 Location: Nigeria</p>
+            </div>
+
+            <p style="margin-top: 20px;"><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM (WAT)</p>
+            <p>We will respond to all inquiries within 48 business hours.</p>
+        </div>
+
+        <div class="contact-box">
+            <h3>Need Clarification?</h3>
+            <p>If you have questions about these terms or need to discuss a custom agreement, we're happy to help!</p>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

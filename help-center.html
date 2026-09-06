@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UYEH TECH - Support Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+              <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section - Immediate Clarity */
+        .hero-section {
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(0, 255, 136, 0.1) 0%, transparent 70%);
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #00ff88;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #b3b3b3;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Predictive Search */
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-wrapper {
+            position: relative;
+            background: rgba(17, 255, 136, 0.05);
+            border: 2px solid rgba(17, 255, 136, 0.3);
+            border-radius: 50px;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-wrapper:focus-within {
+            border-color: #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 4rem 1.2rem 3rem;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #666;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff88;
+            font-size: 1.5rem;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #00ff88;
+            color: #0a0a0a;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #11ff88;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Search Suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 15px;
+            margin-top: 0.5rem;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .search-suggestions.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .suggestion-item:hover {
+            background: rgba(0, 255, 136, 0.1);
+            padding-left: 2rem;
+        }
+
+        .suggestion-icon {
+            color: #00ff88;
+            font-size: 1.2rem;
+        }
+
+        .suggestion-text {
+            flex: 1;
+        }
+
+        .suggestion-category {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* Quick Access Chips */
+        .quick-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .chip {
+            background: rgba(17, 255, 136, 0.1);
+            border: 1px solid rgba(17, 255, 136, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chip:hover {
+            background: #00ff88;
+            color: #0a0a0a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .chip-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Live Status Trust Bar */
+        .status-bar {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00ff88;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-services {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .service-status {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .status-pulse {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff88;
+            box-shadow: 0 0 10px #00ff88;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-pulse.warning {
+            background: #ffaa00;
+            box-shadow: 0 0 10px #ffaa00;
+        }
+
+        .status-pulse.error {
+            background: #ff3333;
+            box-shadow: 0 0 10px #ff3333;
+        }
+
+        .service-name {
+            font-size: 0.95rem;
+            color: #b3b3b3;
+        }
+
+        .status-link {
+            color: #00ff88;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .status-link:hover {
+            color: #11ff88;
+            text-decoration: underline;
+        }
+
+        /* Three Pillar Knowledge Architecture */
+        .knowledge-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #00ff88;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: #b3b3b3;
+            font-size: 1.1rem;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .pillar-card {
+            background: linear-gradient(135deg, rgba(17, 255, 136, 0.05) 0%, rgba(10, 10, 10, 0.8) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ff88, #11ff88);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+
+        .pillar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #00ff88;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-description {
+            color: #b3b3b3;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .pillar-link {
+            color: #00ff88;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-link:hover {
+            padding-left: 0.5rem;
+            color: #11ff88;
+        }
+
+        .pillar-link::before {
+            content: '→';
+        }
+
+        .pillar-cta {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-cta:hover {
+            background: #11ff88;
+            transform: scale(1.05);
+        }
+
+        /* Contact Support CTA */
+        .support-cta {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 2px solid #00ff88;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 4rem auto;
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-description {
+            color: #b3b3b3;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #00ff88;
+            color: #0a0a0a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #11ff88;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .search-input {
+                padding: 1rem 3.5rem 1rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .search-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Predictive Search -->
+    <section class="hero-section">
+        <h1 class="hero-title">Support Center</h1>
+        <p class="hero-subtitle">Find answers instantly or connect with our expert team</p>
+
+        <!-- Predictive Search -->
+        <div class="search-container">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    id="supportSearch"
+                    placeholder="Search for help articles, guides, or documentation..."
+                    autocomplete="off"
+                >
+                <button class="search-btn">Search</button>
+            </div>
+            
+            <!-- Search Suggestions -->
+            <div class="search-suggestions" id="searchSuggestions">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+
+        <!-- Quick Access Chips -->
+        <div class="quick-chips">
+            <a href="#" class="chip">
+                <span class="chip-icon">💳</span>
+                Billing
+            </a>
+            <a href="#" class="chip">
+                <span class="chip-icon">🚀</span>
+                Deployment
+            </a>
+            <a href="#" class="chip">
+                <span class="chip-icon">🔒</span>
+                Access Denied
+            </a>
+            <a href="#" class="chip">
+                <span class="chip-icon">⚡</span>
+                Performance
+            </a>
+            <a href="#" class="chip">
+                <span class="chip-icon">🛠️</span>
+                API Integration
+            </a>
+            <a href="#" class="chip">
+                <span class="chip-icon">📱</span>
+                Mobile App
+            </a>
+        </div>
+    </section>
+
+    <!-- Live Status Trust Bar -->
+    <div class="container">
+        <div class="status-bar">
+            <div class="status-title">
+                <span>⚡</span>
+                System Status
+            </div>
+            <div class="status-services">
+                <div class="service-status">
+                    <span class="status-pulse"></span>
+                    <span class="service-name">Web Hosting</span>
+                </div>
+                <div class="service-status">
+                    <span class="status-pulse"></span>
+                    <span class="service-name">API Services</span>
+                </div>
+                <div class="service-status">
+                    <span class="status-pulse"></span>
+                    <span class="service-name">Custom Projects</span>
+                </div>
+                <div class="service-status">
+                    <span class="status-pulse"></span>
+                    <span class="service-name">CDN Network</span>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- Three Pillar Knowledge Architecture -->
+    <section class="knowledge-section">
+        <div class="section-header">
+            <h2 class="section-title">How Can We Help You?</h2>
+            <p class="section-description">Choose the resource that best fits your needs</p>
+        </div>
+
+        <div class="pillars-grid">
+            <!-- Pillar 1: The Academy -->
+            <div class="pillar-card">
+                <div class="pillar-icon">📚</div>
+                <h3 class="pillar-title">The Academy</h3>
+                <p class="pillar-description">
+                    Comprehensive guides and manuals on how to use your custom digital experiences. From setup to advanced features.
+                </p>
+                <ul class="pillar-links">
+                    <li><a href="#" class="pillar-link">Getting Started Guide</a></li>
+                    <li><a href="#" class="pillar-link">Web Development Tutorials</a></li>
+                    <li><a href="#" class="pillar-link">UI/UX Design Principles</a></li>
+                    <li><a href="#" class="pillar-link">API Documentation</a></li>
+                    <li><a href="#" class="pillar-link">Video Walkthroughs</a></li>
+                </ul>
+                <a href="#" class="pillar-cta">Explore Academy</a>
+            </div>
+
+            <!-- Pillar 2: The Troubleshooting Vault -->
+            <div class="pillar-card">
+                <div class="pillar-icon">🔧</div>
+                <h3 class="pillar-title">Troubleshooting Vault</h3>
+                <p class="pillar-description">
+                    Quick answers to common questions. Find solutions to "How do I...?" challenges in seconds.
+                </p>
+                <ul class="pillar-links">
+                    <li><a href="#" class="pillar-link">Login & Access Issues</a></li>
+                    <li><a href="#" class="pillar-link">Billing & Payments</a></li>
+                    <li><a href="#" class="pillar-link">Deployment Problems</a></li>
+                    <li><a href="#" class="pillar-link">Performance Optimization</a></li>
+                    <li><a href="#" class="pillar-link">Integration Errors</a></li>
+                </ul>
+                <a href="#" class="pillar-cta">Browse FAQs</a>
+            </div>
+
+            <!-- Pillar 3: The Legal Hub -->
+            <div class="pillar-card">
+                <div class="pillar-icon">⚖️</div>
+                <h3 class="pillar-title">The Legal Hub</h3>
+                <p class="pillar-description">
+                    Transparent Service Level Agreements and legal documentation. Know exactly what to expect from our partnership.
+                </p>
+                <ul class="pillar-links">
+                    <li><a href="service-legal-agreement.html" class="pillar-link">Service Level Agreement (SLA)</a></li>
+                    <li><a href="#" class="pillar-link">Privacy Policy</a></li>
+                    <li><a href="#" class="pillar-link">Terms of Service</a></li>
+                    <li><a href="#" class="pillar-link">Data Processing Agreement</a></li>
+                    <li><a href="#" class="pillar-link">Compliance Certifications</a></li>
+                </ul>
+                <a href="service-legal-agreement.html" class="pillar-cta">View Legal Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Support CTA -->
+    <div class="container">
+        <div class="support-cta">
+            <h2 class="cta-title">Can't Find What You're Looking For?</h2>
+            <p class="cta-description">
+                Our expert support team is ready to help. Submit a request and we'll get back to you within hours.
+            </p>
+            <a href="/contact" class="cta-button">Submit Support Request</a>
+        </div>
+    </div>
+
+    <script>
+        // ========================================
+        // PREDICTIVE SEARCH FUNCTIONALITY
+        // ========================================
+
+        const searchInput = document.getElementById('supportSearch');
+        const searchSuggestions = document.getElementById('searchSuggestions');
+
+        // Sample knowledge base data
+        const knowledgeBase = [
+            { title: 'How to reset my password', category: 'Account', icon: '🔑' },
+            { title: 'Billing and payment methods', category: 'Billing', icon: '💳' },
+            { title: 'Deployment checklist', category: 'Technical', icon: '🚀' },
+            { title: 'API authentication guide', category: 'Technical', icon: '🔒' },
+            { title: 'Understanding your SLA', category: 'Legal', icon: '⚖️' },
+            { title: 'Website performance optimization', category: 'Performance', icon: '⚡' },
+            { title: 'Custom domain setup', category: 'Technical', icon: '🌐' },
+            { title: 'Email support response times', category: 'Support', icon: '📧' },
+            { title: 'Refund and cancellation policy', category: 'Billing', icon: '💰' },
+            { title: 'SSL certificate installation', category: 'Technical', icon: '🔐' },
+            { title: 'Mobile app troubleshooting', category: 'Technical', icon: '📱' },
+            { title: 'Privacy policy overview', category: 'Legal', icon: '🛡️' },
+            { title: 'Database backup procedures', category: 'Technical', icon: '💾' },
+            { title: 'Team collaboration features', category: 'Features', icon: '👥' },
+            { title: 'Upgrading your plan', category: 'Billing', icon: '⬆️' }
+        ];
+
+        // Search functionality
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchSuggestions.classList.remove('active');
+                return;
+            }
+
+            // Filter results
+            const results = knowledgeBase.filter(item => 
+                item.title.toLowerCase().includes(query) ||
+                item.category.toLowerCase().includes(query)
+            ).slice(0, 5);
+
+            // Display suggestions
+            if (results.length > 0) {
+                searchSuggestions.innerHTML = results.map(item => `
+                    <div class="suggestion-item" data-title="${item.title}">
+                        <span class="suggestion-icon">${item.icon}</span>
+                        <div class="suggestion-text">
+                            <div>${item.title}</div>
+                            <div class="suggestion-category">${item.category}</div>
+                        </div>
+                    </div>
+                `).join('');
+                searchSuggestions.classList.add('active');
+
+                // Add click handlers
+                document.querySelectorAll('.suggestion-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        searchInput.value = this.dataset.title;
+                        searchSuggestions.classList.remove('active');
+                        // Here you would navigate to the article
+                        alert('Navigating to: ' + this.dataset.title);
+                    });
+                });
+            } else {
+                searchSuggestions.innerHTML = `
+                    <div class="suggestion-item">
+                        <span class="suggestion-icon">❌</span>
+                        <div class="suggestion-text">
+                            <div>No results found</div>
+                            <div class="suggestion-category">Try different keywords</div>
+                        </div>
+                    </div>
+                `;
+                searchSuggestions.classList.add('active');
+            }
+        });
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                searchSuggestions.classList.remove('active');
+            }
+        });
+
+        // ========================================
+        // QUICK CHIP TRACKING
+        // ========================================
+        document.querySelectorAll('.chip').forEach(chip => {
+            chip.addEventListener('click', function(e) {
+                e.preventDefault();
+                const topic = this.textContent.trim();
+                console.log('Quick access clicked:', topic);
+                // Here you would filter content or navigate
+                alert('Showing results for: ' + topic);
+            });
+        });
+
+        console.log('🎯 UYEH TECH Support Center initialized');
+</script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

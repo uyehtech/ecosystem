@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product detail — UYEH TECH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta property="og:type" content="website">
+  <meta property="og:url" content="https://uyehtech.com/marketplace/">
+  <meta property="og:title" content="UYEH TECH Marketplace — Premium Digital Products">
+  <meta property="og:description" content="Browse premium digital products from verified creators. Templates, courses, components, and more.">
+  <meta property="og:image" content="uyehtech.com/images/uyehtech-logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UYEH TECH Marketplace">
+  <meta name="twitter:description" content="Premium digital products from verified creators.">
+  <meta name="twitter:image" content="/images/uyehtech-logo.jpg">
+  <link rel="canonical" href="https://uyehtech.com/marketplace/">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="UYEH TECH">
+  <meta name="theme-color" content="#00ff88">
+          <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+     <style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --g:#00ff88;--g2:#00cc6a;--g3:rgba(0,255,136,.08);--g4:rgba(0,255,136,.14);
+  --bg:#07090a;--bg2:#0b0e0c;--bg3:#111510;--card:#0e1210;--card2:#131a14;
+  --line:rgba(255,255,255,.06);--line2:rgba(255,255,255,.1);--line3:rgba(0,255,136,.2);
+  --t1:#edf2ee;--t2:#9aab9e;--t3:#556059;
+  --red:#ff4d6d;--amber:#f5a623;--blue:#60a5fa;--purple:#a78bfa;--teal:#2dd4bf;
+  --sidebar:300px;--hdr:58px;
+}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,255,136,.12);border-radius:2px}
+
+/* ── TOP BAR ─────────────────────────────────────────── */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--hdr);background:rgba(7,9,10,.95);
+  backdrop-filter:blur(20px);border-bottom:1px solid var(--line);z-index:200;
+  display:flex;align-items:center;padding:0 20px;gap:14px}
+.tb-back{display:flex;align-items:center;gap:7px;color:var(--t2);text-decoration:none;
+  font-size:.82rem;font-weight:500;transition:color .15s;padding:6px 10px;
+  border-radius:8px;border:1px solid transparent}
+.tb-back:hover{color:var(--g);border-color:var(--line3)}
+.tb-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  color:var(--t1);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+/* ── LAYOUT ──────────────────────────────────────────── */
+.layout{display:flex;min-height:100vh;padding-top:var(--hdr)}
+.sidebar{width:var(--sidebar);flex-shrink:0;position:sticky;top:var(--hdr);
+  height:calc(100vh - var(--hdr));overflow-y:auto;border-right:1px solid var(--line);
+  background:var(--bg2);display:flex;flex-direction:column}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+
+/* ── PLAYER ZONE ─────────────────────────────────────── */
+.player-zone{background:#000;position:relative;width:100%}
+.player-zone video,
+.player-zone iframe{display:block;width:100%}
+.player-zone video{aspect-ratio:16/9}
+.player-zone iframe{border:none}
+.player-empty{aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:12px;background:var(--bg2);color:var(--t3)}
+.player-empty .pe-icon{font-size:3rem;color:var(--g);opacity:.35}
+.player-loading{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:#000}
+.spin{width:32px;height:32px;border:3px solid rgba(0,255,136,.15);
+  border-top-color:var(--g);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.player-error{position:absolute;inset:0;background:rgba(0,0,0,.85);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  color:var(--red);font-size:.85rem;text-align:center;padding:20px}
+.player-error button{margin-top:6px;padding:8px 18px;background:var(--g);color:#000;
+  border:none;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif}
+
+/* ── AUDIO PLAYER CARD ───────────────────────────────── */
+.audio-card{background:linear-gradient(135deg,var(--card),var(--card2));
+  border-bottom:1px solid var(--line);padding:28px 24px}
+.audio-card-inner{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.audio-art{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,rgba(167,139,250,.2),rgba(0,255,136,.1));
+  border:1px solid var(--line3);display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;flex-shrink:0}
+.audio-info{flex:1;min-width:0}
+.audio-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t1);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audio-artist{font-size:.78rem;color:var(--t3);margin-top:3px}
+audio{width:100%;border-radius:10px;accent-color:var(--g)}
+audio::-webkit-media-controls-panel{background:var(--bg3)}
+
+/* ── VIDEO PRODUCT PLAYER ────────────────────────────── */
+.video-meta-bar{display:flex;align-items:center;gap:10px;padding:12px 20px;
+  background:var(--card);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.vmd-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;
+  border-radius:20px;font-size:.68rem;font-weight:600;font-family:'DM Mono',monospace;
+  background:rgba(255,255,255,.05);border:1px solid var(--line2);color:var(--t2)}
+
+/* ── INFO BAR ────────────────────────────────────────── */
+.info-bar{padding:18px 24px;border-bottom:1px solid var(--line)}
+.info-bar-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.info-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;flex:1;line-height:1.3}
+.info-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;
+  font-size:.68rem;font-weight:600;font-family:'DM Mono',monospace;letter-spacing:.3px}
+.badge-course {background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.22);color:var(--amber)}
+.badge-video  {background:rgba(255,77,109,.1);border:1px solid rgba(255,77,109,.22);color:var(--red)}
+.badge-audio  {background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.22);color:var(--purple)}
+.badge-soft   {background:rgba(96,165,250,.1); border:1px solid rgba(96,165,250,.22); color:var(--blue)}
+.badge-ebook  {background:rgba(45,212,191,.1); border:1px solid rgba(45,212,191,.22); color:var(--teal)}
+.badge-file   {background:rgba(0,255,136,.07); border:1px solid rgba(0,255,136,.18);  color:var(--g)}
+
+/* ── PROGRESS ────────────────────────────────────────── */
+.prog-wrap{margin-bottom:14px}
+.prog-hdr{display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:6px;font-size:.78rem}
+.prog-label{color:var(--t2);font-weight:500}
+.prog-pct{font-family:'DM Mono',monospace;color:var(--g);font-weight:600}
+.prog-bar{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--g2),var(--g));
+  border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+/* ── PROGRESS STATS ROW ──────────────────────────────── */
+.prog-stats{display:flex;gap:20px;margin-top:10px;flex-wrap:wrap}
+.ps-item{display:flex;flex-direction:column;gap:1px}
+.ps-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px}
+.ps-val{font-size:.82rem;font-weight:600;color:var(--t2)}
+
+/* ── TABS ────────────────────────────────────────────── */
+.tabs-row{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;
+  scrollbar-width:none;flex-shrink:0}
+.tabs-row::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:.82rem;font-weight:600;color:var(--t3);
+  cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;
+  transition:all .15s;background:none;border-left:none;border-right:none;border-top:none;
+  font-family:'Outfit',sans-serif}
+.tab:hover{color:var(--t2)}
+.tab.active{color:var(--g);border-bottom-color:var(--g)}
+.tab-panel{display:none;padding:24px}
+.tab-panel.active{display:block}
+
+/* ── INFO GRID ───────────────────────────────────────── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.info-tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.it-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px}
+.it-value{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--t1);line-height:1.2}
+.it-sub{font-size:.72rem;color:var(--t3);margin-top:2px}
+.desc-block{font-size:.87rem;color:var(--t2);line-height:1.75;
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+
+/* ── SECTION HEADERS (overview) ─────────────────────── */
+.ov-section-title{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+
+/* ── WHAT YOU'LL LEARN ───────────────────────────────── */
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+@media(max-width:600px){.learn-grid{grid-template-columns:1fr}}
+.learn-item{display:flex;align-items:flex-start;gap:8px;background:var(--card);
+  border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.82rem;color:var(--t2);line-height:1.4}
+.learn-icon{color:var(--g);flex-shrink:0;margin-top:1px;font-size:.75rem}
+
+/* ── FAQ ─────────────────────────────────────────────── */
+.faq-item{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:8px}
+.faq-q{padding:13px 16px;font-size:.85rem;font-weight:600;color:var(--t1);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  background:var(--card);transition:background .15s;gap:12px}
+.faq-q:hover{background:var(--card2)}
+.faq-chevron{font-size:.65rem;color:var(--t3);transition:transform .2s;flex-shrink:0}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;background:var(--bg3)}
+.faq-a.open{max-height:400px}
+.faq-a-inner{padding:12px 16px;font-size:.83rem;color:var(--t2);line-height:1.7}
+
+/* ── LICENSE & REFUND ────────────────────────────────── */
+.policy-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.policy-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+.policy-body{font-size:.83rem;color:var(--t2);line-height:1.65}
+
+/* ── RECEIPT ─────────────────────────────────────────── */
+.receipt{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.receipt-row{display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;border-bottom:1px solid var(--line);font-size:.83rem}
+.receipt-row:last-child{border-bottom:none}
+.rr-label{color:var(--t3)}
+.rr-value{color:var(--t1);font-weight:500;text-align:right;font-family:'DM Mono',monospace;font-size:.8rem}
+
+/* ── CERTIFICATE ─────────────────────────────────────── */
+.cert-card{background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,204,106,.03));
+  border:1px solid var(--line3);border-radius:16px;padding:24px;text-align:center}
+.cert-icon{font-size:3rem;margin-bottom:12px}
+.cert-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+  color:var(--g);margin-bottom:6px}
+.cert-sub{font-size:.82rem;color:var(--t2);margin-bottom:18px}
+
+/* ── CERT ID BADGE ───────────────────────────────────── */
+.cert-id-row{display:flex;align-items:center;gap:8px;background:var(--bg3);
+  border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:12px}
+.cert-id-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t3);white-space:nowrap}
+.cert-id-val{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--g);
+  flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── SIDEBAR ─────────────────────────────────────────── */
+.sb-hdr{padding:16px 18px;border-bottom:1px solid var(--line);
+  font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:2px;display:flex;align-items:center;
+  justify-content:space-between}
+.sb-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  border-bottom:1px solid var(--line)}
+.sb-stat{background:var(--bg2);padding:12px 16px}
+.sb-stat-label{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.sb-stat-val{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t1)}
+
+/* ── CHAPTER LIST ────────────────────────────────────── */
+.chapter-list{flex:1;overflow-y:auto;padding:8px}
+.ch-section{border-radius:8px;overflow:hidden;margin-bottom:4px}
+.sec-toggle-hdr{display:flex;align-items:center;gap:8px;padding:10px;
+  cursor:pointer;border-radius:8px;transition:background .15s}
+.sec-toggle-hdr:hover{background:rgba(255,255,255,.03)}
+.sec-hdr-num{width:20px;height:20px;background:var(--g3);border:1px solid var(--line3);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;color:var(--g);flex-shrink:0}
+.sec-chevron{font-size:.65rem;color:var(--t3);transition:transform .2s;margin-left:auto}
+.sec-body{overflow:hidden;max-height:0;transition:max-height .3s ease}
+.sec-body.open{max-height:2000px}
+.ch-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;
+  cursor:pointer;transition:all .15s;position:relative;margin-bottom:2px}
+.ch-item:hover{background:rgba(255,255,255,.04)}
+.ch-item.active{background:var(--g4);border:1px solid var(--line3)}
+.ch-item.done .ch-check{background:var(--g);color:#000}
+.ch-item.locked{cursor:default;opacity:.45}
+.ch-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;font-size:.6rem;
+  flex-shrink:0;transition:all .2s;color:transparent}
+.ch-item.active .ch-check{border-color:var(--g);color:var(--g)}
+.ch-item.done .ch-check{border-color:var(--g);background:var(--g);color:#000}
+.ch-info{flex:1;min-width:0}
+.ch-name{font-size:.82rem;font-weight:500;color:var(--t1);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.ch-item.active .ch-name{color:var(--g)}
+.ch-meta{display:flex;align-items:center;gap:6px}
+.ch-dur{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t3)}
+.ch-free{font-size:.6rem;padding:1px 6px;border-radius:8px;
+  background:rgba(0,255,136,.12);color:var(--g);font-weight:600}
+.ch-type{font-size:.6rem;padding:1px 6px;border-radius:8px;
+  background:rgba(255,255,255,.05);color:var(--t3)}
+/* Chapter type icons */
+.ch-type-icon{font-size:.7rem;flex-shrink:0;color:var(--t3)}
+
+/* ── SIDEBAR NON-COURSE ──────────────────────────────── */
+.sb-product-thumb{margin:16px;border-radius:12px;overflow:hidden;aspect-ratio:16/9;
+  background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:4rem}
+.sb-product-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.sb-info-block{padding:0 16px 16px}
+.sb-info-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  margin-bottom:8px;line-height:1.3}
+
+/* ── DOWNLOAD CARD ───────────────────────────────────── */
+.dl-card{padding:0 0 20px}
+.dl-expire{margin-top:10px;font-size:.75rem;color:var(--t3);font-family:'DM Mono',monospace;text-align:center}
+.dl-limit{margin-top:6px;font-size:.75rem;color:var(--t3);font-family:'DM Mono',monospace;text-align:center}
+
+/* ── LIC KEY ─────────────────────────────────────────── */
+.lic-box{display:flex;align-items:center;gap:8px;background:var(--bg3);
+  border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-top:8px}
+.lic-key{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--g);flex:1;
+  word-break:break-all;letter-spacing:.5px}
+.copy-btn{padding:5px 12px;background:var(--g3);border:1px solid var(--line3);
+  color:var(--g);border-radius:7px;cursor:pointer;font-size:.75rem;font-weight:600;
+  white-space:nowrap;transition:background .15s;font-family:'Outfit',sans-serif}
+.copy-btn:hover{background:var(--g4)}
+
+/* ── BUTTONS ─────────────────────────────────────────── */
+.btn{padding:9px 18px;border:none;border-radius:10px;font-weight:600;cursor:pointer;
+  font-family:'Outfit',sans-serif;font-size:.85rem;display:inline-flex;
+  align-items:center;gap:7px;transition:all .18s;text-decoration:none;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,var(--g2),var(--g));color:#000;font-weight:700}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 18px rgba(0,255,136,.3)}
+.btn-ghost{background:transparent;border:1px solid var(--line2);color:var(--t2)}
+.btn-ghost:hover{border-color:var(--line3);color:var(--g)}
+.btn-sm{padding:6px 13px;font-size:.78rem}
+.btn-cert{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);
+  color:var(--amber);width:100%;justify-content:center}
+.btn-cert:hover{background:rgba(245,166,35,.18)}
+.btn-review{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);
+  color:var(--purple);width:100%;justify-content:center}
+.btn-review:hover{background:rgba(167,139,250,.18)}
+
+/* ── TOAST ───────────────────────────────────────────── */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:9999;display:flex;
+  flex-direction:column;gap:8px}
+.toast{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;
+  font-size:.82rem;font-weight:500;max-width:320px;animation:toastin .25s ease;
+  backdrop-filter:blur(14px)}
+.t-success{background:rgba(0,255,136,.12);border:1px solid rgba(0,255,136,.25);color:var(--g)}
+.t-error  {background:rgba(255,77,109,.12);border:1px solid rgba(255,77,109,.25);color:var(--red)}
+.t-info   {background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(--t1)}
+@keyframes toastin{from{transform:translateX(20px);opacity:0}to{transform:none;opacity:1}}
+
+/* ── REVIEW MODAL ────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);z-index:500;display:flex;align-items:center;
+  justify-content:center;padding:20px}
+.modal{background:var(--bg2);border:1px solid var(--line2);border-radius:20px;
+  max-width:520px;width:100%;padding:32px;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.modal-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:20px}
+.star-row{display:flex;gap:6px;margin-bottom:16px}
+.star{font-size:1.6rem;cursor:pointer;transition:transform .1s;color:var(--t3)}
+.star.lit{color:var(--amber)}
+.star:hover{transform:scale(1.15)}
+.form-field{margin-bottom:14px}
+.form-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:block}
+.form-input,.form-textarea{width:100%;background:var(--bg3);border:1px solid var(--line2);
+  border-radius:10px;padding:10px 13px;color:var(--t1);font-family:'Outfit',sans-serif;
+  font-size:.85rem;resize:none;transition:border-color .15s;outline:none}
+.form-input:focus,.form-textarea:focus{border-color:var(--line3)}
+.form-textarea{min-height:100px}
+
+/* ── CERTIFICATE MODAL ───────────────────────────────── */
+.cert-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);
+  backdrop-filter:blur(10px);z-index:500;display:flex;align-items:center;
+  justify-content:center;padding:20px}
+.cert-modal{background:var(--bg2);border:1px solid var(--line3);border-radius:20px;
+  max-width:600px;width:100%;padding:40px;text-align:center;position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.cert-print{background:linear-gradient(135deg,#0a100c,#0c140e);border:2px solid var(--g);
+  border-radius:16px;padding:40px;margin:24px 0;position:relative;overflow:hidden}
+.cert-print::before{content:'';position:absolute;inset:8px;border:1px solid rgba(0,255,136,.15);
+  border-radius:10px;pointer-events:none}
+.cert-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Syne',sans-serif;font-size:6rem;font-weight:900;color:rgba(0,255,136,.04);
+  white-space:nowrap;pointer-events:none;letter-spacing:-3px}
+.cert-brand{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--g);
+  text-transform:uppercase;letter-spacing:3px;margin-bottom:20px}
+.cert-presented{font-size:.82rem;color:var(--t3);margin-bottom:6px}
+.cert-name{font-family:'Syne',sans-serif;font-weight:800;font-size:2rem;
+  color:var(--t1);margin-bottom:16px;line-height:1.1}
+.cert-course-label{font-size:.75rem;color:var(--t3);margin-bottom:6px}
+.cert-course-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;
+  color:var(--g);margin-bottom:20px}
+.cert-date-row{display:flex;justify-content:center;gap:40px;margin-top:20px;
+  padding-top:20px;border-top:1px solid rgba(0,255,136,.12)}
+.cert-date-item{text-align:center}
+.cert-date-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--t3);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.cert-date-val{font-size:.82rem;color:var(--t1);font-weight:500}
+
+/* ── NOTES / TRANSCRIPT ──────────────────────────────── */
+.notes-block{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px;font-size:.83rem;color:var(--t2);line-height:1.75;white-space:pre-wrap}
+.no-content{padding:40px;text-align:center;color:var(--t3);font-size:.85rem}
+
+/* ── WELCOME BANNER ──────────────────────────────────── */
+.welcome-banner{background:linear-gradient(135deg,rgba(0,255,136,.07),transparent);
+  border:1px solid var(--line3);border-radius:12px;padding:16px 20px;
+  margin-bottom:20px;font-size:.85rem;color:var(--t2);line-height:1.65;
+  display:flex;align-items:flex-start;gap:12px}
+.welcome-icon{font-size:1.2rem;flex-shrink:0;margin-top:1px}
+
+/* ── MOBILE ──────────────────────────────────────────── */
+@media(max-width:768px){
+  .sidebar{display:none;position:fixed;top:var(--hdr);left:0;height:calc(100vh - var(--hdr));
+    z-index:150;width:100%;transform:translateX(-100%);transition:transform .3s}
+  .sidebar.open{display:flex;transform:none}
+  .sb-overlay{position:fixed;inset:0;top:var(--hdr);background:rgba(0,0,0,.6);
+    z-index:140;display:none}
+  .sb-overlay.show{display:block}
+  .main{margin-left:0}
+  .tab-panel{padding:16px}
+  .info-grid{grid-template-columns:1fr 1fr}
+  .cert-modal{padding:24px}
+  .cert-print{padding:24px}
+  .cert-name{font-size:1.4rem}
+  .cert-date-row{gap:20px}
+  .learn-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="/marketplace/my-products" class="tb-back"><i class="fas fa-arrow-left"></i> Library</a>
+  <div class="tb-title" id="tbTitle">Loading…</div>
+  <div class="tb-actions" id="tbActions"></div>
+</div>
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+
+<!-- LAYOUT -->
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <div id="sidebarInner" style="display:flex;flex-direction:column;height:100%">
+      <div style="padding:40px;text-align:center;color:var(--t3);font-size:.85rem;flex:1;display:flex;align-items:center;justify-content:center">
+        <div><div class="spin" style="margin:0 auto 12px"></div>Loading…</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main" id="mainArea">
+    <div class="player-loading" id="playerZone"><div class="spin"></div></div>
+
+    <!-- INFO BAR -->
+    <div class="info-bar" id="infoBar" style="display:none">
+      <div class="info-bar-top">
+        <div class="info-title" id="infoTitle">—</div>
+        <div id="infoBadge"></div>
+      </div>
+      <div id="progressWrap" style="display:none">
+        <div class="prog-wrap">
+          <div class="prog-hdr">
+            <span class="prog-label">Your progress</span>
+            <span class="prog-pct" id="progPct">0%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+        </div>
+        <div class="prog-stats" id="progStats"></div>
+      </div>
+      <div class="info-meta" id="infoMeta"></div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-row" id="tabsRow" style="display:none">
+      <button class="tab active" data-tab="overview">Overview</button>
+      <button class="tab" data-tab="notes"       id="tabNotes"       style="display:none">📄 Chapter Notes</button>
+      <button class="tab" data-tab="transcript"  id="tabTranscript"  style="display:none">📝 Transcript</button>
+      <button class="tab" data-tab="mynotes"     id="tabMyNotes"     style="display:none">✏️ My Notes</button>
+      <button class="tab" data-tab="resources"   id="tabResources"   style="display:none">🔗 Resources</button>
+      <button class="tab" data-tab="receipt">Receipt</button>
+      <button class="tab" data-tab="certificate" id="tabCert"        style="display:none">🎓 Certificate</button>
+    </div>
+
+    <!-- TAB PANELS -->
+    <div id="tabPanels" style="display:none">
+      <div class="tab-panel active" id="panel-overview"></div>
+      <div class="tab-panel"        id="panel-notes"></div>
+      <div class="tab-panel"        id="panel-transcript"></div>
+      <div class="tab-panel"        id="panel-mynotes"></div>
+      <div class="tab-panel"        id="panel-resources"></div>
+      <div class="tab-panel"        id="panel-receipt"></div>
+      <div class="tab-panel"        id="panel-certificate"></div>
+    </div>
+  </main>
+</div>
+
+<!-- CERTIFICATE MODAL -->
+<div class="cert-modal-overlay" id="certModal" style="display:none" onclick="if(event.target===this)closeCertModal()">
+  <div class="cert-modal">
+    <button onclick="closeCertModal()" style="position:absolute;top:16px;right:16px;
+      background:none;border:none;color:var(--t3);font-size:1.2rem;cursor:pointer;">
+      <i class="fas fa-times"></i>
+    </button>
+    <div id="certModalContent"></div>
+  </div>
+</div>
+
+<!-- REVIEW MODAL -->
+<div class="modal-overlay" id="reviewModal" style="display:none" onclick="if(event.target===this)closeReviewModal()">
+  <div class="modal">
+    <button onclick="closeReviewModal()" style="position:absolute;top:16px;right:16px;
+      background:none;border:none;color:var(--t3);font-size:1.2rem;cursor:pointer;">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-title">Leave a Review</div>
+    <div class="star-row" id="starRow">
+      <span class="star" data-v="1">★</span>
+      <span class="star" data-v="2">★</span>
+      <span class="star" data-v="3">★</span>
+      <span class="star" data-v="4">★</span>
+      <span class="star" data-v="5">★</span>
+    </div>
+    <div class="form-field">
+      <label class="form-label">Title (optional)</label>
+      <input class="form-input" id="reviewTitle" placeholder="Summarise your experience…" maxlength="120">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Your Review</label>
+      <textarea class="form-textarea" id="reviewBody" placeholder="Share what you liked or learned…" maxlength="2000"></textarea>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:4px">
+      <button class="btn btn-ghost btn-sm" onclick="closeReviewModal()">Cancel</button>
+      <button class="btn btn-primary btn-sm" id="submitReviewBtn" onclick="submitReview()">
+        <i class="fas fa-paper-plane"></i> Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+'use strict';
+
+const API = 'https://uyehtechbackend.onrender.com';
+
+/* ── STATE ───────────────────────────────────────────── */
+let STATE = {
+  productId: null, orderId: null,
+  product:  null,   // from /api/orders/my-products cache
+  access:   null,   // from /api/orders/:id/media-access
+  progress: null,   // from /api/orders/:id/course-progress
+  activeChapter: null,
+  savingProgress: false,
+  reviewRating: 0,
+  sessionStartTime: Date.now(),
+  _completionShown: false,
+  _downloadExtraHtml: '',
+};
+
+/* ── BOOT ────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  if (!checkAuth()) return;
+  const params = new URLSearchParams(location.search);
+  STATE.productId = params.get('productId');
+  STATE.orderId   = params.get('orderId');
+  if (!STATE.productId || !STATE.orderId) { showFatal('Missing productId or orderId in URL.'); return; }
+  bindTabs();
+  boot();
+});
+
+async function boot() {
+  const cached = safeJSON(localStorage.getItem('_lib_cache'), []);
+  STATE.product = cached.find(p => String(p.productId) === String(STATE.productId)) || null;
+  if (STATE.product) applyCardData(STATE.product);
+
+  // If the cache entry is missing (direct URL, refresh, first visit, post-upgrade cache bust),
+  // fetch my-products now so displayPrice (with user currency) is available before rendering.
+  // This is the fix for the currency crash: STATE.product must never be null when renderAll() runs.
+  if (!STATE.product) {
+    try {
+      const mpRes = await fetch(`${API}/api/orders/my-products`, { headers: authH() });
+      const mpData = await mpRes.json();
+      if (mpData.success && mpData.products?.length) {
+        // Refresh the cache and find this product
+        localStorage.setItem('_lib_cache', JSON.stringify(mpData.products));
+        STATE.product = mpData.products.find(p => String(p.productId) === String(STATE.productId)) || null;
+        if (STATE.product) applyCardData(STATE.product);
+      }
+    } catch (_) {
+      // Non-fatal — media-access will still load; prices may show in USD fallback
+    }
+  }
+
+  const isCourse = STATE.product?.productType === 'course';
+  const [access] = await Promise.all([
+    fetchAccess(),
+    isCourse ? fetchProgress() : Promise.resolve(),
+  ]);
+  if (!access) return;
+  STATE.access = access;
+
+  // If access data reveals it's a course, fetch progress if not already done
+  if (!isCourse && (access.productType === 'course'
+      || access.mediaType === 'course'
+      || !!access.courseData)) {     // ← catches courses where mediaType is absent
+    await fetchProgress();
+  }
+
+  renderAll();
+}
+
+/* ── AUTH ────────────────────────────────────────────── */
+function checkAuth() {
+  const tk = ls('token'), usr = ls('user');
+  if (!tk || !usr) { location.href = '/marketplace/login'; return false; }
+  try { JSON.parse(usr); return true; }
+  catch { ['token','user'].forEach(k=>localStorage.removeItem(k)); location.href='/marketplace/login'; return false; }
+}
+
+function ls(k)   { return localStorage.getItem(k); }
+function token() { return ls('token'); }
+function authH() { return {'Authorization':`Bearer ${token()}`,'Content-Type':'application/json'}; }
+
+// Currency helpers — derive symbol and rate entirely from the server's
+// resolved displayPrice (set by my-products using req.userCurrency).
+// Fallback reads the correct field names the login endpoint actually sends:
+//   user.currencySymbol (e.g. '₦') and user.currency (e.g. 'NGN').
+// _rate fallback is 1 — safe because the fallback is only hit when
+// STATE.product is null AND there is no displayPrice, i.e. we have no
+// conversion context at all. The boot() fix (PATCH 2) prevents this path
+// from being reached under normal conditions.
+function _curSym() {
+  return STATE.product?.displayPrice?.symbol
+    || (()=>{ try { return JSON.parse(ls('user') || '{}').currencySymbol || '$'; } catch { return '$'; } })();
+}
+function _curRate() {
+  // Always use displayPrice ratio — it was already converted server-side
+  const dp = STATE.product?.displayPrice;
+  if (dp && dp.raw > 0) return dp.converted / dp.raw;
+  // No displayPrice available — rate unknown, show raw USD value with correct symbol
+  return 1;
+}
+function fmtPrice(usdAmount) {
+  const dp = STATE.product?.displayPrice;
+  if (dp) {
+    // Scale any price (comparePrice, etc.) using the same conversion ratio
+    const rate = dp.raw > 0 ? dp.converted / dp.raw : 1;
+    return `${dp.symbol}${Number(usdAmount * rate).toLocaleString(undefined, {minimumFractionDigits:2,maximumFractionDigits:2})}`;
+  }
+  // Fallback: user object in localStorage has currencySymbol from login response
+  return `${_curSym()}${Number(usdAmount * _curRate()).toLocaleString(undefined, {minimumFractionDigits:2,maximumFractionDigits:2})}`;
+}
+
+// Appends the JWT as ?token= so iframe.src requests can authenticate.
+// Browsers cannot send Authorization headers from iframe.src — query param is the only way.
+function _withToken(url) {
+  if (!url) return url;
+  const tok = token();
+  if (!tok) return url;
+  const sep = url.includes('?') ? '&' : '?';
+  return url + sep + 'token=' + encodeURIComponent(tok);
+}
+
+/* ── FETCH ───────────────────────────────────────────── */
+async function fetchAccess() {
+  try {
+    const r = await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/media-access?productId=${encodeURIComponent(STATE.productId)}`,
+      { headers: authH() }
+    );
+    const d = await r.json();
+    if (!d.success) {
+      // If the server says the product isn't in the order, show a clear message
+      // with a library link rather than a blank crash.
+      const msg = d.message || 'Access denied.';
+      const isOrderMismatch = msg.toLowerCase().includes('not part') || msg.toLowerCase().includes('not found');
+      showFatal(
+        isOrderMismatch
+          ? { html: `${esc(msg)} — This sometimes happens when a product was recently updated. <a href="/marketplace/my-products" style="color:var(--g);text-decoration:underline">Return to your library</a> and re-open the product.` }
+          : msg
+      );
+      return null;
+    }
+    return d;
+  } catch { showFatal('Could not reach server. Check your connection.'); return null; }
+}
+
+async function fetchProgress() {
+  try {
+    const r = await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/course-progress?productId=${encodeURIComponent(STATE.productId)}`,
+      { headers: authH() }
+    );
+    const d = await r.json();
+    if (d.success) STATE.progress = d.progress;
+  } catch (_) {}
+}
+
+async function saveProgress(completedChapters, lastSectionOrder, lastChapterOrder) {
+  if (STATE.savingProgress) return;
+  STATE.savingProgress = true;
+  try {
+    // Calculate session time spent (cap at 2 hours per save)
+    const sessionSecs = Math.min(Math.round((Date.now() - STATE.sessionStartTime) / 1000), 7200);
+    STATE.sessionStartTime = Date.now(); // reset session timer after each save
+
+    const r = await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/course-progress`,
+      { method:'POST', headers: authH(),
+        body: JSON.stringify({
+          productId: STATE.productId,
+          completedChapters,
+          lastSectionOrder,
+          lastChapterOrder,
+          timeSpent: sessionSecs,
+        })
+      }
+    );
+    const d = await r.json();
+    if (d.success) {
+      STATE.progress = d.progress;
+      updateProgressUI();
+      if (d.certificateAvailable && !STATE._certShownThisSession) {
+        STATE._certShownThisSession = true;
+        showCertUnlockedToast();
+      }
+    }
+  } catch (_) {}
+  finally { STATE.savingProgress = false; }
+}
+
+async function fetchCertificate() {
+  try {
+    const r = await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/certificate?productId=${encodeURIComponent(STATE.productId)}`,
+      { headers: authH() }
+    );
+    const d = await r.json();
+    if (!d.success) { toast(d.message || 'Certificate not yet earned.','error'); return; }
+    showCertModal(d.certificate);
+  } catch { toast('Failed to load certificate.','error'); }
+}
+
+/* ── APPLY CARD DATA (instant from cache) ──────────── */
+function applyCardData(p) {
+  ge('tbTitle').textContent = p.title || 'Product';
+}
+
+/* ── RENDER ALL ──────────────────────────────────────── */
+function renderAll() {
+  const data = STATE.access;
+  const p    = STATE.product || {};
+  const type = resolveType(data, p);
+
+  ge('tbTitle').textContent = data.title || p.title || 'Product';
+  ge('tbActions').innerHTML = `
+    <button class="btn btn-ghost btn-sm" onclick="toggleSidebar()" id="sbToggleBtn" title="Show chapters">
+      <i class="fas fa-list"></i>
+    </button>`;
+
+  ge('infoBar').style.display  = 'block';
+  ge('infoTitle').textContent  = data.title || p.title || '—';
+  ge('infoBadge').innerHTML    = badgeHTML(type);
+
+  if (type === 'course') {
+    renderCourse(data, p);
+  } else if (type === 'video') {
+    renderVideo(data, p);
+  } else if (type === 'audio') {
+    renderAudio(data, p);
+  } else {
+    renderDownload(data, p, type);
+  }
+
+  ge('tabsRow').style.display  = '';
+  ge('tabPanels').style.display = '';
+  buildOverviewPanel(data, p, type);
+  buildReceiptPanel(data, p);
+  buildCertPanel(data, p, type);
+}
+
+/* ═══════════════════════════════════════════════════════
+   COURSE RENDERER
+═══════════════════════════════════════════════════════ */
+function renderCourse(data, p) {
+  const cd = data.courseData || {};
+  const sections = cd.sections || [];
+
+  if (STATE.progress) {
+    ge('progressWrap').style.display = 'block';
+    updateProgressUI();
+    if (STATE.progress.certificateIssued) ge('tabCert').style.display = 'inline-flex';
+  }
+
+  const pills = [];
+  if (cd.totalChapters) pills.push(`<span class="badge badge-course">📚 ${cd.totalChapters} Chapters</span>`);
+  if (cd.totalDuration)  pills.push(`<span class="badge badge-file">⏱ ${fmtDurLong(cd.totalDuration)}</span>`);
+  if (cd.level)          pills.push(`<span class="badge badge-soft" style="text-transform:capitalize">${cd.level}</span>`);
+  if (cd.language)       pills.push(`<span class="badge badge-ebook">${cd.language}</span>`);
+  if (cd.certificate)    pills.push(`<span class="badge badge-course">🎓 Certificate</span>`);
+  ge('infoMeta').innerHTML = pills.join('');
+
+  const resume  = findResumeChapter(sections);
+  const target  = resume || firstPlayable(sections);
+  if (target) loadChapter(target.sectionIdx, target.chapterIdx, target.ch, false);
+  else setPlayerEmpty('Select a chapter to begin');
+
+  buildCourseSidebar(sections, cd);
+  ge('sbToggleBtn').style.display = '';
+}
+
+function findResumeChapter(sections) {
+  if (!STATE.progress) return null;
+  const { lastSectionOrder, lastChapterOrder } = STATE.progress;
+  if (!lastSectionOrder && !lastChapterOrder) return null;
+  for (let si = 0; si < sections.length; si++) {
+    const sec = sections[si];
+    if (sec.sectionOrder !== lastSectionOrder) continue;
+    for (let ci = 0; ci < (sec.chapters||[]).length; ci++) {
+      if (sec.chapters[ci].chapterOrder === lastChapterOrder) return {sectionIdx:si,chapterIdx:ci,ch:sec.chapters[ci]};
+    }
+  }
+  return null;
+}
+
+
+function firstPlayable(sections) {
+  for (let si = 0; si < sections.length; si++) {
+    const chs = sections[si].chapters || [];
+    for (let ci = 0; ci < chs.length; ci++) {
+      const ch = chs[ci];
+      // Include PDF chapters — they use pdfUrl not cloudinaryUrl
+      if (ch.cloudinaryUrl || ch.embedUrl || ch.embedVideoUrl
+          || ch.embedAudioUrl || ch.pdfUrl
+          || ch.playerType === 'pdf_viewer' || ch.chapterType === 'pdf') {
+        return { sectionIdx: si, chapterIdx: ci, ch };
+      }
+    }
+  }
+  return null;
+}
+
+function buildCourseSidebar(sections, cd) {
+  const totalCompleted = STATE.progress?.completedChapters?.length || 0;
+  const totalCh = cd.totalChapters || 0;
+
+  let html = `
+    <div class="sb-hdr">
+      Course Content
+      <span style="color:var(--t1);font-size:.75rem">${totalCompleted}/${totalCh}</span>
+    </div>
+    <div class="sb-stats">
+      <div class="sb-stat">
+        <div class="sb-stat-label">Sections</div>
+        <div class="sb-stat-val">${sections.length}</div>
+      </div>
+      <div class="sb-stat">
+        <div class="sb-stat-label">Progress</div>
+        <div class="sb-stat-val" id="sbProgVal">${STATE.progress?.completionPct || 0}%</div>
+      </div>
+    </div>
+    <div class="chapter-list" id="chapterList">`;
+
+  sections.forEach((sec, si) => {
+    const chs = sec.chapters || [];
+    const doneChs = chs.filter(ch => isChapterDone(sec.sectionOrder, ch.chapterOrder)).length;
+    const isOpen  = si === 0 || (STATE.activeChapter?.sectionIdx === si);
+
+    html += `
+      <div class="ch-section" id="sec-${si}">
+        <div class="sec-toggle-hdr" onclick="toggleSection(${si})">
+          <div class="sec-hdr-num">${si+1}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:.78rem;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+              ${esc(sec.sectionTitle || `Section ${si + 1}`)}
+            </div>
+            <div style="font-size:.66rem;color:var(--t3);margin-top:1px;display:flex;align-items:center;gap:6px;overflow:hidden">
+              <span style="font-family:'DM Mono',monospace;flex-shrink:0">${doneChs}/${chs.length} done</span>
+              ${sec.sectionDescription
+                ? `<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.7">· ${esc(sec.sectionDescription)}</span>`
+                : ''}
+            </div>
+          </div>
+          <i class="fas fa-chevron-down sec-chevron" id="chevron-${si}"></i>
+        </div>
+        <div class="sec-body ${isOpen?'open':''}" id="secbody-${si}">`;
+
+    chs.forEach((ch, ci) => {
+      const hasContent = !!(
+        ch.cloudinaryUrl ||
+        ch.embedUrl      ||
+        ch.embedVideoUrl ||
+        ch.embedAudioUrl ||
+        ch.pdfUrl        ||        // ← PDF chapters
+        ch.playerType === 'pdf_viewer' // ← PDF chapters (server flag)
+      );
+      const done       = isChapterDone(sec.sectionOrder, ch.chapterOrder);
+      const isActive   = STATE.activeChapter?.sectionIdx === si && STATE.activeChapter?.chapterIdx === ci;
+      // Chapter type icon
+      const typeIcons  = {video:'▶',audio:'♪',text:'📄',pdf:'📑'};
+      const isPdfCh = ch.chapterType === 'pdf' || ch.playerType === 'pdf_viewer' || !!ch.pdfUrl;
+      const chIcon  = typeIcons[ch.chapterType]
+        || (isPdfCh ? '📑' : ch.cloudinaryUrl ? '☁' : '🔗');
+
+      html += `
+        <div class="ch-item${done?' done':''}${isActive?' active':''}${!hasContent?' locked':''}"
+          id="chi-${si}-${ci}"
+          ${hasContent?`onclick="loadChapter(${si},${ci},null,true)"`:''}
+          title="${esc(ch.chapterTitle||'')}">
+          <div class="ch-check"><i class="fas fa-check" style="font-size:.55rem"></i></div>
+          <div class="ch-info">
+            <div class="ch-name">${esc(ch.chapterTitle||`Chapter ${ci+1}`)}</div>
+            <div class="ch-meta">
+              ${ch.duration?`<span class="ch-dur">${fmtDur(ch.duration)}</span>`:''}
+              ${ch.isFree?`<span class="ch-free">FREE</span>`:''}
+              <span class="ch-type">${chIcon}</span>
+              ${!hasContent?'<span class="ch-type" style="color:var(--red)">empty</span>':''}
+            </div>
+          </div>
+        </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  html += `</div>`;
+
+  if (STATE.progress?.certificateIssued) {
+    html += `<div style="padding:14px;border-top:1px solid var(--line)">
+      <button class="btn btn-cert btn-sm" onclick="fetchCertificate()">
+        <i class="fas fa-certificate"></i> View Certificate
+      </button>
+    </div>`;
+  }
+
+  ge('sidebarInner').innerHTML = html;
+}
+
+function toggleSection(si) {
+  const body    = ge(`secbody-${si}`);
+  const chevron = ge(`chevron-${si}`);
+  const isOpen  = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function loadChapter(sectionIdx, chapterIdx, chObj, userClicked) {
+  const sections = STATE.access?.courseData?.sections || [];
+  const sec = sections[sectionIdx];
+  if (!sec) return;
+  const ch = chObj || sec.chapters?.[chapterIdx];
+  if (!ch) return;
+
+  STATE.activeChapter = { sectionIdx, chapterIdx, ch };
+
+  document.querySelectorAll('.ch-item').forEach(el => el.classList.remove('active'));
+  const chiEl = ge(`chi-${sectionIdx}-${chapterIdx}`);
+  if (chiEl) { chiEl.classList.add('active'); chiEl.scrollIntoView({ block:'nearest', behavior:'smooth' }); }
+
+  const body = ge(`secbody-${sectionIdx}`);
+  if (body && !body.classList.contains('open')) toggleSection(sectionIdx);
+
+ ge('tabNotes').style.display      = ch.notes        ? 'inline-flex' : 'none';
+  ge('tabTranscript').style.display = ch.transcript   ? 'inline-flex' : 'none';
+  ge('tabMyNotes').style.display    = 'inline-flex';   // always visible for course
+  ge('tabResources').style.display  = ch.resources?.length ? 'inline-flex' : 'none';
+
+  if (ch.notes) {
+    ge('panel-notes').innerHTML = `
+      <div style="padding:20px">
+        <div class="ov-section-title" style="margin-bottom:12px">Creator Notes for This Chapter</div>
+        <div class="notes-block">${esc(ch.notes)}</div>
+      </div>`;
+  }
+
+  if (ch.transcript) {
+    ge('panel-transcript').innerHTML = `
+      <div style="padding:20px">
+        <div class="ov-section-title" style="margin-bottom:12px">Chapter Transcript</div>
+        <div class="notes-block">${esc(ch.transcript)}</div>
+      </div>`;
+  }
+
+  // Resource links from creator
+  if (ch.resources?.length) {
+    const typeIcons = { link:'🔗', file:'📎', github:'💻', article:'📰', video:'▶', audio:'♪', other:'📌' };
+    ge('panel-resources').innerHTML = `
+      <div style="padding:20px">
+        <div class="ov-section-title" style="margin-bottom:14px">Chapter Resources</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          ${ch.resources.map(r => `
+            <a href="${escA(r.url)}" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:12px;padding:12px 16px;
+                      background:var(--card);border:1px solid var(--line);border-radius:10px;
+                      text-decoration:none;transition:border-color .15s;color:var(--t1);"
+               onmouseover="this.style.borderColor='var(--line3)'"
+               onmouseout="this.style.borderColor='var(--line)'">
+              <span style="font-size:1.1rem;flex-shrink:0">${typeIcons[r.type||'link']}</span>
+              <div style="flex:1;min-width:0">
+                <div style="font-size:.85rem;font-weight:600;color:var(--t1);
+                     overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+                  ${esc(r.label || r.url)}
+                </div>
+                <div style="font-size:.72rem;color:var(--t3);margin-top:2px;
+                     overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+                  ${esc(r.url)}
+                </div>
+              </div>
+              <i class="fas fa-external-link-alt" style="font-size:.7rem;color:var(--t3);flex-shrink:0"></i>
+            </a>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  // My Notes tab — load saved note for this chapter
+  loadMyNote(sectionIdx, chapterIdx);
+// Clear any pending note save from the previous chapter before switching
+  if (_noteSaveTimer) { clearTimeout(_noteSaveTimer); _noteSaveTimer = null; }
+  renderPlayer(ch);
+
+  if (userClicked && STATE.progress !== undefined) {
+    const done = STATE.progress?.completedChapters || [];
+    saveProgress(done, sec.sectionOrder, ch.chapterOrder);
+  }
+  if (window.innerWidth < 768) closeSidebar();
+}
+
+function markChapterDone(sectionIdx, chapterIdx) {
+  const sections = STATE.access?.courseData?.sections || [];
+  const sec = sections[sectionIdx];
+  const ch  = sec?.chapters?.[chapterIdx];
+  if (!sec || !ch) return;
+
+  const key  = `${sec.sectionOrder}:${ch.chapterOrder}`;
+  const done = [...(STATE.progress?.completedChapters || [])];
+  if (done.includes(key)) return;
+
+  done.push(key);
+  if (!STATE.progress) STATE.progress = {};
+  STATE.progress.completedChapters = done;
+
+  const chiEl = ge(`chi-${sectionIdx}-${chapterIdx}`);
+  if (chiEl) chiEl.classList.add('done');
+
+  saveProgress(done, sec.sectionOrder, ch.chapterOrder);
+  toast('Chapter complete ✓', 'success');
+}
+
+function isChapterDone(sectionOrder, chapterOrder) {
+  return !!(STATE.progress?.completedChapters?.includes(`${sectionOrder}:${chapterOrder}`));
+}
+
+function updateProgressUI() {
+  const pct = STATE.progress?.completionPct || 0;
+  ge('progPct').textContent  = `${pct}%`;
+  ge('progFill').style.width = `${pct}%`;
+
+  if (STATE.progress?.certificateIssued) {
+    ge('tabCert').style.display = 'inline-flex';
+    buildCertPanel(STATE.access, STATE.product || {}, 'course');
+  }
+
+  // Sidebar stat
+  const sbProg = ge('sbProgVal');
+  if (sbProg) sbProg.textContent = `${pct}%`;
+
+  // Progress stats row (started, time spent, last access)
+  const statsEl = ge('progStats');
+  if (statsEl) {
+    const stats = [];
+    if (STATE.progress?.startedAt)      stats.push(`<div class="ps-item"><span class="ps-label">Started</span><span class="ps-val">${fmtDate(STATE.progress.startedAt)}</span></div>`);
+    if (STATE.progress?.lastAccessedAt) stats.push(`<div class="ps-item"><span class="ps-label">Last Study</span><span class="ps-val">${fmtRelative(STATE.progress.lastAccessedAt)}</span></div>`);
+    if (STATE.progress?.timeSpent)      stats.push(`<div class="ps-item"><span class="ps-label">Time Spent</span><span class="ps-val">${fmtDurLong(STATE.progress.timeSpent)}</span></div>`);
+    statsEl.innerHTML = stats.join('');
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   VIDEO PRODUCT RENDERER (productType === 'video')
+═══════════════════════════════════════════════════════ */
+function renderVideo(data, p) {
+  const vd = data.videoData || {};
+  const isYouTube = data.embedVideoType === 'youtube' || data.embedType === 'youtube';
+
+  // Build the YouTube watch URL from the original source, NOT from the embed URL.
+  // data.embedVideoUrl is already /embed/ID — extracting the ID is safer than
+  // doing a fragile string replace that breaks if URL params are present.
+  let ytUrl = null;
+  if (isYouTube) {
+    // Prefer the raw external source stored in the order
+    const rawSrc = data.externalVideoUrl || data.externalUrl || '';
+    if (rawSrc) {
+      ytUrl = rawSrc; // already a watch/share URL
+    } else {
+      // Fallback: extract video ID from embed URL and reconstruct watch URL
+      const embedSrc = data.embedVideoUrl || data.embedUrl || '';
+      const idMatch  = embedSrc.match(/(?:embed\/|youtu\.be\/)([^/?&]+)/);
+      ytUrl = idMatch ? `https://www.youtube.com/watch?v=${idMatch[1]}` : null;
+    }
+  }
+
+  renderPlayer(data);
+
+  // YouTube "Watch on YouTube" button pinned above player
+  if (isYouTube && ytUrl) {
+    const zone = ge('playerZone');
+    const btn  = document.createElement('a');
+    btn.href   = ytUrl;
+    btn.target = '_blank';
+    btn.rel    = 'noopener';
+    btn.className  = 'btn btn-ghost btn-sm';
+    btn.style.cssText = 'position:absolute;bottom:52px;right:12px;z-index:10;font-size:.72rem;' +
+                        'background:rgba(0,0,0,.7);backdrop-filter:blur(6px);border-color:rgba(255,255,255,.2)';
+    btn.innerHTML = '<i class="fab fa-youtube" style="color:#ff4444"></i> Watch on YouTube';
+    if (zone.style.position !== 'absolute') zone.style.position = 'relative';
+    zone.appendChild(btn);
+  }
+
+  // Meta pills
+  const pills = [];
+  if (vd.genre)      pills.push(`<span class="badge badge-video">${esc(vd.genre)}</span>`);
+  if (vd.resolution) pills.push(`<span class="badge badge-soft">${esc(vd.resolution)}</span>`);
+  if (vd.language)   pills.push(`<span class="badge badge-ebook">${esc(vd.language)}</span>`);
+  if (vd.license)    pills.push(`<span class="badge badge-file">${capitalise(vd.license)} License</span>`);
+  if (vd.hasCaption) pills.push(`<span class="badge badge-ebook">CC Captions</span>`);
+  if (data.fileSize || p.fileSize) pills.push(`<span class="badge badge-file">${esc(data.fileSize||p.fileSize)}</span>`);
+  ge('infoMeta').innerHTML = pills.join('');
+
+  buildVideoSidebar(p, data, vd);
+  if (ge('sbToggleBtn')) ge('sbToggleBtn').style.display = 'none';
+}
+
+function buildVideoSidebar(p, data, vd) {
+  const img = p.image || '';
+  let rows = '';
+  if (p.category)       rows += sbRow('Category',   p.category);
+  if (vd.genre)         rows += sbRow('Genre',       vd.genre);
+  if (vd.duration)      rows += sbRow('Duration',    fmtDurLong(vd.duration));
+  if (vd.resolution)    rows += sbRow('Resolution',  vd.resolution);
+  if (vd.language)      rows += sbRow('Language',    vd.language);
+  if (vd.director)      rows += sbRow('Director',    vd.director);
+  if (vd.releaseYear)   rows += sbRow('Year',        vd.releaseYear);
+  if (vd.license)       rows += sbRow('License',     capitalise(vd.license));
+  if (vd.allowDownload && (data.downloadUrl || data.cloudinaryUrl)) {
+    rows += `<div class="receipt-row">
+      <a href="${escA(data.downloadUrl || data.cloudinaryUrl)}" download target="_blank" rel="noopener"
+         class="btn btn-ghost btn-sm" style="width:100%;justify-content:center;margin:4px 0"
+         onclick="handleDownloadClick(event, this)">
+        <i class="fas fa-download"></i> Download Video
+      </a>
+    </div>`;
+  } else if (vd.allowDownload) {
+    rows += sbRow('Download', '<span style="color:var(--g)">✓ Allowed</span>');
+  }
+  if (p.price)          rows += sbRow('Paid',        fmtPrice(p.price));
+  if (p.purchaseDate)   rows += sbRow('Purchased',   fmtDate(p.purchaseDate));
+
+  const vGalleryImgs = (data?.images?.length > 1) ? data.images : [];
+  ge('sidebarInner').innerHTML = `
+    <div class="sb-product-thumb">
+      ${img ? `<img src="${escA(img)}" alt="" onerror="this.style.display='none'">` : '🎬'}
+    </div>
+    ${vGalleryImgs.length ? `
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:0 12px 12px">
+      ${vGalleryImgs.slice(1, 7).map(im => `
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden;background:var(--bg3);cursor:pointer"
+             onclick="window.open('${escA(im)}','_blank')">
+          <img src="${escA(im)}" alt="" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.style.display='none'">
+        </div>`).join('')}
+    </div>` : ''}
+    <div class="sb-info-block">
+      <div class="sb-info-title">${esc(p.title||'Video')}</div>
+      ${vd.cast?.length ? `<div style="font-size:.75rem;color:var(--t3);margin-bottom:8px">Cast: ${esc(vd.cast.slice(0,3).join(', '))}${vd.cast.length>3?' …':''}</div>` : ''}
+      <div class="receipt" style="margin-top:8px">${rows}</div>
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   AUDIO RENDERER
+═══════════════════════════════════════════════════════ */
+function renderAudio(data, p) {
+  const ad = data.audioData || p.audioPreview || {};
+
+  // Render audio player
+  renderPlayer(data);
+
+  const pills = [];
+  if (ad.genre)   pills.push(`<span class="badge badge-audio">${esc(ad.genre)}</span>`);
+  if (ad.bpm)     pills.push(`<span class="badge badge-file">${ad.bpm} BPM</span>`);
+  if (ad.key)     pills.push(`<span class="badge badge-soft">${esc(ad.key)}</span>`);
+  if (ad.license) pills.push(`<span class="badge badge-ebook">${capitalise(ad.license)} License</span>`);
+  if (ad.stems)   pills.push(`<span class="badge badge-audio">Stems Included</span>`);
+  ge('infoMeta').innerHTML = pills.join('');
+
+  buildAudioSidebar(p, ad);
+  if (ge('sbToggleBtn')) ge('sbToggleBtn').style.display = 'none';
+}
+
+function buildAudioSidebar(p, ad) {
+  const img = p.image || '';
+  let rows = '';
+  if (ad.artist)      rows += sbRow('Artist',      ad.artist);
+  if (ad.album)       rows += sbRow('Album',        ad.album);
+  if (ad.releaseYear) rows += sbRow('Year',         ad.releaseYear);
+  if (ad.genre)       rows += sbRow('Genre',        ad.genre);
+  if (ad.bpm)         rows += sbRow('BPM',          ad.bpm);
+  if (ad.key)         rows += sbRow('Key',          ad.key);
+  if (ad.mood)        rows += sbRow('Mood',         ad.mood);
+  if (ad.duration)    rows += sbRow('Duration',     fmtDurLong(ad.duration));
+  if (ad.license)     rows += sbRow('License',      capitalise(ad.license));
+  if (ad.stems)       rows += sbRow('Stems',        '<span style="color:var(--g)">✓ Included</span>');
+  if (ad.hasVocals !== undefined) rows += sbRow('Vocals', ad.hasVocals ? '<span style="color:var(--g)">✓ Yes</span>' : 'Instrumental');
+  if (ad.loopable)    rows += sbRow('Loopable',     '<span style="color:var(--g)">✓ Yes</span>');
+  if (ad.isrc)        rows += sbRow('ISRC',         ad.isrc);
+  if (p.price)        rows += sbRow('Paid',         fmtPrice(p.price));
+  if (p.purchaseDate) rows += sbRow('Purchased',    fmtDate(p.purchaseDate));
+
+  ge('sidebarInner').innerHTML = `
+    <div class="sb-product-thumb" style="aspect-ratio:1;border-radius:16px;position:relative;overflow:hidden">
+      ${img ? `<img src="${escA(img)}" alt="" onerror="this.style.display='none'">` : '🎵'}
+      ${ad.waveformUrl ? `<img src="${escA(ad.waveformUrl)}" alt="waveform"
+        style="position:absolute;bottom:0;left:0;right:0;width:100%;height:40px;
+               object-fit:cover;opacity:.5;pointer-events:none">` : ''}
+    </div>
+    <div class="sb-info-block">
+      <div class="sb-info-title">${esc(ad.trackTitle || p.title || 'Track')}</div>
+      ${ad.instruments?.length ? `<div style="font-size:.75rem;color:var(--t3);margin-bottom:8px">${esc(ad.instruments.join(' · '))}</div>` : ''}
+      <div class="receipt" style="margin-top:8px">${rows}</div>
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   DOWNLOAD RENDERER (ebook, software, file, template, etc.)
+═══════════════════════════════════════════════════════ */
+function renderDownload(data, p, type) {
+  const icons  = {software:'💻', ebook:'📖', template:'🎨', script:'📜', component:'🧩', file:'📦'};
+  const labels = {software:'Software Package', ebook:'eBook', template:'Template', script:'Script', component:'Component', file:'File'};
+  const icon  = icons[type]  || '📦';
+  const label = labels[type] || 'File';
+  const expMin = data.expiresInSecs ? Math.round(data.expiresInSecs/60) : null;
+
+  // PDF products (ebooks, templates saved as PDF) — render inline viewer
+  // data.pdfUrl is the authenticated proxy URL; data.cloudinaryUrl is the raw Cloudinary URL.
+  const isPdfProduct = !!data.pdfUrl
+    || data.playerType === 'pdf_viewer'
+    || (data.format || '').toLowerCase() === 'pdf';
+
+  if (isPdfProduct && data.pdfUrl) {
+    const pdfSrc    = _withToken(data.pdfUrl);
+    // directUrl = raw Cloudinary URL for Download button only
+    const directUrl = data.cloudinaryUrl || data.fileUrl || data.pdfUrl;
+
+    ge('playerZone').innerHTML = `
+      <div style="background:#111;width:100%">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;
+             background:var(--card);border-bottom:1px solid var(--line)">
+          <i class="fas fa-file-pdf" style="color:var(--red);font-size:1rem;flex-shrink:0"></i>
+          <span style="font-size:.83rem;color:var(--t2);flex:1;overflow:hidden;
+                text-overflow:ellipsis;white-space:nowrap">
+            ${esc(data.title || p.title || label)}
+          </span>
+          <a href="${escA(pdfSrc)}" target="_blank" rel="noopener"
+             style="font-size:.72rem;color:var(--g);text-decoration:none;
+                    padding:4px 10px;border:1px solid var(--line3);border-radius:6px;
+                    white-space:nowrap;font-family:'DM Mono',monospace;flex-shrink:0">
+            ↗ Open
+          </a>
+        </div>
+        <div id="pdfViewerWrap" style="width:100%;min-height:520px;background:#111;position:relative">
+          <div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;
+               align-items:center;justify-content:center;gap:12px;background:#111;z-index:2">
+            <div class="spin"></div>
+            <div style="font-size:.8rem;color:var(--t3)">Loading PDF…</div>
+          </div>
+          <iframe id="pdfIframe"
+            src="${escA(pdfSrc)}"
+            style="width:100%;height:75vh;min-height:520px;border:none;display:block"
+            title="${esc(data.title || label)}"
+            loading="lazy"
+            onload="onPdfIframeLoad()"
+            onerror="showPdfObjectFallback('${escA(pdfSrc)}','${escA(directUrl)}')">
+          </iframe>
+        </div>
+        <div style="display:flex;gap:8px;padding:12px 16px;background:var(--card);
+             border-top:1px solid var(--line);flex-wrap:wrap">
+          <a href="${escA(pdfSrc)}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">
+            <i class="fas fa-external-link-alt"></i> Open in new tab
+          </a>
+          <a href="${escA(directUrl)}" target="_blank" rel="noopener"
+             class="btn btn-ghost btn-sm">
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+          <button class="btn btn-ghost btn-sm" onclick="reloadPdfViewer('${escA(pdfSrc)}')">
+            <i class="fas fa-sync-alt"></i> Reload
+          </button>
+        </div>
+      </div>`;
+
+    // Watchdog — same as course chapter PDF
+    clearTimeout(_pdfWatchdog);
+    _pdfWatchdog = setTimeout(() => {
+      const ld = ge('pdfLoading');
+      if (ld && ld.style.display !== 'none') {
+        showPdfObjectFallback(pdfSrc, directUrl);
+      }
+    }, 4000);
+  } else {
+    // Non-PDF download products — original empty player zone
+    ge('playerZone').innerHTML = `
+      <div class="player-empty" style="min-height:220px">
+        <div class="pe-icon">${icon}</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:4px">${label} Ready</div>
+        <div style="font-size:.82rem;color:var(--t3)">Use the Download button below</div>
+      </div>`;
+  }
+
+  const pills = [];
+  if (p.fileSize || data.fileSize)        pills.push(`<span class="badge badge-file">${esc(p.fileSize||data.fileSize)}</span>`);
+  if (p.version)                          pills.push(`<span class="badge badge-soft">v${esc(p.version)}</span>`);
+  if (data.ebookData?.format?.length)     pills.push(`<span class="badge badge-ebook">${esc(data.ebookData.format.join(', '))}</span>`);
+  if (data.designData?.framework?.length) pills.push(`<span class="badge badge-soft">${esc(data.designData.framework.join(' · '))}</span>`);
+  ge('infoMeta').innerHTML = pills.join('');
+
+  buildSimpleSidebar(p, type, data);
+  if (ge('sbToggleBtn')) ge('sbToggleBtn').style.display = 'none';
+
+  // Download card
+  // Use data.fileUrl (proxy route) if available — it streams raw bytes with the
+  // correct filename. Fall back to data.downloadUrl for older cached responses.
+  // Do NOT use the HTML `download` attribute — the proxy sets Content-Disposition
+  // server-side so the browser still prompts Save As. The `download` attribute
+  // would intercept the request before it reaches the server on some browsers.
+  const dlTarget = data.fileUrl || data.downloadUrl || null;
+  const dlHtml = dlTarget ? `
+    <div class="dl-card">
+      <a href="${escA(dlTarget)}" target="_blank" rel="noopener"
+         class="btn btn-primary" style="justify-content:center;width:100%"
+         onclick="handleDownloadClick(event, this)">
+        <i class="fas fa-download"></i> Download ${label}
+      </a>
+      ${expMin ? `<div class="dl-expire">🔒 Secure link expires in ${expMin} min — refresh if needed</div>` : ''}
+      ${p.downloadLimit ? `<div class="dl-limit" id="dlLimitLabel">Downloads: ${p.downloadCount||0} / ${p.downloadLimit}</div>` : ''}
+    </div>` : '';
+
+  // Software extras
+  let swHtml = '';
+  if (data.softwareData) {
+    const sd = data.softwareData;
+    swHtml = `<div style="margin-top:20px">
+      ${sd.licenseKey ? `
+        <div style="margin-bottom:16px">
+          <div class="ov-section-title">License Key</div>
+          <div class="lic-box">
+            <span class="lic-key">${esc(sd.licenseKey)}</span>
+            <button class="copy-btn" onclick="copyText('${escA(sd.licenseKey)}')">Copy</button>
+          </div>
+        </div>` : ''}
+      <div class="receipt">
+        ${sd.platform?.length   ? rRow('Platforms',   sd.platform.join(', '))       : ''}
+        ${sd.licenseType        ? rRow('License',     capitalise(sd.licenseType))   : ''}
+        ${sd.maxDevices         ? rRow('Devices',     sd.maxDevices + ' device' + (sd.maxDevices>1?'s':'')) : ''}
+        ${sd.supportPeriod      ? rRow('Support',     sd.supportPeriod)             : ''}
+        ${sd.updatePeriod       ? rRow('Updates',     sd.updatePeriod)              : ''}
+        ${sd.trialDays          ? rRow('Trial',       sd.trialDays + ' days')       : ''}
+        ${sd.minOsVersion       ? rRow('Min OS',      sd.minOsVersion)              : ''}
+        ${sd.architecture?.length ? rRow('Architecture', sd.architecture.join(', ')) : ''}
+      </div>
+      ${sd.activationUrl ? `<a href="${escA(sd.activationUrl)}" target="_blank" rel="noopener"
+          class="btn btn-primary btn-sm" style="margin-top:12px;width:100%;justify-content:center">
+          <i class="fas fa-key"></i> Activate License</a>` : ''}
+      ${sd.demoUrl ? `<a href="${escA(sd.demoUrl)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;justify-content:center">
+          <i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+      ${sd.repoUrl ? `<a href="${escA(sd.repoUrl)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;justify-content:center">
+          <i class="fab fa-github"></i> Source Code</a>` : ''}
+      ${sd.changelog ? `<div style="margin-top:16px">
+          <div class="ov-section-title">Changelog</div>
+          <div class="desc-block" style="font-size:.8rem">${esc(sd.changelog)}</div>
+        </div>` : ''}
+    </div>`;
+  }
+
+  // eBook extras
+  let ebHtml = '';
+  if (data.ebookData) {
+    const eb = data.ebookData;
+    ebHtml = `<div style="margin-top:20px">
+      <div class="receipt">
+        ${eb.author          ? rRow('Author',       eb.author)          : ''}
+        ${eb.publisher       ? rRow('Publisher',    eb.publisher)       : ''}
+        ${eb.edition         ? rRow('Edition',      eb.edition)         : ''}
+        ${eb.publicationYear ? rRow('Year',         eb.publicationYear) : ''}
+        ${eb.pageCount       ? rRow('Pages',        eb.pageCount)       : ''}
+        ${eb.language        ? rRow('Language',     eb.language)        : ''}
+        ${eb.isbn            ? rRow('ISBN',         eb.isbn)            : ''}
+        ${eb.readingTimeMin  ? rRow('Reading Time', fmtDurLong(eb.readingTimeMin*60)) : ''}
+      </div>
+    </div>`;
+  }
+
+  // Design extras (template/script/component)
+  let designHtml = '';
+  if (data.designData) {
+    const dd = data.designData;
+    designHtml = `<div style="margin-top:20px">
+      <div class="receipt">
+        ${dd.framework?.length  ? rRow('Framework',  dd.framework.join(', '))     : ''}
+        ${dd.stack?.length      ? rRow('Stack',      dd.stack.join(', '))         : ''}
+        ${dd.compatible?.length ? rRow('Compatible', dd.compatible.join(', '))    : ''}
+        ${dd.responsive !== undefined ? rRow('Responsive', dd.responsive ? '<span style="color:var(--g)">✓ Yes</span>' : 'No') : ''}
+        ${dd.darkMode           ? rRow('Dark Mode',  '<span style="color:var(--g)">✓ Included</span>') : ''}
+        ${dd.browserSupport?.length ? rRow('Browsers', dd.browserSupport.join(', ')) : ''}
+      </div>
+      ${dd.livePreviewUrl ? `<a href="${escA(dd.livePreviewUrl)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:12px;width:100%;justify-content:center">
+          <i class="fas fa-eye"></i> Live Preview</a>` : ''}
+      ${dd.repoUrl ? `<a href="${escA(dd.repoUrl)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;justify-content:center">
+          <i class="fab fa-github"></i> Source Code</a>` : ''}
+      ${dd.figmaUrl ? `<a href="${escA(dd.figmaUrl)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;justify-content:center">
+          <i class="fab fa-figma"></i> Figma File</a>` : ''}
+    </div>`;
+  }
+
+  // Store download-specific HTML in STATE so buildOverviewPanel can prepend it
+  STATE._downloadExtraHtml = (dlHtml||'') + swHtml + ebHtml + designHtml;
+}
+
+
+async function handleDownloadClick(event, anchor) {
+  // Let the browser follow the href naturally (download starts immediately)
+  toast('Download starting…', 'success');
+
+  // Track the download asynchronously — don't block the download
+  try {
+    const r = await fetch(`${API}/api/orders/track-download`, {
+      method:  'POST',
+      headers: authH(),
+      body:    JSON.stringify({ productId: STATE.productId, orderId: STATE.orderId }),
+    });
+    const d = await r.json();
+    if (!d.success) {
+      // Server rejected — limit reached or expired
+      toast(d.message || 'Download limit reached.', 'error');
+    } else {
+      // Update the visible counter in the UI
+      const lbl = ge('dlLimitLabel');
+      if (lbl && STATE.product?.downloadLimit) {
+        const newCount = (STATE.product.downloadCount || 0) + 1;
+        STATE.product.downloadCount = newCount;
+        lbl.textContent = `Downloads: ${newCount} / ${STATE.product.downloadLimit}`;
+      }
+    }
+  } catch (_) { /* tracking failure is non-fatal — download already started */ }
+}
+
+/* ═══════════════════════════════════════════════════════
+   PLAYER RENDERER (shared — course chapters + video + audio products)
+═══════════════════════════════════════════════════════ */
+function renderPlayer(ch) {
+  const zone = ge('playerZone');
+
+  // ch can be either a course chapter object OR the top-level media-access response
+  // (for standalone video/audio/music products). Both shapes are normalised here.
+  const embedUrl      = ch.embedVideoUrl  || ch.embedAudioUrl  || ch.embedUrl   || null;
+  const embedType     = ch.embedVideoType || ch.embedAudioType || ch.embedType  || null;
+  const playerType    = ch.playerType     || null;
+  const cloudinaryUrl = ch.cloudinaryUrl  || null;
+
+ // ── PDF check — must come BEFORE the "nothing set" bail-out ───────────────
+  // Server sets playerType:'pdf_viewer' + pdfUrl (authenticated proxy).
+  // We render the PDF directly in an <iframe> — NO Google Docs wrapper,
+  // because Google's servers cannot pass our JWT token to the proxy endpoint.
+  // The iframe points straight at our authenticated /api/orders/…/pdf-chapter URL.
+  const isPdf = ch.playerType === 'pdf_viewer'
+    || ch.chapterType === 'pdf'
+    || ch.hostedFileFormat === 'pdf'
+    || !!ch.pdfUrl
+    || /\.pdf(\?|$)/i.test(cloudinaryUrl || '')
+    || /\.pdf(\?|$)/i.test(embedUrl || '');
+
+  // Resolve the PDF source URL — prefer the dedicated pdfUrl proxy field.
+  // This is already a fully-authenticated URL — no Google Docs wrapper needed.
+  const pdfSourceUrl = ch.pdfUrl || cloudinaryUrl || embedUrl || null;
+
+  // If nothing is set at all, bail early (only when it is not a PDF)
+  if (!isPdf && !cloudinaryUrl && !embedUrl) {
+    setPlayerEmpty('No playable content for this chapter.');
+    return;
+  }
+
+  // If it's a PDF but we have no URL at all, bail gracefully
+  if (isPdf && !pdfSourceUrl) {
+    setPlayerEmpty('PDF file not yet available.');
+    return;
+  }
+
+  if (isPdf) {
+    const pdfSrc    = _withToken(pdfSourceUrl);  // token appended for iframe auth
+    // directUrl = raw Cloudinary URL used ONLY for the Download button.
+    // Never pass this to Google Docs viewer — Google can't authenticate it.
+    const directUrl = ch.cloudinaryUrl || cloudinaryUrl || pdfSourceUrl;
+
+    zone.innerHTML = `
+      <div style="background:#111;width:100%">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;
+             background:var(--card);border-bottom:1px solid var(--line)">
+          <i class="fas fa-file-pdf" style="color:var(--red);font-size:1rem;flex-shrink:0"></i>
+          <span style="font-size:.83rem;color:var(--t2);flex:1;overflow:hidden;
+                text-overflow:ellipsis;white-space:nowrap">
+            ${esc(ch.chapterTitle || 'PDF Document')}
+          </span>
+          <a href="${escA(pdfSrc)}" target="_blank" rel="noopener"
+             style="font-size:.72rem;color:var(--g);text-decoration:none;
+                    padding:4px 10px;border:1px solid var(--line3);border-radius:6px;
+                    white-space:nowrap;font-family:'DM Mono',monospace;flex-shrink:0">
+            ↗ Open
+          </a>
+        </div>
+        <div id="pdfViewerWrap" style="width:100%;min-height:520px;background:#111;
+             position:relative">
+          <div id="pdfLoading" style="position:absolute;inset:0;display:flex;
+               flex-direction:column;align-items:center;justify-content:center;
+               gap:12px;background:#111;z-index:2">
+            <div class="spin"></div>
+            <div style="font-size:.8rem;color:var(--t3)">Loading PDF…</div>
+          </div>
+          <iframe id="pdfIframe"
+            src="${escA(pdfSrc)}"
+            style="width:100%;height:75vh;min-height:520px;border:none;display:block"
+            title="${esc(ch.chapterTitle || 'PDF Document')}"
+            loading="lazy"
+            onload="onPdfIframeLoad()"
+            onerror="showPdfObjectFallback('${escA(pdfSrc)}','${escA(directUrl)}')">
+          </iframe>
+        </div>
+        <div style="display:flex;gap:8px;padding:12px 16px;background:var(--card);
+             border-top:1px solid var(--line);flex-wrap:wrap">
+          <a href="${escA(pdfSrc)}" target="_blank" rel="noopener"
+             class="btn btn-ghost btn-sm">
+            <i class="fas fa-external-link-alt"></i> Open in new tab
+          </a>
+          <a href="${escA(directUrl)}" target="_blank" rel="noopener"
+             class="btn btn-ghost btn-sm">
+            <i class="fas fa-download"></i> Download PDF
+          </a>
+          <button class="btn btn-ghost btn-sm"
+            onclick="reloadPdfViewer('${escA(pdfSrc)}')">
+            <i class="fas fa-sync-alt"></i> Reload
+          </button>
+        </div>
+        ${markDoneBtn()}
+      </div>`;
+
+    // 4-second watchdog — mobile Chrome/WebView silently blocks PDFs in iframes.
+    // Neither onload nor onerror fires — spinner spins forever without this.
+    clearTimeout(_pdfWatchdog);
+    _pdfWatchdog = setTimeout(() => {
+      const ld = ge('pdfLoading');
+      if (ld && ld.style.display !== 'none') {
+        showPdfObjectFallback(pdfSrc, directUrl);
+      }
+    }, 4000);
+    return;
+  }
+
+  // ── Text chapter ─────────────────────────────────────────────────────────
+  if (ch.chapterType === 'text') {
+    const textContent = ch.notes || ch.transcript || ch.description || '';
+    zone.innerHTML = `
+      <div style="background:var(--card);border-bottom:1px solid var(--line)">
+        <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;
+             border-bottom:1px solid var(--line)">
+          <i class="fas fa-file-alt" style="color:var(--teal);font-size:1rem"></i>
+          <span style="font-size:.88rem;font-weight:600;color:var(--t1)">
+            ${esc(ch.chapterTitle || 'Text Lesson')}
+          </span>
+        </div>
+        <div style="padding:24px;font-size:.88rem;color:var(--t2);line-height:1.8;
+             max-width:720px;margin:0 auto;min-height:200px">
+          ${textContent
+            ? textContent.replace(/\n/g, '<br>')
+            : '<span style="color:var(--t3);font-style:italic">No content for this chapter.</span>'}
+        </div>
+        ${markDoneBtn()}
+      </div>`;
+    return;
+  }
+
+  // ── Cloudinary hosted (video or audio) ────────────────────────────────────
+  if ((playerType === 'cloudinary' || playerType === 'cloudinary_audio' || (!embedUrl && cloudinaryUrl)) && cloudinaryUrl) {
+    const isAudio = playerType === 'cloudinary_audio'
+      || embedType === 'audio'
+      || ch.chapterType === 'audio'
+      || ch.mediaType === 'audio'
+      || /\.(mp3|wav|ogg|aac|flac|m4a)(\?|$)/i.test(cloudinaryUrl);
+
+    if (isAudio) {
+      const ad = STATE.access?.audioData || ch.audioData || {};
+      zone.innerHTML = `
+        <div class="audio-card">
+          <div class="audio-card-inner">
+            <div class="audio-art">🎵</div>
+            <div class="audio-info">
+              <div class="audio-title">${esc(ad.trackTitle || ch.chapterTitle || STATE.access?.title || 'Audio Track')}</div>
+              <div class="audio-artist">${esc(ad.artist || '')}</div>
+            </div>
+          </div>
+          <audio id="mainPlayer" controls controlsList="nodownload"
+                 preload="metadata" crossorigin="anonymous">
+            <source src="${escA(cloudinaryUrl)}">
+          </audio>
+          ${markDoneBtn()}
+        </div>`;
+    } else {
+      zone.innerHTML = `
+        <div style="position:relative">
+          <video id="mainPlayer" controls controlsList="nodownload"
+                 style="width:100%;aspect-ratio:16/9;background:#000;display:block"
+                 preload="metadata" crossorigin="anonymous" playsinline>
+            <source src="${escA(cloudinaryUrl)}">
+          </video>
+          ${markDoneBtn()}
+        </div>`;
+    }
+    attachPlayerErrorHandler(cloudinaryUrl);
+    attachEndHandler();
+
+    // Apply previewStartTime — lets creators set a start offset (e.g. skip a long intro)
+    const _startAt = STATE.access?.audioData?.previewStartTime
+      || ch?.previewStartTime || 0;
+    if (_startAt > 0) {
+      setTimeout(() => {
+        const _audioEl = ge('playerZone')?.querySelector('audio');
+        if (_audioEl) {
+          _audioEl.addEventListener('loadedmetadata', () => {
+            _audioEl.currentTime = _startAt;
+          }, { once: true });
+        }
+      }, 300);
+    }
+    return;
+  }
+
+  // ── Audio embed platforms ─────────────────────────────
+  // playerType 'soundcloud_widget' covers ALL audio iframe embeds:
+  // SoundCloud, Spotify, Audiomack, YouTube Music, Mixcloud, Bandcamp,
+  // Apple Music, Deezer — server already builds the correct embed URL.
+  const AUDIO_EMBED_TYPES = ['soundcloud','spotify','audiomack','youtube_music',
+                              'mixcloud','bandcamp','apple_music','deezer'];
+
+  // Always prefer the dedicated split audio field.
+  // embedType (collapsed) may point to video type — use ch.embedAudioType for audio lookups.
+  // Declare audioEmbedType FIRST so the SoundCloud block below can reference it safely.
+  const audioEmbedType = ch.embedAudioType || (AUDIO_EMBED_TYPES.includes(embedType || '') ? embedType : null) || '';
+
+  let embedSrc = ch.embedAudioUrl || (AUDIO_EMBED_TYPES.includes(ch.embedAudioType || '') ? embedUrl : null) || embedUrl;
+
+  // SoundCloud page URLs must be converted to the widget player URL.
+  // The server may store the raw page URL (soundcloud.com/artist/track).
+  // A plain <iframe> only works with the w.soundcloud.com/player/ widget URL.
+  if (embedSrc && (ch.embedAudioType === 'soundcloud' || audioEmbedType === 'soundcloud')) {
+    if (!embedSrc.includes('w.soundcloud.com/player')) {
+      embedSrc = 'https://w.soundcloud.com/player/?url='
+        + encodeURIComponent(embedSrc)
+        + '&color=%2300ff88&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false';
+    }
+  }
+
+  if (playerType === 'soundcloud_widget' || AUDIO_EMBED_TYPES.includes(audioEmbedType)) {
+    if (!embedSrc) { setPlayerEmpty('No audio URL for this chapter.'); return; }
+
+    // Per-platform iframe heights
+    const iframeHeights = {
+      spotify:       80,
+      apple_music:  175,
+      deezer:        92,
+      youtube_music:315,
+      audiomack:    252,
+      mixcloud:     120,
+      bandcamp:     120,
+      soundcloud:   166,
+    };
+    // Use audioEmbedType (not the collapsed embedType) for accurate height lookup
+    const iframeH   = iframeHeights[audioEmbedType] || 166;
+    const isYTMusic = audioEmbedType === 'youtube_music';
+
+    const platformLabels = {
+      soundcloud:    '☁ SoundCloud',
+      spotify:       '🎵 Spotify',
+      audiomack:     '🎧 Audiomack',
+      youtube_music: '▶ YouTube Music',
+      mixcloud:      '🎶 Mixcloud',
+      bandcamp:      '🎸 Bandcamp',
+      apple_music:   '🍎 Apple Music',
+      deezer:        '🎵 Deezer',
+    };
+    const platformLabel = platformLabels[audioEmbedType] || '🎵 Audio';
+
+    if (isYTMusic) {
+      zone.innerHTML = `
+        <div style="background:var(--card);padding:0">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 16px;
+               border-bottom:1px solid var(--line)">
+            <span style="font-size:.72rem;color:var(--purple);font-family:'DM Mono',monospace">
+              ${platformLabel}
+            </span>
+          </div>
+          <div style="position:relative;padding-bottom:56.25%;height:0;background:#000">
+            <iframe src="${escA(embedSrc)}"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
+              allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;fullscreen"
+              allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe>
+          </div>
+          ${markDoneBtn()}
+        </div>`;
+    } else {
+      zone.innerHTML = `
+        <div style="background:var(--card);padding:20px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+            <span style="font-size:.72rem;color:var(--purple);font-family:'DM Mono',monospace;
+                  padding:2px 8px;background:rgba(167,139,250,.1);
+                  border:1px solid rgba(167,139,250,.2);border-radius:6px">
+              ${platformLabel}
+            </span>
+          </div>
+          <iframe src="${escA(embedSrc)}" scrolling="no" frameborder="no"
+                  style="width:100%;height:${iframeH}px;border-radius:10px;border:none"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+          ${markDoneBtn()}
+        </div>`;
+    }
+    return;
+  }
+
+  // ── iframe (YouTube, Vimeo, Dailymotion, GDrive) ──────
+  if (embedUrl && (playerType === 'iframe' || ['youtube','vimeo','dailymotion','gdrive'].includes(embedType||''))) {
+    zone.innerHTML = `
+      <div style="position:relative">
+        <div style="position:relative;padding-bottom:56.25%;height:0;background:#000">
+          <iframe src="${escA(embedUrl)}"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
+            allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture;fullscreen"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe>
+        </div>
+        ${markDoneBtn()}
+      </div>`;
+    return;
+  }
+
+  // ── Direct HTML5 video ────────────────────────────────
+  if (embedUrl && (playerType === 'html5_video' || embedType === 'direct')) {
+    const isAudio = playerType === 'html5_audio'
+      || ch.chapterType === 'audio'
+      || /\.(mp3|wav|ogg|aac|flac|m4a)(\?|$)/i.test(embedUrl);
+    if (!isAudio) {
+      zone.innerHTML = `
+        <div style="position:relative">
+          <video id="mainPlayer" controls controlsList="nodownload"
+                 style="width:100%;aspect-ratio:16/9;background:#000;display:block"
+                 preload="metadata" playsinline>
+            <source src="${escA(embedUrl)}">
+          </video>
+          ${markDoneBtn()}
+        </div>`;
+      attachPlayerErrorHandler(embedUrl);
+      attachEndHandler();
+      return;
+    }
+  }
+ // ── Direct HTML5 audio ────────────────────────────────
+  if (embedUrl && (playerType === 'html5_audio' || ch.chapterType === 'audio')) {
+    const ad = STATE.access?.audioData || {};
+    zone.innerHTML = `
+      <div class="audio-card">
+        <div class="audio-card-inner">
+          <div class="audio-art">🎵</div>
+          <div class="audio-info">
+            <div class="audio-title">${esc(ad.trackTitle || ch.chapterTitle || 'Audio Track')}</div>
+            <div class="audio-artist">${esc(ad.artist || '')}</div>
+          </div>
+        </div>
+        <audio id="mainPlayer" controls controlsList="nodownload" preload="metadata">
+          <source src="${escA(embedUrl)}">
+        </audio>
+        ${markDoneBtn()}
+      </div>`;
+    attachPlayerErrorHandler(embedUrl);
+    attachEndHandler();
+    return;
+  }
+  setPlayerEmpty('No playable content for this chapter.');
+}
+
+function markDoneBtn() {
+  if (!STATE.activeChapter) return '';
+  const { sectionIdx, chapterIdx } = STATE.activeChapter;
+  const sec = STATE.access?.courseData?.sections?.[sectionIdx];
+  const ch  = sec?.chapters?.[chapterIdx];
+  const isAccessCourse = STATE.access?.productType === 'course'
+    || STATE.access?.mediaType === 'course'
+    || !!STATE.access?.courseData;
+  if (!sec || !ch || !isAccessCourse) return '';
+  const done = isChapterDone(sec.sectionOrder, ch.chapterOrder);
+  if (done) return `<div style="padding:8px 12px;font-size:.75rem;color:var(--g);font-family:'DM Mono',monospace;text-align:right">✓ Completed</div>`;
+  return `<div style="padding:8px 12px;text-align:right">
+    <button class="btn btn-ghost btn-sm" onclick="markChapterDone(${sectionIdx},${chapterIdx})">
+      <i class="fas fa-check"></i> Mark Complete
+    </button>
+  </div>`;
+}
+
+function attachPlayerErrorHandler(url) {
+  setTimeout(() => {
+    const el = ge('playerZone')?.querySelector('video,audio');
+    if (!el) return;
+    el.addEventListener('error', () => {
+      const overlay = document.createElement('div');
+      overlay.className = 'player-error';
+      overlay.innerHTML = `
+        <i class="fas fa-triangle-exclamation" style="font-size:2rem"></i>
+        <div><strong>Could not load media</strong></div>
+        <div style="color:var(--t3);font-size:.78rem">The secure link may have expired.</div>
+        <button onclick="location.reload()">Reload Page</button>`;
+      ge('playerZone').style.position = 'relative';
+      ge('playerZone').appendChild(overlay);
+    });
+  }, 300);
+}
+
+// Unified end handler — works for both <video> and <audio>
+function attachEndHandler() {
+  setTimeout(() => {
+    const el = ge('playerZone')?.querySelector('video,audio');
+    if (!el) return;
+    el.addEventListener('ended', () => {
+      if (STATE.activeChapter) {
+        const { sectionIdx, chapterIdx } = STATE.activeChapter;
+        markChapterDone(sectionIdx, chapterIdx);
+        // Auto-advance
+        const sections = STATE.access?.courseData?.sections || [];
+        const sec = sections[sectionIdx];
+        const next = sec?.chapters?.[chapterIdx + 1];
+        if (next) {
+          setTimeout(() => loadChapter(sectionIdx, chapterIdx+1, next, true), 800);
+        } else if (sections[sectionIdx+1]?.chapters?.[0]) {
+          setTimeout(() => loadChapter(sectionIdx+1, 0, sections[sectionIdx+1].chapters[0], true), 800);
+        }
+      }
+    });
+  }, 300);
+}
+
+/* ═══════════════════════════════════════════════════════
+   STUDENT NOTES
+═══════════════════════════════════════════════════════ */
+let _notesSaved = {};   // in-memory cache: key = "sectionIdx:chapterIdx"
+let _noteSaveTimer = null;
+
+async function loadMyNote(sectionIdx, chapterIdx) {
+  const panel = ge('panel-mynotes');
+  if (!panel) return;
+
+  const sec = STATE.access?.courseData?.sections?.[sectionIdx];
+  const ch  = sec?.chapters?.[chapterIdx];
+  if (!sec || !ch) return;
+
+  const key    = `${sec.sectionOrder}:${ch.chapterOrder}`;
+  const cached = _notesSaved[key];
+
+  panel.innerHTML = buildMyNotePanel(sectionIdx, chapterIdx, sec.sectionOrder, ch.chapterOrder, cached || '');
+
+  // Fetch from server if not already cached
+  if (cached === undefined) {
+    try {
+      const r = await fetch(
+        `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/notes?productId=${encodeURIComponent(STATE.productId)}`,
+        { headers: authH() }
+      );
+      const d = await r.json();
+      if (d.success) {
+        d.notes.forEach(n => {
+          _notesSaved[`${n.sectionOrder}:${n.chapterOrder}`] = n.content;
+        });
+        const content = _notesSaved[key] || '';
+        panel.innerHTML = buildMyNotePanel(sectionIdx, chapterIdx, sec.sectionOrder, ch.chapterOrder, content);
+      }
+    } catch (_) {}
+  }
+}
+
+function buildMyNotePanel(sectionIdx, chapterIdx, sectionOrder, chapterOrder, content) {
+  const key = `${sectionOrder}:${chapterOrder}`;
+  return `
+    <div style="padding:20px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div class="ov-section-title" style="margin-bottom:0">My Notes for This Chapter</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span id="noteSaveStatus" style="font-size:.72rem;color:var(--t3);font-family:'DM Mono',monospace"></span>
+          ${content ? `<button class="btn btn-ghost btn-sm" style="color:var(--red);border-color:rgba(255,77,109,.2)"
+              onclick="deleteMyNote(${sectionIdx},${chapterIdx},${sectionOrder},${chapterOrder})">
+              <i class="fas fa-trash-alt"></i> Clear
+            </button>` : ''}
+        </div>
+      </div>
+      <textarea id="myNoteTextarea"
+        placeholder="Write your notes here… (auto-saves as you type)"
+        style="width:100%;min-height:220px;background:var(--bg3);border:1px solid var(--line2);
+               border-radius:10px;padding:14px;color:var(--t1);font-family:'Outfit',sans-serif;
+               font-size:.86rem;line-height:1.7;resize:vertical;outline:none;transition:border-color .15s"
+        oninput="scheduleNoteSave(${sectionIdx},${chapterIdx},${sectionOrder},${chapterOrder},this.value)"
+        onfocus="this.style.borderColor='var(--line3)'"
+        onblur="this.style.borderColor='var(--line2)'"
+      >${esc(content)}</textarea>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary btn-sm"
+          onclick="saveMyNoteNow(${sectionIdx},${chapterIdx},${sectionOrder},${chapterOrder})">
+          <i class="fas fa-save"></i> Save Note
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="copyText(ge('myNoteTextarea').value)">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+      </div>
+      <div style="margin-top:12px;font-size:.72rem;color:var(--t3);font-family:'DM Mono',monospace">
+        Notes are private to you — your teacher cannot see them.
+      </div>
+    </div>`;
+}
+
+function scheduleNoteSave(si, ci, so, co, content) {
+  const statusEl = ge('noteSaveStatus');
+  if (statusEl) statusEl.textContent = 'Unsaved…';
+  clearTimeout(_noteSaveTimer);
+  _noteSaveTimer = setTimeout(() => saveMyNoteNow(si, ci, so, co, content), 1800);
+}
+
+async function saveMyNoteNow(si, ci, sectionOrder, chapterOrder, content) {
+  const textarea = ge('myNoteTextarea');
+  const text = content !== undefined ? content : (textarea?.value || '');
+  const statusEl = ge('noteSaveStatus');
+  try {
+    const r = await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/notes`,
+      {
+        method: 'POST',
+        headers: authH(),
+        body: JSON.stringify({
+          productId: STATE.productId,
+          sectionOrder,
+          chapterOrder,
+          content: text,
+        })
+      }
+    );
+    const d = await r.json();
+    if (d.success) {
+      _notesSaved[`${sectionOrder}:${chapterOrder}`] = text;
+      if (statusEl) {
+       const now = new Date();
+        const t = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        statusEl.textContent = `✓ Saved at ${t}`;
+        statusEl.style.color = 'var(--g)';
+        setTimeout(() => { if (statusEl) statusEl.style.color = 'var(--t3)'; }, 2000);
+      }
+    }
+  } catch (_) {
+    if (statusEl) { statusEl.textContent = '⚠ Save failed'; statusEl.style.color = 'var(--red)'; }
+  }
+}
+
+async function deleteMyNote(si, ci, sectionOrder, chapterOrder) {
+  try {
+    await fetch(
+      `${API}/api/orders/${encodeURIComponent(STATE.orderId)}/notes`,
+      {
+        method: 'DELETE',
+        headers: authH(),
+        body: JSON.stringify({ productId: STATE.productId, sectionOrder, chapterOrder })
+      }
+    );
+    _notesSaved[`${sectionOrder}:${chapterOrder}`] = '';
+    loadMyNote(si, ci);
+    toast('Note cleared', 'info');
+  } catch (_) {}
+}
+
+// Watchdog timer ref — cleared when iframe loads, fired when mobile silently blocks
+let _pdfWatchdog = null;
+
+// Called by iframe onload — clears spinner and watchdog
+function onPdfIframeLoad() {
+  clearTimeout(_pdfWatchdog);
+  const loading = ge('pdfLoading');
+  if (loading) loading.style.display = 'none';
+}
+
+// Reload PDF iframe with cache-bust — also restarts watchdog
+function reloadPdfViewer(pdfSrc) {
+  clearTimeout(_pdfWatchdog);
+  const iframe  = ge('pdfIframe');
+  const loading = ge('pdfLoading');
+  if (!iframe) return;
+  if (loading) loading.style.display = 'flex';
+  const sep = pdfSrc.includes('?') ? '&' : '?';
+  iframe.src = pdfSrc + sep + '_r=' + Date.now();
+  _pdfWatchdog = setTimeout(() => {
+    const ld = ge('pdfLoading');
+    if (ld && ld.style.display !== 'none') showPdfObjectFallback(pdfSrc, pdfSrc);
+  }, 4000);
+}
+
+// Primary fallback: tries <object> tag (works on desktop where iframe is blocked).
+// If <object> also fails, shows open/download buttons.
+// pdfSrc    = authenticated proxy URL
+// directUrl = raw Cloudinary URL (for download)
+function showPdfObjectFallback(pdfSrc, directUrl) {
+  clearTimeout(_pdfWatchdog);
+  const wrap = ge('pdfViewerWrap');
+  if (!wrap) return;
+  const openUrl     = pdfSrc    || directUrl || '';
+  const downloadUrl = directUrl || pdfSrc    || '';
+
+  wrap.innerHTML = `
+    <div style="width:100%;position:relative;min-height:520px;background:#111">
+      <object
+        data="${escA(openUrl)}"
+        type="application/pdf"
+        style="width:100%;height:75vh;min-height:520px;border:none;display:block"
+      >
+        <!-- <object> inner content shows when browser can't render the PDF -->
+        <div style="display:flex;flex-direction:column;align-items:center;
+             justify-content:center;gap:16px;padding:40px;min-height:300px;
+             background:var(--card)">
+          <i class="fas fa-file-pdf" style="font-size:3rem;color:var(--red);opacity:.5"></i>
+          <div style="font-family:'Syne',sans-serif;font-weight:700;
+               font-size:1rem;color:var(--t1)">
+            PDF viewer not supported here
+          </div>
+          <div style="font-size:.82rem;color:var(--t3);text-align:center;max-width:300px">
+            Your browser blocked the inline PDF viewer. Use the buttons below.
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <a href="${escA(openUrl)}" target="_blank" rel="noopener"
+               class="btn btn-primary">
+              <i class="fas fa-external-link-alt"></i> Open PDF
+            </a>
+            ${downloadUrl ? `
+            <a href="${escA(downloadUrl)}" target="_blank" rel="noopener"
+               class="btn btn-ghost">
+              <i class="fas fa-download"></i> Download
+            </a>` : ''}
+          </div>
+        </div>
+      </object>
+    </div>`;
+}
+
+// Legacy alias — any old inline onerror calls still work
+function showPdfFallback(pdfSrc, directUrl) {
+  showPdfObjectFallback(pdfSrc, directUrl);
+}
+
+function setPlayerEmpty(msg) {
+  ge('playerZone').innerHTML = `
+    <div class="player-empty">
+      <div class="pe-icon"><i class="fas fa-play-circle"></i></div>
+      <div style="font-size:.85rem">${esc(msg)}</div>
+    </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SIDEBARS
+═══════════════════════════════════════════════════════ */
+function buildSimpleSidebar(p, type, data) {
+  const img       = p.image || '';
+  const typeEmoji = {video:'🎬',audio:'🎵',software:'💻',ebook:'📖',template:'🎨',script:'📜',component:'🧩',file:'📦'}[type]||'📦';
+
+  let rows = '';
+  if (p.category)                           rows += sbRow('Category',     p.category);
+  if (p.price)                              rows += sbRow('Paid',         fmtPrice(p.price));
+  if (p.purchaseDate)                       rows += sbRow('Purchased',    fmtDate(p.purchaseDate));
+  if (data?.ebookData?.language)            rows += sbRow('Language',     data.ebookData.language);
+  if (data?.ebookData?.author)              rows += sbRow('Author',       data.ebookData.author);
+  if (data?.ebookData?.pageCount)           rows += sbRow('Pages',        data.ebookData.pageCount);
+  if (data?.ebookData?.format?.length)      rows += sbRow('Format',       data.ebookData.format.join(', '));
+  if (p.fileSize || data?.fileSize)         rows += sbRow('Size',         p.fileSize||data?.fileSize);
+  if (p.version || data?.version)           rows += sbRow('Version',      `v${p.version||data?.version}`);
+  if (p.downloadLimit)                      rows += sbRow('Downloads',    `${p.downloadCount||0} / ${p.downloadLimit}`);
+  if (p.downloadExpiry)                     rows += sbRow('Link Expires', fmtDate(p.downloadExpiry));
+  if (data?.softwareData?.platform?.length) rows += sbRow('Platforms',   data.softwareData.platform.join(', '));
+  if (data?.softwareData?.licenseType)      rows += sbRow('License Type',capitalise(data.softwareData.licenseType));
+  if (data?.softwareData?.maxDevices)       rows += sbRow('Devices',     `${data.softwareData.maxDevices}`);
+  if (data?.designData?.framework?.length)  rows += sbRow('Framework',   data.designData.framework.join(', '));
+  if (data?.designData?.stack?.length)      rows += sbRow('Stack',       data.designData.stack.join(', '));
+  const hasPreview = p.designPreview?.livePreviewUrl || data?.designData?.livePreviewUrl;
+  const hasSWDemo  = data?.softwareData?.demoUrl;
+  // Build image gallery from data.images (server) or fallback to single p.image
+  const galleryImgs = (data?.images?.length > 1) ? data.images : [];
+  ge('sidebarInner').innerHTML = `
+    <div class="sb-product-thumb">
+      ${img ? `<img src="${escA(img)}" alt="" onerror="this.style.display='none'">` : typeEmoji}
+    </div>
+    ${galleryImgs.length ? `
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:0 12px 12px">
+      ${galleryImgs.slice(1, 7).map(im => `
+        <div style="aspect-ratio:1;border-radius:6px;overflow:hidden;background:var(--bg3);cursor:pointer"
+             onclick="window.open('${escA(im)}','_blank')">
+          <img src="${escA(im)}" alt="" loading="lazy"
+               style="width:100%;height:100%;object-fit:cover"
+               onerror="this.parentElement.style.display='none'">
+        </div>`).join('')}
+    </div>` : ''}
+    <div class="sb-info-block">
+      <div class="sb-info-title">${esc(p.title||'Product')}</div>
+      <div class="receipt" style="margin-top:8px">${rows}</div>
+      ${hasPreview ? `<a href="${escA(hasPreview)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:10px;width:100%;justify-content:center">
+          <i class="fas fa-eye"></i> Live Preview</a>` : ''}
+      ${hasSWDemo ? `<a href="${escA(hasSWDemo)}" target="_blank" rel="noopener"
+          class="btn btn-ghost btn-sm" style="margin-top:8px;width:100%;justify-content:center">
+          <i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+    </div>`;
+}
+
+function sbRow(label, val) {
+  return `<div class="receipt-row"><span class="rr-label">${esc(label)}</span><span class="rr-value">${val}</span></div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TAB PANELS
+═══════════════════════════════════════════════════════ */
+function buildOverviewPanel(data, p, type) {
+  const cd = data.courseData;
+  let html = '';
+
+  // ── Welcome message
+  const welcomeMsg = (type === 'course' && cd?.welcomeMessage) ? cd.welcomeMessage : data.welcomeMessage;
+  if (welcomeMsg) {
+    html += `<div class="welcome-banner">
+      <span class="welcome-icon">👋</span>
+      <span>${esc(welcomeMsg)}</span>
+    </div>`;
+  }
+
+  // ── Creator notes for buyer ─────────────────────────────────────────────
+  // data.notes is the creator's message/instructions to the buyer after purchase.
+  // This is DIFFERENT from chapter notes — it is product-level guidance.
+  const buyerNotes = data.notes || p.notes;
+  if (buyerNotes) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">📌 From the Creator</div>
+      <div class="desc-block" style="border-color:var(--line3);background:rgba(0,255,136,.03);
+           white-space:pre-wrap">${esc(buyerNotes)}</div>
+    </div>`;
+  }
+
+  // ── Course stats grid
+  if (type === 'course' && cd) {
+    const origPrice = data.comparePrice || p.comparePrice;
+    html += `<div class="info-grid">
+      ${cd.totalChapters ? tile('Chapters',   cd.totalChapters, 'lessons')          : ''}
+      ${cd.totalDuration ? tile('Duration',   fmtDurLong(cd.totalDuration), 'total') : ''}
+      ${cd.level         ? tile('Level',      capitalise(cd.level), '')              : ''}
+      ${cd.language      ? tile('Language',   cd.language, '')                       : ''}
+      ${cd.totalSections ? tile('Sections',   cd.totalSections, 'modules')           : ''}
+      ${cd.certificate   ? tile('Certificate','✓ Included','on completion')          : ''}
+      ${origPrice ? tile('Was', `<span style="text-decoration:line-through;color:var(--t3)">${fmtPrice(origPrice)}</span>`, 'original price') : ''}
+      ${(data.soldCount||0) > 0 ? tile('Sold', data.soldCount||0, 'students') : ''}
+      ${(data.rating||0)   > 0 ? tile('Rating', `${Number(data.rating||0).toFixed(1)} ★`, `${data.reviewCount||0} reviews`) : ''}
+    </div>`;
+  }
+
+  // ── Video product info grid
+  if (type === 'video' && data.videoData) {
+    const vd = data.videoData;
+    html += `<div class="info-grid">
+      ${vd.duration    ? tile('Duration',   fmtDurLong(vd.duration), '')    : ''}
+      ${vd.resolution  ? tile('Quality',    vd.resolution, '')              : ''}
+      ${vd.genre       ? tile('Genre',      vd.genre, '')                   : ''}
+      ${vd.language    ? tile('Language',   vd.language, '')                : ''}
+      ${vd.releaseYear ? tile('Year',       vd.releaseYear, '')             : ''}
+      ${vd.license     ? tile('License',    capitalise(vd.license), '')     : ''}
+    </div>`;
+    if (vd.cast?.length) {
+      html += `<div style="margin-bottom:16px">
+        <div class="ov-section-title">Cast</div>
+        <div class="desc-block" style="padding:12px 16px">${esc(vd.cast.join(', '))}</div>
+      </div>`;
+    }
+    if (vd.subtitles?.length) {
+      html += `<div style="margin-bottom:16px">
+        <div class="ov-section-title">Available Subtitles</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${vd.subtitles.map(s=>`<span class="badge badge-file">${esc(s)}</span>`).join('')}
+        </div>
+      </div>`;
+    }
+ }
+
+  // ── Social proof tiles (all non-course types) ─────────────────────────
+  if (type !== 'course') {
+    const origPrice = data.comparePrice || p.comparePrice;
+    const hasTiles  = origPrice || (data.soldCount||0) > 0 || (data.rating||0) > 0;
+    if (hasTiles) {
+      html += `<div class="info-grid" style="margin-bottom:20px">
+        ${origPrice        ? tile('Was',    `<span style="text-decoration:line-through;color:var(--t3)">${fmtPrice(origPrice)}</span>`, 'original price') : ''}
+        ${(data.soldCount||0) > 0 ? tile('Sold',   data.soldCount||0, 'copies') : ''}
+        ${(data.rating||0)   > 0 ? tile('Rating', `${Number(data.rating||0).toFixed(1)} ★`, `${data.reviewCount||0} reviews`) : ''}
+        ${data.publishedAt     ? tile('Published', fmtDate(data.publishedAt), '') : ''}
+      </div>`;
+    }
+  }
+
+  // ── Description
+  const descText = data.description || p.description;
+  if (descText) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">About</div>
+      <div class="desc-block">${esc(descText)}</div>
+    </div>`;
+  }
+
+  // ── Features — key selling points set by the creator
+  const featuresList = data.features || p.features;
+  if (featuresList?.length) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">✨ What's Included</div>
+      <div class="learn-grid">
+        ${featuresList.map(f => `
+          <div class="learn-item">
+            <i class="fas fa-check-circle learn-icon"></i>
+            <span>${esc(f)}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // ── Requirements
+  const reqList = data.requirements || p.requirements;
+  if (reqList?.length) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">⚙️ Requirements</div>
+      <div class="desc-block">
+        <ul style="padding-left:18px;display:flex;flex-direction:column;gap:6px">
+          ${reqList.map(r => `<li style="color:var(--t2);font-size:.84rem">${esc(r)}</li>`).join('')}
+        </ul>
+      </div>
+    </div>`;
+  }
+
+  // ── What you'll learn (course / video)
+  const whatYouLearn = cd?.whatYouLearn || data.whatYouLearn;
+  if (whatYouLearn?.length) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">What You'll Learn</div>
+      <div class="learn-grid">
+        ${whatYouLearn.map(item => `
+          <div class="learn-item">
+            <i class="fas fa-check-circle learn-icon"></i>
+            <span>${esc(item)}</span>
+          </div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  // ── Target audience
+  const targetAudience = cd?.targetAudience || data.targetAudience;
+  if (targetAudience?.length) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">Who This Is For</div>
+      <div class="desc-block">
+        <ul style="padding-left:18px;display:flex;flex-direction:column;gap:6px">
+          ${targetAudience.map(a => `<li style="color:var(--t2);font-size:.84rem">${esc(a)}</li>`).join('')}
+        </ul>
+      </div>
+    </div>`;
+  }
+
+  // ── Audio track details
+  const ad = data.audioData || p.audioPreview;
+  if (ad && type === 'audio') {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">Track Details</div>
+      <div class="receipt">
+        ${ad.genre       ? rRow('Genre',       ad.genre)       : ''}
+        ${ad.bpm         ? rRow('BPM',         ad.bpm)         : ''}
+        ${ad.key         ? rRow('Key',         ad.key)         : ''}
+        ${ad.mood        ? rRow('Mood',        ad.mood)        : ''}
+        ${ad.duration    ? rRow('Duration',    fmtDurLong(ad.duration)) : ''}
+        ${ad.license     ? rRow('License',     capitalise(ad.license)) : ''}
+        ${ad.stems       ? rRow('Stems',       '<span style="color:var(--g)">✓ Included</span>') : ''}
+        ${ad.hasVocals !== undefined ? rRow('Vocals', ad.hasVocals?'<span style="color:var(--g)">✓ Yes</span>':'Instrumental') : ''}
+        ${ad.loopable    ? rRow('Loopable',    '<span style="color:var(--g)">✓ Yes</span>') : ''}
+        ${ad.releaseYear ? rRow('Year',        ad.releaseYear) : ''}
+        ${ad.isrc        ? rRow('ISRC',        ad.isrc)        : ''}
+      </div>
+      ${ad.instruments?.length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">
+        ${ad.instruments.map(i=>`<span class="badge badge-file">${esc(i)}</span>`).join('')}
+      </div>` : ''}
+      ${ad.allowedUses?.length ? `<div style="margin-top:12px">
+        <div class="ov-section-title" style="margin-bottom:6px">Allowed Uses</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${ad.allowedUses.map(u=>`<span class="badge badge-audio">${esc(u)}</span>`).join('')}
+        </div>
+      </div>` : ''}
+    </div>`;
+  }
+
+  // ── Tags ─────────────────────────────────────────────────────────────
+  const tagList = (data.tags || p.tags || []).filter(Boolean);
+  if (tagList.length) {
+    html += `<div style="margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px">
+      ${tagList.map(t => `<span class="badge badge-file" style="font-size:.65rem"># ${esc(t)}</span>`).join('')}
+    </div>`;
+  }
+
+  // ── License text
+  if (data.licenseText || data.usageRights) {
+    html += `<div style="margin-bottom:16px">
+      <div class="ov-section-title">${data.licenseText ? 'License' : 'Usage Rights'}</div>
+      <div class="policy-card">
+        <div class="policy-body">${esc(data.licenseText || data.usageRights)}</div>
+      </div>
+    </div>`;
+  }
+
+  // ── Refund policy
+  const refundLabels = {
+    no_refund:  'No Refunds — All sales are final on this product.',
+    '7_day':    '7-Day Money Back Guarantee',
+    '14_day':   '14-Day Money Back Guarantee',
+    '30_day':   '30-Day Money Back Guarantee',
+    custom:     `${data.refundDays || p.refundDays || 0}-Day Refund Window`,
+  };
+  const refundLabel = refundLabels[data.refundPolicy || p.refundPolicy] || null;
+  if (refundLabel) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">Refund Policy</div>
+      <div class="policy-card">
+        <div class="policy-body">${refundLabel}</div>
+      </div>
+    </div>`;
+  }
+
+  // ── FAQs
+  const faqs = data.faqs || p.faqs || [];
+  if (faqs.length) {
+    html += `<div style="margin-bottom:20px">
+      <div class="ov-section-title">FAQ</div>
+      ${faqs.map((f, i) => `
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(${i})">
+            <span>${esc(f.question)}</span>
+            <i class="fas fa-chevron-down faq-chevron" id="faqchev-${i}"></i>
+          </div>
+          <div class="faq-a" id="faqa-${i}">
+            <div class="faq-a-inner">${esc(f.answer)}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }
+
+ // ── Review button (only if verified purchase and not yet reviewed)
+  const canReview = !p.hasReviewed;
+  if (canReview) {
+    html += `<div style="margin-top:8px">
+      <button class="btn btn-review btn-sm" onclick="openReviewModal()">
+        <i class="fas fa-star"></i> Leave a Review
+      </button>
+    </div>`;
+  }
+
+  // ── Reviews placeholder — filled asynchronously below ────────────────
+  html += `<div id="reviewsSection" style="margin-top:24px"></div>`;
+
+  const _dlExtra = STATE._downloadExtraHtml || '';
+  STATE._downloadExtraHtml = '';
+  ge('panel-overview').innerHTML = _dlExtra + html;
+  loadReviews(STATE.productId);
+
+}
+
+
+// Load and render published reviews for this product
+async function loadReviews(productId) {
+  const container = ge('reviewsSection');
+  if (!container) return;
+
+  try {
+    const r = await fetch(`${API}/api/reviews/${encodeURIComponent(productId)}`, {
+      headers: authH(),
+    });
+    if (!r.ok) return; // silently skip if route errors
+    const d = await r.json();
+    if (!d.success || !d.reviews?.length) return; // no reviews yet — leave empty
+
+    const starStr = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
+    const avgRating = d.reviews.reduce((s, rv) => s + rv.rating, 0) / d.reviews.length;
+
+    let html = `
+      <div style="margin-bottom:12px;display:flex;align-items:baseline;gap:10px">
+        <div class="ov-section-title" style="margin-bottom:0">
+          Reviews (${d.reviews.length})
+        </div>
+        <span style="color:var(--amber);font-size:.9rem">${starStr(Math.round(avgRating))}</span>
+        <span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--t3)">
+          ${avgRating.toFixed(1)} avg
+        </span>
+      </div>`;
+
+    d.reviews.forEach(rv => {
+      html += `
+        <div class="policy-card" style="margin-bottom:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="color:var(--amber);font-size:.88rem">${starStr(rv.rating)}</span>
+              ${rv.verifiedPurchase
+                ? `<span style="font-size:.62rem;padding:1px 7px;border-radius:8px;
+                    background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2);
+                    color:var(--g);font-family:'DM Mono',monospace">✓ Verified</span>`
+                : ''}
+            </div>
+            <span style="font-size:.72rem;color:var(--t3);font-family:'DM Mono',monospace">
+              ${esc(rv.reviewerName || rv.buyerName || 'Verified Buyer')} · ${fmtDate(rv.createdAt)}
+            </span>
+          </div>
+          ${rv.title
+            ? `<div style="font-size:.85rem;font-weight:600;color:var(--t1);margin-bottom:5px">${esc(rv.title)}</div>`
+            : ''}
+          <div class="policy-body">${esc(rv.body)}</div>
+          ${rv.reply
+            ? `<div style="margin-top:10px;padding:10px 12px;background:var(--bg3);border-radius:8px;
+                border-left:2px solid var(--g3)">
+                <div style="font-size:.65rem;color:var(--g);font-family:'DM Mono',monospace;
+                  text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Creator Reply</div>
+                <div style="font-size:.82rem;color:var(--t2)">${esc(rv.reply.body)}</div>
+              </div>`
+            : ''}
+        </div>`;
+    });
+
+    container.innerHTML = html;
+  } catch (_) {
+    // Network error or route missing — fail silently, reviews are non-critical
+  }
+}
+
+function toggleFaq(i) {
+  const a   = ge(`faqa-${i}`);
+  const chv = ge(`faqchev-${i}`);
+  const open = a.classList.toggle('open');
+  chv.style.transform = open ? 'rotate(180deg)' : '';
+}
+
+/* ── Receipt ─────────────────────────────────────────── */
+function buildReceiptPanel(data, p) {
+  ge('panel-receipt').innerHTML = `
+    <div class="receipt">
+      ${rRow('Product',    esc(data.title || p.title || '—'))}
+      ${rRow('Type',       esc(capitalise(data.productType || p.productType || '—')))}
+      ${rRow('Category',   esc(p.category || '—'))}
+      ${rRow('Price Paid', fmtPrice(p.price || 0))}
+      ${rRow('Purchased',  fmtDate(p.purchaseDate))}
+      ${rRow('Order Ref',  `<span style="font-family:'DM Mono',monospace;font-size:.75rem">${esc(p.orderReference||'—')}</span>`)}
+      ${p.downloadLimit ? rRow('Downloads Used', `${p.downloadCount||0} of ${p.downloadLimit}`) : ''}
+      ${p.downloadExpiry ? rRow('Download Expiry', fmtDate(p.downloadExpiry)) : ''}
+    </div>`;
+}
+
+/* ── Certificate panel ───────────────────────────────── */
+function buildCertPanel(data, p, type) {
+  if (type !== 'course') return;
+  const hasCert = STATE.progress?.certificateIssued;
+  const pct     = STATE.progress?.completionPct || 0;
+
+  ge('panel-certificate').innerHTML = hasCert
+    ? `<div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-title">Certificate Earned!</div>
+        <div class="cert-sub">You have successfully completed this course.</div>
+        <button class="btn btn-primary" onclick="fetchCertificate()" style="margin:0 auto">
+          <i class="fas fa-certificate"></i> View & Print Certificate
+        </button>
+        ${STATE.progress?.certificateId ? `
+          <div class="cert-id-row">
+            <span class="cert-id-label">Cert ID</span>
+            <span class="cert-id-val">${esc(STATE.progress.certificateId)}</span>
+            <button class="copy-btn" onclick="copyText('${escA(STATE.progress.certificateId)}')">Copy</button>
+          </div>` : ''}
+       </div>`
+    : `<div class="cert-card" style="opacity:.7">
+        <div class="cert-icon" style="opacity:.4">🔒</div>
+        <div class="cert-title" style="color:var(--t2)">Certificate Locked</div>
+        <div class="cert-sub">Complete all chapters to earn your certificate.</div>
+        <div style="background:rgba(0,0,0,.3);border-radius:10px;padding:14px;margin-top:8px">
+          <div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--t2);margin-bottom:6px">
+            <span>Progress</span><span>${pct}%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+        </div>
+       </div>`;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CERTIFICATE MODAL
+═══════════════════════════════════════════════════════ */
+function showCertModal(cert) {
+  const name      = cert.userName    || 'Student';
+  const course    = cert.courseTitle || 'this course';
+  const issued    = fmtDateLong(cert.issuedAt);
+  const completed = fmtDateLong(cert.completedAt || cert.issuedAt);
+
+  ge('certModalContent').innerHTML = `
+    <div style="margin-bottom:20px">
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:4px">Certificate of Completion</div>
+      <div style="font-size:.82rem;color:var(--t2)">Print or save as PDF using your browser's print function.</div>
+    </div>
+    <div class="cert-print" id="certPrint">
+      <div class="cert-watermark">UYEH</div>
+      <div class="cert-brand">UYEH TECH · Certificate of Completion</div>
+      <div class="cert-presented">This certifies that</div>
+      <div class="cert-name">${esc(name)}</div>
+      <div class="cert-course-label">has successfully completed</div>
+      <div class="cert-course-title">${esc(course)}</div>
+      <div class="cert-date-row">
+        <div class="cert-date-item">
+          <div class="cert-date-label">Completed</div>
+          <div class="cert-date-val">${completed}</div>
+        </div>
+        <div class="cert-date-item">
+          <div class="cert-date-label">Issued</div>
+          <div class="cert-date-val">${issued}</div>
+        </div>
+        <div class="cert-date-item">
+          <div class="cert-date-label">Score</div>
+          <div class="cert-date-val">${cert.completionPct || 100}%</div>
+        </div>
+      </div>
+    </div>
+    ${cert.certificateId ? `
+      <div class="cert-id-row" style="margin-bottom:16px">
+        <span class="cert-id-label">Verification ID</span>
+        <span class="cert-id-val">${esc(cert.certificateId)}</span>
+        <button class="copy-btn" onclick="copyText('${escA(cert.certificateId)}')">Copy</button>
+      </div>` : ''}
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:4px">
+      <button class="btn btn-ghost" onclick="closeCertModal()">Close</button>
+      <button class="btn btn-primary" onclick="window.print()">
+        <i class="fas fa-print"></i> Print / Save PDF
+      </button>
+    </div>`;
+
+  ge('certModal').style.display = 'flex';
+}
+
+function closeCertModal() { ge('certModal').style.display = 'none'; }
+
+function showCertUnlockedToast() {
+  // Use the creator's custom completionMessage if set, else fall back to generic text
+  const completionMsg = STATE.access?.courseData?.completionMessage || null;
+  const el = document.createElement('div');
+  el.className = 'toast t-success';
+  el.style.cssText = 'padding:14px 18px;font-size:.9rem;gap:10px;max-width:360px';
+  el.innerHTML = `<span style="font-size:1.3rem">🎓</span>
+    <span>
+      <strong>Course Complete!</strong><br>
+      ${completionMsg
+        ? `<span style="font-size:.82rem;opacity:.9">${esc(completionMsg)}</span>`
+        : `<span style="font-size:.78rem;opacity:.8">Your certificate is now available.</span>`
+      }
+    </span>`;
+  ge('toastWrap').appendChild(el);
+  setTimeout(() => {
+    el.style.cssText += ';opacity:0;transform:translateX(30px);transition:all .3s';
+    setTimeout(() => el.remove(), 350);
+  }, 6000);
+}
+
+/* ═══════════════════════════════════════════════════════
+   REVIEW MODAL
+═══════════════════════════════════════════════════════ */
+function openReviewModal() {
+  STATE.reviewRating = 0;
+  ge('reviewTitle').value = '';
+  ge('reviewBody').value  = '';
+  updateStars(0);
+  ge('reviewModal').style.display = 'flex';
+
+  // Star click handlers
+  ge('starRow').querySelectorAll('.star').forEach(s => {
+    s.onclick = () => { STATE.reviewRating = parseInt(s.dataset.v); updateStars(STATE.reviewRating); };
+  });
+}
+
+function closeReviewModal() { ge('reviewModal').style.display = 'none'; }
+
+function updateStars(val) {
+  ge('starRow').querySelectorAll('.star').forEach(s => {
+    s.classList.toggle('lit', parseInt(s.dataset.v) <= val);
+  });
+}
+
+async function submitReview() {
+  if (!STATE.reviewRating) { toast('Please select a rating.', 'error'); return; }
+  const body = ge('reviewBody').value.trim();
+  if (!body) { toast('Please write a short review.', 'error'); return; }
+
+  const btn = ge('submitReviewBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting…';
+
+  try {
+    const r = await fetch(`${API}/api/reviews`, {
+      method: 'POST',
+      headers: authH(),
+      body: JSON.stringify({
+        productId: STATE.productId,
+        orderId:   STATE.orderId,
+        rating:    STATE.reviewRating,
+        title:     ge('reviewTitle').value.trim(),
+        body,
+      })
+    });
+    const d = await r.json();
+    if (d.success) {
+      toast('Review submitted! Thank you 🙏', 'success');
+      closeReviewModal();
+
+      // Remove the review button from this session's DOM immediately
+      document.querySelector('.btn-review')?.parentElement?.remove();
+
+      // FIX #6: persist hasReviewed=true into the library cache so the review button
+      // doesn't reappear the next time the user opens this product page
+      try {
+        const cached = safeJSON(localStorage.getItem('_lib_cache'), []);
+        const entry = cached.find(item => String(item.productId) === String(STATE.productId));
+        if (entry) {
+          entry.hasReviewed = true;
+          localStorage.setItem('_lib_cache', JSON.stringify(cached));
+        }
+      } catch (_) {}
+
+      // Reload reviews section so the newly submitted review appears immediately
+      loadReviews(STATE.productId);
+
+    } else {
+      toast(d.message || 'Could not submit review.', 'error');
+    }
+  } catch { toast('Failed to submit review.', 'error'); }
+  finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════════════════ */
+function bindTabs() {
+  document.addEventListener('click', e => {
+    const tab = e.target.closest('.tab');
+    if (!tab) return;
+    const id = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = ge(`panel-${id}`);
+    if (panel) panel.classList.add('active');
+  });
+}
+
+/* ═══════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════ */
+function resolveType(data, p) {
+  if (data.mediaType === 'course' || data.productType === 'course') return 'course';
+  if (p.productType === 'course' || p.hasCourse) return 'course';
+  if (data.productType === 'video' || data.mediaType === 'video' || p.productType === 'video') return 'video';
+  if (data.mediaType === 'audio' || data.productType === 'music' || p.mediaType === 'audio' || p.productType === 'music') return 'audio';
+  if (data.productType === 'software' || p.productType === 'software') return 'software';
+  // Ebook/PDF detection: check productType, playerType, AND pdfUrl
+  // (old records have blank playerType but pdfUrl is now reliably set by the server fix)
+  if (data.productType === 'ebook' || p.productType === 'ebook'
+      || (data.playerType === 'pdf_viewer' && data.productType !== 'software')
+      || (!!data.pdfUrl && data.productType !== 'software'))
+    return 'ebook';
+  if (data.productType === 'template'  || p.productType === 'template')  return 'template';
+  if (data.productType === 'script'    || p.productType === 'script')    return 'script';
+  if (data.productType === 'component' || p.productType === 'component') return 'component';
+  const AUDIO_EMBED_TYPES_RT = ['soundcloud','spotify','audiomack','youtube_music','mixcloud','bandcamp','apple_music','deezer'];
+  if (data.embedUrl || data.cloudinaryUrl || data.embedAudioUrl) {
+    const isAudio = AUDIO_EMBED_TYPES_RT.includes(data.embedType)
+      || data.playerType === 'cloudinary_audio'
+      || data.playerType === 'html5_audio'
+      || data.mediaType  === 'audio'
+      || !!data.embedAudioUrl;
+    return isAudio ? 'audio' : 'video';
+  }
+  return 'file';
+}
+
+function badgeHTML(type) {
+  const cfg = {
+    course:    ['badge-course', '🎓 Course'],
+    video:     ['badge-video',  '▶ Video'],
+    audio:     ['badge-audio',  '♫ Audio'],
+    software:  ['badge-soft',   '💻 Software'],
+    ebook:     ['badge-ebook',  '📖 eBook'],
+    template:  ['badge-soft',   '🎨 Template'],
+    script:    ['badge-soft',   '📜 Script'],
+    component: ['badge-soft',   '🧩 Component'],
+    file:      ['badge-file',   '↧ File'],
+  }[type] || ['badge-file','↧ File'];
+  return `<span class="badge ${cfg[0]}">${cfg[1]}</span>`;
+}
+
+function tile(label, val, sub) {
+  return `<div class="info-tile">
+    <div class="it-label">${esc(label)}</div>
+    <div class="it-value">${val}</div>
+    ${sub?`<div class="it-sub">${esc(sub)}</div>`:''}
+  </div>`;
+}
+
+function rRow(label, val) {
+  return `<div class="receipt-row"><span class="rr-label">${esc(label)}</span><span class="rr-value">${val}</span></div>`;
+}
+
+function ge(id)        { return document.getElementById(id); }
+function esc(s)        { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escA(s)       { return String(s||'').replace(/"/g,'&quot;'); }
+function capitalise(s) { return s ? String(s).charAt(0).toUpperCase()+String(s).slice(1) : ''; }
+function safeJSON(s,f) { try{return JSON.parse(s)||f}catch{return f} }
+
+function fmtDur(s) {
+  if (!s) return '';
+  const m = Math.floor(s/60), ss = s%60;
+  return `${m}:${String(ss).padStart(2,'0')}`;
+}
+function fmtDurLong(s) {
+  if (!s) return '';
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60);
+  return h ? `${h}h ${m}m` : `${m}m`;
+}
+function fmtDate(d) {
+  return d ? new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}) : '—';
+}
+function fmtDateLong(d) {
+  return d ? new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}) : '—';
+}
+function fmtRelative(d) {
+  if (!d) return '—';
+  const diff = Date.now() - new Date(d).getTime();
+  const days = Math.floor(diff / 86400000);
+  if (days === 0) return 'Today';
+  if (days === 1) return 'Yesterday';
+  if (days < 7)  return `${days} days ago`;
+  if (days < 30) return `${Math.floor(days/7)}w ago`;
+  return fmtDate(d);
+}
+function copyText(txt) {
+  navigator.clipboard.writeText(txt)
+    .then(()=>toast('Copied!','success'))
+    .catch(()=>{
+      const e=document.createElement('textarea');
+      e.value=txt; document.body.appendChild(e); e.select();
+      document.execCommand('copy'); document.body.removeChild(e);
+      toast('Copied','success');
+    });
+}
+function toast(msg, type='info') {
+  const el = document.createElement('div');
+  el.className = `toast t-${type}`;
+  el.innerHTML = `<i class="fas fa-${type==='success'?'check':type==='error'?'times':'info-circle'}"></i><span>${esc(msg)}</span>`;
+  ge('toastWrap').appendChild(el);
+  setTimeout(()=>{
+    el.style.cssText='opacity:0;transform:translateX(30px);transition:all .28s';
+    setTimeout(()=>el.remove(),300);
+  }, 3500);
+}
+// msg can be a plain string (HTML-encoded) or { html: '...' } for trusted markup.
+function showFatal(msg) {
+  const display = (msg && typeof msg === 'object' && msg.html)
+    ? msg.html
+    : esc(typeof msg === 'string' ? msg : String(msg || ''));
+  ge('playerZone').innerHTML = `
+    <div class="player-empty" style="min-height:260px">
+      <div class="pe-icon" style="color:var(--red);opacity:.6"><i class="fas fa-triangle-exclamation"></i></div>
+      <div style="font-weight:600;margin-bottom:4px">Access Error</div>
+      <div style="font-size:.8rem;color:var(--t3);max-width:320px;text-align:center">${display}</div>
+      <a href="/marketplace/my-products" class="btn btn-ghost btn-sm" style="margin-top:12px">← Back to Library</a>
+    </div>`;
+  ge('tbTitle').textContent = 'Error';
+}
+function toggleSidebar() { ge('sidebar').classList.toggle('open'); ge('sbOverlay').classList.toggle('show'); }
+function closeSidebar()  { ge('sidebar').classList.remove('open'); ge('sbOverlay').classList.remove('show'); }
+</script>
+
+<!-- Print styles for certificate -->
+<style>
+@media print {
+  body > *:not(.cert-modal-overlay) { display: none !important; }
+  .cert-modal-overlay { position: static !important; background: none !important; padding: 0 !important; display: block !important; }
+  .cert-modal { box-shadow: none !important; border: none !important; max-width: 100% !important; padding: 0 !important; background: #fff !important; }
+  .cert-print { background: #fff !important; border: 2px solid #00cc6a !important; color: #000 !important; break-inside: avoid; }
+  .cert-watermark { color: rgba(0,200,100,.06) !important; }
+  .cert-brand, .cert-presented, .cert-course-label { color: #555 !important; }
+  .cert-name { color: #000 !important; }
+  .cert-course-title { color: #00aa55 !important; }
+  .cert-date-label { color: #777 !important; }
+  .cert-date-val { color: #000 !important; }
+  button, .btn { display: none !important; }
+}
+</style>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>

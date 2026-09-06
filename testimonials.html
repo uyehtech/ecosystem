@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="uyehtech logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- Basic SEO -->
+    <title>UYEH TECH</title>
+    <link rel="icon" href="uyehtech logo.png" type="image/png">
+    <meta name="description" content="UYEH TECH offers web development, mobile apps, UI/UX design, and software solutions. Explore our portfolio and blog.">
+    <meta name="keywords" content="Web Development, Mobile Apps, UI/UX Design, Software Development, UYEH TECH">
+    <meta name="author" content="UYEH TECH">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="UYEH TECH Portfolio">
+    <meta property="og:description" content="Professional web, mobile, and software solutions. Check out our projects and blog.">
+    <meta property="og:image" content="https://uyehtech.com/og-image.jpg">
+    <meta property="og:url" content="https://uyehtech.com">
+    <meta property="og:type" content="website">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UYEH TECH",
+      "url": "https://uyehtech.com",
+      "logo": "https://uyehtech.com/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/uyehtech",
+        "https:/X.com/uyehtech",
+        "https://www.linkedin.com/company/uyehtech"
+      ]
+    }
+    </script>
+
+    <!-- Performance & Optimization -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Optional: Canonical URL for SEO -->
+    <link rel="canonical" href="https://uyehtech.com">
+                 <!-- PWA manifest -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UYEH TECH">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="icon" href="/images/uyehtech-logo.png" type="image/png">
+
+     <script src="/site-controller.js" defer></script>
+     <style>
+
+      /* ========== GLOBAL STYLES ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== HEADER ========== */
+.header {
+    padding: 30px;
+    text-align: center;
+
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    color: #00ff88;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+.main-subtitle {
+    font-size: 1.3em;
+    color: #d1d5db;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* ========== STATS SECTION ========== */
+.stats-section {
+    padding: 40px 20px 60px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 255, 136, 0.05) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 255, 136, 0.3);
+    border-color: rgba(0, 255, 136, 0.6);
+}
+
+.stat-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #00ff88;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 0.95em;
+    color: #d1d5db;
+    font-weight: 300;
+}
+
+/* ========== FILTER SECTION ========== */
+.filter-section {
+    padding: 40px 20px;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 30px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 30px;
+    color: #d1d5db;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filter-btn:hover {
+    background: rgba(0, 255, 136, 0.2);
+    border-color: rgba(0, 255, 136, 0.5);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #00b359, #00ff88);
+    border-color: #00ff88;
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+/* ========== TESTIMONIALS GRID ========== */
+.testimonials-section {
+    padding: 60px 20px 100px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 255, 136, 0.05) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    padding: 35px;
+    position: relative;
+    transition: all 0.4s ease;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+}
+
+.testimonial-card.hide {
+    display: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 255, 136, 0.3);
+    border-color: rgba(0, 255, 136, 0.6);
+}
+
+.quote-icon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 5em;
+    color: rgba(0, 255, 136, 0.15);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+}
+
+.stars {
+    color: #00ff88;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.testimonial-text {
+    color: #d1d5db;
+    font-size: 1em;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.author-avatar {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, #00b359, #00ff88);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+}
+
+.author-info .author-name {
+    color: #00ff88;
+    font-weight: 600;
+    font-size: 1.05em;
+    margin-bottom: 4px;
+}
+
+.author-info .author-title {
+    color: #d1d5db;
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.testimonial-date {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* ========== CTA SECTION ========== */
+.cta-section {
+    padding: 80px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: #00ff88;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+}
+
+.cta-text {
+    font-size: 1.2em;
+    color: #d1d5db;
+    margin-bottom: 40px;
+    font-weight: 300;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 18px 45px;
+    border-radius: 35px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cta-btn.primary {
+    background: linear-gradient(135deg, #00b359, #00ff88);
+    box-shadow: 0 12px 35px rgba(0, 255, 136, 0.4);
+}
+
+.cta-btn.primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 50px rgba(0, 255, 136, 0.6);
+}
+
+.cta-btn.secondary {
+    background: transparent;
+    border: 2px solid #00ff88;
+    color: #00ff88;
+}
+
+.cta-btn.secondary:hover {
+    background: rgba(0, 255, 136, 0.1);
+    transform: translateY(-5px);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 968px) {
+    .main-title {
+        font-size: 3em;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.2em;
+    }
+
+    .main-subtitle {
+        font-size: 1.1em;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        padding: 25px;
+    }
+
+    .quote-icon {
+        font-size: 3.5em;
+        top: 15px;
+        right: 20px;
+    }
+
+    .cta-title {
+        font-size: 2em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-btn {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+          <a href="index.html"><img src="uyehtech logo.png" width="50px" height="50px"></a>
+        <div class="container">
+            <h1 class="main-title">Client Testimonials</h1>
+            <p class="main-subtitle">What My Clients Say About Working With Me</p>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number">4.9/5</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">😊</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">💼</div>
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">🔄</div>
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Repeat Clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Reviews</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="app">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+                <button class="filter-btn" data-filter="design">UI/UX Design</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="testimonials-grid" id="testimonialsGrid">
+                
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card" data-category="web">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        UYEH TECH transformed our outdated website into a modern, responsive platform that has increased our online conversions by 150%. The attention to detail and professionalism throughout the project was outstanding.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <div class="author-name">James Davidson</div>
+                            <div class="author-title">CEO, TechVision Solutions</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">2 months ago</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card" data-category="ecommerce">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Our e-commerce store was built from scratch and exceeded all expectations. The payment integration works flawlessly, and our customers love the smooth checkout experience. Sales have tripled since launch!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Mitchell</div>
+                            <div class="author-title">Founder, Fashion Boutique Online</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">1 month ago</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card" data-category="app">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The mobile app UYEH TECH developed for us is incredibly user-friendly and bug-free. The team's communication was excellent, and they delivered ahead of schedule. Highly recommend!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MO</div>
+                        <div class="author-info">
+                            <div class="author-name">Michael Okonkwo</div>
+                            <div class="author-title">Director, FitLife Wellness</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">3 weeks ago</div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card" data-category="web">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Working with UYEH TECH was a game-changer for our business. The website is fast, secure, and looks absolutely stunning. Our bounce rate decreased by 60% after the redesign. Amazing work!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EA</div>
+                        <div class="author-info">
+                            <div class="author-name">Elizabeth Adeyemi</div>
+                            <div class="author-title">Marketing Manager, GreenLeaf Corp</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">5 weeks ago</div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card" data-category="design">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The UI/UX design for our platform is exceptional! UYEH TECH understood our brand vision perfectly and created an interface that our users absolutely love. User engagement is up 200%!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <div class="author-name">Robert Kumar</div>
+                            <div class="author-title">Product Manager, CloudSync</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">1 month ago</div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card" data-category="web">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        I needed a professional website for my consulting business, and UYEH TECH delivered beyond my expectations. The site is elegant, loads fast, and I've received numerous compliments from clients.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DN</div>
+                        <div class="author-info">
+                            <div class="author-name">David Nwosu</div>
+                            <div class="author-title">Business Consultant</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">6 weeks ago</div>
+                </div>
+
+                <!-- Testimonial 7 -->
+                <div class="testimonial-card" data-category="ecommerce">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        Our online store was struggling with poor performance. UYEH TECH completely rebuilt it, and now it's lightning fast! Orders have increased by 180%, and customer complaints have disappeared.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AC</div>
+                        <div class="author-info">
+                            <div class="author-name">Amanda Chen</div>
+                            <div class="author-title">Owner, TrendyWear Store</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">2 months ago</div>
+                </div>
+
+                <!-- Testimonial 8 -->
+                <div class="testimonial-card" data-category="app">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The task management app developed by UYEH TECH has revolutionized how our team collaborates. It's intuitive, reliable, and has all the features we need. Best investment we've made this year!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PT</div>
+                        <div class="author-info">
+                            <div class="author-name">Peter Thompson</div>
+                            <div class="author-title">Operations Director, BuildRight</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">4 weeks ago</div>
+                </div>
+
+                <!-- Testimonial 9 -->
+                <div class="testimonial-card" data-category="web">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        UYEH TECH created a beautiful portfolio website for my photography business. The gallery is smooth, the design is minimalist yet striking, and I'm getting more bookings than ever before!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LA</div>
+                        <div class="author-info">
+                            <div class="author-name">Linda Ajayi</div>
+                            <div class="author-title">Professional Photographer</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">3 months ago</div>
+                </div>
+
+                <!-- Testimonial 10 -->
+                <div class="testimonial-card" data-category="design">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The redesign of our dashboard was phenomenal. UYEH TECH took our complex data and made it visually appealing and easy to understand. Our team's productivity has improved significantly!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">TO</div>
+                        <div class="author-info">
+                            <div class="author-name">Thomas Obi</div>
+                            <div class="author-title">CTO, DataMetrics Inc</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">7 weeks ago</div>
+                </div>
+
+                <!-- Testimonial 11 -->
+                <div class="testimonial-card" data-category="app">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        We hired UYEH TECH to build a real estate app, and they delivered a polished, feature-rich product. The map integration is perfect, and our agents love using it. Truly professional work!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">GW</div>
+                        <div class="author-info">
+                            <div class="author-name">Grace Williams</div>
+                            <div class="author-title">Managing Director, PropertyHub</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">2 months ago</div>
+                </div>
+
+                <!-- Testimonial 12 -->
+                <div class="testimonial-card" data-category="ecommerce">
+                    <div class="quote-icon">"</div>
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        The subscription platform UYEH TECH built for us handles thousands of transactions daily without any issues. The automated billing system is flawless. Worth every penny!
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">BM</div>
+                        <div class="author-info">
+                            <div class="author-name">Benjamin Musa</div>
+                            <div class="author-title">CEO, Uyeh Data Services</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-date">4 months ago</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Ready to Join Our Happy Clients?</h2>
+            <p class="cta-text">Let's create something amazing together</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn primary">Start Your Project</a>
+                <a href="https://wa.me/2349055658460" target="_blank" class="cta-btn secondary">Chat on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+      // ========== TESTIMONIALS DATA ==========
+const testimonials = [
+    {
+        name: "James Davidson",
+        title: "CEO, TechVision Solutions",
+        avatar: "JD",
+        rating: 5,
+        text: "UYEH TECH transformed our outdated website into a modern, responsive platform that has increased our online conversions by 150%. The attention to detail and professionalism throughout the project was outstanding.",
+        category: "web",
+        date: "2 months ago"
+    },
+    {
+        name: "Sarah Mitchell",
+        title: "Founder, Fashion Boutique Online",
+        avatar: "SM",
+        rating: 5,
+        text: "Our e-commerce store was built from scratch and exceeded all expectations. The payment integration works flawlessly, and our customers love the smooth checkout experience. Sales have tripled since launch!",
+        category: "ecommerce",
+        date: "1 month ago"
+    },
+    {
+        name: "Michael Okonkwo",
+        title: "Director, FitLife Wellness",
+        avatar: "MO",
+        rating: 5,
+        text: "The mobile app UYEH TECH developed for us is incredibly user-friendly and bug-free. The team's communication was excellent, and they delivered ahead of schedule. Highly recommend!",
+        category: "app",
+        date: "3 weeks ago"
+    },
+    {
+        name: "Elizabeth Adeyemi",
+        title: "Marketing Manager, GreenLeaf Corp",
+        avatar: "EA",
+        rating: 5,
+        text: "Working with UYEH TECH was a game-changer for our business. The website is fast, secure, and looks absolutely stunning. Our bounce rate decreased by 60% after the redesign. Amazing work!",
+        category: "web",
+        date: "5 weeks ago"
+    },
+    {
+        name: "Robert Kumar",
+        title: "Product Manager, CloudSync",
+        avatar: "RK",
+        rating: 5,
+        text: "The UI/UX design for our platform is exceptional! UYEH TECH understood our brand vision perfectly and created an interface that our users absolutely love. User engagement is up 200%!",
+        category: "design",
+        date: "1 month ago"
+    },
+    {
+        name: "David Nwosu",
+        title: "Business Consultant",
+        avatar: "DN",
+        rating: 5,
+        text: "I needed a professional website for my consulting business, and UYEH TECH delivered beyond my expectations. The site is elegant, loads fast, and I've received numerous compliments from clients.",
+        category: "web",
+        date: "6 weeks ago"
+    },
+    {
+        name: "Amanda Chen",
+        title: "Owner, TrendyWear Store",
+        avatar: "AC",
+        rating: 5,
+        text: "Our online store was struggling with poor performance. UYEH TECH completely rebuilt it, and now it's lightning fast! Orders have increased by 180%, and customer complaints have disappeared.",
+        category: "ecommerce",
+        date: "2 months ago"
+    },
+    {
+        name: "Peter Thompson",
+        title: "Operations Director, BuildRight",
+        avatar: "PT",
+        rating: 5,
+        text: "The task management app developed by UYEH TECH has revolutionized how our team collaborates. It's intuitive, reliable, and has all the features we need. Best investment we've made this year!",
+        category: "app",
+        date: "4 weeks ago"
+    },
+    {
+        name: "Linda Ajayi",
+        title: "Professional Photographer",
+        avatar: "LA",
+        rating: 5,
+        text: "UYEH TECH created a beautiful portfolio website for my photography business. The gallery is smooth, the design is minimalist yet striking, and I'm getting more bookings than ever before!",
+        category: "web",
+        date: "3 months ago"
+    },
+    {
+        name: "Thomas Obi",
+        title: "CTO, DataMetrics Inc",
+        avatar: "TO",
+        rating: 5,
+        text: "The redesign of our dashboard was phenomenal. UYEH TECH took our complex data and made it visually appealing and easy to understand. Our team's productivity has improved significantly!",
+        category: "design",
+        date: "7 weeks ago"
+    },
+    {
+        name: "Grace Williams",
+        title: "Managing Director, PropertyHub",
+        avatar: "GW",
+        rating: 5,
+        text: "We hired UYEH TECH to build a real estate app, and they delivered a polished, feature-rich product. The map integration is perfect, and our agents love using it. Truly professional work!",
+        category: "app",
+        date: "2 months ago"
+    },
+    {
+        name: "Benjamin Musa",
+        title: "CEO, Uyeh Data Services",
+        avatar: "BM",
+        rating: 5,
+        text: "The subscription platform UYEH TECH built for us handles thousands of transactions daily without any issues. The automated billing system is flawless. Worth every penny!",
+        category: "ecommerce",
+        date: "4 months ago"
+    }
+];
+
+// ========== FILTER FUNCTIONALITY ==========
+const filterButtons = document.querySelectorAll('.filter-btn');
+const testimonialCards = document.querySelectorAll('.testimonial-card');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Get filter value
+        const filterValue = button.getAttribute('data-filter');
+        
+        // Filter testimonials
+        testimonialCards.forEach((card, index) => {
+            const category = card.getAttribute('data-category');
+            
+            // Reset animation
+            card.style.animation = 'none';
+            
+            if (filterValue === 'all' || category === filterValue) {
+                card.classList.remove('hide');
+                setTimeout(() => {
+                    card.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
+                }, 10);
+            } else {
+                card.classList.add('hide');
+            }
+        });
+    });
+});
+
+// ========== ANIMATION ON SCROLL ==========
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe all testimonial cards
+testimonialCards.forEach(card => {
+    observer.observe(card);
+});
+
+// ========== INITIAL ANIMATION ==========
+window.addEventListener('load', () => {
+    testimonialCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.animation = `fadeInUp 0.6s ease forwards`;
+        }, index * 100);
+    });
+});
+
+// ========== SMOOTH SCROLL ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ========== STATS COUNTER ANIMATION ==========
+const statsSection = document.querySelector('.stats-section');
+let hasAnimated = false;
+
+function animateCounter(element, target, duration = 2000) {
+    const start = 0;
+    const increment = target / (duration / 16);
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current);
+        }
+    }, 16);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            
+            // Animate each stat number
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const text = stat.textContent;
+                if (text.includes('%')) {
+                    const target = parseInt(text);
+                    animateCounter(stat, target);
+                    setTimeout(() => {
+                        stat.textContent = target + '%';
+                    }, 2000);
+                } else if (text.includes('+')) {
+                    const target = parseInt(text);
+                    animateCounter(stat, target);
+                    setTimeout(() => {
+                        stat.textContent = target + '+';
+                    }, 2000);
+                } else if (text.includes('/')) {
+                    // For ratings like 4.9/5
+                    const parts = text.split('/');
+                    const target = parseFloat(parts[0]);
+                    let current = 0;
+                    const increment = target / 100;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target.toFixed(1) + '/5';
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = current.toFixed(1) + '/5';
+                        }
+                    }, 20);
+                }
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
+
+// ========== RANDOM TESTIMONIAL HIGHLIGHT ==========
+function highlightRandomTestimonial() {
+    const visibleCards = Array.from(testimonialCards).filter(card => 
+        !card.classList.contains('hide')
+    );
+    
+    if (visibleCards.length > 0) {
+        // Remove previous highlights
+        visibleCards.forEach(card => {
+            card.style.transform = '';
+        });
+        
+        // Highlight random card
+        const randomIndex = Math.floor(Math.random() * visibleCards.length);
+        const randomCard = visibleCards[randomIndex];
+        
+        randomCard.style.transform = 'scale(1.02)';
+        randomCard.style.boxShadow = '0 25px 60px rgba(0, 255, 136, 0.4)';
+        
+        setTimeout(() => {
+            randomCard.style.transform = '';
+            randomCard.style.boxShadow = '';
+        }, 3000);
+    }
+}
+
+// Highlight a random testimonial every 5 seconds
+setInterval(highlightRandomTestimonial, 5000);
+
+// ========== CONSOLE INFO ==========
+console.log('✅ UYEH TECH Testimonials Page Loaded');
+console.log(`📊 Total Testimonials: ${testimonials.length}`);
+console.log('🎯 Filter categories: All, Web Development, Mobile Apps, E-commerce, UI/UX Design');
+    </script>
+<script src="/pwa-install.js"></script>
+<script src="/chat-widget.js"></script>
+</body>
+</html>
