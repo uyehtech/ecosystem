@@ -28,97 +28,47 @@
 
     /* ════════════════════════════════════════════════
        BANNER
-       Bottom-centre on mobile, bottom-left on desktop.
-       Wider, bolder, clearly branded.
+       Slim full-width strip pinned to the bottom —
+       one line on desktop, stacks on mobile.
     ════════════════════════════════════════════════ */
     #ck-banner {
       position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(calc(100% + 48px));
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 9998;
-      width: min(520px, calc(100vw - 32px));
-      background: linear-gradient(145deg, #131920 0%, #0d1117 100%);
-      border: 1px solid rgba(0,255,136,.3);
-      border-radius: 20px;
-      padding: 0;
-      box-shadow:
-        0 24px 64px rgba(0,0,0,.65),
-        0 0 0 1px rgba(0,255,136,.08),
-        inset 0 1px 0 rgba(255,255,255,.04);
-      opacity: 0;
-      transition: transform .38s cubic-bezier(.22,.68,0,1.2),
-                  opacity .3s ease;
+      background: #0d1117;
+      border-top: 1px solid rgba(0,255,136,.25);
+      box-shadow: 0 -4px 20px rgba(0,0,0,.35);
+      transform: translateY(100%);
+      transition: transform .3s ease;
       pointer-events: none;
-      overflow: hidden;
     }
     #ck-banner.ck-visible {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
+      transform: translateY(0);
       pointer-events: auto;
     }
 
-    /* green accent bar along the top edge */
-    #ck-banner::before {
-      content: '';
-      display: block;
-      height: 3px;
-      background: linear-gradient(90deg, #00ff88, #00b359);
-      border-radius: 20px 20px 0 0;
-    }
-
     .ck-banner-inner {
-      padding: 28px 26px 26px;
-    }
-
-    /* top row */
-    .ck-banner-top {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 24px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: 20px;
     }
-    .ck-banner-icon-wrap {
-      width: 40px; height: 40px;
-      background: rgba(0,255,136,.1);
-      border: 1px solid rgba(0,255,136,.2);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
+
+    .ck-banner-icon {
+      font-size: 1.1rem;
       flex-shrink: 0;
-    }
-    .ck-banner-heading {
-      flex: 1;
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -.2px;
-      line-height: 1.2;
-    }
-    .ck-banner-close {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      color: rgba(255,255,255,.4);
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      font-size: .9rem;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: all .2s;
-      flex-shrink: 0;
-    }
-    .ck-banner-close:hover {
-      background: rgba(255,77,77,.12);
-      border-color: rgba(255,77,77,.25);
-      color: #ff6b6b;
     }
 
     /* body */
     .ck-banner-body {
-      color: rgba(255,255,255,.5);
+      flex: 1;
+      color: rgba(255,255,255,.55);
       font-size: .85rem;
-      line-height: 1.75;
-      margin-bottom: 22px;
+      line-height: 1.6;
     }
     .ck-banner-body a {
       color: #00ff88;
@@ -132,57 +82,60 @@
     /* buttons */
     .ck-banner-actions {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .ck-banner-actions .ck-btn-accept {
-      width: 100%;
-      padding: 14px 18px;
-      font-size: .88rem;
-    }
-    .ck-banner-actions-secondary {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 10px;
+      flex-shrink: 0;
     }
     .ck-btn {
-      padding: 11px 18px;
-      border-radius: 10px;
+      padding: 10px 18px;
+      border-radius: 8px;
       border: none;
-      font-size: .83rem;
+      font-size: .82rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all .22s;
+      transition: background .2s, border-color .2s, color .2s;
       white-space: nowrap;
       text-align: center;
       line-height: 1;
     }
     .ck-btn-accept {
-      background: linear-gradient(135deg, #00ff88, #00c96a);
+      background: #00ff88;
       color: #0a0a0a;
-      box-shadow: 0 4px 18px rgba(0,255,136,.25);
     }
     .ck-btn-accept:hover {
-      box-shadow: 0 6px 24px rgba(0,255,136,.45);
-      transform: translateY(-1px);
+      background: #00e67a;
     }
     .ck-btn-settings {
-      background: rgba(0,255,136,.08);
+      background: transparent;
       color: #00ff88;
-      border: 1px solid rgba(0,255,136,.22);
+      border: 1px solid rgba(0,255,136,.3);
     }
     .ck-btn-settings:hover {
-      background: rgba(0,255,136,.15);
-      border-color: rgba(0,255,136,.4);
+      background: rgba(0,255,136,.08);
+      border-color: rgba(0,255,136,.5);
     }
     .ck-btn-reject {
-      background: rgba(255,255,255,.05);
-      color: rgba(255,255,255,.45);
-      border: 1px solid rgba(255,255,255,.09);
+      background: transparent;
+      color: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.15);
     }
     .ck-btn-reject:hover {
       color: #fff;
-      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.3);
+    }
+
+    .ck-banner-close {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,.35);
+      font-size: 1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 4px;
+      line-height: 1;
+      transition: color .2s;
+    }
+    .ck-banner-close:hover {
+      color: #fff;
     }
 
     /* ════════════════════════════════════════════════
@@ -191,10 +144,9 @@
     #ck-overlay {
       position: fixed; inset: 0;
       background: rgba(0,0,0,.6);
-      backdrop-filter: blur(3px);
       z-index: 9998;
       opacity: 0; pointer-events: none;
-      transition: opacity .28s;
+      transition: opacity .25s;
     }
     #ck-overlay.ck-visible { opacity: 1; pointer-events: auto; }
 
@@ -214,8 +166,8 @@
       z-index: 9999;
       display: flex; flex-direction: column;
       transform: translateX(100%);
-      transition: transform .3s cubic-bezier(.22,.68,0,1.1);
-      box-shadow: -16px 0 80px rgba(0,0,0,.6);
+      transition: transform .25s ease;
+      box-shadow: -8px 0 30px rgba(0,0,0,.4);
     }
     #ck-drawer.ck-visible { transform: translateX(0); }
 
@@ -228,7 +180,7 @@
       height: 66px;
       border-bottom: 1px solid rgba(255,255,255,.06);
       flex-shrink: 0;
-      background: linear-gradient(180deg,#111820,#0c1018);
+      background: #0c1018;
     }
     .ck-drawer-title {
       color: #fff;
@@ -290,11 +242,10 @@
       border: 1px solid rgba(255,255,255,.07);
       border-radius: 14px;
       overflow: hidden;
-      transition: border-color .2s, box-shadow .2s;
+      transition: border-color .2s;
     }
     .ck-category:hover {
-      border-color: rgba(0,255,136,.22);
-      box-shadow: 0 4px 20px rgba(0,255,136,.06);
+      border-color: rgba(0,255,136,.3);
     }
 
     /* category header row — name left, toggle right */
@@ -373,7 +324,6 @@
     .ck-toggle input:checked ~ .ck-toggle-track::after {
       transform: translateX(20px);
       background: #00ff88;
-      box-shadow: 0 0 8px rgba(0,255,136,.5);
     }
     .ck-toggle input:disabled ~ .ck-toggle-track {
       cursor: default; opacity: .7;
@@ -435,14 +385,16 @@
     .ck-drawer-footer .ck-btn-reject { padding: 11px 14px; }
 
     /* ── Responsive ─────────────────────────────────── */
-    @media (max-width: 540px) {
-      .ck-banner-actions {
-        grid-template-columns: 1fr 1fr;
+    @media (max-width: 640px) {
+      .ck-banner-inner {
+        flex-wrap: wrap;
+        padding: 16px 20px;
       }
-      .ck-btn-accept { grid-column: span 2; }
+      .ck-banner-body { flex: 1 1 100%; }
+      .ck-banner-actions { flex: 1 1 100%; }
+      .ck-banner-actions .ck-btn { flex: 1; }
     }
     @media (max-width: 380px) {
-      .ck-banner-actions-secondary { grid-template-columns: 1fr; }
       .ck-drawer-footer-secondary { grid-template-columns: 1fr; }
       #ck-drawer { width: 100vw; }
     }
@@ -515,22 +467,17 @@
     return `
 <div id="ck-banner" role="dialog" aria-label="Cookie consent">
   <div class="ck-banner-inner">
-    <div class="ck-banner-top">
-      <div class="ck-banner-icon-wrap">🍪</div>
-      <span class="ck-banner-heading">We use cookies</span>
-      <button class="ck-banner-close" onclick="cookieSystem.rejectAll()" aria-label="Reject and close">✕</button>
-    </div>
+    <span class="ck-banner-icon" aria-hidden="true">🍪</span>
     <p class="ck-banner-body">
       We use cookies to keep you logged in, analyse traffic, and personalise
       your experience. <a href="/privacy.html">Privacy Policy</a>
     </p>
     <div class="ck-banner-actions">
-      <button class="ck-btn ck-btn-accept" onclick="cookieSystem.acceptAll()">✓ Accept All</button>
-      <div class="ck-banner-actions-secondary">
-        <button class="ck-btn ck-btn-settings" onclick="cookieSystem.showSettings()">Manage</button>
-        <button class="ck-btn ck-btn-reject"   onclick="cookieSystem.rejectAll()">Reject</button>
-      </div>
+      <button class="ck-btn ck-btn-settings" onclick="cookieSystem.showSettings()">Manage</button>
+      <button class="ck-btn ck-btn-reject"   onclick="cookieSystem.rejectAll()">Reject</button>
+      <button class="ck-btn ck-btn-accept"   onclick="cookieSystem.acceptAll()">Accept All</button>
     </div>
+    <button class="ck-banner-close" onclick="cookieSystem.rejectAll()" aria-label="Reject and close">✕</button>
   </div>
 </div>`;
   }
