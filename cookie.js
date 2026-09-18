@@ -23,13 +23,14 @@
     #ck-banner *, #ck-drawer *, #ck-overlay {
       box-sizing: border-box;
       margin: 0; padding: 0;
-      font-family: 'Montserrat','Segoe UI',sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     /* ════════════════════════════════════════════════
        BANNER
-       Slim full-width strip pinned to the bottom —
-       one line on desktop, stacks on mobile.
+       Slim full-width strip pinned to the bottom.
+       Deliberately neutral — a consent notice, not a
+       themed marketing card.
     ════════════════════════════════════════════════ */
     #ck-banner {
       position: fixed;
@@ -37,11 +38,11 @@
       left: 0;
       right: 0;
       z-index: 9998;
-      background: #0d1117;
-      border-top: 1px solid rgba(0,255,136,.25);
-      box-shadow: 0 -4px 20px rgba(0,0,0,.35);
+      background: #ffffff;
+      border-top: 1px solid #e5e7eb;
+      box-shadow: 0 -2px 16px rgba(0,0,0,.1);
       transform: translateY(100%);
-      transition: transform .3s ease;
+      transition: transform .25s ease;
       pointer-events: none;
     }
     #ck-banner.ck-visible {
@@ -52,90 +53,79 @@
     .ck-banner-inner {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 18px 24px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 24px;
     }
 
-    .ck-banner-icon {
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    /* body */
     .ck-banner-body {
       flex: 1;
-      color: rgba(255,255,255,.55);
-      font-size: .85rem;
+      color: #4b5563;
+      font-size: .875rem;
       line-height: 1.6;
     }
+    .ck-banner-body strong { color: #111827; font-weight: 600; }
     .ck-banner-body a {
-      color: #00ff88;
+      color: #111827;
       font-weight: 600;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(0,255,136,.3);
-      transition: border-color .2s;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
-    .ck-banner-body a:hover { border-color: #00ff88; }
+    .ck-banner-body a:hover { color: #000; }
 
     /* buttons */
     .ck-banner-actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
     .ck-btn {
-      padding: 10px 18px;
-      border-radius: 8px;
-      border: none;
-      font-size: .82rem;
-      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      font-size: .8125rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: background .2s, border-color .2s, color .2s;
+      transition: background .15s, border-color .15s, color .15s;
       white-space: nowrap;
       text-align: center;
-      line-height: 1;
+      line-height: 1.3;
     }
     .ck-btn-accept {
-      background: #00ff88;
-      color: #0a0a0a;
+      background: #111827;
+      border-color: #111827;
+      color: #ffffff;
     }
     .ck-btn-accept:hover {
-      background: #00e67a;
+      background: #000000;
+      border-color: #000000;
     }
-    .ck-btn-settings {
-      background: transparent;
-      color: #00ff88;
-      border: 1px solid rgba(0,255,136,.3);
-    }
-    .ck-btn-settings:hover {
-      background: rgba(0,255,136,.08);
-      border-color: rgba(0,255,136,.5);
-    }
+    .ck-btn-settings,
     .ck-btn-reject {
-      background: transparent;
-      color: rgba(255,255,255,.5);
-      border: 1px solid rgba(255,255,255,.15);
+      background: #ffffff;
+      color: #374151;
+      border-color: #d1d5db;
     }
+    .ck-btn-settings:hover,
     .ck-btn-reject:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,.3);
+      background: #f9fafb;
+      border-color: #9ca3af;
     }
 
     .ck-banner-close {
       background: transparent;
       border: none;
-      color: rgba(255,255,255,.35);
+      color: #9ca3af;
       font-size: 1rem;
       cursor: pointer;
       flex-shrink: 0;
       padding: 4px;
       line-height: 1;
-      transition: color .2s;
+      transition: color .15s;
     }
     .ck-banner-close:hover {
-      color: #fff;
+      color: #111827;
     }
 
     /* ════════════════════════════════════════════════
@@ -143,82 +133,82 @@
     ════════════════════════════════════════════════ */
     #ck-overlay {
       position: fixed; inset: 0;
-      background: rgba(0,0,0,.6);
+      background: rgba(17,24,39,.55);
       z-index: 9998;
       opacity: 0; pointer-events: none;
-      transition: opacity .25s;
+      transition: opacity .2s;
     }
     #ck-overlay.ck-visible { opacity: 1; pointer-events: auto; }
 
     /* ════════════════════════════════════════════════
-       DRAWER
-       Full-height from right. Each category is a
-       proper card with clear visual weight.
+       PREFERENCES MODAL
+       Centred dialog — a proper settings modal rather
+       than a themed side-drawer.
     ════════════════════════════════════════════════ */
     #ck-drawer {
       position: fixed;
-      top: 0; right: 0;
-      height: 100%;
-      width: 440px;
-      max-width: 100vw;
-      background: #0c1018;
-      border-left: 1px solid rgba(0,255,136,.15);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -46%);
+      width: min(480px, calc(100vw - 32px));
+      max-height: min(80vh, 620px);
+      background: #ffffff;
+      border-radius: 12px;
       z-index: 9999;
       display: flex; flex-direction: column;
-      transform: translateX(100%);
-      transition: transform .25s ease;
-      box-shadow: -8px 0 30px rgba(0,0,0,.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      box-shadow: 0 24px 60px rgba(0,0,0,.3);
+      overflow: hidden;
     }
-    #ck-drawer.ck-visible { transform: translateX(0); }
+    #ck-drawer.ck-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+    }
 
-    /* drawer header */
+    /* modal header */
     .ck-drawer-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 24px;
-      height: 66px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 18px 22px;
+      border-bottom: 1px solid #e5e7eb;
       flex-shrink: 0;
-      background: #0c1018;
     }
     .ck-drawer-title {
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      letter-spacing: -.2px;
+      color: #111827;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -.1px;
     }
     .ck-drawer-title span {
-      color: #00ff88;
-      font-family: 'Playfair Display', serif;
+      color: #111827;
+      font-weight: 700;
     }
     .ck-drawer-close {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      color: rgba(255,255,255,.4);
-      width: 34px; height: 34px;
-      border-radius: 9px;
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      width: 28px; height: 28px;
+      border-radius: 6px;
       font-size: .9rem;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: all .2s;
+      transition: background .15s, color .15s;
     }
     .ck-drawer-close:hover {
-      background: rgba(255,77,77,.12);
-      border-color: rgba(255,77,77,.25);
-      color: #ff6b6b;
+      background: #f3f4f6;
+      color: #111827;
     }
 
-    /* drawer intro */
+    /* modal intro */
     .ck-drawer-intro {
-      padding: 14px 24px;
-      color: rgba(255,255,255,.38);
-      font-size: .8rem;
-      line-height: 1.7;
-      border-bottom: 1px solid rgba(255,255,255,.04);
+      padding: 14px 22px;
+      color: #6b7280;
+      font-size: .8125rem;
+      line-height: 1.6;
+      border-bottom: 1px solid #f3f4f6;
       flex-shrink: 0;
     }
 
@@ -226,163 +216,131 @@
     .ck-drawer-body {
       flex: 1;
       overflow-y: auto;
-      padding: 24px;
-      display: flex; flex-direction: column;
-      gap: 18px;
+      padding: 4px 22px;
     }
-    .ck-drawer-body::-webkit-scrollbar { width: 3px; }
+    .ck-drawer-body::-webkit-scrollbar { width: 6px; }
     .ck-drawer-body::-webkit-scrollbar-thumb {
-      background: rgba(0,255,136,.18);
+      background: #e5e7eb;
       border-radius: 4px;
     }
 
-    /* category card */
+    /* category row */
     .ck-category {
-      background: #111820;
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: border-color .2s;
+      padding: 16px 0;
+      border-bottom: 1px solid #f3f4f6;
     }
-    .ck-category:hover {
-      border-color: rgba(0,255,136,.3);
-    }
+    .ck-category:last-child { border-bottom: none; }
 
     /* category header row — name left, toggle right */
     .ck-cat-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      padding: 18px 18px 14px;
       gap: 14px;
     }
     .ck-cat-left {
       display: flex;
-      align-items: center;
-      gap: 11px;
+      flex-direction: column;
+      gap: 2px;
       flex: 1;
     }
-    .ck-cat-icon-wrap {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: rgba(0,255,136,.08);
-      border: 1px solid rgba(0,255,136,.14);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .ck-cat-name-wrap { display: flex; flex-direction: column; gap: 3px; }
+    .ck-cat-name-wrap { display: flex; align-items: center; gap: 8px; }
     .ck-cat-name {
-      color: #fff;
-      font-size: .92rem;
-      font-weight: 700;
-      line-height: 1;
+      color: #111827;
+      font-size: .9rem;
+      font-weight: 600;
+      line-height: 1.3;
     }
     .ck-always-on {
       display: inline-block;
-      font-size: .65rem;
-      font-weight: 800;
+      font-size: .6875rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: .8px;
-      color: #00ff88;
-      background: rgba(0,255,136,.1);
-      border: 1px solid rgba(0,255,136,.22);
-      padding: 2px 7px;
-      border-radius: 20px;
-      line-height: 1.5;
+      letter-spacing: .4px;
+      color: #6b7280;
     }
 
-    /* toggle */
+    /* toggle — monochrome */
     .ck-toggle {
       position: relative;
-      width: 46px; height: 26px;
+      width: 38px; height: 22px;
       flex-shrink: 0;
+      margin-top: 1px;
     }
     .ck-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
     .ck-toggle-track {
       position: absolute; inset: 0;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 13px;
+      background: #e5e7eb;
+      border-radius: 11px;
       cursor: pointer;
-      transition: all .22s;
+      transition: background .18s;
     }
     .ck-toggle-track::after {
       content: '';
       position: absolute;
-      top: 4px; left: 4px;
+      top: 3px; left: 3px;
       width: 16px; height: 16px;
-      background: rgba(255,255,255,.35);
+      background: #ffffff;
       border-radius: 50%;
-      transition: transform .22s, background .22s;
-      box-shadow: 0 1px 4px rgba(0,0,0,.4);
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+      transition: transform .18s;
     }
     .ck-toggle input:checked ~ .ck-toggle-track {
-      background: rgba(0,255,136,.2);
-      border-color: rgba(0,255,136,.5);
+      background: #111827;
     }
     .ck-toggle input:checked ~ .ck-toggle-track::after {
-      transform: translateX(20px);
-      background: #00ff88;
+      transform: translateX(16px);
     }
     .ck-toggle input:disabled ~ .ck-toggle-track {
-      cursor: default; opacity: .7;
-    }
-    .ck-toggle input:checked:disabled ~ .ck-toggle-track {
-      background: rgba(0,255,136,.18);
-      border-color: rgba(0,255,136,.35);
+      cursor: default; opacity: .55;
     }
 
     /* description + meta */
     .ck-cat-body {
-      padding: 0 18px 18px;
-      border-top: 1px solid rgba(255,255,255,.05);
-      padding-top: 14px;
+      padding-top: 10px;
     }
     .ck-cat-desc {
-      color: rgba(255,255,255,.45);
-      font-size: .82rem;
-      line-height: 1.7;
-      margin-bottom: 14px;
+      color: #6b7280;
+      font-size: .8125rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
     }
     .ck-cat-meta {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
     }
     .ck-meta-pill {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      font-size: .74rem;
-      line-height: 1.55;
+      gap: 2px;
+      font-size: .75rem;
+      line-height: 1.5;
     }
     .ck-meta-label {
-      color: rgba(0,255,136,.7);
-      font-weight: 700;
+      color: #374151;
+      font-weight: 600;
     }
-    .ck-meta-val { color: rgba(255,255,255,.4); }
+    .ck-meta-val { color: #9ca3af; }
 
-    /* drawer footer */
+    /* modal footer */
     .ck-drawer-footer {
-      padding: 22px 24px;
-      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 16px 22px;
+      border-top: 1px solid #e5e7eb;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
       flex-shrink: 0;
-      background: #0c1018;
     }
     .ck-drawer-footer .ck-btn-accept {
       width: 100%;
-      padding: 14px 16px;
+      padding: 11px 16px;
     }
     .ck-drawer-footer-secondary {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
-    .ck-drawer-footer .ck-btn-reject { padding: 11px 14px; }
 
     /* ── Responsive ─────────────────────────────────── */
     @media (max-width: 640px) {
@@ -396,7 +354,7 @@
     }
     @media (max-width: 380px) {
       .ck-drawer-footer-secondary { grid-template-columns: 1fr; }
-      #ck-drawer { width: 100vw; }
+      #ck-drawer { width: calc(100vw - 24px); max-height: 85vh; }
     }
   `;
 
@@ -467,10 +425,8 @@
     return `
 <div id="ck-banner" role="dialog" aria-label="Cookie consent">
   <div class="ck-banner-inner">
-    <span class="ck-banner-icon" aria-hidden="true">🍪</span>
     <p class="ck-banner-body">
-      We use cookies to keep you logged in, analyse traffic, and personalise
-      your experience. <a href="/privacy.html">Privacy Policy</a>
+      <strong>We use cookies.</strong> This helps us keep you logged in, understand site traffic, and improve your experience. <a href="/privacy.html">Privacy Policy</a>
     </p>
     <div class="ck-banner-actions">
       <button class="ck-btn ck-btn-settings" onclick="cookieSystem.showSettings()">Manage</button>
@@ -488,7 +444,6 @@
 <div class="ck-category">
   <div class="ck-cat-head">
     <div class="ck-cat-left">
-      <div class="ck-cat-icon-wrap">${cat.icon}</div>
       <div class="ck-cat-name-wrap">
         <span class="ck-cat-name">${cat.name}</span>
         ${cat.alwaysOn ? `<span class="ck-always-on">Always on</span>` : ''}
@@ -517,7 +472,7 @@
 <div id="ck-overlay" onclick="cookieSystem.closeSettings()" aria-hidden="true"></div>
 <div id="ck-drawer" role="dialog" aria-label="Cookie preferences" aria-modal="true">
   <div class="ck-drawer-header">
-    <div class="ck-drawer-title">🍪 Cookie <span>Preferences</span></div>
+    <div class="ck-drawer-title">Cookie <span>Preferences</span></div>
     <button class="ck-drawer-close" onclick="cookieSystem.closeSettings()" aria-label="Close">✕</button>
   </div>
   <p class="ck-drawer-intro">
